@@ -1,0 +1,873 @@
+{
+ "5.9a": {
+  "skill": "Career ended by concealment",
+  "real": "Hiding a breach breaks incident response, because the organization needs the truth in time to contain the harm and tell the people who must act. The path to CISO is that trust, and reporting bad news early is how you keep it.",
+  "path": "You hid the breach from the company."
+ },
+ "5.9b": {
+  "skill": "Stepped away from burnout",
+  "real": "Security leadership is a long run of incidents, decisions, and pager duty. The path to CISO includes rest, delegation, and a team that can cover for you, so you stay healthy enough to protect the business.",
+  "path": "You kept the breach visible and let the strain of the job build until you had to step away."
+ },
+ "5.9c": {
+  "skill": "Fortune 500 CISO seat",
+  "real": "A larger CISO seat is still an executive communication job: you turn risk into decisions leaders can use, and you own how people were treated on the way up. Honest incident reports and plain briefings are how you carry trust into that role.",
+  "path": "You chose the outside CISO role, kept the breach visible, and held enough balance to take the seat."
+ },
+ "5.9d": {
+  "skill": "Independent virtual CISO",
+  "real": "A virtual CISO owes every client the truth about vendor risk, who should have access, and how an incident will be handled. Many doors still mean one standard of work, and that freedom has to show up like a real job.",
+  "path": "You chose independent work with many clients, kept the breach visible, and held enough balance to run your own practice."
+ },
+ "5.9e": {
+  "skill": "Principal security engineer",
+  "real": "Defense in depth depends on people who stay close to the systems and still answer when the team pages them. Principal engineering is a full security career, built on hard study and on the trust of the people who build and run the network.",
+  "path": "You chose the deep technical role, kept the breach visible, and held enough balance to stay with the hard problems."
+ },
+ "5.9f": {
+  "skill": "Won the internal chair",
+  "real": "The internal chair goes to the leader who can brief risk in business language or bring in law enforcement when a serious incident calls for it. Refusing to blame one employee also protects the next report, because people speak up when the focus stays on the process.",
+  "path": "You fought for the bank chair, gave a business briefing or called law enforcement, refused to blame an employee, kept the breach visible, and held your balance."
+ },
+ "5.9g": {
+  "skill": "Passed over, role remains",
+  "real": "Staying silent, skipping both the business briefing and the law enforcement call, or blaming one employee leaves the chair with someone else. You still have a role because you can see where the risk hides, and plain executive communication plus fair incident handling keep another door open.",
+  "path": "You stayed silent, or you fought without a business briefing and without a law enforcement call, or you blamed an employee, while keeping the breach visible and holding your balance."
+ },
+ "1.1#1": {
+  "skill": "career motivation",
+  "real": "The reason you take an analyst seat shapes how you learn the work. People who later become a CISO usually treated those early shifts as a craft they meant to master.",
+  "opts": [
+   {
+    "pro": "Shows you want the craft",
+    "con": "Eagerness still needs a plan"
+   },
+   {
+    "pro": "Reliability is the real job",
+    "con": "Presence alone builds little skill"
+   },
+   {
+    "pro": "Honest about needing the pay",
+    "con": "Pay alone fades when nights get hard"
+   },
+   {
+    "pro": "Buys a moment to think",
+    "con": "Silence reads as having no aim"
+   }
+  ]
+ },
+ "1.1#2": {
+  "skill": "early path choice",
+  "real": "Night operations teach alert judgment, policy work teaches how controls are written, and startup work makes you cover many jobs with thin process. Choosing on purpose is how you build the mix of skills a CISO is expected to hold.",
+  "opts": [
+   {
+    "pro": "Builds live alert judgment",
+    "con": "Fatigue can hide mistakes"
+   },
+   {
+    "pro": "Learns how controls are written",
+    "con": "Less practice with live incidents"
+   },
+   {
+    "pro": "Wide practice with thin process",
+    "con": "Fundamentals are easy to skip"
+   },
+   {
+    "pro": "Keeps your options open",
+    "con": "Someone else sets your training"
+   }
+  ]
+ },
+ "1.2#1": {
+  "skill": "on shift learning",
+  "real": "Entry certificates build a shared security vocabulary, and a live shift still has to come first. Leaders later look for people who can study and still be ready when an alert arrives.",
+  "opts": [
+   {
+    "pro": "Covers threats, tools, and response",
+    "con": "Cramming on a live shift splits focus"
+   },
+   {
+    "pro": "Covers core security principles",
+    "con": "Light on hands-on alert work"
+   },
+   {
+    "pro": "Full attention on the queue",
+    "con": "The certificate plan stays still"
+   },
+   {
+    "pro": "Avoids a sloppy study promise",
+    "con": "The timer ends with no plan"
+   }
+  ]
+ },
+ "1.2#2": {
+  "skill": "alert triage",
+  "real": "A repeating strange address is a clue that still needs a read. Good analysts check the alert, then contain or escalate, so action stays tied to evidence as the calls get larger.",
+  "opts": [
+   {
+    "pro": "Stops the activity quickly",
+    "con": "May cut off a real business flow"
+   },
+   {
+    "pro": "Reads the evidence before acting",
+    "con": "Hostile traffic keeps moving"
+   },
+   {
+    "pro": "Uses the escalation path",
+    "con": "You still owe a clear picture"
+   },
+   {
+    "pro": "Holds off a blind block",
+    "con": "The card keeps firing unowned"
+   }
+  ]
+ },
+ "1.3#1": {
+  "skill": "incident decision brief",
+  "real": "A live incident calls for what you see and what you recommend. Containment limits spread, logs keep the evidence, and escalation keeps the decision inside your authority.",
+  "opts": [
+   {
+    "pro": "Limits spread from that laptop",
+    "con": "You may miss a wider scope"
+   },
+   {
+    "pro": "Builds the record before action",
+    "con": "A suspect host stays online"
+   },
+   {
+    "pro": "Pulls in help you may need",
+    "con": "You gave no recommendation"
+   },
+   {
+    "pro": "Keeps a wild guess unspoken",
+    "con": "Your lead has nothing to use"
+   }
+  ]
+ },
+ "1.4#1": {
+  "skill": "after action honesty",
+  "real": "When the shift is over, name what you treated as proof. Odd behavior, your own doubt, and the tools are all inputs, and a CISO has to be able to say which input they leaned on.",
+  "opts": [
+   {
+    "pro": "Names the signal you followed",
+    "con": "Instinct still needs log proof"
+   },
+   {
+    "pro": "Honest about an unclear picture",
+    "con": "The review still needs a next step"
+   },
+   {
+    "pro": "Raises a possible tooling gap",
+    "con": "Skips a review of your own steps"
+   },
+   {
+    "pro": "Avoids a made-up lesson",
+    "con": "The review loses your view"
+   }
+  ]
+ },
+ "1.5#1": {
+  "skill": "peer handover",
+  "real": "Teams get safer when people can retell what happened and still protect sensitive detail. Rest is part of night work, and a clear handoff is early practice for briefing leaders later.",
+  "opts": [
+   {
+    "pro": "Keeps sensitive detail close",
+    "con": "The next shift learns nothing"
+   },
+   {
+    "pro": "Shares what the next shift needs",
+    "con": "Extra detail can expose the case"
+   },
+   {
+    "pro": "Names fatigue before errors grow",
+    "con": "The handoff is still unfinished"
+   },
+   {
+    "pro": "Holds detail while you are tired",
+    "con": "Withdrawal leaves the team blind"
+   }
+  ]
+ },
+ "2.1#1": {
+  "skill": "alert queue triage",
+  "real": "A loud queue hides the alert that matters. Separating noise from a real lead is core analyst work, and wiping or silencing alerts without a reason can erase the incident you are there to catch.",
+  "opts": [
+   {
+    "pro": "Checks the alert that looks wrong",
+    "con": "Leaves the noisy flood unexplained"
+   },
+   {
+    "pro": "Lowers noise so real alerts show",
+    "con": "Can silence a useful detection"
+   },
+   {
+    "pro": "Empties the board in a hurry",
+    "con": "Wipes evidence and real incidents"
+   },
+   {
+    "pro": "Avoids a hasty wrong close",
+    "con": "The real alert stays buried"
+   }
+  ]
+ },
+ "2.2#1": {
+  "skill": "vendor due diligence",
+  "real": "Security tools arrive with bold claims and thin proof. Asking for a live demonstration before you recommend a buy is the vendor-risk habit a future CISO uses on every major purchase.",
+  "opts": [
+   {
+    "pro": "Tests the claim before any spend",
+    "con": "Slows a buy the team may need"
+   },
+   {
+    "pro": "Decides fast and looks decisive",
+    "con": "Funds a claim nobody tested"
+   },
+   {
+    "pro": "Protects time and the budget",
+    "con": "May dismiss a tool you need"
+   },
+   {
+    "pro": "Buys time before committing",
+    "con": "The rep keeps owning the room"
+   }
+  ]
+ },
+ "2.3#1": {
+  "skill": "coaching new analysts",
+  "real": "Part of this role is teaching the person who now sits where you once sat. Walking the ticket together builds the team, and taking it back finishes the work while they stay unready.",
+  "opts": [
+   {
+    "pro": "Teaches the hire while work gets done",
+    "con": "Costs time you also need"
+   },
+   {
+    "pro": "Closes it to your own standard",
+    "con": "The new hire never learns it"
+   },
+   {
+    "pro": "Avoids jumping in too fast",
+    "con": "The new hire gets no help"
+   }
+  ]
+ },
+ "2.4#1": {
+  "skill": "on-call ownership",
+  "real": "A page during a coverage gap still needs an owner. You either work it or hand it to someone who can, because an unanswered phone is an unanswered incident.",
+  "opts": [
+   {
+    "pro": "Owns the page and starts containment",
+    "con": "Heroics wear you down over time"
+   },
+   {
+    "pro": "Hands the page to a teammate",
+    "con": "Sam may lack context or access"
+   },
+   {
+    "pro": "Protects rest in the moment",
+    "con": "Leaves a live page unanswered"
+   },
+   {
+    "pro": "Puts off an uncomfortable choice",
+    "con": "The page goes unanswered"
+   }
+  ]
+ },
+ "2.5#1": {
+  "skill": "incident containment",
+  "real": "When an incident is active, standard practice is to contain it and then brief the leader who must act. Paying to make it stop, or staying quiet, skips containment and lets the damage run.",
+  "opts": [
+   {
+    "pro": "Contains spread, then informs leadership",
+    "con": "Isolation can halt business systems"
+   },
+   {
+    "pro": "Looks like the fastest way out",
+    "con": "Pays an attacker and skips the fix"
+   },
+   {
+    "pro": "Puts a teammate on the problem",
+    "con": "Command stays unclear as time burns"
+   },
+   {
+    "pro": "Avoids a public wrong call",
+    "con": "The incident spreads while you freeze"
+   }
+  ]
+ },
+ "2.5#2": {
+  "skill": "after-action honesty",
+  "real": "After the worst of it, leaders ask whether the tools failed or the people in the room did. A straight answer about listening or freezing is how the lesson sticks and how they learn they can trust you.",
+  "opts": [
+   {
+    "pro": "Owns the missed signal",
+    "con": "Confession still needs a process change"
+   },
+   {
+    "pro": "Owns the delay in the room",
+    "con": "Leaves the listening failure unspoken"
+   },
+   {
+    "pro": "Sidesteps a painful admission",
+    "con": "Leaders cannot trust a blank answer"
+   }
+  ]
+ },
+ "2.6#1": {
+  "skill": "certification timing",
+  "real": "Pick a credential that matches work you can already defend in an interview. An analyst cert fits this stage, and you can hold the broad management cert only after five years paid, so the order matters.",
+  "opts": [
+   {
+    "pro": "Matches analyst work you can prove",
+    "con": "Leaves leadership domains for later"
+   },
+   {
+    "pro": "Starts the cert many leaders expect",
+    "con": "You cannot hold it before five years"
+   },
+   {
+    "pro": "Builds judgment no exam can fake",
+    "con": "Skips a credential some roles screen for"
+   },
+   {
+    "pro": "Keeps focus on today's tickets",
+    "con": "Career plan stalls without a choice"
+   }
+  ]
+ },
+ "3.1#1": {
+  "skill": "career track choice",
+  "real": "In the middle years you pick a lane and live with the gaps it leaves. Engineering depth, people leadership, and incident command each build a different muscle a CISO later has to use in the same week.",
+  "opts": [
+   {
+    "pro": "Deep technical judgment you can trust",
+    "con": "Less practice leading people and budgets"
+   },
+   {
+    "pro": "Practice hiring, priorities, and tradeoffs",
+    "con": "Hands-on skill can go stale"
+   },
+   {
+    "pro": "Real command under live pressure",
+    "con": "Narrow if every day is only firefighting"
+   },
+   {
+    "pro": "No path locked in today",
+    "con": "Others will assign the lane for you"
+   }
+  ]
+ },
+ "3.1#2": {
+  "skill": "stakeholder pushback",
+  "real": "Senior security work means people will push for a different answer. Your first move shows whether you can hold a risk position and still hear the person across from you.",
+  "opts": [
+   {
+    "pro": "Shows you mean the call",
+    "con": "Can sound closed before you listen"
+   },
+   {
+    "pro": "You get her real concern",
+    "con": "Easy to drift off your point"
+   },
+   {
+    "pro": "The working relationship stays intact",
+    "con": "The risk call can get watered down"
+   },
+   {
+    "pro": "You avoid a sharp reply",
+    "con": "Silence reads as no position"
+   }
+  ]
+ },
+ "3.2#1": {
+  "skill": "credential strategy",
+  "real": "Each exam pulls your career toward a kind of work. CISSP stretches breadth across a security program, OSCP proves you can attack a system, and CISA trains you to test whether controls hold.",
+  "opts": [
+   {
+    "pro": "Broad map of the whole program",
+    "con": "Breadth can stay shallow on tools"
+   },
+   {
+    "pro": "Proof you can find real flaws",
+    "con": "Little practice in governance or audit"
+   },
+   {
+    "pro": "Trains you to audit whether controls work",
+    "con": "Weak signal for hands-on defense"
+   },
+   {
+    "pro": "You keep time for the day job",
+    "con": "The study clock never starts"
+   }
+  ]
+ },
+ "3.2#2": {
+  "skill": "sustainable pace",
+  "real": "Incident-heavy years can train you to treat exhaustion as loyalty. A future CISO still needs a clear head for the next decision, so a life outside the building is part of the work.",
+  "opts": [
+   {
+    "pro": "You protect sleep and judgment",
+    "con": "Some will read it as less driven"
+   },
+   {
+    "pro": "You stay on the hard problem",
+    "con": "Burnout makes later calls worse"
+   },
+   {
+    "pro": "You name the win out loud",
+    "con": "Skips the question about how you are"
+   },
+   {
+    "pro": "You skip a hard personal answer",
+    "con": "People who care get nothing back"
+   }
+  ]
+ },
+ "3.3#1": {
+  "skill": "executive visibility",
+  "real": "People on the path to CISO get judged on whether they can give a clear security view in the room. Bringing a sponsor, going alone, or handing her the lead changes who the business learns to trust.",
+  "opts": [
+   {
+    "pro": "Backup if the room turns",
+    "con": "You may look like you need cover"
+   },
+   {
+    "pro": "You practice the executive voice",
+    "con": "No ally if the meeting goes badly"
+   },
+   {
+    "pro": "Her rank carries the message",
+    "con": "The room remembers her name"
+   },
+   {
+    "pro": "You dodge an awkward choice",
+    "con": "She decides without your input"
+   }
+  ]
+ },
+ "3.4#1": {
+  "skill": "release risk judgment",
+  "real": "Real reviews start with what data and access are in play, then add guardrails such as least privilege and monitoring, or stop the change when the harm is unacceptable. A blank answer functions as an accidental yes.",
+  "opts": [
+   {
+    "pro": "Business moves with controls attached",
+    "con": "Guardrails fail if nobody owns them"
+   },
+   {
+    "pro": "Stops harm before it spreads",
+    "con": "Trust drops if the block is vague"
+   },
+   {
+    "pro": "You stay easy to work with",
+    "con": "You accept risk with no conditions"
+   },
+   {
+    "pro": "Scopes impact before you judge",
+    "con": "A question is not yet a decision"
+   },
+   {
+    "pro": "You avoid owning the outcome",
+    "con": "The launch treats silence as approval"
+   }
+  ]
+ },
+ "3.5#1": {
+  "skill": "clear risk stance",
+  "real": "After a season, leaders need a sentence they can act on. Holding, piloting in a small scope, or shutting the work down are all real positions, and silence lets others assume security has no view.",
+  "opts": [
+   {
+    "pro": "Consistent with the earlier position",
+    "con": "Ignores what the season taught you"
+   },
+   {
+    "pro": "Limits blast radius while you learn",
+    "con": "A pilot can become the full launch"
+   },
+   {
+    "pro": "Clear stop if the risk is wrong",
+    "con": "Harder to rebuild trust afterward"
+   },
+   {
+    "pro": "You delay the sentence they asked for",
+    "con": "Plain words were the assignment"
+   }
+  ]
+ },
+ "3.6#1": {
+  "skill": "ambition signaling",
+  "real": "Sponsors can open broader CISO scope when they know whether you want the craft, the next rung, or a pause. Saying it plainly is part of the path, and people who go quiet get planned around.",
+  "opts": [
+   {
+    "pro": "Signals you still want the craft",
+    "con": "May hide interest in broader scope"
+   },
+   {
+    "pro": "Gives a sponsor something to back",
+    "con": "Can sound done with the current job"
+   },
+   {
+    "pro": "Honest if you need time",
+    "con": "Sponsors plan around a clear yes"
+   },
+   {
+    "pro": "No promise you might regret",
+    "con": "Marcus cannot tell what to offer"
+   }
+  ]
+ },
+ "4.1#1": {
+  "skill": "incident containment",
+  "real": "In a live intrusion, containment comes before the leadership briefing. The path to CISO rewards people who name a concrete stop action while the attacker is still in the environment.",
+  "opts": [
+   {
+    "pro": "Stops the live admin attack path",
+    "con": "May cut off evidence you still need"
+   },
+   {
+    "pro": "Pulls access without a loud outage",
+    "con": "Other sessions may still be live"
+   },
+   {
+    "pro": "CEO hears it from you directly",
+    "con": "The intrusion keeps moving meanwhile"
+   },
+   {
+    "pro": "Avoids a rushed containment call",
+    "con": "The attacker keeps the access"
+   }
+  ]
+ },
+ "4.2#1": {
+  "skill": "incident status reporting",
+  "real": "A war room update should state what the attacker touched and what you have already stopped. Security leaders who brief that way keep operators, counsel, and executives on the same facts.",
+  "opts": [
+   {
+    "pro": "Shows evidence of what was touched",
+    "con": "Raw logs can bury the action"
+   },
+   {
+    "pro": "States what you already stopped",
+    "con": "Can skip what they still hold"
+   },
+   {
+    "pro": "Delays a painful scope conversation",
+    "con": "Hidden scope breaks trust and duty"
+   },
+   {
+    "pro": "Buys a moment to check facts",
+    "con": "The room has nothing to act on"
+   }
+  ]
+ },
+ "4.2#2": {
+  "skill": "containment scope judgment",
+  "real": "Profile edits change who has access, so in a breach they belong in the containment decision. Freeze broadly while scope is unclear, and narrow the freeze once the touched accounts are known.",
+  "opts": [
+   {
+    "pro": "Blocks new privilege changes everywhere",
+    "con": "Legitimate profile work stops too"
+   },
+   {
+    "pro": "Focuses the freeze on known accounts",
+    "con": "Unknown accounts stay editable"
+   },
+   {
+    "pro": "Daily profile changes keep moving",
+    "con": "Attacker can still change access"
+   },
+   {
+    "pro": "Waits until the account list is ready",
+    "con": "Edits stay open during the wait"
+   }
+  ]
+ },
+ "4.3#1": {
+  "skill": "external escalation judgment",
+  "real": "Once an incident may be a crime, counsel, outside forensics, and sometimes law enforcement each have a job. Making that choice promptly protects evidence and keeps legal duties from sitting idle.",
+  "opts": [
+   {
+    "pro": "Puts the crime before investigators",
+    "con": "Best timed with counsel's plan"
+   },
+   {
+    "pro": "Outside experts preserve the evidence",
+    "con": "Can slow the answer counsel wants"
+   },
+   {
+    "pro": "Limits who learns of the incident",
+    "con": "You may miss a legal duty"
+   },
+   {
+    "pro": "Avoids an outside call you regret",
+    "con": "Counsel still leaves without a decision"
+   }
+  ]
+ },
+ "4.4#1": {
+  "skill": "executive impact briefing",
+  "real": "A CEO uses customer money and trust to decide on notification and service. Give a straight split between confirmed harm, open questions, and the containment you have already achieved.",
+  "opts": [
+   {
+    "pro": "Answers both money and trust",
+    "con": "Too strong if the proof is thin"
+   },
+   {
+    "pro": "Reports that the loss has stopped",
+    "con": "Skips the trust side of harm"
+   },
+   {
+    "pro": "Admits the impact is still open",
+    "con": "Needs a next step to be useful"
+   },
+   {
+    "pro": "Refuses to guess about customers",
+    "con": "The CEO is left without facts"
+   }
+  ]
+ },
+ "4.5#1": {
+  "skill": "board communication",
+  "real": "A board needs business stakes, your decision, and the remaining risk, with clear ownership of the control gap. Naming an employee as the cause leaves that gap in place.",
+  "opts": [
+   {
+    "pro": "Connects the breach to business risk",
+    "con": "Can sound vague without proof"
+   },
+   {
+    "pro": "Shows how the attack unfolded",
+    "con": "Detail can lose a busy board"
+   },
+   {
+    "pro": "Gives the board a simple cause",
+    "con": "Hides the control gap you own"
+   },
+   {
+    "pro": "Avoids a remark you cannot walk back",
+    "con": "The board sees no one accountable"
+   }
+  ]
+ },
+ "4.6#1": {
+  "skill": "public disclosure judgment",
+  "real": "A public breach statement should offer verified facts and the steps customers should take. Full disclosure, limited facts, and deliberate silence are all choices you should be ready to explain.",
+  "opts": [
+   {
+    "pro": "Gives customers the full account",
+    "con": "Early detail may be wrong or harmful"
+   },
+   {
+    "pro": "Shares verified facts customers can use",
+    "con": "A short note can look evasive"
+   },
+   {
+    "pro": "Shields the live investigation",
+    "con": "Rumor fills the public silence"
+   },
+   {
+    "pro": "Holds the wording for a final look",
+    "con": "Customers get no guidance at all"
+   }
+  ]
+ },
+ "4.7#1": {
+  "skill": "help desk verification",
+  "real": "Help desk social engineering yields to a verification control, such as a callback on a known number, supported by training. Personnel action aimed at the agent leaves that request path open.",
+  "opts": [
+   {
+    "pro": "Teaches the help desk the trick",
+    "con": "Training alone still fails under pressure"
+   },
+   {
+    "pro": "Confirms identity on a known number",
+    "con": "Urgent tickets take an extra step"
+   },
+   {
+    "pro": "Shows the board a person acted",
+    "con": "The same request path stays open"
+   },
+   {
+    "pro": "Refuses to offer the board a villain",
+    "con": "No new control comes out of it"
+   }
+  ]
+ },
+ "5.1#1": {
+  "skill": "availability judgment",
+  "real": "Security leaders stay reachable because the next call may be an incident. They also guard sensitive talk, since a speakerphone in an open room can expose a private matter.",
+  "opts": [
+   {
+    "pro": "You own whatever is urgent",
+    "con": "You step away from the room"
+   },
+   {
+    "pro": "You stay present with people",
+    "con": "A live incident might wait"
+   },
+   {
+    "pro": "The room hears the same facts",
+    "con": "A private call becomes public"
+   },
+   {
+    "pro": "You take a moment to think",
+    "con": "Silence reads as a freeze"
+   }
+  ]
+ },
+ "5.2#1": {
+  "skill": "professional composure",
+  "real": "Senior searches put rivals in the same hallway. Treating the other candidate well shows you can compete on the work and still be someone others can follow.",
+  "opts": [
+   {
+    "pro": "You offer basic respect",
+    "con": "Warmth can lack substance"
+   },
+   {
+    "pro": "You focus on the work",
+    "con": "It can sound like a contest"
+   },
+   {
+    "pro": "You get context before acting",
+    "con": "A side question can look political"
+   },
+   {
+    "pro": "You skip a rushed reaction",
+    "con": "Stillness can look like fear"
+   }
+  ]
+ },
+ "5.3#1": {
+  "skill": "board communication",
+  "real": "Directors need a CISO who protects operations and brings risk forward early. A promise to stop every attack breaks trust, because defense in depth lowers harm and still expects attacks to land.",
+  "opts": [
+   {
+    "pro": "You tie security to survival",
+    "con": "The line can sound too narrow"
+   },
+   {
+    "pro": "The goal sounds absolute",
+    "con": "Stopping every attack is impossible"
+   },
+   {
+    "pro": "Leaders hear risk in time",
+    "con": "Warning without action is thin"
+   },
+   {
+    "pro": "You skip a shaky slogan",
+    "con": "You never define the role"
+   }
+  ]
+ },
+ "5.4#1": {
+  "skill": "risk management judgment",
+  "real": "Standard risk management treats risk by reducing, transferring, avoiding, or accepting it. Telling leaders the job is to eliminate risk sells a certainty the business cannot have.",
+  "opts": [
+   {
+    "pro": "You describe real risk treatment",
+    "con": "Honest limits can sound cautious"
+   },
+   {
+    "pro": "You stay aligned with Theo",
+    "con": "You back an impossible goal"
+   },
+   {
+    "pro": "You bring in the human side",
+    "con": "You may miss the risk question"
+   },
+   {
+    "pro": "You hold back a weak answer",
+    "con": "The eliminate-risk claim stands"
+   }
+  ]
+ },
+ "5.5#1": {
+  "skill": "upward team advocacy",
+  "real": "Questions about tools land on the people who run them. A CISO sets up that moment so staff can speak plainly and still feel backed.",
+  "opts": [
+   {
+    "pro": "You commit to plain answers",
+    "con": "Honesty can surface a gap"
+   },
+   {
+    "pro": "A peer can support the facts",
+    "con": "You may look unable to speak"
+   },
+   {
+    "pro": "You shield Priya from the room",
+    "con": "The room loses her knowledge"
+   },
+   {
+    "pro": "You avoid a rushed promise",
+    "con": "Priya enters without cover"
+   }
+  ]
+ },
+ "5.6#1": {
+  "skill": "budget tradeoff judgment",
+  "real": "A rollout signed quickly will draw questions about what it touches. Tools help only when trained people operate them, so a CISO defends people, process, and technology together.",
+  "opts": [
+   {
+    "pro": "People can run the program",
+    "con": "Technical coverage can stay thin"
+   },
+   {
+    "pro": "You expand tool coverage",
+    "con": "Tools sit idle without staff"
+   },
+   {
+    "pro": "You balance people and tools",
+    "con": "The story is harder to tell"
+   },
+   {
+    "pro": "You withhold an unfinished case",
+    "con": "Scope stays unexplained"
+   }
+  ]
+ },
+ "5.7#1": {
+  "skill": "defensible commitments",
+  "real": "What you promise in the final room is language your team must defend afterward. A record, a clear cost, and shared credit show leadership that can be trusted.",
+  "opts": [
+   {
+    "pro": "Past work speaks for you",
+    "con": "History leaves the future open"
+   },
+   {
+    "pro": "You are honest about cost",
+    "con": "Cost can sound like hesitation"
+   },
+   {
+    "pro": "You honor the people beside you",
+    "con": "The question asks why you"
+   },
+   {
+    "pro": "You create nothing to unwind",
+    "con": "Nadia has no line to defend"
+   }
+  ]
+ },
+ "5.8#1": {
+  "skill": "career path judgment",
+  "real": "A larger chair rewards judgment more than comfort. An outside role, independent advisory work, or a hands-on technical path can each be a sound fit.",
+  "opts": [
+   {
+    "pro": "You try the role elsewhere",
+    "con": "You leave this opening behind"
+   },
+   {
+    "pro": "You contend for this chair",
+    "con": "A title will not steady you"
+   },
+   {
+    "pro": "You advise across organizations",
+    "con": "You give up an institutional base"
+   },
+   {
+    "pro": "You stay close to the systems",
+    "con": "You leave the management track"
+   },
+   {
+    "pro": "You avoid a panicked pick",
+    "con": "Freezing lets the moment pass"
+   }
+  ]
+ }
+}

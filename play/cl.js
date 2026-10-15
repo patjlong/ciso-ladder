@@ -76,9 +76,36 @@
     if (!CL.rigs[name]) CL.rigs[name] = fetch(`${A}rigs/${name}.json`).then(r => r.json());
     return CL.rigs[name];
   }
-  async function addActor(spec) {
+  // A puppet actor: a cutout skeleton (puppet.js) drawn on its own canvas, playing a clip.
+  // Its head drawings double as mouth shapes and blinks, so lip sync works the same way.
+  const PW = 700, PH = 1100;  // puppet canvas, pelvis placed at (50%, 52%)
+  async function addPuppet(spec, seq) {
+    const pup = await Puppet.load(`${A}puppets/${spec.puppet}`);
+    if (seq != null && seq !== CL.shotSeq()) return null;
+    const el = document.createElement("div"); el.className = "actor"; el.dataset.who = spec.who;
+    const portrait = innerHeight > innerWidth;
+    Object.assign(el.style, portrait
+      ? { left: (spec.mx ?? 50) + "%", bottom: (spec.my ?? 0) + "%", height: (spec.mh ?? 80) + "%", transform: "translateX(-50%)" }
+      : { left: spec.x + "%", bottom: (spec.y || 0) + "%", height: spec.h + "%" });
+    el.style.aspectRatio = `${PW}/${PH}`;
+    const talkEl = document.createElement("div"); talkEl.className = "talk"; el.appendChild(talkEl);
+    const cv = document.createElement("canvas"); cv.width = PW; cv.height = PH; cv.className = "pcanvas"; talkEl.appendChild(cv);
+    stageEl.appendChild(el);
+    const a = { el, talk: talkEl, inner: cv, patches: {}, z: spec.z ?? 1.1, who: spec.who, mouth: null, puppet: pup, ctx: cv.getContext("2d") };
+    if (spec.clip) { await pup.useClip(spec.clip); pup.play(spec.clip).then(() => { if (spec.then) pup.play(spec.then); }); }
+    a.blinkT = setTimeout(function blink() {
+      if (!a.mouth) { pup.variant.head = "blink"; setTimeout(() => { if (pup.variant.head === "blink") pup.variant.head = null; }, 120); }
+      a.blinkT = setTimeout(blink, 2400 + Math.random() * 4000);
+    }, 900 + Math.random() * 2000);
+    gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration: .35 });
+    actors.push(a);
+    return a;
+  }
+  async function addActor(spec, seq) {
+    if (spec.puppet) return addPuppet(spec, seq);
     const name = spec.rig.replace("PLAYER", CL.state.preset);
     const meta = await rig(name);
+    if (seq != null && seq !== CL.shotSeq()) return null;  // this shot was already cut away from
     const el = document.createElement("div");
     el.className = "actor";
     el.dataset.who = spec.who;
@@ -88,11 +115,12 @@
     Object.assign(el.style, portrait
       ? { left: (spec.mx ?? 50) + "%", bottom: (spec.my ?? 0) + "%", height: (spec.mh ?? 76) + "%", transform: "translateX(-50%)" }
       : { left: spec.x + "%", bottom: (spec.y || 0) + "%", height: spec.h + "%" });
+    // mirror on the outer box: the inner layers carry GSAP's idle and speech tweens
+    if (spec.flip) el.style.transform = (el.style.transform || "") + " scaleX(-1)";
     el.style.aspectRatio = `${meta.w}/${meta.h}`;
     // el (placement + parallax) > talk (speech nods) > inner (idle breathing), so tweens never fight
     const talkEl = document.createElement("div"); talkEl.className = "talk"; el.appendChild(talkEl);
     const inner = document.createElement("div"); inner.className = "inner"; talkEl.appendChild(inner);
-    if (spec.flip) inner.style.transform = "scaleX(-1)";
     const base = new Image(); base.src = `${A}rigs/${name}.webp`; base.className = "base"; inner.appendChild(base);
     const patches = {};
     for (const [k, p] of Object.entries(meta.patches)) {
@@ -124,6 +152,7 @@
   function setMouth(a, shape) {
     const k = SHAPE[shape] || null;
     if (a.mouth === k) return;
+    if (a.puppet) { a.puppet.variant.head = k; a.mouth = k; return; }
     if (a.mouth && a.patches[a.mouth]) a.patches[a.mouth].style.opacity = 0;
     if (k && a.patches[k]) a.patches[k].style.opacity = 1;
     a.mouth = k;
@@ -160,7 +189,10 @@
     } else { gl.clearColor(0, 0, 0, 1); gl.clear(gl.COLOR_BUFFER_BIT); }
     const W = innerWidth;
     stageEl.style.transform = `scale(${cam.zoom}) translate(${-(cam.x + hx) * 100}%, ${-(cam.y + hy) * 100}%)`;
-    actors.forEach(a => { a.el.style.translate = `${-cam.px * a.z * W * .55}px ${-cam.py * a.z * innerHeight * .55}px`; });
+    actors.forEach(a => {
+      a.el.style.translate = `${-cam.px * a.z * W * .55}px ${-cam.py * a.z * innerHeight * .55}px`;
+      if (a.puppet) { a.ctx.clearRect(0, 0, PW, PH); a.ctx.save(); a.ctx.translate(PW * .5, PH * .52); a.puppet.draw(a.ctx, 1); a.ctx.restore(); }
+    });
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
@@ -169,7 +201,8 @@
   // ---------- cuts ----------
   // cut: "hard" (default, dialogue cutting), "dissolve" (time passing), "dip" (to black),
   // "whip" (fast blurred pan), "flash" (white pop for a shock beat).
-  let camTl = null, walkTl = null;
+  let camTl = null, walkTl = null, shotSeq = 0;
+  CL.shotSeq = () => shotSeq;
   function snapshot() { // freeze the current frame (background + actors) into an overlay
     const ov = document.createElement("div"); ov.className = "snap";
     const c2 = document.createElement("canvas"); c2.width = canvas.width; c2.height = canvas.height;
@@ -187,12 +220,15 @@
     // art that is not painted yet falls back so the scene still plays
     // a keyframe drawn with one player look only plays for that look
     const wrongLook = s.look && s.look !== CL.state.preset;
+    const seq = ++shotSeq;
+    if (CL.ambience) CL.ambience(s.bg && (wrongLook || !CL.hasBg(s.bg)) ? (s.fallback ?? null) : s.bg);
     await setBg(s.bg && (wrongLook || !CL.hasBg(s.bg)) ? (s.fallback ?? null) : s.bg);
     if (walkTl) { walkTl.kill(); walkTl = null; }
     if (s.walk) // footsteps: a soft vertical bob riding under the camera move
       walkTl = gsap.to(cam, { y: `+=${s.walk}`, duration: .29, yoyo: true, repeat: -1, ease: "sine.inOut" });
     clearActors();
-    await Promise.all((s.actors || []).map(addActor));
+    await Promise.all((s.actors || []).map(a => addActor(a, seq)));
+    if (seq !== shotSeq) return;  // a newer cut already started
     const c = s.cam || {};
     const from = Object.assign({ x: 0, y: 0, zoom: 1, px: 0, py: 0 }, c.from), to = Object.assign({}, c.to);
     // Phones see only a narrow slice of a wide painting. `subject` is where the person
@@ -289,7 +325,7 @@
       document.body.classList.add("deciding");
       const row = document.createElement("div"); row.className = "row";
       let done = false, tl = null;
-      const finish = (o, i) => {
+      let finish = (o, i) => {
         if (done) return; done = true; if (tl) tl.kill();
         document.removeEventListener("keydown", keys);
         [...row.children].forEach((b, j) => b.classList.add(j === i ? "picked" : "gone"));
@@ -306,6 +342,9 @@
       });
       box.appendChild(row);
       if (timed) {
+        const stopDrone = CL.tension ? CL.tension(timed) : () => {};
+        const prevFinish = finish;
+        finish = (o, i) => { stopDrone(); prevFinish(o, i); };
         const bar = document.createElement("div"); bar.className = "timer"; bar.innerHTML = "<i></i>";
         box.prepend(bar);
         tl = gsap.fromTo(bar.firstChild, { scaleX: 1 }, { scaleX: 0, duration: timed, ease: "none",
@@ -327,20 +366,41 @@
   };
 
   // ---------- scene runner ----------
+  // Live class results: each choice sends {c: choice id, o: option index, s: random session}
+  // to a public ntfy.sh topic the presentation site reads. No names, no device info.
+  // Test runs (?mute=1 or ?notally=1) never send.
+  CL.TALLY = "https://ntfy.sh/ciso-ladder-5b65593fe27f21f7";
+  const session = Math.random().toString(36).slice(2, 10);
+  const tallyOff = /[?&](mute|notally)=1/.test(location.search);
+  CL.tally = function (cid, idx) {
+    if (tallyOff || !cid) return;
+    fetch(CL.TALLY, { method: "POST", body: JSON.stringify({ c: cid, o: idx, s: session }) }).catch(() => {});
+  };
+  // `when` rules from the scripts: flag names, the stats skill/rep/trust/burn, && || ! >= etc.
+  // Expressions are authored by us in tools/*.py, never by players.
+  CL.when = function (expr) {
+    const vars = Object.assign({}, CL.state.stats);
+    const names = expr.match(/[a-z_][a-z0-9_]*/g) || [];
+    names.forEach(n => { if (!(n in vars)) vars[n] = !!CL.state.flags[n]; });
+    return !!Function(...Object.keys(vars), `return (${expr});`)(...Object.values(vars));
+  };
   CL.run = async function (beats) {
     for (const b of beats) {
       if (b.if && !b.if(CL.state)) continue;
+      if (b.when && !CL.when(b.when)) continue;
       if (b.card) await CL.card(...b.card);
       if (b.shot) await CL.shot(b.shot);
       if (b.caption) await CL.caption(b.caption);
-      if (b.wait) await wait(b.wait);
+      if (b.wait && !CL.fast) await wait(b.wait);
       if (b.say) await CL.say(b.say[0], b.say[1], b.say[2], b.say[3]);
       if (b.choice) {
+        CL.lastCid = b.cid;
         const o = await CL.choose(b.choice, b.timed);
+        CL.tally(b.cid, b.choice.indexOf(o));
         const st = CL.state.stats;
         for (const k in o.fx || {}) st[k] = Math.max(0, Math.min(100, st[k] + o.fx[k]));
         if (o.flag) CL.state.flags[o.flag] = true;
-        if (o.log) CL.state.log.push(o.log);
+        CL.state.log.push({ cid: b.cid, t: o.log || o.t, silent: !!o.silent, o: b.choice.indexOf(o) });
         if (o.rem) remember(o.rem);
         if (o.then) await CL.run(o.then);
       }
@@ -356,5 +416,19 @@
   };
 
   $("#sound").textContent = CL.sound ? "Sound: on" : "Sound: off";
-  $("#sound").onclick = e => { e.stopPropagation(); CL.sound = !CL.sound; e.currentTarget.textContent = CL.sound ? "Sound: on" : "Sound: off"; };
+  $("#sound").onclick = e => { e.stopPropagation(); CL.sound = !CL.sound; e.currentTarget.textContent = CL.sound ? "Sound: on" : "Sound: off"; if (!CL.sound && CL.ambienceOff) CL.ambienceOff(); };
+
+  // ---------- fast test mode (?fast=1): plays instantly, picks with CL.policy ----------
+  // For automated flow tests: no waits, no transitions, every line and card recorded in CL.trace.
+  CL.trace = [];
+  if (/[?&]fast=1/.test(location.search)) {
+    CL.fast = true;
+    CL.policy = opts => opts[0];
+    CL.say = async (who, id) => { CL.trace.push(["say", who, id]); };
+    CL.caption = async () => {};
+    CL.card = async (k, title) => { CL.trace.push(["card", k, title]); };
+    const realShot = CL.shot;
+    CL.shot = async s => realShot(Object.assign({}, s, { cut: "hard" }));
+    CL.choose = async opts => CL.policy(opts, CL.lastCid);
+  }
 })();

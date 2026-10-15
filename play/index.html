@@ -19,6 +19,7 @@ html,body{height:100%;background:#000;color:var(--text);font-family:Inter,system
 /* mouth shapes cross-fade, blinks close fast */
 .actor img.patch{opacity:0;height:auto;transition:opacity 65ms linear}
 .actor img.patch[src*="_blink"]{transition:opacity 45ms linear}
+.actor canvas.pcanvas{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 0 22px rgba(0,0,0,.55))}
 .snap{position:fixed;inset:0;z-index:2;pointer-events:none}
 .snap canvas{position:absolute;inset:0;width:100%;height:100%}
 .snap-actors{position:absolute;inset:0;transform-origin:50% 50%}
@@ -84,6 +85,26 @@ body.deciding .bar{height:13vh}
 .seg button.on{border-color:var(--gold);color:var(--gold)}
 .seg.voices{display:grid;grid-template-columns:1fr 1fr}
 #begin{margin-top:auto;background:var(--gold);color:#111;border:0;padding:14px;font:700 16px Inter;border-radius:3px;cursor:pointer;letter-spacing:.05em}
+#stats{position:fixed;inset:0;z-index:24;background:rgba(5,6,9,.94);display:none;align-items:center;justify-content:center;padding:16px}
+#stats.on{display:flex}
+.sbox{width:min(640px,100%)}.sbox .k{color:var(--gold);letter-spacing:.4em;font-size:12px;text-transform:uppercase}
+.sbox h2{font-family:"Bebas Neue";font-weight:400;font-size:44px;margin:4px 0 14px}
+.srow{margin-bottom:14px}.stxt{font-weight:700}.sbar{height:6px;background:#22252d;margin:6px 0 4px;border-radius:3px;overflow:hidden}
+.sbar i{display:block;height:100%;background:var(--gold);transition:width 1.2s ease}.spct{color:#b7bdc8;font-size:13px}
+#scont{margin-top:12px;background:var(--gold);color:#111;border:0;padding:12px 22px;font:700 15px Inter;border-radius:3px;cursor:pointer}
+#finale{position:fixed;inset:0;z-index:25;background:#07080b;color:var(--text);overflow:auto;display:none;-webkit-overflow-scrolling:touch}
+#finale.on{display:block}
+.fin{max-width:760px;margin:0 auto;padding:7vh 18px 10vh}
+.fin .k{color:var(--gold);letter-spacing:.4em;font-size:12px;text-transform:uppercase}
+.fin h1{font-family:"Bebas Neue";font-weight:400;font-size:clamp(48px,10vw,96px);line-height:1;margin:6px 0}
+.fin h2{font-family:"Bebas Neue";font-weight:400;letter-spacing:.08em;color:var(--gold);font-size:28px;margin:34px 0 10px}
+.fin .who{color:#c4c9d2}
+.fin .rung{border-left:4px solid #3a3f4a;background:#0e1016;padding:12px 14px;margin-bottom:8px;border-radius:0 6px 6px 0}
+.fin .rung.here{border-left-color:var(--gold);background:#16140c}
+.fin .lvl{font-weight:700;letter-spacing:.06em}.fin .lvl span{font-weight:500;color:#9aa1ad;margin-left:6px}.fin .lvl b{float:right;color:var(--gold);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.fin .roles{margin-top:4px}.fin .certs{color:#b7bdc8;font-size:14px;margin-top:4px}.fin .fact{color:#d8c79a;font-size:14px;margin-top:6px}
+.fin ol,.fin ul{padding-left:20px;line-height:1.6}.fin li.silent{color:#e2554b}.fin .src{color:#b7bdc8;font-size:14px}
+#again{margin-top:30px;background:var(--gold);color:#111;border:0;padding:14px 26px;font:700 16px Inter;border-radius:3px;cursor:pointer}
 /* phones first: portrait layout */
 html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
 @media (orientation:portrait){
@@ -140,11 +161,18 @@ html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
   <button id="begin">START YOUR CAREER</button>
 </div>
 
+<div id="finale"></div>
+<div id="stats"></div>
 <div id="title"><h1>THE <span>CISO</span> LADDER</h1><p>TAP TO BEGIN</p></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="cl.js"></script>
-<script src="ep1.js"></script>
+<script src="puppet.js?v=10151923"></script>
+<script src="cl.js?v=10151923"></script>
+<script src="ambience.js?v=10151923"></script>
+<script src="ep1.js?v=10151923"></script>
+<script src="finale.js?v=10151923"></script>
+<script src="recap.js?v=10151923"></script>
+<script src="director.js?v=10151923"></script>
 <script>
 // six looks; each suggests pronouns and a voice, and the player can change both
 const PRESETS = [
@@ -191,7 +219,15 @@ document.getElementById("title").onclick = async function () {
   setTimeout(() => this.remove(), 800);
   await CL.load();
   await creator();
-  await CL.run(EP1);
+  // the hand-built 3 AM alert is scene 1.3 of the writers' room script
+  CL.directorOverrides = { "1.3": () => EP1.slice(1, -1) };
+  const EPISODES = [[1, "Night Shift"], [2, "Tier Two"], [3, "The Middle Rungs"], [4, "The Breach"], [5, "The Corner Office"]];
+  const start = +(new URLSearchParams(location.search).get("ep") || 1);  // ?ep=3 jumps ahead for testing
+  for (const [n, title] of EPISODES.filter(e => e[0] >= start)) {
+    const ep = await fetch(`episodes/ep${n}.json`).then(r => r.json());
+    await CL.playEpisode(ep, n, title);
+  }
+  CL.finale();
 };
 </script>
 </body>

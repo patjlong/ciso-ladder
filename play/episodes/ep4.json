@@ -1,0 +1,1061 @@
+{
+ "scenes": [
+  {
+   "id": "4.1",
+   "name": "Saturday Morning",
+   "beats": [
+    {
+     "caption": "Year nine. Director now. Saturday was supposed to stay quiet."
+    },
+    {
+     "say": [
+      "Sam",
+      "e4_s1_sam_01",
+      "Boss. Help desk handed an attacker a password."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e4_s1_sam_02",
+      "Caller said they were IT. The agent believed them."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e4_s1_sam_03",
+      "Those credentials opened our internal admin tool."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e4_s1_sam_04",
+      "They are inside customer accounts. This is live."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4_s1_marcus_01",
+      "I'm on the bridge. We need a verb, not a meeting."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 8,
+      "options": [
+       {
+        "t": "Kill the admin tool",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s1_player_01",
+           "Shut the admin tool down. Cut every session."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4_s1_sam_05",
+           "Killing it. Customers will stumble. So will the attacker."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": 1,
+         "burn": 1
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "Quietly revoke accounts",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s1_player_02",
+           "Revoke the bad access. Leave the tool standing."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4_s1_sam_06",
+           "Quiet revoke is running. I'll watch for a second door."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "rep": 1,
+         "burn": 1
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "Call the CEO first",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s1_player_03",
+           "Get Elena first. No changes until she answers."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e4_s1_marcus_02",
+           "She'll want a verb. Have one when she picks up."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": -1,
+         "burn": 1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Sam",
+           "e4_s1_sam_07",
+           "Clock's running. I kill the tool unless you stop me."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1,
+         "trust": -1
+        },
+        "rem": "Sam will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Your kitchen, Saturday morning",
+   "shot_notes": "A phone buzzes by a cold mug. Sam appears on the screen in a dark SOC, energy drink in hand, while Marcus joins by speaker."
+  },
+  {
+   "id": "4.2",
+   "name": "The War Room",
+   "beats": [
+    {
+     "say": [
+      "Sam",
+      "e4_s2_sam_01",
+      "I pulled what I could. I won't swear that's everyone."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4_s2_marcus_01",
+      "The ticket shows the password in plain text."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e4_s2_sam_02",
+      "Profiles changed. Payees changed. This was not a tour."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4_s2_marcus_02",
+      "Dana will ask who we told. Have an answer."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e4_s2_dana_01",
+      "Talk. What did they touch, and what did you stop?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Lead with the logs",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s2_player_01",
+           "Logs first. Then the story, short."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e4_s2_dana_02",
+           "Good. I hate a story that outruns the evidence."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "Lead with containment",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s2_player_02",
+           "It's contained. Customers come before the postmortem."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e4_s2_dana_03",
+           "Contained is a claim. Show me where it ends."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": 1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "Keep the mess quiet",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s2_player_03",
+           "Small mess. We can keep it inside the building."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e4_s2_dana_04",
+           "Quiet is how a small mess becomes a resignation."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "rep": -1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Dana",
+           "e4_s2_dana_05",
+           "Fine. I'll tell Elena you went quiet, and I'll use the logs."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Dana will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Dana",
+      "e4_s2_dana_06",
+      "Elena hears this before the board does."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e4_s2_sam_03",
+      "Do we freeze profile edits, or only the bad accounts?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Freeze every profile edit",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s2_player_04",
+           "Freeze every profile edit until we clear them."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4_s2_sam_04",
+           "Broad freeze. Support will howl. I can live with it."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": -1,
+         "burn": 1
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "Freeze touched accounts",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s2_player_05",
+           "Freeze only the accounts we know they touched."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4_s2_sam_05",
+           "Tighter. Miss one, and a customer tells us first."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "Leave edits open",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s2_player_06",
+           "Leave edits open. I want the next move on screen."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4_s2_sam_06",
+           "Bold. I'll watch. I don't have to like it."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": -1
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Sam",
+           "e4_s2_sam_07",
+           "No order. I'll freeze the touched accounts and say so."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Sam will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Harborline SOC, Saturday noon",
+   "shot_notes": "Sam paces under a wall of session logs. Marcus sets down a coffee. You arrive in weekend clothes as Dana comes through the glass door."
+  },
+  {
+   "id": "4.3",
+   "name": "Counsel",
+   "beats": [
+    {
+     "say": [
+      "Nadia",
+      "e4_s3_nadia_01",
+      "Pretended to be IT. Got a password. Used our own tool."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4_s3_nadia_02",
+      "Customer accounts were changed. That creates duties."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4_s3_nadia_03",
+      "Call the FBI, hire forensics, or stay inside."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4_s3_nadia_04",
+      "Whatever you pick, I'll write it into the record."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e4_s3_dana_01",
+      "She wants an answer today. Not a committee."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Call the FBI",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s3_player_01",
+           "Call the FBI. We don't sit on this."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "e4_s3_nadia_05",
+           "I'll place the call with you there. No side channels."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": 1,
+         "burn": 1
+        },
+        "flag": "called_fbi",
+        "rem": "Nadia will remember that."
+       },
+       {
+        "t": "Outside forensics first",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s3_player_02",
+           "Outside forensics first. Then we choose who to call."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "e4_s3_nadia_06",
+           "A clean image beats a fast story. I'll hire a firm."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": 1
+        },
+        "rem": "Nadia will remember that."
+       },
+       {
+        "t": "Keep it internal",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s3_player_03",
+           "Keep it internal. We investigate it ourselves."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "e4_s3_nadia_07",
+           "Then the record shows we chose silence. I'll note it."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "rep": -1
+        },
+        "flag": "hid_breach",
+        "rem": "Nadia will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Nadia",
+           "e4_s3_nadia_08",
+           "No decision is still a decision. I escalate at dusk."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Nadia will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Harborline legal room, Saturday afternoon",
+   "shot_notes": "Nadia squares a legal pad on the table. Dana stands at the window. No laptops are open."
+  },
+  {
+   "id": "4.4",
+   "name": "The CEO",
+   "beats": [
+    {
+     "say": [
+      "Elena",
+      "e4_s4_elena_01",
+      "I know the admin tool left our control."
+     ]
+    },
+    {
+     "say": [
+      "Elena",
+      "e4_s4_elena_02",
+      "Did customers lose money, trust, or both?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": 10,
+      "options": [
+       {
+        "t": "Both money and trust",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s4_player_01",
+           "Accounts were changed. Assume money and trust."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4_s4_elena_03",
+           "Then we speak early. No clever drafting."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "Bleeding has stopped",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s4_player_02",
+           "We cut the path. The bleeding has stopped."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4_s4_elena_04",
+           "Stopped is not finished. Stay with it."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": 1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "We don't know yet",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s4_player_03",
+           "We don't know the full harm yet. I won't guess."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4_s4_elena_05",
+           "Good. I prefer a late fact to an early fable."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Elena",
+           "e4_s4_elena_06",
+           "I called for a director, not a pause. Answer."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "burn": 1
+        },
+        "rem": "Elena will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Elena's video call, Saturday evening",
+   "shot_notes": "Elena fills the laptop screen from a dim kitchen, coat off, voice level, eyes not leaving the camera."
+  },
+  {
+   "id": "4.5",
+   "name": "The Board",
+   "beats": [
+    {
+     "say": [
+      "Richard",
+      "e4_s5_richard_01",
+      "Director. Short version. What happened to my customers?"
+     ]
+    },
+    {
+     "say": [
+      "Richard",
+      "e4_s5_richard_02",
+      "Skip the diagram unless it saves the bank."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Speak in business terms",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s5_player_01",
+           "They posed as IT, moved accounts, and we cut access."
+          ]
+         },
+         {
+          "say": [
+           "Richard",
+           "e4_s5_richard_03",
+           "Plain words. Stay in that voice."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": 1
+        },
+        "flag": "business_brief",
+        "rem": "Richard will remember that."
+       },
+       {
+        "t": "Walk through the attack",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s5_player_02",
+           "Help desk was fooled. The admin tool did the damage."
+          ]
+         },
+         {
+          "say": [
+           "Richard",
+           "e4_s5_richard_04",
+           "I heard the method. Tell me the risk."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": -1
+        },
+        "rem": "Richard will remember that."
+       },
+       {
+        "t": "Blame the employee",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s5_player_03",
+           "An agent failed. Put this on that employee."
+          ]
+         },
+         {
+          "say": [
+           "Richard",
+           "e4_s5_richard_05",
+           "A name is not a control. Fix the door."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -2,
+         "trust": -2
+        },
+        "flag": "blamed_employee",
+        "rem": "Richard will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Richard",
+           "e4_s5_richard_06",
+           "If you won't brief us, I'll brief them myself."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "rep": -1
+        },
+        "rem": "Richard will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Dana",
+      "e4_s5_dana_01",
+      "The board heard you. Now live with that sentence."
+     ]
+    }
+   ],
+   "location": "Harborline board room, Monday morning",
+   "shot_notes": "Richard sits at the head of the table, glasses low. Dana slides you a single sheet while the rest of the board waits."
+  },
+  {
+   "id": "4.6",
+   "name": "The Statement",
+   "beats": [
+    {
+     "say": [
+      "Nadia",
+      "e4_s6_nadia_01",
+      "Statement goes out before dinner. Pick the version."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4_s6_nadia_02",
+      "Full account. Limited facts. Or no public word."
+     ]
+    },
+    {
+     "say": [
+      "Elena",
+      "e4_s6_elena_01",
+      "Saying nothing is still a choice. Make it."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 12,
+      "options": [
+       {
+        "t": "Publish the full account",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s6_player_01",
+           "Publish the full account. Rumors are already moving."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4_s6_elena_02",
+           "Then we own the pen. Send it."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": 1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "Limited facts only",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s6_player_02",
+           "Limited facts. What we know, and what we're doing."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "e4_s6_nadia_03",
+           "I'll cut every adjective. The facts can stay."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": 1
+        },
+        "rem": "Nadia will remember that."
+       },
+       {
+        "t": "Say nothing public",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s6_player_03",
+           "No public statement. We handle it inside."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4_s6_elena_03",
+           "Then the first story belongs to someone else."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "rep": -2
+        },
+        "flag": "hid_breach",
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Nadia",
+           "e4_s6_nadia_04",
+           "You froze. I'll send the limited facts and note the gap."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Nadia will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Harborline comms room, Monday afternoon",
+   "shot_notes": "Elena stands with her coat still on. Nadia holds a printed statement flat in both hands. The screen behind them is blank."
+  },
+  {
+   "id": "4.7",
+   "name": "The Garage",
+   "beats": [
+    {
+     "say": [
+      "Marcus",
+      "e4_s7_marcus_01",
+      "Year nine. Saturday still knows your number."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4_s7_marcus_02",
+      "Coffee's burned. Fits the day."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4_s7_marcus_03",
+      "The desk did what helpful people do. They helped."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4_s7_marcus_04",
+      "The board likes a villain. Don't hand them one."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Train the help desk",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s7_player_01",
+           "We train that desk. Shame won't close a hole."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e4_s7_marcus_05",
+           "Look at that. A director who fixes the work."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "burn": 1
+        },
+        "flag": "mentored",
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Require a callback",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s7_player_02",
+           "New rule. No reset without a callback to the person."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e4_s7_marcus_06",
+           "Simple. Annoying. Those are the rules that survive."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2
+        },
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Let HR take the agent",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4_s7_player_03",
+           "HR can deal with the agent. I have a breach."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e4_s7_marcus_07",
+           "You can do both. A scarecrow is an easy fire."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1,
+         "trust": -1
+        },
+        "flag": "blamed_employee",
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e4_s7_marcus_08",
+           "Drink the coffee. The fix can wait until morning."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Marcus will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "caption": "The admin tool stays dark until it grows a second lock."
+    },
+    {
+     "caption": "Customers get a straight note, or a careful one."
+    },
+    {
+     "say": [
+      "Dana",
+      "e4_s7_dana_01",
+      "Boards remember the sentence you led with. So do I."
+     ]
+    }
+   ],
+   "location": "Harborline parking garage, Monday night",
+   "shot_notes": "Marcus leans on a pillar with two coffees. You take one. Your phone lights with Dana's name as the garage hums."
+  }
+ ],
+ "end": "Saturday is contained. The sentence you chose stays on the record.",
+ "unparsed": []
+}

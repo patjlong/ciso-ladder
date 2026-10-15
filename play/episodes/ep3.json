@@ -1,0 +1,1116 @@
+{
+ "scenes": [
+  {
+   "id": "3.1",
+   "name": "The Fork",
+   "beats": [
+    {
+     "say": [
+      "Dana",
+      "e3_s1_dana_01",
+      "Close the door."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s1_dana_02",
+      "You've been here long enough to pick a lane."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s1_dana_03",
+      "Engineer. Manager. Or you lead response with Sam."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s1_dana_04",
+      "Choose like you have to keep it."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Senior engineer",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s1_player_01",
+           "I'll stay with the tools."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e3_s1_dana_05",
+           "Good. Someone still has to fix the bank."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2
+        },
+        "flag": "eng_track",
+        "rem": "Dana will remember that you chose the tools."
+       },
+       {
+        "t": "Security manager",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s1_player_02",
+           "I'll take the people."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e3_s1_dana_06",
+           "The team's misses become yours."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 2,
+         "trust": 1
+        },
+        "flag": "mgr_track",
+        "rem": "Dana will remember that you chose the team."
+       },
+       {
+        "t": "Run incident response",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s1_player_03",
+           "I'll take the incidents."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e3_s1_dana_07",
+           "Sam will be thrilled. Say goodbye to sleep."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "burn": 1
+        },
+        "flag": "ir_track",
+        "rem": "Sam will remember that you took the incidents."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Dana",
+           "e3_s1_dana_08",
+           "Then I pick. Manager. Don't thank me."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1,
+         "trust": -1
+        },
+        "flag": "mgr_track",
+        "rem": "Dana will remember that she had to choose for you."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s1_dana_09",
+      "Priya wants a fast yes on a new tool."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s1_dana_10",
+      "Your chair is going to catch that ask."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s1_dana_11",
+      "When she pushes, what's your first move?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "I'll hold the line",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s1_player_04",
+           "I'll hold the line if I have to."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e3_s1_dana_12",
+           "Good. Holding is louder than a speech."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1
+        },
+        "rem": "Dana will remember that you meant to hold the line."
+       },
+       {
+        "t": "I'll hear her out",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s1_player_05",
+           "I'll hear the pitch before I swing."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e3_s1_dana_13",
+           "Fair. The clock is the whole point."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1
+        },
+        "rem": "Dana will remember that you wanted to listen first."
+       },
+       {
+        "t": "Keep the peace",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s1_player_06",
+           "I'd rather not start a war."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e3_s1_dana_14",
+           "Peace is nice. It isn't the job."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Dana will remember that you flinched at a fight."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Dana",
+           "e3_s1_dana_15",
+           "That pause was long. Shorten it."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Dana will remember the pause."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Dana Whitfield's office, Harborline Financial, morning",
+   "shot_notes": "Dana slides a short stack of folders across her desk and keeps her hand on the top one."
+  },
+  {
+   "id": "3.2",
+   "name": "The Letters",
+   "beats": [
+    {
+     "say": [
+      "Marcus",
+      "e3_s2_marcus_01",
+      "You picked a lane. Now pick a cert."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e3_s2_marcus_02",
+      "One cert. You're not collecting stickers."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e3_s2_marcus_03",
+      "CISSP requires five years of paid work."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e3_s2_marcus_04",
+      "You've got the years. Which pain do you want?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Start the CISSP",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s2_player_01",
+           "I'll start the CISSP."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e3_s2_marcus_05",
+           "Broad and dry. Don't cram it like trivia."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1
+        },
+        "flag": "cissp",
+        "rem": "Marcus will remember that you aimed at the CISSP."
+       },
+       {
+        "t": "Chase the OSCP",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s2_player_02",
+           "I want the OSCP."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e3_s2_marcus_06",
+           "Pack food. That exam has teeth."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "burn": 1
+        },
+        "flag": "oscp",
+        "rem": "Marcus will remember that you chose the hard lab."
+       },
+       {
+        "t": "Take the CISA",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s2_player_03",
+           "CISA. Put me in the audit room."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e3_s2_marcus_07",
+           "You'll see how this place explains risk."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": 1
+        },
+        "flag": "cisa",
+        "rem": "Marcus will remember that you chose the audit path."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e3_s2_marcus_08",
+           "No letters. Then your work has to shout."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Marcus will remember that you ducked the cert."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Marcus",
+      "e3_s2_marcus_09",
+      "Your roommate. Answer. I'll survive."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "e3_s2_jordan_01",
+      "You alive, or did the building win?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Home in an hour",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s2_player_04",
+           "Home in an hour. Save me a plate."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e3_s2_jordan_02",
+           "A plate. Look at you, having a life."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": -1
+        },
+        "rem": "Jordan will remember that you came home."
+       },
+       {
+        "t": "Don't wait up",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s2_player_05",
+           "Don't wait up. I'm in the books."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e3_s2_jordan_03",
+           "Cool. Leftovers have your name on them."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 2,
+         "skill": 1
+        },
+        "rem": "Jordan will remember that the books won."
+       },
+       {
+        "t": "I got the bump",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s2_player_06",
+           "I got the bump. I'm not done tonight."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e3_s2_jordan_04",
+           "Nice. Don't turn into a badge."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1
+        },
+        "rem": "Jordan will remember that you shared the bump."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e3_s2_marcus_10",
+           "You can call back. The chapter will wait."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Jordan will remember that you let it ring."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "A quiet corner off the SOC floor, late afternoon",
+   "shot_notes": "Marcus taps a study guide, then your phone lights up on the table."
+  },
+  {
+   "id": "3.3",
+   "name": "The Hall",
+   "beats": [
+    {
+     "say": [
+      "Dana",
+      "e3_s3_dana_01",
+      "She's got a vendor tool and a Friday deadline."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s3_dana_02",
+      "Company-wide. Not a lab. Not a maybe."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s3_dana_03",
+      "The pitch is an assistant that reads our mail."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s3_dana_04",
+      "You want me in the room?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Come in with me",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s3_player_01",
+           "Come in with me."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e3_s3_dana_05",
+           "Good. You lead. I don't pile on."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1
+        },
+        "rem": "Dana will remember that you wanted her in the room."
+       },
+       {
+        "t": "I'll handle it",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s3_player_02",
+           "I'll handle Priya."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e3_s3_dana_06",
+           "All right. I'll be down the hall."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1
+        },
+        "rem": "Dana will remember that you walked in alone."
+       },
+       {
+        "t": "You take the lead",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s3_player_03",
+           "You should lead this one."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e3_s3_dana_07",
+           "I can talk. The chair is still yours."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Dana will remember that you handed her the lead."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Dana",
+           "e3_s3_dana_08",
+           "I'm coming in. This isn't optional."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Dana will remember that you stalled at the door."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Hall outside Priya Raman's office, early evening",
+   "shot_notes": "Dana stops you outside Priya's door and holds out a coffee."
+  },
+  {
+   "id": "3.4",
+   "name": "The Ask",
+   "beats": [
+    {
+     "say": [
+      "Priya",
+      "e3_s4_priya_01",
+      "I need you on the invite, not in the way."
+     ]
+    },
+    {
+     "say": [
+      "Priya",
+      "e3_s4_priya_02",
+      "It drafts mail and digs through our files."
+     ]
+    },
+    {
+     "say": [
+      "Priya",
+      "e3_s4_priya_03",
+      "Friday. My board slide is already done."
+     ]
+    },
+    {
+     "say": [
+      "Priya",
+      "e3_s4_priya_04",
+      "Bless it, shape it, or step aside."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Yes, with guardrails",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s4_player_01",
+           "Yes, if we log it and can shut it off."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "e3_s4_priya_05",
+           "Write the rules tonight. I still want Friday."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1,
+         "burn": 1
+        },
+        "flag": "guardrails",
+        "rem": "Priya will remember that you made her slow down."
+       },
+       {
+        "t": "Block the rollout",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s4_player_02",
+           "No. It doesn't go company-wide."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "e3_s4_priya_06",
+           "Then I'll have this fight in public."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": -1
+        },
+        "flag": "blocked_ai",
+        "rem": "Priya will remember that you blocked her."
+       },
+       {
+        "t": "Ship it",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s4_player_03",
+           "Ship it. We'll fix it if it breaks."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "e3_s4_priya_07",
+           "That's the spirit. I'll tell the whole bank."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": -1,
+         "skill": -1
+        },
+        "flag": "rubber_stamp",
+        "rem": "Priya will remember that you waved it through."
+       },
+       {
+        "t": "What data does it touch?",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s4_player_04",
+           "What data does it touch?"
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "e3_s4_priya_08",
+           "Mail. Shared drives. Anything staff can open."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "e3_s4_priya_09",
+           "That's the honest list. Friday didn't move."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": 1
+        },
+        "rem": "Priya will remember that you asked what it reads."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Priya",
+           "e3_s4_priya_10",
+           "You didn't say no. I'll take the yes."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1,
+         "trust": 1,
+         "burn": 1
+        },
+        "flag": "rubber_stamp",
+        "rem": "Priya will remember that your silence was a yes."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Priya Raman's office, Harborline Financial, minutes later",
+   "shot_notes": "Priya turns a laptop toward you and taps a blinking cursor in a chat box."
+  },
+  {
+   "id": "3.5",
+   "name": "A Season Later",
+   "beats": [
+    {
+     "caption": "A season later."
+    },
+    {
+     "say": [
+      "Priya",
+      "e3_s5_priya_01",
+      "Sit. We're not doing this in the hall."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s5_dana_g1",
+      "The guardrail stopped a client file cold."
+     ],
+     "when": "guardrails"
+    },
+    {
+     "say": [
+      "Priya",
+      "e3_s5_priya_g1",
+      "The pilot lived. My big Friday did not."
+     ],
+     "when": "guardrails"
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s5_dana_b1",
+      "She ran a pilot around us. No ticket. No you."
+     ],
+     "when": "blocked_ai"
+    },
+    {
+     "say": [
+      "Priya",
+      "e3_s5_priya_b1",
+      "You said no. Other teams still had deadlines."
+     ],
+     "when": "blocked_ai"
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s5_dana_r1",
+      "A case file landed where the vendor can read it."
+     ],
+     "when": "rubber_stamp"
+    },
+    {
+     "say": [
+      "Priya",
+      "e3_s5_priya_r1",
+      "We moved fast. This is the bill."
+     ],
+     "when": "rubber_stamp"
+    },
+    {
+     "say": [
+      "Priya",
+      "e3_s5_priya_a1",
+      "You asked what it can read. I still don't have a map."
+     ],
+     "when": "!guardrails && !blocked_ai && !rubber_stamp"
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s5_dana_a1",
+      "Other teams switched it on while you waited."
+     ],
+     "when": "!guardrails && !blocked_ai && !rubber_stamp"
+    },
+    {
+     "say": [
+      "Dana",
+      "e3_s5_dana_02",
+      "Where do you stand? Plain words."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Hold your call",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s5_player_01",
+           "I hold the call I made."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e3_s5_dana_03",
+           "Good. Consistency is the whole job."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": 1
+        },
+        "rem": "Dana will remember that you stood by your call."
+       },
+       {
+        "t": "Offer a small pilot",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s5_player_02",
+           "A small pilot. Nothing company-wide."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "e3_s5_priya_02",
+           "I'll take a door if the building is closed."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "burn": 1
+        },
+        "rem": "Priya will remember that you offered a small pilot."
+       },
+       {
+        "t": "Shut it down",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s5_player_03",
+           "Shut it down. Today."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "e3_s5_priya_03",
+           "You want a war with your CIO."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": -1
+        },
+        "rem": "Priya will remember that you tried to shut it down."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Dana",
+           "e3_s5_dana_04",
+           "Then I'll speak for you. I hate that."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Dana will remember that you went quiet."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "A glass conference room, Harborline Financial, a season later",
+   "shot_notes": "Priya stands at the glass, Dana sits with folded arms, and the assistant waits on a laptop."
+  },
+  {
+   "id": "3.6",
+   "name": "The Landing",
+   "beats": [
+    {
+     "say": [
+      "Marcus",
+      "e3_s6_marcus_01",
+      "Middle rungs. The coffee's worse. The calls are real."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e3_s6_marcus_02",
+      "You did a hard season. Say it plain."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e3_s6_marcus_03",
+      "Priya will call again. Dana will watch."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e3_s6_marcus_04",
+      "You still want this work?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "More than ever",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s6_player_01",
+           "Yeah. More than ever."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e3_s6_marcus_05",
+           "Hold that feeling. The top spends it fast."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": -1,
+         "rep": 1
+        },
+        "rem": "Marcus will remember that you still wanted the work."
+       },
+       {
+        "t": "I want the next rung",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s6_player_02",
+           "I want the next rung."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e3_s6_marcus_06",
+           "Ambition's fine. Don't mortgage your sleep."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "burn": 1
+        },
+        "rem": "Marcus will remember that you wanted the next rung."
+       },
+       {
+        "t": "Ask me next year",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e3_s6_player_03",
+           "Ask me next year."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e3_s6_marcus_07",
+           "That's fatigue. I know the sound."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1,
+         "trust": -1
+        },
+        "rem": "Marcus will remember the hedge."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e3_s6_marcus_08",
+           "No speech. Fine. Get to your car."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Marcus will remember that you had no answer."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "The garage stairwell, Harborline Financial, night",
+   "shot_notes": "Marcus holds the stairwell door while the office lights glow behind you."
+  }
+ ],
+ "end": "The middle rungs hold. Your call on the assistant climbs with you.",
+ "unparsed": []
+}

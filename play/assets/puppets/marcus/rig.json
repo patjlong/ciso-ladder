@@ -1,0 +1,202 @@
+{
+ "bones": [
+  {
+   "name": "pelvis",
+   "img": "pelvis.webp",
+   "parent": null,
+   "pivot": [
+    130.9,
+    14.0
+   ],
+   "at": [
+    0,
+    0
+   ],
+   "z": 4
+  },
+  {
+   "name": "torso",
+   "img": "torso.webp",
+   "parent": "pelvis",
+   "pivot": [
+    126.3,
+    297.6
+   ],
+   "at": [
+    130.9,
+    14.0
+   ],
+   "z": 5
+  },
+  {
+   "name": "head",
+   "img": "head.webp",
+   "parent": "torso",
+   "pivot": [
+    53.7,
+    219.1
+   ],
+   "at": [
+    126.5,
+    23.7
+   ],
+   "z": 3,
+   "variants": {
+    "mouth_small": "head_mouth_small.webp",
+    "mouth_wide": "head_mouth_wide.webp",
+    "mouth_round": "head_mouth_round.webp",
+    "blink": "head_blink.webp",
+    "tired": "head_tired.webp"
+   }
+  },
+  {
+   "name": "thigh_f",
+   "img": "thigh_f.webp",
+   "parent": "pelvis",
+   "pivot": [
+    62.8,
+    25.9
+   ],
+   "at": [
+    83.2,
+    52.4
+   ],
+   "z": 1
+  },
+  {
+   "name": "shin_f",
+   "img": "shin_f.webp",
+   "parent": "thigh_f",
+   "pivot": [
+    60.9,
+    29.2
+   ],
+   "at": [
+    54.0,
+    295.3
+   ],
+   "z": 0
+  },
+  {
+   "name": "thigh_n",
+   "img": "thigh_n.webp",
+   "parent": "pelvis",
+   "pivot": [
+    67.2,
+    25.8
+   ],
+   "at": [
+    176.8,
+    52.4
+   ],
+   "z": 2
+  },
+  {
+   "name": "shin_n",
+   "img": "shin_n.webp",
+   "parent": "thigh_n",
+   "pivot": [
+    62.5,
+    29.2
+   ],
+   "at": [
+    52.8,
+    294.1
+   ],
+   "z": 1.5
+  },
+  {
+   "name": "uarm_f",
+   "img": "uarm_f.webp",
+   "parent": "torso",
+   "pivot": [
+    103.6,
+    20.6
+   ],
+   "at": [
+    22.9,
+    44.2
+   ],
+   "z": 2.5,
+   "rest": 7
+  },
+  {
+   "name": "farm_f",
+   "img": "farm_f.webp",
+   "parent": "uarm_f",
+   "pivot": [
+    34.9,
+    18.2
+   ],
+   "at": [
+    33.6,
+    236.6
+   ],
+   "z": 3.4
+  },
+  {
+   "name": "hand_f",
+   "img": "hand_f.webp",
+   "parent": "farm_f",
+   "pivot": [
+    38.3,
+    18.5
+   ],
+   "at": [
+    72.4,
+    221.8
+   ],
+   "z": 3.5,
+   "variants": {
+    "phone": "hand_phone.webp"
+   }
+  },
+  {
+   "name": "uarm_n",
+   "img": "uarm_n.webp",
+   "parent": "torso",
+   "pivot": [
+    94.4,
+    19.8
+   ],
+   "at": [
+    230.1,
+    44.2
+   ],
+   "z": 8,
+   "rest": -7
+  },
+  {
+   "name": "farm_n",
+   "img": "farm_n.webp",
+   "parent": "uarm_n",
+   "pivot": [
+    29.9,
+    17.9
+   ],
+   "at": [
+    30.8,
+    229.1
+   ],
+   "z": 7.6
+  },
+  {
+   "name": "hand_n",
+   "img": "hand_n.webp",
+   "parent": "farm_n",
+   "pivot": [
+    30.0,
+    16.7
+   ],
+   "at": [
+    66.8,
+    214.3
+   ],
+   "z": 7.4,
+   "variants": {
+    "phone": "hand_phone.webp"
+   }
+  }
+ ],
+ "note": "built by tools/puppet_build.py; edit pivots here if the overlay shows a joint off"
+}

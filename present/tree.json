@@ -1,0 +1,4448 @@
+{
+ "episodes": [
+  {
+   "n": 1,
+   "title": "Night Shift",
+   "end": "The first night is logged. The queue will still be there tomorrow.",
+   "scenes": [
+    {
+     "id": "1.1",
+     "name": "The Booth",
+     "location": "Campus career fair, afternoon",
+     "room": "career_fair",
+     "when": null,
+     "choices": [
+      {
+       "id": "1.1#1",
+       "timed": 8,
+       "when": null,
+       "prompt": [
+        "Marcus",
+        "Why this seat, and not a free shirt?"
+       ],
+       "options": [
+        {
+         "t": "I want to get good.",
+         "fx": {
+          "skill": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember you wanted to get good.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Then stay. The shift will test that."
+         ],
+         "says": [
+          "PLAYER",
+          "I want to get good at this. Fast."
+         ]
+        },
+        {
+         "t": "I'll show up.",
+         "fx": {
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember you promised to show up.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Good. Showing up is the rare part."
+         ],
+         "says": [
+          "PLAYER",
+          "I need the job. I'll show up."
+         ]
+        },
+        {
+         "t": "The pay looks real.",
+         "fx": {
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember you were honest about the money.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Honest. Keep that habit when it gets loud."
+         ],
+         "says": [
+          "PLAYER",
+          "That pay number is hard to ignore."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Marcus will remember the pause.",
+         "silent": true,
+         "reply": [
+          "Marcus",
+          "The pause ends it. Think faster next time."
+         ],
+         "says": null
+        }
+       ]
+      },
+      {
+       "id": "1.1#2",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Marcus",
+        "Nights, policy, or the startup across the aisle."
+       ],
+       "options": [
+        {
+         "t": "Put me on nights.",
+         "fx": {
+          "skill": 1,
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember you asked for nights.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Direct. I can work with direct."
+         ],
+         "says": [
+          "PLAYER",
+          "Put me on the night shift."
+         ]
+        },
+        {
+         "t": "I want policy work.",
+         "fx": {
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember you asked for policy.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Then watch the mess first. Nights, then rules."
+         ],
+         "says": [
+          "PLAYER",
+          "I want rules, audits, the policy side."
+         ]
+        },
+        {
+         "t": "Check the startup.",
+         "fx": {
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Jordan will remember you almost walked.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "Big voice, tiny room. Have fun."
+         ],
+         "says": [
+          "PLAYER",
+          "I want to hear the startup's pitch."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Marcus will remember you froze at the booth.",
+         "silent": true,
+         "reply": [
+          "Marcus",
+          "I'll slot you for nights. Decide to like it later."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Marcus",
+       "Harborline Financial. We watch the money move."
+      ],
+      [
+       "Jordan",
+       "Say something. He's doing the statue thing."
+      ],
+      [
+       "",
+       "A labor bureau card lists median pay of $129,180."
+      ],
+      [
+       "",
+       "It lists 21 percent growth, from 2025 to 2035."
+      ],
+      [
+       "Marcus",
+       "Why this seat, and not a free shirt?"
+      ],
+      [
+       "Marcus",
+       "Nights teach you what the rules are for."
+      ],
+      [
+       "Marcus",
+       "Nights, policy, or the startup across the aisle."
+      ],
+      [
+       "Marcus",
+       "Don't lose the badge before you start."
+      ],
+      [
+       "Jordan",
+       "I'll keep dinner sad and warm for you."
+      ],
+      [
+       "",
+       "The badge is yours. Work starts after dark."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "1.2",
+     "name": "Cram Night",
+     "location": "Your apartment, early evening",
+     "room": "apartment",
+     "when": null,
+     "choices": [
+      {
+       "id": "1.2#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Jordan",
+        "You're on tonight. Try to look alive."
+       ],
+       "options": [
+        {
+         "t": "Cram Security+.",
+         "fx": {
+          "skill": 2,
+          "burn": 1
+         },
+         "flag": "secplus",
+         "rem": "Jordan will remember you crammed Security+.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "Employed and scared. My favorite kind."
+         ],
+         "says": [
+          "PLAYER",
+          "Security Plus. Quiz me."
+         ]
+        },
+        {
+         "t": "Study ISC2 CC.",
+         "fx": {
+          "skill": 1,
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Jordan will remember you started with ISC2 CC.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "Small bites. I respect the plan."
+         ],
+         "says": [
+          "PLAYER",
+          "The ISC2 starter. Walk me in."
+         ]
+        },
+        {
+         "t": "Skip the cram.",
+         "fx": {
+          "burn": -1
+         },
+         "flag": null,
+         "rem": "Jordan will remember you closed the laptop.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "Future you can be mad. Go to work."
+         ],
+         "says": [
+          "PLAYER",
+          "Not tonight. I start soon."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Jordan will remember the stare.",
+         "silent": true,
+         "reply": [
+          "Jordan",
+          "Blink once if the cards won."
+         ],
+         "says": null
+        }
+       ]
+      },
+      {
+       "id": "1.2#2",
+       "timed": 8,
+       "when": null,
+       "prompt": [
+        "Jordan",
+        "One card. Weird address, and it will not stop."
+       ],
+       "options": [
+        {
+         "t": "Cut it off.",
+         "fx": {
+          "skill": 1
+         },
+         "flag": null,
+         "rem": "Jordan will remember you said to cut it off.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "Correct. Painfully correct."
+         ],
+         "says": [
+          "PLAYER",
+          "Cut it off the network."
+         ]
+        },
+        {
+         "t": "Read it first.",
+         "fx": {
+          "skill": 1
+         },
+         "flag": null,
+         "rem": "Jordan will remember you wanted the logs.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "Brave. Also slow. Classic."
+         ],
+         "says": [
+          "PLAYER",
+          "Read what it's sending first."
+         ]
+        },
+        {
+         "t": "Ask a senior.",
+         "fx": {
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Jordan will remember you wanted a grownup.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "At this hour they're a rumor."
+         ],
+         "says": [
+          "PLAYER",
+          "I'd ask someone senior."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Jordan will remember you blanked on a flashcard.",
+         "silent": true,
+         "reply": [
+          "Jordan",
+          "Time's up. You stop the bleeding first."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Jordan",
+       "I made you flashcards. Be nice about it."
+      ],
+      [
+       "Jordan",
+       "Security Plus, the ISC2 starter, or sleep."
+      ],
+      [
+       "Jordan",
+       "You're on tonight. Try to look alive."
+      ],
+      [
+       "Jordan",
+       "One card. Weird address, and it will not stop."
+      ],
+      [
+       "Jordan",
+       "If you froze, we call that a result."
+      ],
+      [
+       "Jordan",
+       "Pocket it. The real room is darker."
+      ],
+      [
+       "",
+       "The shift starts. The room is cold and bright."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "1.3",
+     "name": "The Alert",
+     "location": "Harborline SOC, 3:12 AM",
+     "room": "soc_night",
+     "variants": [],
+     "choices": [
+      {
+       "id": "1.3#1",
+       "timed": 10,
+       "prompt": [
+        "Marcus",
+        "Talk to me. What are you seeing, and what do you want to do about it?"
+       ],
+       "options": [
+        {
+         "t": "Isolate the laptop now.",
+         "flag": "e1_isolate",
+         "fx": {
+          "skill": 6,
+          "rep": 8
+         },
+         "rem": "Marcus will remember that.",
+         "reply": [
+          "Marcus",
+          "Good. Pull it off the network and keep the logs. That's the job."
+         ]
+        },
+        {
+         "t": "Pull the logs first.",
+         "flag": "e1_logs",
+         "fx": {
+          "skill": 10,
+          "burn": 4
+         },
+         "reply": [
+          "Marcus",
+          "Fine. But every minute you spend reading, it keeps talking. Be fast."
+         ]
+        },
+        {
+         "t": "\"Should I wake someone else?\"",
+         "flag": "e1_wake",
+         "fx": {
+          "trust": 4,
+          "rep": -2
+         },
+         "rem": "Marcus will remember that.",
+         "reply": [
+          "Marcus",
+          "You already woke someone. Me. Now make a call."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "silent": true,
+         "flag": "missed_alert",
+         "fx": {
+          "trust": -4
+         },
+         "rem": "Marcus noticed you froze.",
+         "reply": [
+          "Marcus",
+          "Hello? You still there? Okay. Isolate it. We'll talk about this Monday."
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "1.4",
+     "name": "Monday",
+     "location": "Harborline SOC, Monday morning",
+     "room": "soc_day",
+     "when": null,
+     "choices": [
+      {
+       "id": "1.4#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Marcus",
+        "One breath. What did you trust out there?"
+       ],
+       "options": [
+        {
+         "t": "I trusted the weirdness.",
+         "fx": {
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember you owned the call.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Good. Be able to say it again."
+         ],
+         "says": [
+          "PLAYER",
+          "A strange address. So I moved."
+         ]
+        },
+        {
+         "t": "I wasn't sure.",
+         "fx": {
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember you asked to be corrected.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Good. Hold onto that doubt."
+         ],
+         "says": [
+          "PLAYER",
+          "I'm not sure I called it right."
+         ]
+        },
+        {
+         "t": "The tools should have caught it.",
+         "fx": {
+          "rep": -1,
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Marcus will remember you blamed the tools.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "They scream all day. You pick one."
+         ],
+         "says": [
+          "PLAYER",
+          "The tools should have been louder."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Marcus will remember the long pause.",
+         "silent": true,
+         "reply": [
+          "Marcus",
+          "Words. I don't grade silence twice."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Marcus",
+       "You cut it off, then wrote the story. That's the job."
+      ],
+      [
+       "Marcus",
+       "You read first. It kept talking while you read."
+      ],
+      [
+       "Marcus",
+       "You asked who else to wake. You already had me."
+      ],
+      [
+       "Marcus",
+       "You went quiet. I pulled the plug. Thin writeup."
+      ],
+      [
+       "Marcus",
+       "Monday is for ego checks. Welcome in."
+      ],
+      [
+       "Marcus",
+       "Sit. I read the ticket. Now talk me through it."
+      ],
+      [
+       "Marcus",
+       "One breath. What did you trust out there?"
+      ],
+      [
+       "Marcus",
+       "Every alert gets a story. Keep writing yours."
+      ],
+      [
+       "Marcus",
+       "Coffee here is bad. That part will not change."
+      ],
+      [
+       "Marcus",
+       "Go home, rookie. Sleep while you can."
+      ]
+     ],
+     "variants": [
+      {
+       "when": "e1_isolate",
+       "lines": [
+        [
+         "Marcus",
+         "You cut it off, then wrote the story. That's the job."
+        ]
+       ]
+      },
+      {
+       "when": "e1_logs",
+       "lines": [
+        [
+         "Marcus",
+         "You read first. It kept talking while you read."
+        ]
+       ]
+      },
+      {
+       "when": "e1_wake",
+       "lines": [
+        [
+         "Marcus",
+         "You asked who else to wake. You already had me."
+        ]
+       ]
+      },
+      {
+       "when": "missed_alert",
+       "lines": [
+        [
+         "Marcus",
+         "You went quiet. I pulled the plug. Thin writeup."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "id": "1.5",
+     "name": "The Door",
+     "location": "Your apartment, Monday evening",
+     "room": "apartment",
+     "when": null,
+     "choices": [
+      {
+       "id": "1.5#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Jordan",
+        "You've been a ghost since the badge."
+       ],
+       "options": [
+        {
+         "t": "Keep it vague.",
+         "fx": {
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Jordan will remember you kept the details at work.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "Boundaries. Weird. I respect it."
+         ],
+         "says": [
+          "PLAYER",
+          "Work was weird. I can't share details."
+         ]
+        },
+        {
+         "t": "Tell the story.",
+         "fx": {
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Jordan will remember you overshared.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "I will forget that on purpose."
+         ],
+         "says": [
+          "PLAYER",
+          "A finance laptop called a strange address."
+         ]
+        },
+        {
+         "t": "I need sleep.",
+         "fx": {
+          "burn": -1
+         },
+         "flag": null,
+         "rem": "Jordan will remember you chose the couch.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "Copy. The couch is neutral ground."
+         ],
+         "says": [
+          "PLAYER",
+          "Ask me after I've actually slept."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Jordan will remember you stood in the doorway.",
+         "silent": true,
+         "reply": [
+          "Jordan",
+          "Haunting the doorway works too."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Jordan",
+       "You look chewed up. Is the bank standing?"
+      ],
+      [
+       "Jordan",
+       "You've been a ghost since the badge."
+      ],
+      [
+       "Jordan",
+       "Text me if the building eats you."
+      ],
+      [
+       "Jordan",
+       "Shoes off. You made it back. That counts."
+      ],
+      [
+       "",
+       "The badge stays by the door. The queue does too."
+      ]
+     ],
+     "variants": []
+    }
+   ],
+   "rung": "Entry",
+   "role": "Tier 1 SOC Analyst",
+   "years": "Year 1"
+  },
+  {
+   "n": 2,
+   "title": "Tier Two",
+   "end": "The queue stayed loud. You started hearing what mattered.",
+   "scenes": [
+    {
+     "id": "2.1",
+     "name": "Queue Flood",
+     "location": "Harborline Financial SOC, late afternoon",
+     "room": "soc_night",
+     "when": null,
+     "choices": [
+      {
+       "id": "2.1#1",
+       "timed": 8,
+       "when": null,
+       "prompt": [
+        "Marcus",
+        "The queue's loud so you'll miss a real one."
+       ],
+       "options": [
+        {
+         "t": "Open the odd login",
+         "fx": {
+          "skill": 2
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Good. Let the junk scream."
+         ],
+         "says": [
+          "PLAYER",
+          "That login's wrong. I'm opening it."
+         ]
+        },
+        {
+         "t": "Mute the noisy rule",
+         "fx": {
+          "skill": 1,
+          "burn": -1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Fair. Just don't go deaf on me."
+         ],
+         "says": [
+          "PLAYER",
+          "Muting the broken rule. It can wait."
+         ]
+        },
+        {
+         "t": "Clear the whole queue",
+         "fx": {
+          "skill": -1,
+          "rep": -1
+         },
+         "flag": "missed_alert",
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Clean isn't the same as safe."
+         ],
+         "says": [
+          "PLAYER",
+          "Clearing it. We'll start clean."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "rep": -1
+         },
+         "flag": "missed_alert",
+         "rem": "Marcus will remember that.",
+         "silent": true,
+         "reply": [
+          "Marcus",
+          "And the weird login scrolls away. Classic."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Marcus",
+       "Same rule, over and over. Except that login."
+      ],
+      [
+       "Marcus",
+       "The queue's loud so you'll miss a real one."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "2.2",
+     "name": "The Brochure",
+     "location": "Harborline Financial, a small conference room, the following week",
+     "room": "conference_glass",
+     "when": null,
+     "choices": [
+      {
+       "id": "2.2#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Marcus",
+        "Miracle, or a brochure. Hard to tell."
+       ],
+       "options": [
+        {
+         "t": "Demand a live proof",
+         "fx": {
+          "skill": 2,
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "If it only works on slides, it doesn't."
+         ],
+         "says": [
+          "PLAYER",
+          "Run it on our logs. No slides."
+         ]
+        },
+        {
+         "t": "Buy the pitch",
+         "fx": {
+          "skill": -1,
+          "rep": 1
+         },
+         "flag": "vendor_bought",
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Hope the magic comes with a receipt."
+         ],
+         "says": [
+          "PLAYER",
+          "We'll take it. I'm done with the noise."
+         ]
+        },
+        {
+         "t": "Send the rep out",
+         "fx": {
+          "skill": 1,
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Vendor",
+          "You'll call when the queue wins."
+         ],
+         "says": [
+          "PLAYER",
+          "We're not buying a slogan."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "rep": -1
+         },
+         "flag": "vendor_bought",
+         "rem": "Marcus will remember that.",
+         "silent": true,
+         "reply": [
+          "Marcus",
+          "Quiet reads as yes. The rep heard yes."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Vendor",
+       "We stop zero-days before they exist."
+      ],
+      [
+       "Vendor",
+       "Your team can stop thinking so hard."
+      ],
+      [
+       "Marcus",
+       "Miracle, or a brochure. Hard to tell."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "2.3",
+     "name": "The New Hire",
+     "location": "Harborline Financial SOC, evening",
+     "room": "soc_night",
+     "when": null,
+     "choices": [
+      {
+       "id": "2.3#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Marcus",
+        "You sat in that chair once. Your call."
+       ],
+       "options": [
+        {
+         "t": "Walk it line by line",
+         "fx": {
+          "skill": 1,
+          "burn": 1
+         },
+         "flag": "mentored",
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "New Hire",
+          "Okay. Slow I can do."
+         ],
+         "says": [
+          "PLAYER",
+          "Pull up a chair. We'll walk it slow."
+         ]
+        },
+        {
+         "t": "Take the ticket back",
+         "fx": {
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Fast today. Same scare tomorrow."
+         ],
+         "says": [
+          "PLAYER",
+          "Hand it over. I'll close this one."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": true,
+         "reply": [
+          "New Hire",
+          "I'll just leave it, then."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "New Hire",
+       "If I close this, am I gonna make it worse?"
+      ],
+      [
+       "Marcus",
+       "You sat in that chair once. Your call."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "2.4",
+     "name": "The Page",
+     "location": "The player's apartment, two in the morning",
+     "room": "apartment",
+     "when": null,
+     "choices": [
+      {
+       "id": "2.4#1",
+       "timed": 6,
+       "when": null,
+       "prompt": [
+        "Jordan",
+        "Tell work the night shift moved out."
+       ],
+       "options": [
+        {
+         "t": "Get up and work it",
+         "fx": {
+          "skill": 1,
+          "rep": 1,
+          "burn": 2
+         },
+         "flag": null,
+         "rem": "Sam will remember that.",
+         "silent": false,
+         "reply": [
+          "Sam",
+          "Good. I'll bring the ugly parts."
+         ],
+         "says": [
+          "PLAYER",
+          "I'm up. Send the ticket."
+         ]
+        },
+        {
+         "t": "Ask Sam to cover",
+         "fx": {
+          "burn": -1,
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Sam will remember that.",
+         "silent": false,
+         "reply": [
+          "Sam",
+          "Yeah. Sleep. I'll ping you at daylight."
+         ],
+         "says": [
+          "PLAYER",
+          "Sam, can you take this? I'm cooked."
+         ]
+        },
+        {
+         "t": "Flip the phone over",
+         "fx": {
+          "burn": -1,
+          "rep": -2
+         },
+         "flag": "missed_alert",
+         "rem": "Sam will remember that.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "Bold. Your work friends will love that."
+         ],
+         "says": [
+          "PLAYER",
+          "Not tonight."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "burn": 1,
+          "rep": -1
+         },
+         "flag": "missed_alert",
+         "rem": "Sam will remember that.",
+         "silent": true,
+         "reply": [
+          "Sam",
+          "Page died. I'm starting without you."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Jordan",
+       "If it buzzes again, I'm throwing it out."
+      ],
+      [
+       "Jordan",
+       "Tell work the night shift moved out."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "2.5",
+     "name": "Bad Monday",
+     "location": "Harborline Financial, conference room, afternoon",
+     "room": "conference_glass",
+     "when": null,
+     "choices": [
+      {
+       "id": "2.5#1",
+       "timed": 10,
+       "when": null,
+       "prompt": [
+        "Dana",
+        "The clock is the lesson. Talk."
+       ],
+       "options": [
+        {
+         "t": "Isolate, then brief Dana",
+         "fx": {
+          "skill": 2,
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Dana will remember that.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "Plain works. Do it that way when it's real."
+         ],
+         "says": [
+          "PLAYER",
+          "We cut the network. Then we brief you plain."
+         ]
+        },
+        {
+         "t": "Pay to make it stop",
+         "fx": {
+          "trust": -2,
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Dana will remember that.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "Payment invites a second visit."
+         ],
+         "says": [
+          "PLAYER",
+          "We pay the note. We buy the day back."
+         ]
+        },
+        {
+         "t": "Let Sam run it",
+         "fx": {
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Sam will remember that.",
+         "silent": false,
+         "reply": [
+          "Sam",
+          "Right. Isolate first. I should've led with that."
+         ],
+         "says": [
+          "PLAYER",
+          "Sam, your room. Make the call."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Dana will remember that.",
+         "silent": true,
+         "reply": [
+          "Dana",
+          "Nobody spoke. That's how a bad Monday starts."
+         ],
+         "says": null
+        }
+       ]
+      },
+      {
+       "id": "2.5#2",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Dana",
+        "What failed first? The tools, or this room?"
+       ],
+       "options": [
+        {
+         "t": "We stopped listening",
+         "fx": {
+          "skill": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "That's the day job sneaking in. True, though."
+         ],
+         "says": [
+          "PLAYER",
+          "The alerts cried wolf. We went numb."
+         ]
+        },
+        {
+         "t": "We froze",
+         "fx": {
+          "trust": 1,
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Dana will remember that.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "Good. I can work with a room that admits it."
+         ],
+         "says": [
+          "PLAYER",
+          "We froze. That's on this room."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Dana will remember that.",
+         "silent": true,
+         "reply": [
+          "Dana",
+          "You went quiet. I still counted that."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Sam",
+       "Files are locked. There's a note on the screen."
+      ],
+      [
+       "Sam",
+       "Who calls it? I, uh, blanked."
+      ],
+      [
+       "Dana",
+       "The clock is the lesson. Talk."
+      ],
+      [
+       "Dana",
+       "What failed first? The tools, or this room?"
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "2.6",
+     "name": "The Guides",
+     "location": "Harborline Financial, Marcus's office, months later",
+     "room": "soc_night",
+     "when": null,
+     "choices": [
+      {
+       "id": "2.6#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Marcus",
+        "CISSP needs five years paid before you can hold it."
+       ],
+       "options": [
+        {
+         "t": "Take CySA+ now",
+         "fx": {
+          "skill": 2,
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Then we use the quiet nights. If any show up."
+         ],
+         "says": [
+          "PLAYER",
+          "CySA+ now. I want the analyst depth."
+         ]
+        },
+        {
+         "t": "Start the CISSP track",
+         "fx": {
+          "skill": 1,
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Good. The years still have to be real."
+         ],
+         "says": [
+          "PLAYER",
+          "I'll start the long reading. No rush to sit."
+         ]
+        },
+        {
+         "t": "Stay on the tools",
+         "fx": {
+          "skill": -1,
+          "burn": -1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "It teaches. It also teaches bad habits."
+         ],
+         "says": [
+          "PLAYER",
+          "Not this year. The queue is the teacher."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": true,
+         "reply": [
+          "Marcus",
+          "Fine. The books can collect dust."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Marcus",
+       "You're past button pushing. Barely."
+      ],
+      [
+       "Marcus",
+       "CISSP needs five years paid before you can hold it."
+      ]
+     ],
+     "variants": []
+    }
+   ],
+   "rung": "Entry",
+   "role": "Tier 2 Analyst / Junior Engineer",
+   "years": "Years 2-4"
+  },
+  {
+   "n": 3,
+   "title": "The Middle Rungs",
+   "end": "The middle rungs hold. Your call on the assistant climbs with you.",
+   "scenes": [
+    {
+     "id": "3.1",
+     "name": "The Fork",
+     "location": "Dana Whitfield's office, Harborline Financial, morning",
+     "room": "dana_office",
+     "when": null,
+     "choices": [
+      {
+       "id": "3.1#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Dana",
+        "Choose like you have to keep it."
+       ],
+       "options": [
+        {
+         "t": "Senior engineer",
+         "fx": {
+          "skill": 2
+         },
+         "flag": "eng_track",
+         "rem": "Dana will remember that you chose the tools.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "Good. Someone still has to fix the bank."
+         ],
+         "says": [
+          "PLAYER",
+          "I'll stay with the tools."
+         ]
+        },
+        {
+         "t": "Security manager",
+         "fx": {
+          "rep": 2,
+          "trust": 1
+         },
+         "flag": "mgr_track",
+         "rem": "Dana will remember that you chose the team.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "The team's misses become yours."
+         ],
+         "says": [
+          "PLAYER",
+          "I'll take the people."
+         ]
+        },
+        {
+         "t": "Run incident response",
+         "fx": {
+          "skill": 1,
+          "burn": 1
+         },
+         "flag": "ir_track",
+         "rem": "Sam will remember that you took the incidents.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "Sam will be thrilled. Say goodbye to sleep."
+         ],
+         "says": [
+          "PLAYER",
+          "I'll take the incidents."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "rep": -1,
+          "trust": -1
+         },
+         "flag": "mgr_track",
+         "rem": "Dana will remember that she had to choose for you.",
+         "silent": true,
+         "reply": [
+          "Dana",
+          "Then I pick. Manager. Don't thank me."
+         ],
+         "says": null
+        }
+       ]
+      },
+      {
+       "id": "3.1#2",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Dana",
+        "When she pushes, what's your first move?"
+       ],
+       "options": [
+        {
+         "t": "I'll hold the line",
+         "fx": {
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Dana will remember that you meant to hold the line.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "Good. Holding is louder than a speech."
+         ],
+         "says": [
+          "PLAYER",
+          "I'll hold the line if I have to."
+         ]
+        },
+        {
+         "t": "I'll hear her out",
+         "fx": {
+          "skill": 1
+         },
+         "flag": null,
+         "rem": "Dana will remember that you wanted to listen first.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "Fair. The clock is the whole point."
+         ],
+         "says": [
+          "PLAYER",
+          "I'll hear the pitch before I swing."
+         ]
+        },
+        {
+         "t": "Keep the peace",
+         "fx": {
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Dana will remember that you flinched at a fight.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "Peace is nice. It isn't the job."
+         ],
+         "says": [
+          "PLAYER",
+          "I'd rather not start a war."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Dana will remember the pause.",
+         "silent": true,
+         "reply": [
+          "Dana",
+          "That pause was long. Shorten it."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Dana",
+       "Close the door."
+      ],
+      [
+       "Dana",
+       "You've been here long enough to pick a lane."
+      ],
+      [
+       "Dana",
+       "Engineer. Manager. Or you lead response with Sam."
+      ],
+      [
+       "Dana",
+       "Choose like you have to keep it."
+      ],
+      [
+       "Dana",
+       "Priya wants a fast yes on a new tool."
+      ],
+      [
+       "Dana",
+       "Your chair is going to catch that ask."
+      ],
+      [
+       "Dana",
+       "When she pushes, what's your first move?"
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "3.2",
+     "name": "The Letters",
+     "location": "A quiet corner off the SOC floor, late afternoon",
+     "room": "soc_night",
+     "when": null,
+     "choices": [
+      {
+       "id": "3.2#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Marcus",
+        "You've got the years. Which pain do you want?"
+       ],
+       "options": [
+        {
+         "t": "Start the CISSP",
+         "fx": {
+          "skill": 1,
+          "trust": 1
+         },
+         "flag": "cissp",
+         "rem": "Marcus will remember that you aimed at the CISSP.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Broad and dry. Don't cram it like trivia."
+         ],
+         "says": [
+          "PLAYER",
+          "I'll start the CISSP."
+         ]
+        },
+        {
+         "t": "Chase the OSCP",
+         "fx": {
+          "skill": 2,
+          "burn": 1
+         },
+         "flag": "oscp",
+         "rem": "Marcus will remember that you chose the hard lab.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Pack food. That exam has teeth."
+         ],
+         "says": [
+          "PLAYER",
+          "I want the OSCP."
+         ]
+        },
+        {
+         "t": "Take the CISA",
+         "fx": {
+          "trust": 1,
+          "rep": 1
+         },
+         "flag": "cisa",
+         "rem": "Marcus will remember that you chose the audit path.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "You'll see how this place explains risk."
+         ],
+         "says": [
+          "PLAYER",
+          "CISA. Put me in the audit room."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that you ducked the cert.",
+         "silent": true,
+         "reply": [
+          "Marcus",
+          "No letters. Then your work has to shout."
+         ],
+         "says": null
+        }
+       ]
+      },
+      {
+       "id": "3.2#2",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Jordan",
+        "You alive, or did the building win?"
+       ],
+       "options": [
+        {
+         "t": "Home in an hour",
+         "fx": {
+          "burn": -1
+         },
+         "flag": null,
+         "rem": "Jordan will remember that you came home.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "A plate. Look at you, having a life."
+         ],
+         "says": [
+          "PLAYER",
+          "Home in an hour. Save me a plate."
+         ]
+        },
+        {
+         "t": "Don't wait up",
+         "fx": {
+          "burn": 2,
+          "skill": 1
+         },
+         "flag": null,
+         "rem": "Jordan will remember that the books won.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "Cool. Leftovers have your name on them."
+         ],
+         "says": [
+          "PLAYER",
+          "Don't wait up. I'm in the books."
+         ]
+        },
+        {
+         "t": "I got the bump",
+         "fx": {
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Jordan will remember that you shared the bump.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "Nice. Don't turn into a badge."
+         ],
+         "says": [
+          "PLAYER",
+          "I got the bump. I'm not done tonight."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Jordan will remember that you let it ring.",
+         "silent": true,
+         "reply": [
+          "Marcus",
+          "You can call back. The chapter will wait."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Marcus",
+       "You picked a lane. Now pick a cert."
+      ],
+      [
+       "Marcus",
+       "One cert. You're not collecting stickers."
+      ],
+      [
+       "Marcus",
+       "CISSP requires five years of paid work."
+      ],
+      [
+       "Marcus",
+       "You've got the years. Which pain do you want?"
+      ],
+      [
+       "Marcus",
+       "Your roommate. Answer. I'll survive."
+      ],
+      [
+       "Jordan",
+       "You alive, or did the building win?"
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "3.3",
+     "name": "The Hall",
+     "location": "Hall outside Priya Raman's office, early evening",
+     "room": "hallway",
+     "when": null,
+     "choices": [
+      {
+       "id": "3.3#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Dana",
+        "You want me in the room?"
+       ],
+       "options": [
+        {
+         "t": "Come in with me",
+         "fx": {
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Dana will remember that you wanted her in the room.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "Good. You lead. I don't pile on."
+         ],
+         "says": [
+          "PLAYER",
+          "Come in with me."
+         ]
+        },
+        {
+         "t": "I'll handle it",
+         "fx": {
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Dana will remember that you walked in alone.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "All right. I'll be down the hall."
+         ],
+         "says": [
+          "PLAYER",
+          "I'll handle Priya."
+         ]
+        },
+        {
+         "t": "You take the lead",
+         "fx": {
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Dana will remember that you handed her the lead.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "I can talk. The chair is still yours."
+         ],
+         "says": [
+          "PLAYER",
+          "You should lead this one."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Dana will remember that you stalled at the door.",
+         "silent": true,
+         "reply": [
+          "Dana",
+          "I'm coming in. This isn't optional."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Dana",
+       "She's got a vendor tool and a Friday deadline."
+      ],
+      [
+       "Dana",
+       "Company-wide. Not a lab. Not a maybe."
+      ],
+      [
+       "Dana",
+       "The pitch is an assistant that reads our mail."
+      ],
+      [
+       "Dana",
+       "You want me in the room?"
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "3.4",
+     "name": "The Ask",
+     "location": "Priya Raman's office, Harborline Financial, minutes later",
+     "room": "priya_office",
+     "when": null,
+     "choices": [
+      {
+       "id": "3.4#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Priya",
+        "Bless it, shape it, or step aside."
+       ],
+       "options": [
+        {
+         "t": "Yes, with guardrails",
+         "fx": {
+          "skill": 1,
+          "trust": 1,
+          "burn": 1
+         },
+         "flag": "guardrails",
+         "rem": "Priya will remember that you made her slow down.",
+         "silent": false,
+         "reply": [
+          "Priya",
+          "Write the rules tonight. I still want Friday."
+         ],
+         "says": [
+          "PLAYER",
+          "Yes, if we log it and can shut it off."
+         ]
+        },
+        {
+         "t": "Block the rollout",
+         "fx": {
+          "rep": 1,
+          "trust": -1
+         },
+         "flag": "blocked_ai",
+         "rem": "Priya will remember that you blocked her.",
+         "silent": false,
+         "reply": [
+          "Priya",
+          "Then I'll have this fight in public."
+         ],
+         "says": [
+          "PLAYER",
+          "No. It doesn't go company-wide."
+         ]
+        },
+        {
+         "t": "Ship it",
+         "fx": {
+          "trust": 1,
+          "rep": -1,
+          "skill": -1
+         },
+         "flag": "rubber_stamp",
+         "rem": "Priya will remember that you waved it through.",
+         "silent": false,
+         "reply": [
+          "Priya",
+          "That's the spirit. I'll tell the whole bank."
+         ],
+         "says": [
+          "PLAYER",
+          "Ship it. We'll fix it if it breaks."
+         ]
+        },
+        {
+         "t": "What data does it touch?",
+         "fx": {
+          "skill": 2,
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Priya will remember that you asked what it reads.",
+         "silent": false,
+         "reply": [
+          "Priya",
+          "Mail. Shared drives. Anything staff can open."
+         ],
+         "says": [
+          "PLAYER",
+          "What data does it touch?"
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "rep": -1,
+          "trust": 1,
+          "burn": 1
+         },
+         "flag": "rubber_stamp",
+         "rem": "Priya will remember that your silence was a yes.",
+         "silent": true,
+         "reply": [
+          "Priya",
+          "You didn't say no. I'll take the yes."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Priya",
+       "I need you on the invite, not in the way."
+      ],
+      [
+       "Priya",
+       "It drafts mail and digs through our files."
+      ],
+      [
+       "Priya",
+       "Friday. My board slide is already done."
+      ],
+      [
+       "Priya",
+       "Bless it, shape it, or step aside."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "3.5",
+     "name": "A Season Later",
+     "location": "A glass conference room, Harborline Financial, a season later",
+     "room": "conference_glass",
+     "when": null,
+     "choices": [
+      {
+       "id": "3.5#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Dana",
+        "Where do you stand? Plain words."
+       ],
+       "options": [
+        {
+         "t": "Hold your call",
+         "fx": {
+          "trust": 1,
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Dana will remember that you stood by your call.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "Good. Consistency is the whole job."
+         ],
+         "says": [
+          "PLAYER",
+          "I hold the call I made."
+         ]
+        },
+        {
+         "t": "Offer a small pilot",
+         "fx": {
+          "trust": 1,
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Priya will remember that you offered a small pilot.",
+         "silent": false,
+         "reply": [
+          "Priya",
+          "I'll take a door if the building is closed."
+         ],
+         "says": [
+          "PLAYER",
+          "A small pilot. Nothing company-wide."
+         ]
+        },
+        {
+         "t": "Shut it down",
+         "fx": {
+          "rep": 1,
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Priya will remember that you tried to shut it down.",
+         "silent": false,
+         "reply": [
+          "Priya",
+          "You want a war with your CIO."
+         ],
+         "says": [
+          "PLAYER",
+          "Shut it down. Today."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Dana will remember that you went quiet.",
+         "silent": true,
+         "reply": [
+          "Dana",
+          "Then I'll speak for you. I hate that."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "",
+       "A season later."
+      ],
+      [
+       "Priya",
+       "Sit. We're not doing this in the hall."
+      ],
+      [
+       "Dana",
+       "The guardrail stopped a client file cold."
+      ],
+      [
+       "Priya",
+       "The pilot lived. My big Friday did not."
+      ],
+      [
+       "Dana",
+       "She ran a pilot around us. No ticket. No you."
+      ],
+      [
+       "Priya",
+       "You said no. Other teams still had deadlines."
+      ],
+      [
+       "Dana",
+       "A case file landed where the vendor can read it."
+      ],
+      [
+       "Priya",
+       "We moved fast. This is the bill."
+      ],
+      [
+       "Priya",
+       "You asked what it can read. I still don't have a map."
+      ],
+      [
+       "Dana",
+       "Other teams switched it on while you waited."
+      ],
+      [
+       "Dana",
+       "Where do you stand? Plain words."
+      ]
+     ],
+     "variants": [
+      {
+       "when": "guardrails",
+       "lines": [
+        [
+         "Dana",
+         "The guardrail stopped a client file cold."
+        ],
+        [
+         "Priya",
+         "The pilot lived. My big Friday did not."
+        ]
+       ]
+      },
+      {
+       "when": "blocked_ai",
+       "lines": [
+        [
+         "Dana",
+         "She ran a pilot around us. No ticket. No you."
+        ],
+        [
+         "Priya",
+         "You said no. Other teams still had deadlines."
+        ]
+       ]
+      },
+      {
+       "when": "rubber_stamp",
+       "lines": [
+        [
+         "Dana",
+         "A case file landed where the vendor can read it."
+        ],
+        [
+         "Priya",
+         "We moved fast. This is the bill."
+        ]
+       ]
+      },
+      {
+       "when": "!guardrails && !blocked_ai && !rubber_stamp",
+       "lines": [
+        [
+         "Priya",
+         "You asked what it can read. I still don't have a map."
+        ],
+        [
+         "Dana",
+         "Other teams switched it on while you waited."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "id": "3.6",
+     "name": "The Landing",
+     "location": "The garage stairwell, Harborline Financial, night",
+     "room": "garage",
+     "when": null,
+     "choices": [
+      {
+       "id": "3.6#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Marcus",
+        "You still want this work?"
+       ],
+       "options": [
+        {
+         "t": "More than ever",
+         "fx": {
+          "burn": -1,
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that you still wanted the work.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Hold that feeling. The top spends it fast."
+         ],
+         "says": [
+          "PLAYER",
+          "Yeah. More than ever."
+         ]
+        },
+        {
+         "t": "I want the next rung",
+         "fx": {
+          "rep": 1,
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that you wanted the next rung.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Ambition's fine. Don't mortgage your sleep."
+         ],
+         "says": [
+          "PLAYER",
+          "I want the next rung."
+         ]
+        },
+        {
+         "t": "Ask me next year",
+         "fx": {
+          "burn": 1,
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Marcus will remember the hedge.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "That's fatigue. I know the sound."
+         ],
+         "says": [
+          "PLAYER",
+          "Ask me next year."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that you had no answer.",
+         "silent": true,
+         "reply": [
+          "Marcus",
+          "No speech. Fine. Get to your car."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Marcus",
+       "Middle rungs. The coffee's worse. The calls are real."
+      ],
+      [
+       "Marcus",
+       "You did a hard season. Say it plain."
+      ],
+      [
+       "Marcus",
+       "Priya will call again. Dana will watch."
+      ],
+      [
+       "Marcus",
+       "You still want this work?"
+      ]
+     ],
+     "variants": []
+    }
+   ],
+   "rung": "Mid-career",
+   "role": "Senior Engineer, Manager or IR Lead",
+   "years": "Years 5-8"
+  },
+  {
+   "n": 4,
+   "title": "The Breach",
+   "end": "Saturday is contained. The sentence you chose stays on the record.",
+   "scenes": [
+    {
+     "id": "4.1",
+     "name": "Saturday Morning",
+     "location": "Your kitchen, Saturday morning",
+     "room": "apartment",
+     "when": null,
+     "choices": [
+      {
+       "id": "4.1#1",
+       "timed": 8,
+       "when": null,
+       "prompt": [
+        "Marcus",
+        "I'm on the bridge. We need a verb, not a meeting."
+       ],
+       "options": [
+        {
+         "t": "Kill the admin tool",
+         "fx": {
+          "skill": 2,
+          "trust": 1,
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Sam will remember that.",
+         "silent": false,
+         "reply": [
+          "Sam",
+          "Killing it. Customers will stumble. So will the attacker."
+         ],
+         "says": [
+          "PLAYER",
+          "Shut the admin tool down. Cut every session."
+         ]
+        },
+        {
+         "t": "Quietly revoke accounts",
+         "fx": {
+          "skill": 2,
+          "rep": 1,
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Sam will remember that.",
+         "silent": false,
+         "reply": [
+          "Sam",
+          "Quiet revoke is running. I'll watch for a second door."
+         ],
+         "says": [
+          "PLAYER",
+          "Revoke the bad access. Leave the tool standing."
+         ]
+        },
+        {
+         "t": "Call the CEO first",
+         "fx": {
+          "trust": 2,
+          "rep": -1,
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "She'll want a verb. Have one when she picks up."
+         ],
+         "says": [
+          "PLAYER",
+          "Get Elena first. No changes until she answers."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "burn": 1,
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Sam will remember that.",
+         "silent": true,
+         "reply": [
+          "Sam",
+          "Clock's running. I kill the tool unless you stop me."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "",
+       "Year nine. Director now. Saturday was supposed to stay quiet."
+      ],
+      [
+       "Sam",
+       "Boss. Help desk handed an attacker a password."
+      ],
+      [
+       "Sam",
+       "Caller said they were IT. The agent believed them."
+      ],
+      [
+       "Sam",
+       "Those credentials opened our internal admin tool."
+      ],
+      [
+       "Sam",
+       "They are inside customer accounts. This is live."
+      ],
+      [
+       "Marcus",
+       "I'm on the bridge. We need a verb, not a meeting."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "4.2",
+     "name": "The War Room",
+     "location": "Harborline SOC, Saturday noon",
+     "room": "soc_day",
+     "when": null,
+     "choices": [
+      {
+       "id": "4.2#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Dana",
+        "Talk. What did they touch, and what did you stop?"
+       ],
+       "options": [
+        {
+         "t": "Lead with the logs",
+         "fx": {
+          "skill": 1,
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Dana will remember that.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "Good. I hate a story that outruns the evidence."
+         ],
+         "says": [
+          "PLAYER",
+          "Logs first. Then the story, short."
+         ]
+        },
+        {
+         "t": "Lead with containment",
+         "fx": {
+          "rep": 1,
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Dana will remember that.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "Contained is a claim. Show me where it ends."
+         ],
+         "says": [
+          "PLAYER",
+          "It's contained. Customers come before the postmortem."
+         ]
+        },
+        {
+         "t": "Keep the mess quiet",
+         "fx": {
+          "trust": -2,
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Dana will remember that.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "Quiet is how a small mess becomes a resignation."
+         ],
+         "says": [
+          "PLAYER",
+          "Small mess. We can keep it inside the building."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Dana will remember that.",
+         "silent": true,
+         "reply": [
+          "Dana",
+          "Fine. I'll tell Elena you went quiet, and I'll use the logs."
+         ],
+         "says": null
+        }
+       ]
+      },
+      {
+       "id": "4.2#2",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Sam",
+        "Do we freeze profile edits, or only the bad accounts?"
+       ],
+       "options": [
+        {
+         "t": "Freeze every profile edit",
+         "fx": {
+          "trust": 1,
+          "rep": -1,
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Sam will remember that.",
+         "silent": false,
+         "reply": [
+          "Sam",
+          "Broad freeze. Support will howl. I can live with it."
+         ],
+         "says": [
+          "PLAYER",
+          "Freeze every profile edit until we clear them."
+         ]
+        },
+        {
+         "t": "Freeze touched accounts",
+         "fx": {
+          "skill": 2
+         },
+         "flag": null,
+         "rem": "Sam will remember that.",
+         "silent": false,
+         "reply": [
+          "Sam",
+          "Tighter. Miss one, and a customer tells us first."
+         ],
+         "says": [
+          "PLAYER",
+          "Freeze only the accounts we know they touched."
+         ]
+        },
+        {
+         "t": "Leave edits open",
+         "fx": {
+          "skill": 1,
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Sam will remember that.",
+         "silent": false,
+         "reply": [
+          "Sam",
+          "Bold. I'll watch. I don't have to like it."
+         ],
+         "says": [
+          "PLAYER",
+          "Leave edits open. I want the next move on screen."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Sam will remember that.",
+         "silent": true,
+         "reply": [
+          "Sam",
+          "No order. I'll freeze the touched accounts and say so."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Sam",
+       "I pulled what I could. I won't swear that's everyone."
+      ],
+      [
+       "Marcus",
+       "The ticket shows the password in plain text."
+      ],
+      [
+       "Sam",
+       "Profiles changed. Payees changed. This was not a tour."
+      ],
+      [
+       "Marcus",
+       "Dana will ask who we told. Have an answer."
+      ],
+      [
+       "Dana",
+       "Talk. What did they touch, and what did you stop?"
+      ],
+      [
+       "Dana",
+       "Elena hears this before the board does."
+      ],
+      [
+       "Sam",
+       "Do we freeze profile edits, or only the bad accounts?"
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "4.3",
+     "name": "Counsel",
+     "location": "Harborline legal room, Saturday afternoon",
+     "room": "legal_room",
+     "when": null,
+     "choices": [
+      {
+       "id": "4.3#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Dana",
+        "She wants an answer today. Not a committee."
+       ],
+       "options": [
+        {
+         "t": "Call the FBI",
+         "fx": {
+          "trust": 2,
+          "rep": 1,
+          "burn": 1
+         },
+         "flag": "called_fbi",
+         "rem": "Nadia will remember that.",
+         "silent": false,
+         "reply": [
+          "Nadia",
+          "I'll place the call with you there. No side channels."
+         ],
+         "says": [
+          "PLAYER",
+          "Call the FBI. We don't sit on this."
+         ]
+        },
+        {
+         "t": "Outside forensics first",
+         "fx": {
+          "skill": 2,
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Nadia will remember that.",
+         "silent": false,
+         "reply": [
+          "Nadia",
+          "A clean image beats a fast story. I'll hire a firm."
+         ],
+         "says": [
+          "PLAYER",
+          "Outside forensics first. Then we choose who to call."
+         ]
+        },
+        {
+         "t": "Keep it internal",
+         "fx": {
+          "trust": -2,
+          "rep": -1
+         },
+         "flag": "hid_breach",
+         "rem": "Nadia will remember that.",
+         "silent": false,
+         "reply": [
+          "Nadia",
+          "Then the record shows we chose silence. I'll note it."
+         ],
+         "says": [
+          "PLAYER",
+          "Keep it internal. We investigate it ourselves."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Nadia will remember that.",
+         "silent": true,
+         "reply": [
+          "Nadia",
+          "No decision is still a decision. I escalate at dusk."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Nadia",
+       "Pretended to be IT. Got a password. Used our own tool."
+      ],
+      [
+       "Nadia",
+       "Customer accounts were changed. That creates duties."
+      ],
+      [
+       "Nadia",
+       "Call the FBI, hire forensics, or stay inside."
+      ],
+      [
+       "Nadia",
+       "Whatever you pick, I'll write it into the record."
+      ],
+      [
+       "Dana",
+       "She wants an answer today. Not a committee."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "4.4",
+     "name": "The CEO",
+     "location": "Elena's video call, Saturday evening",
+     "room": "ceo_office",
+     "when": null,
+     "choices": [
+      {
+       "id": "4.4#1",
+       "timed": 10,
+       "when": null,
+       "prompt": [
+        "Elena",
+        "Did customers lose money, trust, or both?"
+       ],
+       "options": [
+        {
+         "t": "Both money and trust",
+         "fx": {
+          "trust": 2
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Elena",
+          "Then we speak early. No clever drafting."
+         ],
+         "says": [
+          "PLAYER",
+          "Accounts were changed. Assume money and trust."
+         ]
+        },
+        {
+         "t": "Bleeding has stopped",
+         "fx": {
+          "rep": 1,
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Elena",
+          "Stopped is not finished. Stay with it."
+         ],
+         "says": [
+          "PLAYER",
+          "We cut the path. The bleeding has stopped."
+         ]
+        },
+        {
+         "t": "We don't know yet",
+         "fx": {
+          "skill": 1,
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Elena",
+          "Good. I prefer a late fact to an early fable."
+         ],
+         "says": [
+          "PLAYER",
+          "We don't know the full harm yet. I won't guess."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -2,
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": true,
+         "reply": [
+          "Elena",
+          "I called for a director, not a pause. Answer."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Elena",
+       "I know the admin tool left our control."
+      ],
+      [
+       "Elena",
+       "Did customers lose money, trust, or both?"
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "4.5",
+     "name": "The Board",
+     "location": "Harborline board room, Monday morning",
+     "room": "boardroom",
+     "when": null,
+     "choices": [
+      {
+       "id": "4.5#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Richard",
+        "Skip the diagram unless it saves the bank."
+       ],
+       "options": [
+        {
+         "t": "Speak in business terms",
+         "fx": {
+          "trust": 2,
+          "rep": 1
+         },
+         "flag": "business_brief",
+         "rem": "Richard will remember that.",
+         "silent": false,
+         "reply": [
+          "Richard",
+          "Plain words. Stay in that voice."
+         ],
+         "says": [
+          "PLAYER",
+          "They posed as IT, moved accounts, and we cut access."
+         ]
+        },
+        {
+         "t": "Walk through the attack",
+         "fx": {
+          "skill": 2,
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Richard will remember that.",
+         "silent": false,
+         "reply": [
+          "Richard",
+          "I heard the method. Tell me the risk."
+         ],
+         "says": [
+          "PLAYER",
+          "Help desk was fooled. The admin tool did the damage."
+         ]
+        },
+        {
+         "t": "Blame the employee",
+         "fx": {
+          "rep": -2,
+          "trust": -2
+         },
+         "flag": "blamed_employee",
+         "rem": "Richard will remember that.",
+         "silent": false,
+         "reply": [
+          "Richard",
+          "A name is not a control. Fix the door."
+         ],
+         "says": [
+          "PLAYER",
+          "An agent failed. Put this on that employee."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -2,
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Richard will remember that.",
+         "silent": true,
+         "reply": [
+          "Richard",
+          "If you won't brief us, I'll brief them myself."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Richard",
+       "Director. Short version. What happened to my customers?"
+      ],
+      [
+       "Richard",
+       "Skip the diagram unless it saves the bank."
+      ],
+      [
+       "Dana",
+       "The board heard you. Now live with that sentence."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "4.6",
+     "name": "The Statement",
+     "location": "Harborline comms room, Monday afternoon",
+     "room": "war_room",
+     "when": null,
+     "choices": [
+      {
+       "id": "4.6#1",
+       "timed": 12,
+       "when": null,
+       "prompt": [
+        "Elena",
+        "Saying nothing is still a choice. Make it."
+       ],
+       "options": [
+        {
+         "t": "Publish the full account",
+         "fx": {
+          "trust": 2,
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Elena",
+          "Then we own the pen. Send it."
+         ],
+         "says": [
+          "PLAYER",
+          "Publish the full account. Rumors are already moving."
+         ]
+        },
+        {
+         "t": "Limited facts only",
+         "fx": {
+          "trust": 1,
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Nadia will remember that.",
+         "silent": false,
+         "reply": [
+          "Nadia",
+          "I'll cut every adjective. The facts can stay."
+         ],
+         "says": [
+          "PLAYER",
+          "Limited facts. What we know, and what we're doing."
+         ]
+        },
+        {
+         "t": "Say nothing public",
+         "fx": {
+          "trust": -2,
+          "rep": -2
+         },
+         "flag": "hid_breach",
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Elena",
+          "Then the first story belongs to someone else."
+         ],
+         "says": [
+          "PLAYER",
+          "No public statement. We handle it inside."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Nadia will remember that.",
+         "silent": true,
+         "reply": [
+          "Nadia",
+          "You froze. I'll send the limited facts and note the gap."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Nadia",
+       "Statement goes out before dinner. Pick the version."
+      ],
+      [
+       "Nadia",
+       "Full account. Limited facts. Or no public word."
+      ],
+      [
+       "Elena",
+       "Saying nothing is still a choice. Make it."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "4.7",
+     "name": "The Garage",
+     "location": "Harborline parking garage, Monday night",
+     "room": "garage",
+     "when": null,
+     "choices": [
+      {
+       "id": "4.7#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Marcus",
+        "The board likes a villain. Don't hand them one."
+       ],
+       "options": [
+        {
+         "t": "Train the help desk",
+         "fx": {
+          "rep": 1,
+          "burn": 1
+         },
+         "flag": "mentored",
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Look at that. A director who fixes the work."
+         ],
+         "says": [
+          "PLAYER",
+          "We train that desk. Shame won't close a hole."
+         ]
+        },
+        {
+         "t": "Require a callback",
+         "fx": {
+          "skill": 2
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Simple. Annoying. Those are the rules that survive."
+         ],
+         "says": [
+          "PLAYER",
+          "New rule. No reset without a callback to the person."
+         ]
+        },
+        {
+         "t": "Let HR take the agent",
+         "fx": {
+          "rep": -1,
+          "trust": -1
+         },
+         "flag": "blamed_employee",
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "You can do both. A scarecrow is an easy fire."
+         ],
+         "says": [
+          "PLAYER",
+          "HR can deal with the agent. I have a breach."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": true,
+         "reply": [
+          "Marcus",
+          "Drink the coffee. The fix can wait until morning."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Marcus",
+       "Year nine. Saturday still knows your number."
+      ],
+      [
+       "Marcus",
+       "Coffee's burned. Fits the day."
+      ],
+      [
+       "Marcus",
+       "The desk did what helpful people do. They helped."
+      ],
+      [
+       "Marcus",
+       "The board likes a villain. Don't hand them one."
+      ],
+      [
+       "",
+       "The admin tool stays dark until it grows a second lock."
+      ],
+      [
+       "",
+       "Customers get a straight note, or a careful one."
+      ],
+      [
+       "Dana",
+       "Boards remember the sentence you led with. So do I."
+      ]
+     ],
+     "variants": []
+    }
+   ],
+   "rung": "Mid to Executive",
+   "role": "Director of Security",
+   "years": "Year 9"
+  },
+  {
+   "n": 5,
+   "title": "The Corner Office",
+   "end": "Fortune 500 CISO. The ladder held.",
+   "scenes": [
+    {
+     "id": "5.1",
+     "name": "The Call",
+     "location": "Apartment kitchen, night",
+     "room": "apartment",
+     "when": null,
+     "choices": [
+      {
+       "id": "5.1#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Jordan",
+        "You gonna get that, boss?"
+       ],
+       "options": [
+        {
+         "t": "Take the call",
+         "fx": {
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Jordan will remember that.",
+         "silent": false,
+         "reply": [
+          "Recruiter",
+          "Fortune 500. CISO seat. They heard you kept a bank standing."
+         ],
+         "says": [
+          "PLAYER",
+          "I'll take it. Watch the noodles."
+         ]
+        },
+        {
+         "t": "Let it go",
+         "fx": {
+          "burn": -1
+         },
+         "flag": null,
+         "rem": "Jordan will remember that.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "Look at you. Boundaries. I'm unsettled."
+         ],
+         "says": [
+          "PLAYER",
+          "Not tonight."
+         ]
+        },
+        {
+         "t": "Put it on speaker",
+         "fx": {
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Jordan will remember that.",
+         "silent": false,
+         "reply": [
+          "Recruiter",
+          "Fortune 500. CISO seat. They heard you kept a bank standing."
+         ],
+         "says": [
+          "PLAYER",
+          "Speaker. If it's weird, you hang up."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Jordan will remember that.",
+         "silent": true,
+         "reply": [
+          "Jordan",
+          "Cool. I'll just sit here and age."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "",
+       "Years in. You lead security at Harborline. Dinner can wait."
+      ],
+      [
+       "Jordan",
+       "Unknown again. Fame, or a very polite scam."
+      ],
+      [
+       "Jordan",
+       "You gonna get that, boss?"
+      ],
+      [
+       "",
+       "By morning the offer is still alive. So is Harborline."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "5.2",
+     "name": "The Rival",
+     "location": "Harborline lobby, morning",
+     "room": "lobby",
+     "when": null,
+     "choices": [
+      {
+       "id": "5.2#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Dana",
+        "Other candidate. Smile now. Decide later."
+       ],
+       "options": [
+        {
+         "t": "Shake his hand",
+         "fx": {
+          "trust": 1,
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Theo will remember that.",
+         "silent": false,
+         "reply": [
+          "Theo",
+          "Honest is a style. I prefer prepared."
+         ],
+         "says": [
+          "PLAYER",
+          "Welcome. Hope your briefing was honest."
+         ]
+        },
+        {
+         "t": "Name the work",
+         "fx": {
+          "rep": 2,
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Theo will remember that.",
+         "silent": false,
+         "reply": [
+          "Theo",
+          "And yet they still called me. Interesting."
+         ],
+         "says": [
+          "PLAYER",
+          "We earned this place. You packed a bag."
+         ]
+        },
+        {
+         "t": "Ask Dana quietly",
+         "fx": {
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Dana will remember that.",
+         "silent": false,
+         "reply": [
+          "Dana",
+          "It's a search. Stand up straight and do your job."
+         ],
+         "says": [
+          "PLAYER",
+          "Dana. How bad is this?"
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Theo will remember that.",
+         "silent": true,
+         "reply": [
+          "Theo",
+          "Quiet. The board will mind that."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Theo",
+       "Theo Grant. The board asked me in to meet you."
+      ],
+      [
+       "Dana",
+       "Other candidate. Smile now. Decide later."
+      ],
+      [
+       "Theo",
+       "See you in the room. I'll keep it friendly for now."
+      ],
+      [
+       "Dana",
+       "Elena next. Then the chair. Short sentences. You know this."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "5.3",
+     "name": "One Sentence",
+     "location": "Elena's office, late morning",
+     "room": "ceo_office",
+     "when": null,
+     "choices": [
+      {
+       "id": "5.3#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Elena",
+        "One sentence. What is a CISO for?"
+       ],
+       "options": [
+        {
+         "t": "Keep the bank alive",
+         "fx": {
+          "trust": 2,
+          "rep": 1
+         },
+         "flag": "business_brief",
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Elena",
+          "That's a job description. I can use it."
+         ],
+         "says": [
+          "PLAYER",
+          "I keep us open, trusted, and able to take a hit."
+         ]
+        },
+        {
+         "t": "Stop every attack",
+         "fx": {
+          "skill": 2,
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Elena",
+          "Some will land. I need the sentence after that."
+         ],
+         "says": [
+          "PLAYER",
+          "I stop attacks before a customer feels them."
+         ]
+        },
+        {
+         "t": "Tell you early",
+         "fx": {
+          "trust": 2
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Elena",
+          "Good. Speed without panic. Keep that sentence."
+         ],
+         "says": [
+          "PLAYER",
+          "I bring you the truth while it can still help."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -2
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": true,
+         "reply": [
+          "Elena",
+          "If you freeze in here, you'll freeze in a crisis."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Elena",
+       "One sentence. What is a CISO for?"
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "5.4",
+     "name": "No Magic",
+     "location": "Elena's office, a minute later",
+     "room": "ceo_office",
+     "when": null,
+     "choices": [
+      {
+       "id": "5.4#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Elena",
+        "Theo says the job is to eliminate risk. Your turn."
+       ],
+       "options": [
+        {
+         "t": "Risk gets managed",
+         "fx": {
+          "trust": 2
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Elena",
+          "That's the grown answer. He'll hate it."
+         ],
+         "says": [
+          "PLAYER",
+          "We manage risk. Nobody eliminates it."
+         ]
+        },
+        {
+         "t": "Agree with Theo",
+         "fx": {
+          "trust": -1,
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Elena",
+          "Nothing is a fantasy. Don't sell it to me."
+         ],
+         "says": [
+          "PLAYER",
+          "If we can drive risk to nothing, we should."
+         ]
+        },
+        {
+         "t": "Talk about people",
+         "fx": {
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Elena",
+          "People outlast tools. I was hoping for that."
+         ],
+         "says": [
+          "PLAYER",
+          "The job is a team that answers in the dark."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": true,
+         "reply": [
+          "Elena",
+          "He filled the quiet. You handed it to him."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Elena",
+       "Theo says the job is to eliminate risk. Your turn."
+      ],
+      [
+       "Elena",
+       "You called the Bureau when it was ugly. I kept that."
+      ],
+      [
+       "Elena",
+       "Do not put a clerk's name in front of this board."
+      ]
+     ],
+     "variants": [
+      {
+       "when": "called_fbi",
+       "lines": [
+        [
+         "Elena",
+         "You called the Bureau when it was ugly. I kept that."
+        ]
+       ]
+      },
+      {
+       "when": "blamed_employee",
+       "lines": [
+        [
+         "Elena",
+         "Do not put a clerk's name in front of this board."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5.5",
+     "name": "The Hall",
+     "location": "Hall outside the boardroom, noon",
+     "room": "hallway",
+     "when": null,
+     "choices": [
+      {
+       "id": "5.5#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Priya",
+        "If they ask about tools, don't make me look slow."
+       ],
+       "options": [
+        {
+         "t": "Promise straight talk",
+         "fx": {
+          "trust": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "That's my whole religion. Go use it."
+         ],
+         "says": [
+          "PLAYER",
+          "Straight answers. No theater."
+         ]
+        },
+        {
+         "t": "Ask Sam for backup",
+         "fx": {
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Sam will remember that.",
+         "silent": false,
+         "reply": [
+          "Sam",
+          "I'll kick your chair. Gently. I'm a professional."
+         ],
+         "says": [
+          "PLAYER",
+          "Sam, if I get lost, pull me back."
+         ]
+        },
+        {
+         "t": "Warn Priya off",
+         "fx": {
+          "trust": 1,
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Priya will remember that.",
+         "silent": false,
+         "reply": [
+          "Priya",
+          "Fine. I'll sit on my hands. They'll hate it."
+         ],
+         "says": [
+          "PLAYER",
+          "Priya, no surprise demos in there."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "burn": 1
+         },
+         "flag": null,
+         "rem": "Marcus will remember that.",
+         "silent": true,
+         "reply": [
+          "Marcus",
+          "Nerves are allowed. Vanishing isn't. Breathe, kid."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Marcus",
+       "You look like a person about to meet a chair."
+      ],
+      [
+       "Sam",
+       "Say the word. I'll flood them with timelines."
+      ],
+      [
+       "Priya",
+       "If they ask about tools, don't make me look slow."
+      ],
+      [
+       "Marcus",
+       "You taught that new hire. It still counts."
+      ]
+     ],
+     "variants": [
+      {
+       "when": "mentored",
+       "lines": [
+        [
+         "Marcus",
+         "You taught that new hire. It still counts."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5.6",
+     "name": "The Budget",
+     "location": "Boardroom, afternoon",
+     "room": "boardroom",
+     "when": null,
+     "choices": [
+      {
+       "id": "5.6#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Priya",
+        "You signed my rollout fast. He may ask what it touches."
+       ],
+       "options": [
+        {
+         "t": "Fund the people",
+         "fx": {
+          "trust": 2,
+          "skill": 1
+         },
+         "flag": null,
+         "rem": "Richard will remember that.",
+         "silent": false,
+         "reply": [
+          "Richard",
+          "Soft answer. It may be the right kind of expensive."
+         ],
+         "says": [
+          "PLAYER",
+          "Train the people. Tools don't answer the phone."
+         ]
+        },
+        {
+         "t": "Buy the tools",
+         "fx": {
+          "skill": 2,
+          "trust": -1
+         },
+         "flag": null,
+         "rem": "Priya will remember that.",
+         "silent": false,
+         "reply": [
+          "Richard",
+          "Shiny things. Be right about the gap."
+         ],
+         "says": [
+          "PLAYER",
+          "Buy the tools. We're blind where it matters."
+         ]
+        },
+        {
+         "t": "Split the ask",
+         "fx": {
+          "trust": 1,
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Elena",
+          "A real trade. I can take that to the minutes."
+         ],
+         "says": [
+          "PLAYER",
+          "Split it. Skills fail without tools. Tools fail alone."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -2
+         },
+         "flag": null,
+         "rem": "Richard will remember that.",
+         "silent": true,
+         "reply": [
+          "Richard",
+          "No pick. Then I pick, and I don't work here."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Elena",
+       "Answer him plain. I'll handle the room."
+      ],
+      [
+       "Richard",
+       "Tools or training. Make it one bet."
+      ],
+      [
+       "Nadia",
+       "Name the hole you will leave open."
+      ],
+      [
+       "Priya",
+       "Your guardrails held. I use them. I still grumble."
+      ],
+      [
+       "Priya",
+       "You blocked my rollout. I have not forgotten the week."
+      ],
+      [
+       "Priya",
+       "You signed my rollout fast. He may ask what it touches."
+      ]
+     ],
+     "variants": [
+      {
+       "when": "guardrails",
+       "lines": [
+        [
+         "Priya",
+         "Your guardrails held. I use them. I still grumble."
+        ]
+       ]
+      },
+      {
+       "when": "blocked_ai",
+       "lines": [
+        [
+         "Priya",
+         "You blocked my rollout. I have not forgotten the week."
+        ]
+       ]
+      },
+      {
+       "when": "rubber_stamp",
+       "lines": [
+        [
+         "Priya",
+         "You signed my rollout fast. He may ask what it touches."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5.7",
+     "name": "Why You",
+     "location": "Boardroom, still afternoon",
+     "room": "boardroom",
+     "when": null,
+     "choices": [
+      {
+       "id": "5.7#1",
+       "timed": null,
+       "when": null,
+       "prompt": [
+        "Nadia",
+        "Whatever you promise here, I defend it later."
+       ],
+       "options": [
+        {
+         "t": "Show the record",
+         "fx": {
+          "trust": 2,
+          "rep": 1
+         },
+         "flag": null,
+         "rem": "Richard will remember that.",
+         "silent": false,
+         "reply": [
+          "Richard",
+          "History. Better than a slogan. Barely."
+         ],
+         "says": [
+          "PLAYER",
+          "Because I already called the hard nights right."
+         ]
+        },
+        {
+         "t": "Name the cost",
+         "fx": {
+          "trust": 1
+         },
+         "flag": "business_brief",
+         "rem": "Richard will remember that.",
+         "silent": false,
+         "reply": [
+          "Richard",
+          "You speak board. Don't waste it."
+         ],
+         "says": [
+          "PLAYER",
+          "Because I'll name the cost before the headline."
+         ]
+        },
+        {
+         "t": "Credit the team",
+         "fx": {
+          "trust": 1,
+          "rep": 2
+         },
+         "flag": null,
+         "rem": "Sam will remember that.",
+         "silent": false,
+         "reply": [
+          "Sam",
+          "I'll pretend I missed that. I didn't."
+         ],
+         "says": [
+          "PLAYER",
+          "Trust the bench I built. I just stand in front."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "trust": -1,
+          "rep": -1
+         },
+         "flag": null,
+         "rem": "Richard will remember that.",
+         "silent": true,
+         "reply": [
+          "Richard",
+          "Still quiet. Theo used the same air."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Richard",
+       "Last thing. Why trust you with the whole bank?"
+      ],
+      [
+       "Nadia",
+       "Whatever you promise here, I defend it later."
+      ]
+     ],
+     "variants": []
+    },
+    {
+     "id": "5.8",
+     "name": "Your Move",
+     "location": "Your office, dusk",
+     "room": "dana_office",
+     "when": null,
+     "choices": [
+      {
+       "id": "5.8#1",
+       "timed": null,
+       "when": "!hid_breach && !(burn >= 25)",
+       "prompt": [
+        "Marcus",
+        "Your hands are shaking, kid. A bigger chair won't stop that."
+       ],
+       "options": [
+        {
+         "t": "Take the outside seat",
+         "fx": {
+          "rep": 2,
+          "trust": 1
+         },
+         "flag": "end_outside",
+         "rem": "Marcus will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Then go. And answer when I call."
+         ],
+         "says": [
+          "PLAYER",
+          "I'll take the Fortune 500 seat."
+         ]
+        },
+        {
+         "t": "Fight for this chair",
+         "fx": {
+          "trust": 1,
+          "rep": 1
+         },
+         "flag": "end_fight",
+         "rem": "Elena will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "Win it clean. He smiles like a trap."
+         ],
+         "says": [
+          "PLAYER",
+          "I'm staying. That chair is mine to win."
+         ]
+        },
+        {
+         "t": "Go independent",
+         "fx": {
+          "rep": 2,
+          "skill": 1
+         },
+         "flag": "end_indie",
+         "rem": "Jordan will remember that.",
+         "silent": false,
+         "reply": [
+          "Jordan",
+          "Virtual boss. Does the couch still count?"
+         ],
+         "says": [
+          "PLAYER",
+          "I'll advise many shops. No single badge."
+         ]
+        },
+        {
+         "t": "Stay on the tools",
+         "fx": {
+          "skill": 2,
+          "burn": -1
+         },
+         "flag": "end_tools",
+         "rem": "Sam will remember that.",
+         "silent": false,
+         "reply": [
+          "Marcus",
+          "The work was always the point. Glad you noticed."
+         ],
+         "says": [
+          "PLAYER",
+          "Skip the title. I belong on the hard problems."
+         ]
+        },
+        {
+         "t": "[Say nothing]",
+         "fx": {
+          "rep": -1,
+          "burn": 1
+         },
+         "flag": "end_silent",
+         "rem": "Marcus will remember that.",
+         "silent": true,
+         "reply": [
+          "Marcus",
+          "No move is a move. Theo just took his."
+         ],
+         "says": null
+        }
+       ]
+      }
+     ],
+     "lines": [
+      [
+       "Marcus",
+       "Big bank on the line. Theo's still upstairs. Your move, kid."
+      ],
+      [
+       "",
+       "Jordan's on the phone. Nobody asked. He's staying."
+      ],
+      [
+       "Jordan",
+       "Pick a life. Then tell me what to cook."
+      ],
+      [
+       "Elena",
+       "The board found the breach you hid. Come with me."
+      ],
+      [
+       "Marcus",
+       "Your hands are shaking, kid. A bigger chair won't stop that."
+      ]
+     ],
+     "variants": [
+      {
+       "when": "hid_breach",
+       "lines": [
+        [
+         "Elena",
+         "The board found the breach you hid. Come with me."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "id": "5.10",
+     "name": "The Ladder",
+     "location": "Black screen, then a slow montage of empty rooms",
+     "room": "soc_night",
+     "when": null,
+     "choices": [],
+     "lines": [
+      [
+       "",
+       "Night shift. A dark room, a loud screen, a choice."
+      ],
+      [
+       "",
+       "The long middle. Noise, a vendor's promise, a new hire watching."
+      ],
+      [
+       "",
+       "A fork in the title. A cert. A fight over a clever machine."
+      ],
+      [
+       "",
+       "A Saturday breach. Help desk, a stolen login, the board's eyes."
+      ],
+      [
+       "",
+       "Then the corner. And the question under every badge."
+      ],
+      [
+       "",
+       "You took the big chair. Keep the sentence honest."
+      ],
+      [
+       "",
+       "You left the building. The craft came with you."
+      ],
+      [
+       "",
+       "You stayed with the hardest problems in the building."
+      ],
+      [
+       "",
+       "This bank is yours to guard. The climb goes on."
+      ],
+      [
+       "",
+       "The chair went to Theo. You are still on the ladder."
+      ],
+      [
+       "",
+       "The lobby doors close behind you. The truth stayed inside."
+      ],
+      [
+       "",
+       "You stepped off while you could still feel your hands."
+      ]
+     ],
+     "variants": []
+    }
+   ],
+   "rung": "Executive",
+   "role": "CISO candidate",
+   "years": "Years 10+"
+  }
+ ],
+ "endings": [
+  {
+   "id": "5.9",
+   "name": "a Shown the Door",
+   "location": "Harborline lobby, minutes later",
+   "room": "lobby",
+   "when": "hid_breach",
+   "choices": [],
+   "lines": [
+    [
+     "Elena",
+     "You hid a breach. The board knows. This ends today."
+    ],
+    [
+     "Nadia",
+     "I can't protect a secret you kept from the company."
+    ],
+    [
+     "Richard",
+     "Trust was the job. You spent it. We're finished."
+    ],
+    [
+     "Marcus",
+     "I would have stood next to the truth. This, I can't."
+    ],
+    [
+     "",
+     "The Fortune 500 stops calling. Word travels in this work."
+    ],
+    [
+     "Jordan",
+     "Come home. We'll eat. Fall apart after the noodles."
+    ]
+   ],
+   "variants": []
+  },
+  {
+   "id": "5.9",
+   "name": "b Burned Out",
+   "location": "Office couch, night",
+   "room": "apartment",
+   "when": "burn >= 25 && !hid_breach",
+   "choices": [],
+   "lines": [
+    [
+     "Marcus",
+     "Bigger title, same shake in your hands. I'm calling it."
+    ],
+    [
+     "Jordan",
+     "Recruiter can leave a message. You're leaving the building."
+    ],
+    [
+     "Sam",
+     "I'll cover the pager. Don't you dare thank me tonight."
+    ],
+    [
+     "Elena",
+     "The seat will wait, or it won't. You won't, if you stay."
+    ],
+    [
+     "",
+     "You step off the ladder while it is still standing."
+    ]
+   ],
+   "variants": []
+  },
+  {
+   "id": "5.9",
+   "name": "c Fortune 500",
+   "location": "Airport curb, morning",
+   "room": "airport_curb",
+   "when": "end_outside && !hid_breach && !(burn >= 25)",
+   "choices": [],
+   "lines": [
+    [
+     "",
+     "You take the seat. Nobody hands you a halo with it."
+    ],
+    [
+     "Marcus",
+     "Call me when the new place pretends it's fine."
+    ],
+    [
+     "Elena",
+     "You gave me the job in one sentence. Don't outgrow it."
+    ],
+    [
+     "Elena",
+     "I praised your edge. I mentioned the clerk. Own it out there."
+    ],
+    [
+     "Jordan",
+     "If the new town has noodles, I expect a couch."
+    ],
+    [
+     "Theo",
+     "Enjoy the view. Views change. People barely do."
+    ]
+   ],
+   "variants": [
+    {
+     "when": "!blamed_employee",
+     "lines": [
+      [
+       "Elena",
+       "You gave me the job in one sentence. Don't outgrow it."
+      ]
+     ]
+    },
+    {
+     "when": "blamed_employee",
+     "lines": [
+      [
+       "Elena",
+       "I praised your edge. I mentioned the clerk. Own it out there."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "5.9",
+   "name": "d Virtual CISO",
+   "location": "Kitchen table, morning",
+   "room": "apartment",
+   "when": "end_indie && !hid_breach && !(burn >= 25)",
+   "choices": [],
+   "lines": [
+    [
+     "",
+     "No one lobby. Many doors. The work stays yours."
+    ],
+    [
+     "Jordan",
+     "Clients now. Do they get a key, or just me talking?"
+    ],
+    [
+     "Marcus",
+     "Charge them the truth. It's the thing you won't fake."
+    ],
+    [
+     "Sam",
+     "Call me when one of them is on fire. I'll bring cans."
+    ],
+    [
+     "Dana",
+     "Freedom is still a job. Act like it on Mondays."
+    ]
+   ],
+   "variants": []
+  },
+  {
+   "id": "5.9",
+   "name": "e Principal Engineer",
+   "location": "Engineering floor, night",
+   "room": "soc_night",
+   "when": "end_tools && !hid_breach && !(burn >= 25)",
+   "choices": [],
+   "lines": [
+    [
+     "",
+     "Theo can have the carpet. You keep the problems worth solving."
+    ],
+    [
+     "Sam",
+     "Principal. Fancy. You still answer when I page."
+    ],
+    [
+     "Marcus",
+     "The ladder's a suggestion. You just proved it."
+    ],
+    [
+     "Marcus",
+     "You aimed at the hard cert and the hard work. Stay there."
+    ],
+    [
+     "Priya",
+     "I wanted you upstairs. The network wanted you more."
+    ],
+    [
+     "Elena",
+     "If the builders trust you, I can live with that."
+    ]
+   ],
+   "variants": [
+    {
+     "when": "oscp || eng_track",
+     "lines": [
+      [
+       "Marcus",
+       "You aimed at the hard cert and the hard work. Stay there."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "5.9",
+   "name": "f The Chair",
+   "location": "Boardroom doorway, evening",
+   "room": "boardroom",
+   "when": "end_fight && (business_brief || called_fbi) && !blamed_employee && !hid_breach && !(burn >= 25)",
+   "choices": [],
+   "lines": [
+    [
+     "Elena",
+     "The chair is yours. This bank, not the giant. Earn the rest."
+    ],
+    [
+     "Theo",
+     "Well played. I'll land somewhere with softer lights."
+    ],
+    [
+     "Richard",
+     "Don't make me regret the quieter candidate."
+    ],
+    [
+     "Marcus",
+     "Director was the rehearsal. Don't become your calendar."
+    ]
+   ],
+   "variants": []
+  },
+  {
+   "id": "5.9",
+   "name": "g Passed Over",
+   "location": "Hall outside the boardroom, evening",
+   "room": "hallway",
+   "when": "(end_silent || (end_fight && !((business_brief || called_fbi) && !blamed_employee))) && !hid_breach && !(burn >= 25)",
+   "choices": [],
+   "lines": [
+    [
+     "",
+     "Theo takes the chair. You stay. The climb is not over."
+    ],
+    [
+     "Theo",
+     "No hard feelings. I'll need your team. Try to look glad."
+    ],
+    [
+     "Marcus",
+     "Chairs are furniture. You still know where the risk hides."
+    ],
+    [
+     "Sam",
+     "Good. I didn't want to break in a new boss anyway."
+    ],
+    [
+     "Elena",
+     "Stay sharp. Another door is still on this floor."
+    ]
+   ],
+   "variants": []
+  }
+ ]
+}

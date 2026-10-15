@@ -1,0 +1,13 @@
+{
+  "dur": 4,
+  "loop": true,
+  "tracks": {
+    "torso":  { "rot": [[0, 0], [2, 0.8, "sine.inOut"], [4, 0, "sine.inOut"]], "sy": [[0, 1], [1.6, 1.012, "sine.inOut"], [4, 1, "sine.inOut"]] },
+    "head":   { "rot": [[0, 0], [1.3, -1.5, "sine.inOut"], [2.8, 1, "sine.inOut"], [4, 0, "sine.inOut"]] },
+    "uarm_n": { "rot": [[0, 0], [2, -1.2, "sine.inOut"], [4, 0, "sine.inOut"]] },
+    "farm_n": { "rot": [[0, 0], [2.3, 2, "sine.inOut"], [4, 0, "sine.inOut"]] },
+    "uarm_f": { "rot": [[0, 0], [2, 1.2, "sine.inOut"], [4, 0, "sine.inOut"]] },
+    "farm_f": { "rot": [[0, 0], [2.4, -2, "sine.inOut"], [4, 0, "sine.inOut"]] },
+    "pelvis": { "y":   [[0, 0], [2, -1.5, "sine.inOut"], [4, 0, "sine.inOut"]] }
+  }
+}

@@ -21,6 +21,10 @@ const SHOT = {
   marcus: { bg: "marcus_bedroom", fallback: "marcus_bedroom", focus: "near",
             actors: [{ rig: "marcus_phone", who: "Marcus", x: 40, y: 0, h: 92, z: 1.2 }],
             cam: { from: { zoom: 1.02 }, to: { zoom: 1.1, x: .03 }, dur: 12 } },
+  // hand-animated cutout puppet: Marcus gets up into the call (assets/puppets/marcus/clips/answer.json)
+  pace:   { bg: "marcus_bedroom", cut: "whip", shake: .0014, subject: .5,
+            actors: [{ puppet: "marcus", who: "Marcus", clip: "answer", then: "idle", x: 30, y: -6, h: 112, z: 1.2, mh: 84, my: -4 }],
+            cam: { from: { zoom: 1.02 }, to: { zoom: 1.08, px: .015 }, dur: 9 } },
   window: { bg: "kf_marcus_window", subject: .33, fallback: "marcus_bedroom", cut: "whip", shake: .0018,
             cam: { from: { zoom: 1.04, px: -.02 }, to: { zoom: 1.12, px: .02 }, dur: 5 } },
 };
@@ -40,21 +44,20 @@ const EP1 = [
   { shot: SHOT.sitUp, wait: 1500 },
   { shot: SHOT.marcus, wait: 300 },
   { say: ["Marcus", "e1_m_hello", "Mm. Hale. It's three in the morning, so this better be a real one."] },
-  { shot: SHOT.window, wait: 1300 },
-  { shot: SHOT.marcus },
+  { shot: SHOT.pace, wait: 1200 },
   { say: ["Marcus", "e1_m_ask", "Talk to me. What are you seeing, and what do you want to do about it?"] },
   { shot: hard(SHOT.player) },
-  { timed: 10, choice: [
-    { t: "Isolate the laptop now.", fx: { skill: 6, rep: 8 }, rem: "Marcus will remember that.", log: "Isolated the laptop at 3 AM", then: [
+  { timed: 10, cid: "1.3#1", choice: [
+    { t: "Isolate the laptop now.", flag: "e1_isolate", fx: { skill: 6, rep: 8 }, rem: "Marcus will remember that.", log: "Isolated the laptop at 3 AM", then: [
       { say: ["PLAYER", "e1_p_isolate", "I want to isolate the laptop. Right now.", TEAL] },
       { shot: hard(SHOT.marcus) }, { say: ["Marcus", "e1_m_isolate", "Good. Pull it off the network and keep the logs. That's the job."] } ] },
-    { t: "Pull the logs first.", fx: { skill: 10, burn: 4 }, log: "Investigated before containing", then: [
+    { t: "Pull the logs first.", flag: "e1_logs", fx: { skill: 10, burn: 4 }, log: "Investigated before containing", then: [
       { say: ["PLAYER", "e1_p_logs", "Let me pull the logs first. I need to know what it's sending.", TEAL] },
       { shot: hard(SHOT.marcus) }, { say: ["Marcus", "e1_m_logs", "Fine. But every minute you spend reading, it keeps talking. Be fast."] } ] },
-    { t: "\"Should I wake someone else?\"", fx: { trust: 4, rep: -2 }, rem: "Marcus will remember that.", log: "Asked to escalate further", then: [
+    { t: "\"Should I wake someone else?\"", flag: "e1_wake", fx: { trust: 4, rep: -2 }, rem: "Marcus will remember that.", log: "Asked to escalate further", then: [
       { say: ["PLAYER", "e1_p_wake", "Should I wake someone else up?", TEAL] },
       { shot: hard(SHOT.marcus) }, { say: ["Marcus", "e1_m_wake", "You already woke someone. Me. Now make a call."] } ] },
-    { t: "[Say nothing]", silent: true, fx: { trust: -4 }, rem: "Marcus noticed you froze.", log: "Froze on the call", then: [
+    { t: "[Say nothing]", silent: true, flag: "missed_alert", fx: { trust: -4 }, rem: "Marcus noticed you froze.", log: "Froze on the call", then: [
       { shot: hard(SHOT.marcus) }, { say: ["Marcus", "e1_m_silent", "Hello? You still there? Okay. Isolate it. We'll talk about this Monday."] } ] },
   ]},
   { say: ["Marcus", "e1_m_writeup", "And hey. Write it up before you leave. Every alert gets a story."] },

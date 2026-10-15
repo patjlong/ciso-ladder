@@ -1,0 +1,1452 @@
+{
+ "scenes": [
+  {
+   "id": "5.1",
+   "name": "The Call",
+   "beats": [
+    {
+     "caption": "Years in. You lead security at Harborline. Dinner can wait."
+    },
+    {
+     "say": [
+      "Jordan",
+      "e5_s1_jordan_01",
+      "Unknown again. Fame, or a very polite scam."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "e5_s1_jordan_02",
+      "You gonna get that, boss?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Take the call",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s1_player_01",
+           "I'll take it. Watch the noodles."
+          ]
+         },
+         {
+          "say": [
+           "Recruiter",
+           "e5_s1_recr_01",
+           "Fortune 500. CISO seat. They heard you kept a bank standing."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1
+        },
+        "rem": "Jordan will remember that."
+       },
+       {
+        "t": "Let it go",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s1_player_02",
+           "Not tonight."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e5_s1_jordan_03",
+           "Look at you. Boundaries. I'm unsettled."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": -1
+        },
+        "rem": "Jordan will remember that."
+       },
+       {
+        "t": "Put it on speaker",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s1_player_03",
+           "Speaker. If it's weird, you hang up."
+          ]
+         },
+         {
+          "say": [
+           "Recruiter",
+           "e5_s1_recr_02",
+           "Fortune 500. CISO seat. They heard you kept a bank standing."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e5_s1_jordan_04",
+           "I have never felt more powerful."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1
+        },
+        "rem": "Jordan will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Jordan",
+           "e5_s1_jordan_05",
+           "Cool. I'll just sit here and age."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Jordan will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "caption": "By morning the offer is still alive. So is Harborline."
+    }
+   ],
+   "location": "Apartment kitchen, night",
+   "shot_notes": "The phone lights the counter while Jordan freezes with a fork halfway to his mouth."
+  },
+  {
+   "id": "5.2",
+   "name": "The Rival",
+   "beats": [
+    {
+     "say": [
+      "Theo",
+      "e5_s2_theo_01",
+      "Theo Grant. The board asked me in to meet you."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e5_s2_dana_01",
+      "Other candidate. Smile now. Decide later."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Shake his hand",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s2_player_01",
+           "Welcome. Hope your briefing was honest."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "e5_s2_theo_02",
+           "Honest is a style. I prefer prepared."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": 1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Name the work",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s2_player_02",
+           "We earned this place. You packed a bag."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "e5_s2_theo_03",
+           "And yet they still called me. Interesting."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 2,
+         "trust": -1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Ask Dana quietly",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s2_player_03",
+           "Dana. How bad is this?"
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e5_s2_dana_02",
+           "It's a search. Stand up straight and do your job."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Theo",
+           "e5_s2_theo_04",
+           "Quiet. The board will mind that."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Theo will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Theo",
+      "e5_s2_theo_05",
+      "See you in the room. I'll keep it friendly for now."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e5_s2_dana_03",
+      "Elena next. Then the chair. Short sentences. You know this."
+     ]
+    }
+   ],
+   "location": "Harborline lobby, morning",
+   "shot_notes": "Theo waits by the glass doors with his hand out, while Dana stops on the stairs."
+  },
+  {
+   "id": "5.3",
+   "name": "One Sentence",
+   "beats": [
+    {
+     "say": [
+      "Elena",
+      "e5_s3_elena_01",
+      "One sentence. What is a CISO for?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Keep the bank alive",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s3_player_01",
+           "I keep us open, trusted, and able to take a hit."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e5_s3_elena_02",
+           "That's a job description. I can use it."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": 1
+        },
+        "flag": "business_brief",
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "Stop every attack",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s3_player_02",
+           "I stop attacks before a customer feels them."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e5_s3_elena_03",
+           "Some will land. I need the sentence after that."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": -1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "Tell you early",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s3_player_03",
+           "I bring you the truth while it can still help."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e5_s3_elena_04",
+           "Good. Speed without panic. Keep that sentence."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Elena",
+           "e5_s3_elena_05",
+           "If you freeze in here, you'll freeze in a crisis."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2
+        },
+        "rem": "Elena will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Elena's office, late morning",
+   "shot_notes": "Elena closes a folder, nods at the empty chair, and waits with her hands folded."
+  },
+  {
+   "id": "5.4",
+   "name": "No Magic",
+   "beats": [
+    {
+     "say": [
+      "Elena",
+      "e5_s4_elena_01",
+      "Theo says the job is to eliminate risk. Your turn."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Risk gets managed",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s4_player_01",
+           "We manage risk. Nobody eliminates it."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e5_s4_elena_02",
+           "That's the grown answer. He'll hate it."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "Agree with Theo",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s4_player_02",
+           "If we can drive risk to nothing, we should."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e5_s4_elena_03",
+           "Nothing is a fantasy. Don't sell it to me."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1,
+         "rep": 1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "Talk about people",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s4_player_03",
+           "The job is a team that answers in the dark."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e5_s4_elena_04",
+           "People outlast tools. I was hoping for that."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Elena",
+           "e5_s4_elena_05",
+           "He filled the quiet. You handed it to him."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Elena will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Elena",
+      "e5_s4_elena_06",
+      "You called the Bureau when it was ugly. I kept that."
+     ],
+     "when": "called_fbi"
+    },
+    {
+     "say": [
+      "Elena",
+      "e5_s4_elena_07",
+      "Do not put a clerk's name in front of this board."
+     ],
+     "when": "blamed_employee"
+    }
+   ],
+   "location": "Elena's office, a minute later",
+   "shot_notes": "Elena stays seated. She taps Theo's resume once, then slides it aside."
+  },
+  {
+   "id": "5.5",
+   "name": "The Hall",
+   "beats": [
+    {
+     "say": [
+      "Marcus",
+      "e5_s5_marcus_01",
+      "You look like a person about to meet a chair."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e5_s5_sam_01",
+      "Say the word. I'll flood them with timelines."
+     ]
+    },
+    {
+     "say": [
+      "Priya",
+      "e5_s5_priya_01",
+      "If they ask about tools, don't make me look slow."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Promise straight talk",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s5_player_01",
+           "Straight answers. No theater."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e5_s5_marcus_02",
+           "That's my whole religion. Go use it."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1
+        },
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Ask Sam for backup",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s5_player_02",
+           "Sam, if I get lost, pull me back."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e5_s5_sam_02",
+           "I'll kick your chair. Gently. I'm a professional."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "Warn Priya off",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s5_player_03",
+           "Priya, no surprise demos in there."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "e5_s5_priya_02",
+           "Fine. I'll sit on my hands. They'll hate it."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": -1
+        },
+        "rem": "Priya will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e5_s5_marcus_03",
+           "Nerves are allowed. Vanishing isn't. Breathe, kid."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Marcus will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Marcus",
+      "e5_s5_marcus_04",
+      "You taught that new hire. It still counts."
+     ],
+     "when": "mentored"
+    }
+   ],
+   "location": "Hall outside the boardroom, noon",
+   "shot_notes": "Marcus offers a coffee, Sam bounces a knee with a can, and Priya checks the time."
+  },
+  {
+   "id": "5.6",
+   "name": "The Budget",
+   "beats": [
+    {
+     "say": [
+      "Elena",
+      "e5_s6_elena_01",
+      "Answer him plain. I'll handle the room."
+     ]
+    },
+    {
+     "say": [
+      "Richard",
+      "e5_s6_richard_01",
+      "Tools or training. Make it one bet."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e5_s6_nadia_01",
+      "Name the hole you will leave open."
+     ]
+    },
+    {
+     "say": [
+      "Priya",
+      "e5_s6_priya_03",
+      "Your guardrails held. I use them. I still grumble."
+     ],
+     "when": "guardrails"
+    },
+    {
+     "say": [
+      "Priya",
+      "e5_s6_priya_04",
+      "You blocked my rollout. I have not forgotten the week."
+     ],
+     "when": "blocked_ai"
+    },
+    {
+     "say": [
+      "Priya",
+      "e5_s6_priya_05",
+      "You signed my rollout fast. He may ask what it touches."
+     ],
+     "when": "rubber_stamp"
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Fund the people",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s6_player_01",
+           "Train the people. Tools don't answer the phone."
+          ]
+         },
+         {
+          "say": [
+           "Richard",
+           "e5_s6_richard_02",
+           "Soft answer. It may be the right kind of expensive."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "skill": 1
+        },
+        "rem": "Richard will remember that."
+       },
+       {
+        "t": "Buy the tools",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s6_player_02",
+           "Buy the tools. We're blind where it matters."
+          ]
+         },
+         {
+          "say": [
+           "Richard",
+           "e5_s6_richard_03",
+           "Shiny things. Be right about the gap."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": -1
+        },
+        "rem": "Priya will remember that."
+       },
+       {
+        "t": "Split the ask",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s6_player_03",
+           "Split it. Skills fail without tools. Tools fail alone."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e5_s6_elena_02",
+           "A real trade. I can take that to the minutes."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": 1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Richard",
+           "e5_s6_richard_04",
+           "No pick. Then I pick, and I don't work here."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2
+        },
+        "rem": "Richard will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Boardroom, afternoon",
+   "shot_notes": "Richard sits at the head, Elena at his right, Nadia with a pen over a blank page."
+  },
+  {
+   "id": "5.7",
+   "name": "Why You",
+   "beats": [
+    {
+     "say": [
+      "Richard",
+      "e5_s7_richard_01",
+      "Last thing. Why trust you with the whole bank?"
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e5_s7_nadia_01",
+      "Whatever you promise here, I defend it later."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Show the record",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s7_player_01",
+           "Because I already called the hard nights right."
+          ]
+         },
+         {
+          "say": [
+           "Richard",
+           "e5_s7_richard_02",
+           "History. Better than a slogan. Barely."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": 1
+        },
+        "rem": "Richard will remember that."
+       },
+       {
+        "t": "Name the cost",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s7_player_02",
+           "Because I'll name the cost before the headline."
+          ]
+         },
+         {
+          "say": [
+           "Richard",
+           "e5_s7_richard_03",
+           "You speak board. Don't waste it."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1
+        },
+        "flag": "business_brief",
+        "rem": "Richard will remember that."
+       },
+       {
+        "t": "Credit the team",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s7_player_03",
+           "Trust the bench I built. I just stand in front."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e5_s7_sam_03",
+           "I'll pretend I missed that. I didn't."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": 2
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Richard",
+           "e5_s7_richard_04",
+           "Still quiet. Theo used the same air."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1,
+         "rep": -1
+        },
+        "rem": "Richard will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Boardroom, still afternoon",
+   "shot_notes": "Richard leans back. Nadia stops writing. The rest of the table goes still."
+  },
+  {
+   "id": "5.8",
+   "name": "Your Move",
+   "beats": [
+    {
+     "say": [
+      "Marcus",
+      "e5_s8_marcus_01",
+      "Big bank on the line. Theo's still upstairs. Your move, kid."
+     ]
+    },
+    {
+     "caption": "Jordan's on the phone. Nobody asked. He's staying."
+    },
+    {
+     "say": [
+      "Jordan",
+      "e5_s8_jordan_01",
+      "Pick a life. Then tell me what to cook."
+     ]
+    },
+    {
+     "say": [
+      "Elena",
+      "e5_s8_elena_01",
+      "The board found the breach you hid. Come with me."
+     ],
+     "when": "hid_breach"
+    },
+    {
+     "say": [
+      "Marcus",
+      "e5_s8_marcus_02",
+      "Your hands are shaking, kid. A bigger chair won't stop that."
+     ],
+     "when": "burn >= 25 && !hid_breach"
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Take the outside seat",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s8_player_01",
+           "I'll take the Fortune 500 seat."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e5_s8_marcus_03",
+           "Then go. And answer when I call."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 2,
+         "trust": 1
+        },
+        "rem": "Marcus will remember that.",
+        "flag": "end_outside"
+       },
+       {
+        "t": "Fight for this chair",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s8_player_02",
+           "I'm staying. That chair is mine to win."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e5_s8_marcus_04",
+           "Win it clean. He smiles like a trap."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": 1
+        },
+        "rem": "Elena will remember that.",
+        "flag": "end_fight"
+       },
+       {
+        "t": "Go independent",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s8_player_03",
+           "I'll advise many shops. No single badge."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e5_s8_jordan_02",
+           "Virtual boss. Does the couch still count?"
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 2,
+         "skill": 1
+        },
+        "rem": "Jordan will remember that.",
+        "flag": "end_indie"
+       },
+       {
+        "t": "Stay on the tools",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e5_s8_player_04",
+           "Skip the title. I belong on the hard problems."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e5_s8_marcus_05",
+           "The work was always the point. Glad you noticed."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "burn": -1
+        },
+        "rem": "Sam will remember that.",
+        "flag": "end_tools"
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e5_s8_marcus_06",
+           "No move is a move. Theo just took his."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1,
+         "burn": 1
+        },
+        "rem": "Marcus will remember that.",
+        "flag": "end_silent"
+       }
+      ]
+     },
+     "when": "!hid_breach && !(burn >= 25)"
+    }
+   ],
+   "location": "Your office, dusk",
+   "shot_notes": "The office dims. Marcus fills the doorway. The same unknown number lights the phone."
+  },
+  {
+   "id": "5.9",
+   "name": "a Shown the Door",
+   "beats": [
+    {
+     "say": [
+      "Elena",
+      "e5_s9a_elena_01",
+      "You hid a breach. The board knows. This ends today."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e5_s9a_nadia_01",
+      "I can't protect a secret you kept from the company."
+     ]
+    },
+    {
+     "say": [
+      "Richard",
+      "e5_s9a_richard_01",
+      "Trust was the job. You spent it. We're finished."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e5_s9a_marcus_01",
+      "I would have stood next to the truth. This, I can't."
+     ]
+    },
+    {
+     "caption": "The Fortune 500 stops calling. Word travels in this work."
+    },
+    {
+     "say": [
+      "Jordan",
+      "e5_s9a_jordan_01",
+      "Come home. We'll eat. Fall apart after the noodles."
+     ]
+    }
+   ],
+   "location": "Harborline lobby, minutes later",
+   "shot_notes": "Elena stops by the glass. Nadia holds the folder shut. Your badge is already on the desk.",
+   "when": "hid_breach"
+  },
+  {
+   "id": "5.9",
+   "name": "b Burned Out",
+   "beats": [
+    {
+     "say": [
+      "Marcus",
+      "e5_s9b_marcus_01",
+      "Bigger title, same shake in your hands. I'm calling it."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "e5_s9b_jordan_01",
+      "Recruiter can leave a message. You're leaving the building."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e5_s9b_sam_01",
+      "I'll cover the pager. Don't you dare thank me tonight."
+     ]
+    },
+    {
+     "say": [
+      "Elena",
+      "e5_s9b_elena_01",
+      "The seat will wait, or it won't. You won't, if you stay."
+     ]
+    },
+    {
+     "caption": "You step off the ladder while it is still standing."
+    }
+   ],
+   "location": "Office couch, night",
+   "shot_notes": "The phone buzzes on the floor. Marcus kills the light. Jordan waits in the doorway with a coat.",
+   "when": "burn >= 25 && !hid_breach"
+  },
+  {
+   "id": "5.9",
+   "name": "c Fortune 500",
+   "beats": [
+    {
+     "caption": "You take the seat. Nobody hands you a halo with it."
+    },
+    {
+     "say": [
+      "Marcus",
+      "e5_s9c_marcus_01",
+      "Call me when the new place pretends it's fine."
+     ]
+    },
+    {
+     "say": [
+      "Elena",
+      "e5_s9c_elena_01",
+      "You gave me the job in one sentence. Don't outgrow it."
+     ],
+     "when": "!blamed_employee"
+    },
+    {
+     "say": [
+      "Elena",
+      "e5_s9c_elena_02",
+      "I praised your edge. I mentioned the clerk. Own it out there."
+     ],
+     "when": "blamed_employee"
+    },
+    {
+     "say": [
+      "Jordan",
+      "e5_s9c_jordan_01",
+      "If the new town has noodles, I expect a couch."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "e5_s9c_theo_01",
+      "Enjoy the view. Views change. People barely do."
+     ]
+    }
+   ],
+   "location": "Airport curb, morning",
+   "shot_notes": "A car door stands open. Marcus raises a coffee. You turn the phone face down.",
+   "when": "end_outside && !hid_breach && !(burn >= 25)"
+  },
+  {
+   "id": "5.9",
+   "name": "d Virtual CISO",
+   "beats": [
+    {
+     "caption": "No one lobby. Many doors. The work stays yours."
+    },
+    {
+     "say": [
+      "Jordan",
+      "e5_s9d_jordan_01",
+      "Clients now. Do they get a key, or just me talking?"
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e5_s9d_marcus_01",
+      "Charge them the truth. It's the thing you won't fake."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e5_s9d_sam_01",
+      "Call me when one of them is on fire. I'll bring cans."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e5_s9d_dana_01",
+      "Freedom is still a job. Act like it on Mondays."
+     ]
+    }
+   ],
+   "location": "Kitchen table, morning",
+   "shot_notes": "A laptop sits beside the cereal. Jordan slides a mug over. No badge on the table.",
+   "when": "end_indie && !hid_breach && !(burn >= 25)"
+  },
+  {
+   "id": "5.9",
+   "name": "e Principal Engineer",
+   "beats": [
+    {
+     "caption": "Theo can have the carpet. You keep the problems worth solving."
+    },
+    {
+     "say": [
+      "Sam",
+      "e5_s9e_sam_01",
+      "Principal. Fancy. You still answer when I page."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e5_s9e_marcus_01",
+      "The ladder's a suggestion. You just proved it."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e5_s9e_marcus_02",
+      "You aimed at the hard cert and the hard work. Stay there."
+     ],
+     "when": "oscp || eng_track"
+    },
+    {
+     "say": [
+      "Priya",
+      "e5_s9e_priya_01",
+      "I wanted you upstairs. The network wanted you more."
+     ]
+    },
+    {
+     "say": [
+      "Elena",
+      "e5_s9e_elena_01",
+      "If the builders trust you, I can live with that."
+     ]
+    }
+   ],
+   "location": "Engineering floor, night",
+   "shot_notes": "Sam sets a can on the desk. The screens hum. The corner office stays dark down the hall.",
+   "when": "end_tools && !hid_breach && !(burn >= 25)"
+  },
+  {
+   "id": "5.9",
+   "name": "f The Chair",
+   "beats": [
+    {
+     "say": [
+      "Elena",
+      "e5_s9f_elena_01",
+      "The chair is yours. This bank, not the giant. Earn the rest."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "e5_s9f_theo_01",
+      "Well played. I'll land somewhere with softer lights."
+     ]
+    },
+    {
+     "say": [
+      "Richard",
+      "e5_s9f_richard_01",
+      "Don't make me regret the quieter candidate."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e5_s9f_marcus_01",
+      "Director was the rehearsal. Don't become your calendar."
+     ]
+    }
+   ],
+   "location": "Boardroom doorway, evening",
+   "shot_notes": "Elena offers a nod, not a speech. Theo buttons his jacket and steps aside. Richard stays seated.",
+   "when": "end_fight && (business_brief || called_fbi) && !blamed_employee && !hid_breach && !(burn >= 25)"
+  },
+  {
+   "id": "5.9",
+   "name": "g Passed Over",
+   "beats": [
+    {
+     "caption": "Theo takes the chair. You stay. The climb is not over."
+    },
+    {
+     "say": [
+      "Theo",
+      "e5_s9g_theo_01",
+      "No hard feelings. I'll need your team. Try to look glad."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e5_s9g_marcus_01",
+      "Chairs are furniture. You still know where the risk hides."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e5_s9g_sam_01",
+      "Good. I didn't want to break in a new boss anyway."
+     ]
+    },
+    {
+     "say": [
+      "Elena",
+      "e5_s9g_elena_01",
+      "Stay sharp. Another door is still on this floor."
+     ]
+    }
+   ],
+   "location": "Hall outside the boardroom, evening",
+   "shot_notes": "Theo shakes Richard's hand through the glass. Sam bumps your shoulder. Marcus does not move.",
+   "when": "(end_silent || (end_fight && !((business_brief || called_fbi) && !blamed_employee))) && !hid_breach && !(burn >= 25)"
+  },
+  {
+   "id": "5.10",
+   "name": "The Ladder",
+   "beats": [
+    {
+     "caption": "Night shift. A dark room, a loud screen, a choice."
+    },
+    {
+     "caption": "The long middle. Noise, a vendor's promise, a new hire watching."
+    },
+    {
+     "caption": "A fork in the title. A cert. A fight over a clever machine."
+    },
+    {
+     "caption": "A Saturday breach. Help desk, a stolen login, the board's eyes."
+    },
+    {
+     "caption": "Then the corner. And the question under every badge."
+    },
+    {
+     "caption": "You took the big chair. Keep the sentence honest.",
+     "when": "end_c"
+    },
+    {
+     "caption": "You left the building. The craft came with you.",
+     "when": "end_d"
+    },
+    {
+     "caption": "You stayed with the hardest problems in the building.",
+     "when": "end_e"
+    },
+    {
+     "caption": "This bank is yours to guard. The climb goes on.",
+     "when": "end_f"
+    },
+    {
+     "caption": "The chair went to Theo. You are still on the ladder.",
+     "when": "end_g"
+    },
+    {
+     "caption": "The lobby doors close behind you. The truth stayed inside.",
+     "when": "end_a"
+    },
+    {
+     "caption": "You stepped off while you could still feel your hands.",
+     "when": "end_b"
+    }
+   ],
+   "location": "Black screen, then a slow montage of empty rooms",
+   "shot_notes": "The SOC at night, a noisy wall of alerts, a promotion handshake, a Saturday war room, then the chair."
+  }
+ ],
+ "end": "Fortune 500 CISO. The ladder held.",
+ "ends": [
+  {
+   "text": "Fortune 500 CISO. The ladder held.",
+   "when": "end_c"
+  },
+  {
+   "text": "Virtual CISO. Many doors, and the craft.",
+   "when": "end_d"
+  },
+  {
+   "text": "Principal Engineer. The work stayed yours.",
+   "when": "end_e"
+  },
+  {
+   "text": "Still climbing. The bank is yours to guard.",
+   "when": "end_f"
+  },
+  {
+   "text": "Still climbing. Theo has the chair.",
+   "when": "end_g"
+  },
+  {
+   "text": "Shown the door. The hidden breach ended it.",
+   "when": "end_a"
+  },
+  {
+   "text": "Burned out. You stepped off in time.",
+   "when": "end_b"
+  }
+ ],
+ "unparsed": [
+  "PLAY IF: burn very high, and hid_breach is not set. Skip the choice. Go to scene 5.9b."
+ ]
+}

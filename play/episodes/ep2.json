@@ -1,0 +1,788 @@
+{
+ "scenes": [
+  {
+   "id": "2.1",
+   "name": "Queue Flood",
+   "beats": [
+    {
+     "say": [
+      "Marcus",
+      "e2_s1_marcus_01",
+      "Same rule, over and over. Except that login."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e2_s1_marcus_02",
+      "The queue's loud so you'll miss a real one."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 8,
+      "options": [
+       {
+        "t": "Open the odd login",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s1_player_01",
+           "That login's wrong. I'm opening it."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e2_s1_marcus_03",
+           "Good. Let the junk scream."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2
+        },
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Mute the noisy rule",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s1_player_02",
+           "Muting the broken rule. It can wait."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e2_s1_marcus_04",
+           "Fair. Just don't go deaf on me."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "burn": -1
+        },
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Clear the whole queue",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s1_player_03",
+           "Clearing it. We'll start clean."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e2_s1_marcus_05",
+           "Clean isn't the same as safe."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": -1,
+         "rep": -1
+        },
+        "flag": "missed_alert",
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e2_s1_marcus_06",
+           "And the weird login scrolls away. Classic."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "flag": "missed_alert",
+        "rem": "Marcus will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Harborline Financial SOC, late afternoon",
+   "shot_notes": "Alert banners stack on the player's screens while Marcus leans over the chair and taps one row."
+  },
+  {
+   "id": "2.2",
+   "name": "The Brochure",
+   "beats": [
+    {
+     "say": [
+      "Vendor",
+      "e2_s2_vendor_01",
+      "We stop zero-days before they exist."
+     ]
+    },
+    {
+     "say": [
+      "Vendor",
+      "e2_s2_vendor_02",
+      "Your team can stop thinking so hard."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e2_s2_marcus_01",
+      "Miracle, or a brochure. Hard to tell."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Demand a live proof",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s2_player_01",
+           "Run it on our logs. No slides."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e2_s2_marcus_02",
+           "If it only works on slides, it doesn't."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "rep": 1
+        },
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Buy the pitch",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s2_player_02",
+           "We'll take it. I'm done with the noise."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e2_s2_marcus_03",
+           "Hope the magic comes with a receipt."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": -1,
+         "rep": 1
+        },
+        "flag": "vendor_bought",
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Send the rep out",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s2_player_03",
+           "We're not buying a slogan."
+          ]
+         },
+         {
+          "say": [
+           "Vendor",
+           "e2_s2_vendor_03",
+           "You'll call when the queue wins."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "rep": 1
+        },
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e2_s2_marcus_04",
+           "Quiet reads as yes. The rep heard yes."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "flag": "vendor_bought",
+        "rem": "Marcus will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Harborline Financial, a small conference room, the following week",
+   "shot_notes": "A vendor rep smiles and slides a glossy one-pager across the table. Marcus keeps his hands off it."
+  },
+  {
+   "id": "2.3",
+   "name": "The New Hire",
+   "beats": [
+    {
+     "say": [
+      "New Hire",
+      "e2_s3_newhire_01",
+      "If I close this, am I gonna make it worse?"
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e2_s3_marcus_01",
+      "You sat in that chair once. Your call."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Walk it line by line",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s3_player_01",
+           "Pull up a chair. We'll walk it slow."
+          ]
+         },
+         {
+          "say": [
+           "New Hire",
+           "e2_s3_newhire_02",
+           "Okay. Slow I can do."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "burn": 1
+        },
+        "flag": "mentored",
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Take the ticket back",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s3_player_02",
+           "Hand it over. I'll close this one."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e2_s3_marcus_02",
+           "Fast today. Same scare tomorrow."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "New Hire",
+           "e2_s3_newhire_03",
+           "I'll just leave it, then."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Marcus will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Harborline Financial SOC, evening",
+   "shot_notes": "A new hire hovers at the player's shoulder, notepad clenched, while Marcus watches from the next desk."
+  },
+  {
+   "id": "2.4",
+   "name": "The Page",
+   "beats": [
+    {
+     "say": [
+      "Jordan",
+      "e2_s4_jordan_01",
+      "If it buzzes again, I'm throwing it out."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "e2_s4_jordan_02",
+      "Tell work the night shift moved out."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 6,
+      "options": [
+       {
+        "t": "Get up and work it",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s4_player_01",
+           "I'm up. Send the ticket."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e2_s4_sam_01",
+           "Good. I'll bring the ugly parts."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "rep": 1,
+         "burn": 2
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "Ask Sam to cover",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s4_player_02",
+           "Sam, can you take this? I'm cooked."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e2_s4_sam_02",
+           "Yeah. Sleep. I'll ping you at daylight."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": -1,
+         "rep": -1
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "Flip the phone over",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s4_player_03",
+           "Not tonight."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e2_s4_jordan_03",
+           "Bold. Your work friends will love that."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": -1,
+         "rep": -2
+        },
+        "flag": "missed_alert",
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Sam",
+           "e2_s4_sam_03",
+           "Page died. I'm starting without you."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1,
+         "rep": -1
+        },
+        "flag": "missed_alert",
+        "rem": "Sam will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "The player's apartment, two in the morning",
+   "shot_notes": "Jordan squints from the couch. The player is still in yesterday's clothes as the phone buzzes and lights the room."
+  },
+  {
+   "id": "2.5",
+   "name": "Bad Monday",
+   "beats": [
+    {
+     "say": [
+      "Sam",
+      "e2_s5_sam_01",
+      "Files are locked. There's a note on the screen."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e2_s5_sam_02",
+      "Who calls it? I, uh, blanked."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e2_s5_dana_01",
+      "The clock is the lesson. Talk."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 10,
+      "options": [
+       {
+        "t": "Isolate, then brief Dana",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s5_player_01",
+           "We cut the network. Then we brief you plain."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e2_s5_dana_02",
+           "Plain works. Do it that way when it's real."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": 1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "Pay to make it stop",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s5_player_02",
+           "We pay the note. We buy the day back."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e2_s5_dana_03",
+           "Payment invites a second visit."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "rep": -1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "Let Sam run it",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s5_player_03",
+           "Sam, your room. Make the call."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e2_s5_sam_03",
+           "Right. Isolate first. I should've led with that."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Dana",
+           "e2_s5_dana_04",
+           "Nobody spoke. That's how a bad Monday starts."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Dana will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Dana",
+      "e2_s5_dana_05",
+      "What failed first? The tools, or this room?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "We stopped listening",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s5_player_04",
+           "The alerts cried wolf. We went numb."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e2_s5_marcus_01",
+           "That's the day job sneaking in. True, though."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1
+        },
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "We froze",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s5_player_05",
+           "We froze. That's on this room."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e2_s5_dana_06",
+           "Good. I can work with a room that admits it."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": 1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Dana",
+           "e2_s5_dana_07",
+           "You went quiet. I still counted that."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Dana will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Harborline Financial, conference room, afternoon",
+   "shot_notes": "Sam paces under a whiteboard of arrows, energy drink in hand. Dana waits at the head of the table. Marcus sits to the side, arms folded."
+  },
+  {
+   "id": "2.6",
+   "name": "The Guides",
+   "beats": [
+    {
+     "say": [
+      "Marcus",
+      "e2_s6_marcus_01",
+      "You're past button pushing. Barely."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e2_s6_marcus_02",
+      "CISSP needs five years paid before you can hold it."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Take CySA+ now",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s6_player_01",
+           "CySA+ now. I want the analyst depth."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e2_s6_marcus_03",
+           "Then we use the quiet nights. If any show up."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "burn": 1
+        },
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Start the CISSP track",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s6_player_02",
+           "I'll start the long reading. No rush to sit."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e2_s6_marcus_04",
+           "Good. The years still have to be real."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "rep": 1
+        },
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Stay on the tools",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e2_s6_player_03",
+           "Not this year. The queue is the teacher."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e2_s6_marcus_05",
+           "It teaches. It also teaches bad habits."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": -1,
+         "burn": -1
+        },
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e2_s6_marcus_06",
+           "Fine. The books can collect dust."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Marcus will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Harborline Financial, Marcus's office, months later",
+   "shot_notes": "Marcus sets two exam guides on the desk and waits. The coffee beside the guides has gone cold."
+  }
+ ],
+ "end": "The queue stayed loud. You started hearing what mattered.",
+ "unparsed": []
+}

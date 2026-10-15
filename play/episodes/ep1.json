@@ -1,0 +1,817 @@
+{
+ "scenes": [
+  {
+   "id": "1.1",
+   "name": "The Booth",
+   "beats": [
+    {
+     "say": [
+      "Marcus",
+      "e1_s1_m_01",
+      "Harborline Financial. We watch the money move."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "e1_s1_j_01",
+      "Say something. He's doing the statue thing."
+     ]
+    },
+    {
+     "caption": "A labor bureau card lists median pay of $129,180."
+    },
+    {
+     "caption": "It lists 21 percent growth, from 2025 to 2035."
+    },
+    {
+     "say": [
+      "Marcus",
+      "e1_s1_m_02",
+      "Why this seat, and not a free shirt?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": 8,
+      "options": [
+       {
+        "t": "I want to get good.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s1_p_fast",
+           "I want to get good at this. Fast."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e1_s1_m_fast",
+           "Then stay. The shift will test that."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1
+        },
+        "rem": "Marcus will remember you wanted to get good."
+       },
+       {
+        "t": "I'll show up.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s1_p_show",
+           "I need the job. I'll show up."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e1_s1_m_show",
+           "Good. Showing up is the rare part."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1
+        },
+        "rem": "Marcus will remember you promised to show up."
+       },
+       {
+        "t": "The pay looks real.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s1_p_pay",
+           "That pay number is hard to ignore."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e1_s1_m_pay",
+           "Honest. Keep that habit when it gets loud."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1
+        },
+        "rem": "Marcus will remember you were honest about the money."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e1_s1_m_whysil",
+           "The pause ends it. Think faster next time."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Marcus will remember the pause."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Marcus",
+      "e1_s1_m_03",
+      "Nights teach you what the rules are for."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e1_s1_m_04",
+      "Nights, policy, or the startup across the aisle."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Put me on nights.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s1_p_soc",
+           "Put me on the night shift."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e1_s1_m_soc",
+           "Direct. I can work with direct."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "rep": 1
+        },
+        "rem": "Marcus will remember you asked for nights."
+       },
+       {
+        "t": "I want policy work.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s1_p_grc",
+           "I want rules, audits, the policy side."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e1_s1_m_grc",
+           "Then watch the mess first. Nights, then rules."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1
+        },
+        "rem": "Marcus will remember you asked for policy."
+       },
+       {
+        "t": "Check the startup.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s1_p_start",
+           "I want to hear the startup's pitch."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e1_s1_j_start",
+           "Big voice, tiny room. Have fun."
+          ]
+         },
+         {
+          "caption": "The startup pitch is noise. You walk back."
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Jordan will remember you almost walked."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e1_s1_m_seatsil",
+           "I'll slot you for nights. Decide to like it later."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Marcus will remember you froze at the booth."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Marcus",
+      "e1_s1_m_05",
+      "Don't lose the badge before you start."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "e1_s1_j_02",
+      "I'll keep dinner sad and warm for you."
+     ]
+    },
+    {
+     "caption": "The badge is yours. Work starts after dark."
+    }
+   ],
+   "location": "Campus career fair, afternoon",
+   "shot_notes": "Marcus waits behind the Harborline booth as the crowd bumps past. Jordan watches you, enjoying this too much."
+  },
+  {
+   "id": "1.2",
+   "name": "Cram Night",
+   "beats": [
+    {
+     "say": [
+      "Jordan",
+      "e1_s2_j_01",
+      "I made you flashcards. Be nice about it."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "e1_s2_j_02",
+      "Security Plus, the ISC2 starter, or sleep."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "e1_s2_j_03",
+      "You're on tonight. Try to look alive."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Cram Security+.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s2_p_sec",
+           "Security Plus. Quiz me."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e1_s2_j_sec",
+           "Employed and scared. My favorite kind."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "burn": 1
+        },
+        "flag": "secplus",
+        "rem": "Jordan will remember you crammed Security+."
+       },
+       {
+        "t": "Study ISC2 CC.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s2_p_cc",
+           "The ISC2 starter. Walk me in."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e1_s2_j_cc",
+           "Small bites. I respect the plan."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "burn": 1
+        },
+        "rem": "Jordan will remember you started with ISC2 CC."
+       },
+       {
+        "t": "Skip the cram.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s2_p_skip",
+           "Not tonight. I start soon."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e1_s2_j_skip",
+           "Future you can be mad. Go to work."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": -1
+        },
+        "rem": "Jordan will remember you closed the laptop."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Jordan",
+           "e1_s2_j_sils",
+           "Blink once if the cards won."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Jordan will remember the stare."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Jordan",
+      "e1_s2_j_04",
+      "One card. Weird address, and it will not stop."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 8,
+      "options": [
+       {
+        "t": "Cut it off.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s2_p_cut",
+           "Cut it off the network."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e1_s2_j_cut",
+           "Correct. Painfully correct."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1
+        },
+        "rem": "Jordan will remember you said to cut it off."
+       },
+       {
+        "t": "Read it first.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s2_p_logs",
+           "Read what it's sending first."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e1_s2_j_logs",
+           "Brave. Also slow. Classic."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1
+        },
+        "rem": "Jordan will remember you wanted the logs."
+       },
+       {
+        "t": "Ask a senior.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s2_p_ask",
+           "I'd ask someone senior."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e1_s2_j_ask",
+           "At this hour they're a rumor."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Jordan will remember you wanted a grownup."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Jordan",
+           "e1_s2_j_qsil",
+           "Time's up. You stop the bleeding first."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Jordan will remember you blanked on a flashcard."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Jordan",
+      "e1_s2_j_05",
+      "If you froze, we call that a result."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "e1_s2_j_06",
+      "Pocket it. The real room is darker."
+     ]
+    },
+    {
+     "caption": "The shift starts. The room is cold and bright."
+    }
+   ],
+   "location": "Your apartment, early evening",
+   "shot_notes": "Jordan fans flashcards on the kitchen counter. The new badge sits beside a cold mug."
+  },
+  {
+   "id": "1.3",
+   "name": "The Alert",
+   "beats": []
+  },
+  {
+   "id": "1.4",
+   "name": "Monday",
+   "beats": [
+    {
+     "say": [
+      "Marcus",
+      "e1_s4_m_iso",
+      "You cut it off, then wrote the story. That's the job."
+     ],
+     "when": "e1_isolate"
+    },
+    {
+     "say": [
+      "Marcus",
+      "e1_s4_m_logs",
+      "You read first. It kept talking while you read."
+     ],
+     "when": "e1_logs"
+    },
+    {
+     "say": [
+      "Marcus",
+      "e1_s4_m_wake",
+      "You asked who else to wake. You already had me."
+     ],
+     "when": "e1_wake"
+    },
+    {
+     "say": [
+      "Marcus",
+      "e1_s4_m_sil",
+      "You went quiet. I pulled the plug. Thin writeup."
+     ],
+     "when": "missed_alert"
+    },
+    {
+     "say": [
+      "Marcus",
+      "e1_s4_m_02",
+      "Monday is for ego checks. Welcome in."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e1_s4_m_03",
+      "Sit. I read the ticket. Now talk me through it."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e1_s4_m_04",
+      "One breath. What did you trust out there?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "I trusted the weirdness.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s4_p_own",
+           "A strange address. So I moved."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e1_s4_m_own",
+           "Good. Be able to say it again."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1
+        },
+        "rem": "Marcus will remember you owned the call."
+       },
+       {
+        "t": "I wasn't sure.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s4_p_unsure",
+           "I'm not sure I called it right."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e1_s4_m_unsure",
+           "Good. Hold onto that doubt."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1
+        },
+        "rem": "Marcus will remember you asked to be corrected."
+       },
+       {
+        "t": "The tools should have caught it.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s4_p_tools",
+           "The tools should have been louder."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e1_s4_m_tools",
+           "They scream all day. You pick one."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1,
+         "trust": -1
+        },
+        "rem": "Marcus will remember you blamed the tools."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e1_s4_m_stsil",
+           "Words. I don't grade silence twice."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Marcus will remember the long pause."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Marcus",
+      "e1_s4_m_05",
+      "Every alert gets a story. Keep writing yours."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e1_s4_m_06",
+      "Coffee here is bad. That part will not change."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e1_s4_m_07",
+      "Go home, rookie. Sleep while you can."
+     ]
+    }
+   ],
+   "location": "Harborline SOC, Monday morning",
+   "shot_notes": "Marcus sets a paper cup down and stays standing. The night ticket glows on your monitor."
+  },
+  {
+   "id": "1.5",
+   "name": "The Door",
+   "beats": [
+    {
+     "say": [
+      "Jordan",
+      "e1_s5_j_01",
+      "You look chewed up. Is the bank standing?"
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "e1_s5_j_02",
+      "You've been a ghost since the badge."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Keep it vague.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s5_p_vague",
+           "Work was weird. I can't share details."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e1_s5_j_vague",
+           "Boundaries. Weird. I respect it."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1
+        },
+        "rem": "Jordan will remember you kept the details at work."
+       },
+       {
+        "t": "Tell the story.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s5_p_spill",
+           "A finance laptop called a strange address."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e1_s5_j_spill",
+           "I will forget that on purpose."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Jordan will remember you overshared."
+       },
+       {
+        "t": "I need sleep.",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e1_s5_p_sleep",
+           "Ask me after I've actually slept."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "e1_s5_j_sleep",
+           "Copy. The couch is neutral ground."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": -1
+        },
+        "rem": "Jordan will remember you chose the couch."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Jordan",
+           "e1_s5_j_sil",
+           "Haunting the doorway works too."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Jordan will remember you stood in the doorway."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Jordan",
+      "e1_s5_j_03",
+      "Text me if the building eats you."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "e1_s5_j_04",
+      "Shoes off. You made it back. That counts."
+     ]
+    },
+    {
+     "caption": "The badge stays by the door. The queue does too."
+    }
+   ],
+   "location": "Your apartment, Monday evening",
+   "shot_notes": "You drop the badge in a bowl by the door. Jordan looks up from the couch, already grinning."
+  }
+ ],
+ "end": "The first night is logged. The queue will still be there tomorrow.",
+ "unparsed": []
+}
