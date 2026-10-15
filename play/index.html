@@ -13,10 +13,16 @@ html,body{height:100%;background:#000;color:var(--text);font-family:Inter,system
 #bg{position:fixed;inset:0;width:100%;height:100%;display:block}
 #actors{position:fixed;inset:0;transform-origin:50% 50%;pointer-events:none}
 .actor{position:absolute}
-.actor .inner{position:relative;height:100%;width:100%}
+.actor .talk,.actor .inner{position:relative;height:100%;width:100%;transform-origin:50% 100%}
 .actor img{position:absolute;display:block;pointer-events:none}
 .actor img.base{left:0;top:0;height:100%;width:100%;filter:drop-shadow(0 0 22px rgba(0,0,0,.55))}
-.actor img.patch{opacity:0;height:auto}
+/* mouth shapes cross-fade, blinks close fast */
+.actor img.patch{opacity:0;height:auto;transition:opacity 65ms linear}
+.actor img.patch[src*="_blink"]{transition:opacity 45ms linear}
+.snap{position:fixed;inset:0;z-index:2;pointer-events:none}
+.snap canvas{position:absolute;inset:0;width:100%;height:100%}
+.snap-actors{position:absolute;inset:0;transform-origin:50% 50%}
+#flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:5;mix-blend-mode:screen}
 #bg{z-index:0}#actors{z-index:2}#fx{z-index:3}#fx.warm{z-index:1}#grain{z-index:4}#fade{z-index:5}.bar{z-index:6}#caption,#sub{z-index:7}#choices,#remember{z-index:8}#card{z-index:10}
 #fx{position:fixed;inset:0;pointer-events:none}
 #fx.alert{background:radial-gradient(ellipse at 75% 45%,rgba(226,60,50,.42),transparent 55%);mix-blend-mode:screen;animation:pulse 1.1s ease-in-out infinite}
@@ -76,6 +82,7 @@ body.deciding .bar{height:13vh}
 .seg{display:flex;gap:6px;flex-wrap:wrap}
 .seg button{flex:1;background:#0d0f14;border:1px solid rgba(255,255,255,.2);color:#ddd;padding:9px 6px;font:600 13px Inter;border-radius:3px;cursor:pointer}
 .seg button.on{border-color:var(--gold);color:var(--gold)}
+.seg.voices{display:grid;grid-template-columns:1fr 1fr}
 #begin{margin-top:auto;background:var(--gold);color:#111;border:0;padding:14px;font:700 16px Inter;border-radius:3px;cursor:pointer;letter-spacing:.05em}
 /* phones first: portrait layout */
 html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
@@ -90,8 +97,12 @@ html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
   #caption{top:10vh}
   #remember{top:calc(9vh + env(safe-area-inset-top))}
   #sound{top:calc(1.2vh + env(safe-area-inset-top))}
-  #creator{top:auto;bottom:calc(2vh + env(safe-area-inset-bottom));height:auto;max-height:54dvh;left:3vw;width:94vw;padding:16px;gap:10px}
-  #creator h2{font-size:28px}
+  #creator{top:auto;bottom:calc(1.5vh + env(safe-area-inset-bottom));height:auto;max-height:60dvh;left:3vw;width:94vw;padding:12px 14px;gap:7px}
+  #creator h2{font-size:24px}
+  #creator label{font-size:10px}
+  #creator input{padding:8px 10px;font-size:16px}
+  .seg button{padding:8px 4px;font-size:12px}
+  #begin{padding:12px;margin-top:4px}
   .presets{grid-template-columns:repeat(6,1fr)}
 }
 </style>
@@ -102,6 +113,7 @@ html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
 <div id="fx"></div>
 <div id="grain"></div>
 <div id="fade"></div>
+<div id="flash"></div>
 <div class="bar t"></div><div class="bar b"></div>
 <div id="caption"></div>
 <div id="sub"></div>
@@ -118,11 +130,12 @@ html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
   <input id="name" maxlength="16" value="Avery" autocomplete="off">
   <label>Pronouns</label>
   <div class="seg" id="pron">
-    <button data-p="they,them,their" class="on">they/them</button><button data-p="she,her,her">she/her</button><button data-p="he,him,his">he/him</button>
+    <button data-p="she,her,her" class="on">she/her</button><button data-p="he,him,his">he/him</button>
   </div>
-  <label>Voice</label>
-  <div class="seg" id="voice">
-    <button data-v="af_heart" class="on">Voice A</button><button data-v="am_michael">Voice B</button>
+  <label>Voice <span style="letter-spacing:0;text-transform:none;color:#8b93a1">(tap to hear)</span></label>
+  <div class="seg voices" id="voice">
+    <button data-v="af_heart" class="on">Woman</button><button data-v="am_michael">Man</button>
+    <button data-v="fx_overlord">Space Overlord</button><button data-v="fx_puppet">Swamp Puppet</button>
   </div>
   <button id="begin">START YOUR CAREER</button>
 </div>
@@ -133,20 +146,32 @@ html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
 <script src="cl.js"></script>
 <script src="ep1.js"></script>
 <script>
+// six looks; each suggests pronouns and a voice, and the player can change both
 const PRESETS = [
-  { id: "p1", ready: true }, { id: "p2", ready: true },
-  { id: "p3" }, { id: "p4" }, { id: "p5" }, { id: "p6" },
+  { id: "p1", pron: "she", voice: "af_heart" }, { id: "p2", pron: "she", voice: "af_heart" },
+  { id: "p3", pron: "he", voice: "am_michael" }, { id: "p4", pron: "he", voice: "am_michael" },
+  { id: "p5", pron: "she", voice: "af_heart" }, { id: "p6", pron: "he", voice: "am_michael" },
 ];
+const PRON = { she: ["she", "her", "her"], he: ["he", "him", "his"] };
+function pick(groupId, attr, value) {
+  const g = document.getElementById(groupId);
+  [...g.children].forEach(x => x.classList.toggle("on", x.dataset[attr] === value || x.dataset[attr]?.startsWith(value + ",")));
+}
 const creatorShot = () => ({ bg: CL.hasBg("creator_bg") ? "creator_bg" : "soc_night", actors: [{ rig: "PLAYER_desk", who: "PLAYER", x: 46, y: 0, h: 88, z: 1.3, my: 40, mh: 50 }],
   cam: { from: { zoom: 1.12, px: -.03 }, to: { zoom: 1.05, px: .03 }, dur: 14 } });
 
 async function creator() {
   const box = document.getElementById("creator"), ps = document.getElementById("presets");
-  ps.innerHTML = PRESETS.map(p => `<button class="preset ${p.ready ? "" : "locked"} ${p.id === CL.state.preset ? "on" : ""}" data-id="${p.id}" aria-label="Look ${p.id.slice(1)}">${p.ready ? `<img src="assets/rigs/${p.id}_desk.webp" alt="">` : ""}</button>`).join("");
+  const ready = id => (CL.manifest.rigs || []).includes(`${id}_desk`);
+  CL.state.pron = PRON.she;
+  ps.innerHTML = PRESETS.map(p => `<button class="preset ${ready(p.id) ? "" : "locked"} ${p.id === CL.state.preset ? "on" : ""}" data-id="${p.id}" aria-label="Look ${p.id.slice(1)}">${ready(p.id) ? `<img src="assets/rigs/${p.id}_desk.webp" alt="">` : ""}</button>`).join("");
   ps.onclick = async e => {
     const b = e.target.closest(".preset"); if (!b || b.classList.contains("locked")) return;
     ps.querySelectorAll(".preset").forEach(x => x.classList.toggle("on", x === b));
-    CL.state.preset = b.dataset.id; await CL.shot(creatorShot());
+    const p = PRESETS.find(x => x.id === b.dataset.id);
+    CL.state.preset = p.id; CL.state.pron = PRON[p.pron]; CL.state.voice = p.voice;
+    pick("pron", "p", p.pron); pick("voice", "v", p.voice);
+    await CL.shot(Object.assign(creatorShot(), { cut: "dissolve" }));
   };
   document.getElementById("pron").onclick = e => { const b = e.target.closest("button"); if (!b) return;
     [...e.currentTarget.children].forEach(x => x.classList.toggle("on", x === b)); CL.state.pron = b.dataset.p.split(","); };

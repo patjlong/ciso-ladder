@@ -1,11 +1,22 @@
 {
  "bgs": [
   "creator_bg",
+  "kf_marcus_sit",
+  "kf_marcus_sleep",
+  "kf_marcus_window",
+  "kf_player_laptop",
+  "kf_player_sit",
+  "kf_player_walk",
+  "marcus_bedroom",
   "soc_night"
  ],
  "rigs": [
   "marcus_phone",
   "p1_desk",
-  "p2_desk"
+  "p2_desk",
+  "p3_desk",
+  "p4_desk",
+  "p5_desk",
+  "p6_desk"
  ]
 }
