@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The CISO Ladder</title>
+<meta name="description" content="A choose-your-path story about climbing from new grad to Fortune 500 CISO. CIS 424, Purple Protocol.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080b; --panel:#12141a; --line:#262a33; --text:#eef0f4; --muted:#b4bac6;
+  --accent:#e8b33a; --red:#e2554b; --blue:#5aa9e6; --green:#5cc98a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
+#stage{min-height:100%;display:flex;flex-direction:column;max-width:860px;margin:0 auto;padding:16px}
+.scene-bg{position:fixed;inset:0;z-index:-1;transition:background 1.2s ease}
+.scene-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.85) 100%)}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:6px 0 14px;border-bottom:1px solid var(--line)}
+.brand{font-family:"Bebas Neue",sans-serif;font-size:26px;letter-spacing:2px}
+.brand span{color:var(--accent)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.stat{display:flex;align-items:center;gap:6px}
+.bar{width:54px;height:6px;background:#2a2e38;border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;transition:width .6s ease}
+main{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 0 8px;min-height:70vh}
+.where{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.narr{font-size:18px;line-height:1.6;color:var(--muted);margin-bottom:14px;font-style:italic}
+.line{margin-bottom:14px;font-size:19px;line-height:1.55}
+.line b{display:block;font-family:"Bebas Neue",sans-serif;font-weight:400;letter-spacing:1.5px;font-size:22px;margin-bottom:2px}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+@media (max-width:600px){.choices{grid-template-columns:1fr}.line{font-size:17px}.stats .bar{width:36px}}
+.choice{background:rgba(18,20,26,.92);border:1px solid var(--line);color:var(--text);padding:14px 16px;font:600 16px Inter,sans-serif;text-align:left;border-radius:6px;cursor:pointer;transition:border-color .15s,transform .15s}
+.choice:hover,.choice:focus-visible{border-color:var(--accent);transform:translateY(-1px);outline:none}
+.choice small{display:block;font-weight:400;color:var(--muted);margin-top:4px;font-size:13px}
+.timer{height:4px;background:#2a2e38;margin-top:14px;border-radius:2px;overflow:hidden}
+.timer i{display:block;height:100%;background:var(--accent);width:100%}
+.next{margin-top:18px;align-self:flex-start;background:var(--accent);color:#111;border:0;padding:12px 22px;font:700 15px Inter,sans-serif;border-radius:6px;cursor:pointer}
+.toast{position:fixed;top:72px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.85);border:1px solid var(--line);padding:10px 18px;border-radius:4px;font-size:15px;opacity:0;transition:opacity .4s;pointer-events:none;z-index:5;white-space:nowrap}
+.toast.show{opacity:1}
+.card{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:10;padding:24px;opacity:0;pointer-events:none;transition:opacity .8s}
+.card.show{opacity:1;pointer-events:auto}
+.card .ep{color:var(--accent);letter-spacing:4px;font-size:13px;text-transform:uppercase}
+.card h1{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(48px,11vw,96px);letter-spacing:3px;line-height:1}
+.card p{color:var(--muted);margin-top:10px;max-width:520px}
+.panel{background:rgba(18,20,26,.94);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:14px}
+.panel h3{font-family:"Bebas Neue",sans-serif;font-weight:400;letter-spacing:1.5px;font-size:24px;color:var(--accent);margin-bottom:8px}
+.panel ul{padding-left:18px;color:var(--text);line-height:1.6}
+.panel p{line-height:1.6}
+.muted{color:var(--muted)}
+.ladder{display:flex;flex-direction:column-reverse;gap:8px}
+.rung{border-left:4px solid var(--accent);padding:10px 14px;background:#0d0f14;border-radius:0 6px 6px 0}
+.rung .lvl{font-size:12px;letter-spacing:2px;color:var(--accent);text-transform:uppercase}
+.rung .you{color:var(--green);font-weight:700}
+.recap li{margin-bottom:6px}
+a{color:var(--blue)}
+.src{font-size:13px;color:var(--muted)}
+footer{font-size:12px;color:var(--muted);text-align:center;padding:10px 0}
+</style>
+</head>
+<body>
+<div class="scene-bg" id="bg"></div>
+<div id="stage">
+  <header>
+    <div class="brand">THE <span>CISO</span> LADDER</div>
+    <div class="stats" id="stats"></div>
+  </header>
+  <main id="main"></main>
+  <footer>CIS 424 · Purple Protocol · Sprint 2</footer>
+</div>
+<div class="toast" id="toast"></div>
+<div class="card" id="card"></div>
+
+<script>
+// ---------- state ----------
+const S = { skill:30, rep:30, trust:30, burn:10, flags:{}, log:[], name:"You", track:null };
+const STATS = [
+  ["skill","Skill","var(--blue)"],
+  ["rep","Reputation","var(--accent)"],
+  ["trust","Exec trust","var(--green)"],
+  ["burn","Burnout","var(--red)"],
+];
+const clamp = v => Math.max(0, Math.min(100, v));
+function apply(fx){ for (const k in fx||{}) if (k in S) S[k] = clamp(S[k] + fx[k]); drawStats(); }
+function drawStats(){
+  document.getElementById("stats").innerHTML = STATS.map(([k,l,c]) =>
+    `<div class="stat">${l}<div class="bar"><i style="width:${S[k]}%;background:${c}"></i></div></div>`).join("");
+}
+function toast(msg){
+  const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toast.h); toast.h = setTimeout(()=>t.classList.remove("show"), 2600);
+}
+const BG = {
+  campus:"linear-gradient(160deg,#1b1530,#07080b 70%)",
+  soc:"linear-gradient(160deg,#0b2233,#07080b 70%)",
+  office:"linear-gradient(160deg,#1f2a22,#07080b 70%)",
+  war:"linear-gradient(160deg,#3a1414,#07080b 70%)",
+  board:"linear-gradient(160deg,#2e2510,#07080b 70%)",
+};
+
+// ---------- ladder facts (sourced; see sources screen) ----------
+const LADDER = {
+  entry:{ lvl:"Entry · new grad, years 0-3",
+    roles:["SOC Analyst (Tier 1)","IT / Help Desk with security duties","GRC Analyst","Junior Penetration Tester"],
+    certs:["CompTIA Security+","ISC2 Certified in Cybersecurity (CC)","CompTIA Network+"],
+    pay:"BLS median for information security analysts: $129,180 (May 2025). Projected growth 21% from 2025 to 2035. Typical entry education: bachelor's degree." },
+  mid:{ lvl:"Mid-career · years 4-10",
+    roles:["Security Engineer","Incident Response Lead","Security Architect","Security Manager"],
+    certs:["CISSP (needs 5 years of paid experience)","CompTIA CySA+","OSCP","CISA"],
+    pay:"Pay varies widely by role and region. Check current postings for the roles you target." },
+  exec:{ lvl:"Executive · years 10+",
+    roles:["Director of Security","VP of Information Security","Chief Information Security Officer"],
+    certs:["CISM","CISSP","Business degree or executive education (common, not required)"],
+    pay:"IANS / Artico 2025 report: median CISO total compensation of $532,000 at US enterprises with over $1B in revenue (406 respondents)." },
+};
+function ladderPanel(key){
+  const L = LADDER[key];
+  return `<div class="panel"><h3>Ladder unlocked: ${L.lvl}</h3>
+    <p class="muted">Common roles</p><ul>${L.roles.map(r=>`<li>${r}</li>`).join("")}</ul>
+    <p class="muted" style="margin-top:8px">Certifications</p><ul>${L.certs.map(r=>`<li>${r}</li>`).join("")}</ul>
+    <p style="margin-top:8px">${L.pay}</p></div>`;
+}
+
+// ---------- story ----------
+// scene: {chapter?, bg, where, narr?, lines:[[speaker,text]], panel?, choices?:[{t,sub,fx,rem,flag,log,next}], timed?, next?}
+const SCENES = {
+  start:{ chapter:["Episode 1","The First Badge","Graduation week. One offer letter, one rent payment, one long road to the top floor."],
+    bg:"campus", where:"Campus career fair · May",
+    narr:"You have a CIS degree, a decent GPA, and three recruiters waving you over.",
+    lines:[["Recruiter (bank)","Our SOC runs 24/7. Night shift, but you will see more attacks in a month than most people see in a year."],
+           ["Recruiter (consulting)","Our GRC team does audits and risk assessments. Less hacking, more boardrooms."],
+           ["Recruiter (startup)","We need someone to do a bit of everything. IT, security, whatever breaks."]],
+    choices:[
+      {t:"Take the SOC Analyst job",sub:"Tier 1, night shift",fx:{skill:12,burn:8},log:"Started as a Tier 1 SOC Analyst",flag:"soc",next:"cert1"},
+      {t:"Take the GRC Analyst job",sub:"Audits, policy, risk",fx:{trust:10,rep:4},log:"Started as a GRC Analyst",flag:"grc",next:"cert1"},
+      {t:"Join the startup as IT + security",sub:"Wear every hat",fx:{skill:8,rep:6,burn:6},log:"Started as the startup's IT and security generalist",flag:"startup",next:"cert1"},
+    ]},
+  cert1:{ bg:"campus", where:"Your apartment · June",
+    lines:[["Jordan (roommate)","You know half the job postings want Security+, right? Or are you just going to wing it?"]],
+    choices:[
+      {t:"Study for Security+",sub:"The common baseline cert",fx:{skill:6,rep:6,burn:4},rem:"Your resume will remember that.",log:"Earned CompTIA Security+",flag:"secplus",next:"ch1_alert"},
+      {t:"Take ISC2 Certified in Cybersecurity",sub:"Entry-level, lower cost",fx:{skill:4,rep:4},log:"Earned ISC2 CC",flag:"cc",next:"ch1_alert"},
+      {t:"Skip certs, learn on the job",sub:"Save the time",fx:{burn:-4,rep:-4},rem:"Jordan will remember that.",log:"Skipped early certifications",next:"ch1_alert"},
+    ]},
+  ch1_alert:{ bg:"soc", where:"3:12 AM · Your first real alert",
+    narr:"A finance employee clicked a link. Now their laptop is talking to an IP address in a country your company does no business with.",
+    lines:[["Marcus (your lead)","I am off tonight. Your call. Don't wake me unless it's real."]],
+    timed:10,
+    choices:[
+      {t:"Isolate the laptop now",sub:"Pull it off the network",fx:{skill:6,rep:8},rem:"Marcus will remember that.",log:"Isolated a compromised laptop at 3 AM",next:"ch1_after"},
+      {t:"Investigate first",sub:"Collect logs before acting",fx:{skill:10,burn:4},log:"Investigated before containing",next:"ch1_after"},
+      {t:"Call Marcus",sub:"Escalate, even at 3 AM",fx:{trust:6,rep:-2},rem:"Marcus will remember that.",log:"Escalated to the lead",next:"ch1_after"},
+      {t:"Mark it a false positive",sub:"It's probably nothing",fx:{rep:-12,skill:-2},rem:"The attacker will remember that.",log:"Dismissed a real alert",flag:"missed",next:"ch1_after"},
+    ]},
+  ch1_after:{ bg:"soc", where:"Monday · Debrief",
+    lines:[["Marcus",""]],
+    dyn:()=> S.flags.missed
+      ? [["Marcus","That 'false positive' was a credential stealer. We found it Friday. Everybody misses one. Don't miss two."]]
+      : [["Marcus","Clean work on Thursday night. Leadership noticed. Keep that up and you won't be on nights for long."]],
+    panel:"entry", next:"ch2" },
+
+  ch2:{ chapter:["Episode 2","The Middle Rungs","Year five. You know how attacks work. Now you have to decide what kind of leader you want to be."],
+    bg:"office", where:"Your manager's office · Year 5",
+    lines:[["Dana (Security Director)","Two openings. Senior Security Engineer, or Security Manager over six analysts. I can only back you for one."]],
+    choices:[
+      {t:"Senior Security Engineer",sub:"Stay technical, go deep",fx:{skill:12,burn:2},log:"Became a Senior Security Engineer",flag:"eng",next:"cert2"},
+      {t:"Security Manager",sub:"Lead people, own a budget",fx:{trust:10,rep:6,burn:6},rem:"Dana will remember that.",log:"Became a Security Manager",flag:"mgr",next:"cert2"},
+      {t:"Incident Response Lead",sub:"Run the war room",fx:{skill:8,rep:8,burn:8},log:"Became the Incident Response Lead",flag:"ir",next:"cert2"},
+    ]},
+  cert2:{ bg:"office", where:"Training budget review",
+    lines:[["Dana","We'll pay for one big certification this year. Pick carefully. Executive recruiters read these."]],
+    choices:[
+      {t:"CISSP",sub:"Broad, management-respected, needs 5 years experience",fx:{rep:10,trust:6,burn:4},log:"Earned CISSP",flag:"cissp",next:"ch2_ai"},
+      {t:"OSCP",sub:"Hands-on offensive, very technical",fx:{skill:12,burn:6},log:"Earned OSCP",flag:"oscp",next:"ch2_ai"},
+      {t:"CISA",sub:"Audit and control focus",fx:{trust:8,rep:4},log:"Earned CISA",flag:"cisa",next:"ch2_ai"},
+    ]},
+  ch2_ai:{ bg:"office", where:"Executive floor · Tuesday",
+    narr:"The CIO wants every employee using a new AI assistant by next quarter. The CEO already announced it.",
+    lines:[["Priya (CIO)","I need security to sign off by Friday. The CEO is not asking, and neither am I."],
+           ["Dana","This is the CIO versus CISO tension in one meeting. The business has to function, but somebody has to ask about the data."]],
+    timed:12,
+    choices:[
+      {t:"Approve with guardrails",sub:"Data rules, logging, a pilot group first",fx:{trust:10,rep:6},rem:"Priya will remember that.",log:"Approved the AI rollout with guardrails",flag:"guardrails",next:"ch2_after"},
+      {t:"Block it",sub:"Not until a full risk assessment",fx:{trust:-10,rep:4,skill:2},rem:"Priya will remember that.",log:"Blocked the AI rollout",flag:"blocked",next:"ch2_after"},
+      {t:"Sign off, no conditions",sub:"Don't fight the CEO",fx:{trust:6,rep:-8},rem:"Your future self will remember that.",log:"Signed off on AI with no conditions",flag:"rubber",next:"ch2_after"},
+      {t:"Ask what data it touches",sub:"Answer a question with a question",fx:{skill:4,trust:4},log:"Asked for a data inventory before deciding",next:"ch2_after"},
+    ]},
+  ch2_after:{ bg:"office", where:"Three months later",
+    dyn:()=> S.flags.rubber
+      ? [["Dana","Someone pasted customer records into the AI tool. Legal is involved. Your name is on the sign-off."]]
+      : S.flags.blocked
+      ? [["Dana","The rollout happened anyway, around you. Priya now goes to the CEO first. That's a problem for your next promotion."]]
+      : [["Dana","The pilot caught two data leaks before the full launch. Priya is telling people you saved her project."]],
+    panel:"mid", next:"ch3" },
+
+  ch3:{ chapter:["Episode 3","The Breach","Year nine. Director of Security. Then the phone rings on a Saturday."],
+    bg:"war", where:"Saturday · 7:40 AM",
+    narr:"Attackers called the help desk pretending to be IT, got an employee's credentials, and used an internal admin tool to take over high-profile customer accounts.",
+    lines:[["Sam (IR lead)","They're still in. Every minute we wait, more accounts go."]],
+    timed:10,
+    choices:[
+      {t:"Shut down the admin tool, company-wide",sub:"Stops the bleeding, breaks support",fx:{skill:6,rep:8,trust:-4},log:"Killed the admin tool during the breach",next:"ch3_le"},
+      {t:"Quietly revoke the stolen accounts",sub:"Less disruption, maybe not enough",fx:{skill:4,rep:-4},log:"Revoked only the known stolen accounts",flag:"partial",next:"ch3_le"},
+      {t:"Call the CEO first",sub:"Get cover before acting",fx:{trust:8,rep:-6},rem:"Sam will remember that.",log:"Called the CEO before containing",next:"ch3_le"},
+    ]},
+  ch3_le:{ bg:"war", where:"Saturday · 2:15 PM",
+    lines:[["General Counsel","Do we bring in law enforcement? It helps the investigation, but we lose some control of the story."]],
+    choices:[
+      {t:"Call the FBI now",sub:"Report it and cooperate",fx:{rep:8,trust:4},log:"Brought in law enforcement",flag:"fbi",next:"ch3_board"},
+      {t:"Hire outside forensics first",sub:"Know the facts before anyone else",fx:{skill:6,trust:2},log:"Hired outside forensics before reporting",next:"ch3_board"},
+      {t:"Keep it internal",sub:"Handle it ourselves",fx:{rep:-12,trust:-6},rem:"The regulators will remember that.",log:"Kept the breach internal",flag:"hid",next:"ch3_board"},
+    ]},
+  ch3_board:{ bg:"board", where:"Board meeting · Monday",
+    lines:[["Board Chair","Explain this in plain English. What happened, what did it cost, and why should we give you more money?"]],
+    timed:12,
+    choices:[
+      {t:"Talk business: cost, risk, the fix",sub:"Speak the language of business",fx:{trust:14,rep:6},rem:"The board will remember that.",log:"Briefed the board in business terms",flag:"business",next:"ch3_after"},
+      {t:"Walk them through the attack chain",sub:"Technical and complete",fx:{skill:4,trust:-6},log:"Gave the board a technical walkthrough",next:"ch3_after"},
+      {t:"Blame the help desk employee",sub:"Human error, not a program failure",fx:{trust:-4,rep:-10},rem:"Your team will remember that.",log:"Blamed the employee in front of the board",next:"ch3_after"},
+    ]},
+  ch3_after:{ bg:"board", where:"After the meeting",
+    dyn:()=> S.flags.hid
+      ? [["General Counsel","Regulators found out from a customer, not from us. That's the worst way this could have gone."]]
+      : S.flags.business
+      ? [["Board Chair","That's the first security briefing I've understood. You'll have your budget."]]
+      : [["Board Chair","We'll think about the budget. Next time, give us the business view."]],
+    next:"ch4" },
+
+  ch4:{ chapter:["Episode 4","The Corner Office","A Fortune 500 company needs a new CISO. The recruiter says you're on the shortlist."],
+    bg:"board", where:"Final interview · CEO's office",
+    lines:[["CEO","Last question. A CISO's job, in one sentence. Go."]],
+    timed:12,
+    choices:[
+      {t:"\"Keep the business running while managing risk.\"",fx:{trust:10},log:"Defined the CISO as a business risk leader",next:"ending"},
+      {t:"\"Stop every attack.\"",fx:{trust:-8,rep:-2},log:"Promised to stop every attack",next:"ending"},
+      {t:"\"Tell you what we can and can't do, and why.\"",sub:"Like general counsel for security",fx:{trust:8,rep:4},log:"Compared the CISO to general counsel",next:"ending"},
+      {t:"\"Build the best security team in the industry.\"",fx:{skill:4,trust:2},log:"Focused on building the team",next:"ending"},
+    ]},
+};
+
+// ---------- endings ----------
+function ending(){
+  const score = S.skill + S.rep + S.trust - S.burn/2;
+  if (S.burn >= 70) return ["Burned Out","You got close. Too close to the fire, for too long. You take a year off, and you're not sure you want the top job anymore.","Executive · off ramp"];
+  if (S.flags.hid) return ["Shown the Door","The hidden breach followed you. The recruiter stops calling back. You rebuild as a consultant.","Mid-career · rebuilding"];
+  if (score >= 175 && S.trust >= 55) return ["Fortune 500 CISO","You get the offer. Top floor, a seat in front of the board, and a target on your back. You made it.","Executive · CISO"];
+  if (S.skill >= 70 && S.trust < 55) return ["Principal Engineer","You lose the CISO job to someone with more boardroom polish, and you're fine with it. You're the person everyone calls when it gets hard.","Mid-career · top technical track"];
+  if (score >= 140) return ["Virtual CISO","Not this company, not yet. You start advising three mid-size companies as a part-time vCISO and keep climbing.","Executive · vCISO"];
+  return ["Still Climbing","You're a solid Director of Security. The corner office is still out there. Next time, more trust, more business language.","Executive · Director"];
+}
+
+// ---------- engine ----------
+const main = document.getElementById("main");
+let timerH = null;
+function card(ep, title, sub, then){
+  const c = document.getElementById("card");
+  c.innerHTML = `<div class="ep">${ep}</div><h1>${title}</h1><p>${sub}</p>`;
+  c.classList.add("show");
+  const done = () => { c.classList.remove("show"); c.onclick = null; clearTimeout(h); setTimeout(then, 500); };
+  const h = setTimeout(done, 3200); c.onclick = done;
+}
+function go(id){
+  clearInterval(timerH);
+  if (id === "ending") return showEnding();
+  const sc = SCENES[id];
+  if (sc.chapter && !sc._seen){ sc._seen = true; return card(...sc.chapter, () => go(id)); }
+  document.getElementById("bg").style.background = BG[sc.bg] || BG.campus;
+  const lines = sc.dyn ? sc.dyn() : sc.lines;
+  let html = `<div class="where">${sc.where}</div>`;
+  if (sc.narr) html += `<p class="narr">${sc.narr}</p>`;
+  html += lines.filter(l=>l[1]).map(([who,txt]) => `<p class="line"><b>${who}</b>${txt}</p>`).join("");
+  if (sc.panel) html += ladderPanel(sc.panel);
+  main.innerHTML = html;
+  window.scrollTo(0, document.body.scrollHeight);
+  if (sc.choices){
+    const box = document.createElement("div"); box.className = "choices";
+    sc.choices.forEach((ch,i) => {
+      const b = document.createElement("button"); b.className = "choice";
+      b.innerHTML = ch.t + (ch.sub ? `<small>${ch.sub}</small>` : "");
+      b.onclick = () => pick(ch); box.appendChild(b);
+    });
+    main.appendChild(box);
+    if (sc.timed){
+      const tb = document.createElement("div"); tb.className = "timer"; tb.innerHTML = "<i></i>";
+      main.appendChild(tb);
+      const t0 = Date.now(), dur = sc.timed * 1000, bar = tb.firstChild;
+      timerH = setInterval(() => {
+        const left = 1 - (Date.now() - t0) / dur;
+        bar.style.width = Math.max(0, left * 100) + "%";
+        if (left <= 0){ clearInterval(timerH); pick({fx:{trust:-6,rep:-4,burn:4},rem:"Everyone noticed you froze.",log:`Froze: "${sc.where}"`,next:sc.choices[0].next}); }
+      }, 50);
+    }
+  } else {
+    const b = document.createElement("button"); b.className = "next"; b.textContent = "Continue";
+    b.onclick = () => go(sc.next); main.appendChild(b);
+  }
+}
+function pick(ch){
+  clearInterval(timerH);
+  apply(ch.fx);
+  if (ch.flag) S.flags[ch.flag] = true;
+  if (ch.log) S.log.push(ch.log);
+  if (ch.rem) toast(ch.rem);
+  go(ch.next);
+}
+function showEnding(){
+  const [title, text, rung] = ending();
+  card("Your ending", title, text, () => {
+    document.getElementById("bg").style.background = BG.board;
+    const rungs = [["entry","Entry"],["mid","Mid-career"],["exec","Executive"]].map(([k]) => {
+      const L = LADDER[k];
+      return `<div class="rung"><div class="lvl">${L.lvl}</div>${L.roles.join(" · ")}<br><span class="muted">${L.certs.join(" · ")}</span></div>`;
+    }).join("");
+    main.innerHTML = `
+      <div class="where">Ending · ${title}</div>
+      <div class="panel"><h3>Where you landed</h3><p class="you" style="color:var(--green);font-weight:700">${rung}</p><p style="margin-top:6px">${text}</p></div>
+      <div class="panel recap"><h3>Your choices</h3><ul>${S.log.map(l=>`<li>${l}</li>`).join("")}</ul></div>
+      <div class="panel"><h3>The full ladder</h3><div class="ladder">${rungs}</div></div>
+      <div class="panel"><h3>Think about it</h3><ul>
+        <li>Is this path desirable to you? Why or why not?</li>
+        <li>Does it change your expectations as a future graduate?</li>
+        <li>Which choices in the game had the biggest effect on whether you reached the top?</li></ul></div>
+      <div class="panel src"><h3>Sources</h3><ul>
+        <li>U.S. Bureau of Labor Statistics, Occupational Outlook Handbook, <a href="https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm" target="_blank" rel="noopener">Information Security Analysts</a></li>
+        <li>IANS Research and Artico Search, <a href="https://sf-cdn.iansresearch.com/sitefinity/docs/default-source/reports/2025-ciso-comp-report-snapshot.pdf" target="_blank" rel="noopener">2025 CISO Compensation Report snapshot</a></li>
+        <li>ISC2, <a href="https://www.isc2.org/certifications/cissp" target="_blank" rel="noopener">CISSP certification requirements</a></li>
+        <li>Story scenarios adapted from CIS 424 class discussions (CIO vs CISO, the Twitter breach case)</li></ul></div>
+      <button class="next" onclick="location.reload()">Play again</button>`;
+    window.scrollTo(0,0);
+  });
+}
+drawStats();
+card("CIS 424 · Purple Protocol","The CISO Ladder","From new grad to Fortune 500 CISO. Every choice counts. Some choices are timed. Tap to begin.", () => go("start"));
+</script>
+</body>
+</html>
