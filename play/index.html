@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The CISO Ladder</title>
+<meta name="description" content="A narrative adventure about climbing from new grad to Fortune 500 CISO. CIS 424, Purple Protocol.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#e8b33a;--text:#f2f3f5}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#000;color:var(--text);font-family:Inter,system-ui,sans-serif;overflow:hidden;user-select:none;-webkit-tap-highlight-color:transparent}
+#bg{position:fixed;inset:0;width:100%;height:100%;display:block}
+#actors{position:fixed;inset:0;transform-origin:50% 50%;pointer-events:none}
+.actor{position:absolute}
+.actor .inner{position:relative;height:100%;width:100%}
+.actor img{position:absolute;display:block;pointer-events:none}
+.actor img.base{left:0;top:0;height:100%;width:100%;filter:drop-shadow(0 0 22px rgba(0,0,0,.55))}
+.actor img.patch{opacity:0;height:auto}
+#bg{z-index:0}#actors{z-index:2}#fx{z-index:3}#fx.warm{z-index:1}#grain{z-index:4}#fade{z-index:5}.bar{z-index:6}#caption,#sub{z-index:7}#choices,#remember{z-index:8}#card{z-index:10}
+#fx{position:fixed;inset:0;pointer-events:none}
+#fx.alert{background:radial-gradient(ellipse at 75% 45%,rgba(226,60,50,.42),transparent 55%);mix-blend-mode:screen;animation:pulse 1.1s ease-in-out infinite}
+#fx.warm{background:radial-gradient(circle at 20% 30%,rgba(240,181,106,.35),transparent 45%),linear-gradient(160deg,#2a1d14,#0b0806 75%)}
+@keyframes pulse{50%{opacity:.3}}
+#grain{position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,.7) 100%),
+  url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.08'/></svg>")}
+#fade{position:fixed;inset:0;background:#000;opacity:1;pointer-events:none}
+.bar{position:fixed;left:0;right:0;height:10vh;background:#000;transition:height .6s ease}
+.bar.t{top:0}.bar.b{bottom:0}
+body.deciding .bar{height:13vh}
+#sub{position:fixed;left:50%;bottom:12vh;transform:translateX(-50%);width:min(900px,92vw);text-align:center;font-size:clamp(17px,2.2vw,24px);line-height:1.4;text-shadow:0 2px 3px #000,0 0 16px #000;opacity:0;transition:opacity .2s}
+#sub.on{opacity:1}
+#sub b{display:block;font-family:"Bebas Neue";font-weight:400;letter-spacing:.12em;font-size:1.05em}
+#caption{position:fixed;top:14vh;left:4vw;font-family:"Bebas Neue";font-size:clamp(28px,4vw,46px);letter-spacing:.12em;opacity:0;transition:opacity .5s;text-shadow:0 2px 8px #000}
+#caption.on{opacity:1}
+#choices{position:fixed;left:0;right:0;bottom:2.5vh;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;transition:opacity .3s}
+#choices.on{opacity:1;pointer-events:auto}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:96vw}
+.opt{background:rgba(8,9,12,.85);color:var(--text);border:1px solid rgba(255,255,255,.2);padding:12px 18px;border-radius:3px;font:700 clamp(14px,1.6vw,17px) Inter,sans-serif;cursor:pointer;min-width:min(210px,44vw);text-align:left;transition:all .15s}
+.opt:hover{border-color:var(--gold);background:rgba(30,26,14,.92)}
+.opt kbd{display:inline-block;width:22px;height:22px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);text-align:center;font:700 12px/20px Inter;margin-right:10px}
+.opt.picked{border-color:var(--gold);background:var(--gold);color:#111}.opt.picked kbd{color:#111;border-color:#111}
+.opt.gone{opacity:0;transform:translateY(8px)}
+.timer{width:min(640px,80vw);height:4px;background:rgba(255,255,255,.12)}
+.timer i{display:block;height:100%;background:#fff;transform-origin:center}
+#remember{position:fixed;top:12vh;left:3vw;font-size:clamp(14px,1.5vw,17px);display:flex;align-items:center;gap:10px;opacity:0;transform:translateX(-12px);transition:all .4s;text-shadow:0 2px 4px #000}
+#remember.on{opacity:1;transform:none}
+#remember i{width:22px;height:22px;border-radius:50%;border:2px solid #fff;position:relative;animation:ring 1.2s ease-out}
+#remember i::after{content:"";position:absolute;inset:5px;border-radius:50%;background:#fff}
+@keyframes ring{from{box-shadow:0 0 0 0 rgba(255,255,255,.7)}to{box-shadow:0 0 0 18px rgba(255,255,255,0)}}
+#card{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .7s}
+#card.on{opacity:1;pointer-events:auto}
+#card .k{color:var(--gold);letter-spacing:.4em;font-size:13px;text-transform:uppercase;margin-bottom:10px}
+#card h1{font-family:"Bebas Neue";font-weight:400;font-size:clamp(54px,10vw,120px);line-height:1}
+#card p{color:#c4c9d2;margin-top:12px;max-width:560px}
+#sound{position:fixed;top:2vh;right:2vw;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.3);color:#ddd;padding:6px 12px;font:500 12px Inter;border-radius:3px;cursor:pointer;z-index:20}
+/* title */
+#title{position:fixed;inset:0;z-index:30;background:#000 center/cover url(assets/keyart_ep1.webp);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:12vh;cursor:pointer}
+#title::before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.92))}
+#title h1{position:relative;font-family:"Bebas Neue";font-weight:400;font-size:clamp(60px,11vw,140px);letter-spacing:.06em;line-height:.9}
+#title h1 span{color:var(--gold)}
+#title p{position:relative;color:#ddd;letter-spacing:.3em;font-size:13px;margin-top:14px;animation:pulse 1.6s infinite}
+/* creator */
+#creator{position:fixed;left:3vw;top:12vh;bottom:12vh;width:min(380px,90vw);z-index:15;background:rgba(6,7,10,.78);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:20px;display:none;flex-direction:column;gap:14px;overflow:auto;backdrop-filter:blur(6px)}
+#creator.on{display:flex}
+#creator h2{font-family:"Bebas Neue";font-weight:400;font-size:34px;letter-spacing:.08em}
+#creator h2 span{color:var(--gold)}
+#creator label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#c4c9d2}
+.presets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.preset{aspect-ratio:1;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.2);cursor:pointer;background:#111;padding:0}
+.preset img{width:100%;height:220%;object-fit:cover;object-position:50% 0}
+.preset.on{border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,179,58,.3)}
+.preset.locked{opacity:.35;cursor:default}
+#creator input{background:#0d0f14;border:1px solid rgba(255,255,255,.2);color:#fff;padding:10px 12px;font:600 16px Inter;border-radius:3px;width:100%}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{flex:1;background:#0d0f14;border:1px solid rgba(255,255,255,.2);color:#ddd;padding:9px 6px;font:600 13px Inter;border-radius:3px;cursor:pointer}
+.seg button.on{border-color:var(--gold);color:var(--gold)}
+#begin{margin-top:auto;background:var(--gold);color:#111;border:0;padding:14px;font:700 16px Inter;border-radius:3px;cursor:pointer;letter-spacing:.05em}
+/* phones first: portrait layout */
+html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
+@media (orientation:portrait){
+  .bar{height:7vh}body.deciding .bar{height:9vh}
+  #sub{bottom:calc(9vh + env(safe-area-inset-bottom));font-size:18px}
+  body.deciding #sub{opacity:0}
+  #choices{bottom:calc(2vh + env(safe-area-inset-bottom));padding:0 4vw}
+  .row{flex-direction:column;width:100%;gap:8px}
+  .opt{width:100%;min-width:0;padding:15px 16px;font-size:16px}
+  .timer{width:92vw}
+  #caption{top:10vh}
+  #remember{top:calc(9vh + env(safe-area-inset-top))}
+  #sound{top:calc(1.2vh + env(safe-area-inset-top))}
+  #creator{top:auto;bottom:calc(2vh + env(safe-area-inset-bottom));height:auto;max-height:54dvh;left:3vw;width:94vw;padding:16px;gap:10px}
+  #creator h2{font-size:28px}
+  .presets{grid-template-columns:repeat(6,1fr)}
+}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="actors"></div>
+<div id="fx"></div>
+<div id="grain"></div>
+<div id="fade"></div>
+<div class="bar t"></div><div class="bar b"></div>
+<div id="caption"></div>
+<div id="sub"></div>
+<div id="choices"></div>
+<div id="remember"></div>
+<div id="card"></div>
+<button id="sound">Sound: off</button>
+
+<div id="creator">
+  <h2>WHO ARE <span>YOU</span>?</h2>
+  <label>Look</label>
+  <div class="presets" id="presets"></div>
+  <label for="name">Name</label>
+  <input id="name" maxlength="16" value="Avery" autocomplete="off">
+  <label>Pronouns</label>
+  <div class="seg" id="pron">
+    <button data-p="they,them,their" class="on">they/them</button><button data-p="she,her,her">she/her</button><button data-p="he,him,his">he/him</button>
+  </div>
+  <label>Voice</label>
+  <div class="seg" id="voice">
+    <button data-v="af_heart" class="on">Voice A</button><button data-v="am_michael">Voice B</button>
+  </div>
+  <button id="begin">START YOUR CAREER</button>
+</div>
+
+<div id="title"><h1>THE <span>CISO</span> LADDER</h1><p>TAP TO BEGIN</p></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="cl.js"></script>
+<script src="ep1.js"></script>
+<script>
+const PRESETS = [
+  { id: "p1", ready: true }, { id: "p2", ready: true },
+  { id: "p3" }, { id: "p4" }, { id: "p5" }, { id: "p6" },
+];
+const creatorShot = () => ({ bg: CL.hasBg("creator_bg") ? "creator_bg" : "soc_night", actors: [{ rig: "PLAYER_desk", who: "PLAYER", x: 46, y: 0, h: 88, z: 1.3, my: 40, mh: 50 }],
+  cam: { from: { zoom: 1.12, px: -.03 }, to: { zoom: 1.05, px: .03 }, dur: 14 } });
+
+async function creator() {
+  const box = document.getElementById("creator"), ps = document.getElementById("presets");
+  ps.innerHTML = PRESETS.map(p => `<button class="preset ${p.ready ? "" : "locked"} ${p.id === CL.state.preset ? "on" : ""}" data-id="${p.id}" aria-label="Look ${p.id.slice(1)}">${p.ready ? `<img src="assets/rigs/${p.id}_desk.webp" alt="">` : ""}</button>`).join("");
+  ps.onclick = async e => {
+    const b = e.target.closest(".preset"); if (!b || b.classList.contains("locked")) return;
+    ps.querySelectorAll(".preset").forEach(x => x.classList.toggle("on", x === b));
+    CL.state.preset = b.dataset.id; await CL.shot(creatorShot());
+  };
+  document.getElementById("pron").onclick = e => { const b = e.target.closest("button"); if (!b) return;
+    [...e.currentTarget.children].forEach(x => x.classList.toggle("on", x === b)); CL.state.pron = b.dataset.p.split(","); };
+  document.getElementById("voice").onclick = async e => { const b = e.target.closest("button"); if (!b) return;
+    [...e.currentTarget.children].forEach(x => x.classList.toggle("on", x === b)); CL.state.voice = b.dataset.v;
+    const was = CL.sound; CL.sound = true; await CL.say("PLAYER", "e1_p_who", "Okay. Okay. Who do you call at three in the morning?", "#7fd1c7"); CL.sound = was; };
+  await CL.shot(creatorShot());
+  box.classList.add("on");
+  await new Promise(r => document.getElementById("begin").onclick = r);
+  CL.state.name = (document.getElementById("name").value.trim() || "Avery").replace(/[<>&"]/g, "");
+  box.classList.remove("on");
+}
+
+document.getElementById("title").onclick = async function () {
+  if (CL.sound) CL.unlockAudio();
+  this.style.transition = "opacity .8s"; this.style.opacity = 0;
+  setTimeout(() => this.remove(), 800);
+  await CL.load();
+  await creator();
+  await CL.run(EP1);
+};
+</script>
+</body>
+</html>
