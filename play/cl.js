@@ -219,10 +219,13 @@
     if (cut === "dissolve" || cut === "whip") ov = snapshot();
     // art that is not painted yet falls back so the scene still plays
     // a keyframe drawn with one player look only plays for that look
-    const wrongLook = s.look && s.look !== CL.state.preset;
+    // keyframes drawn per player look: kf_player_walk (look p1) and kf_player_walk_p3 (look p3, etc.)
+    let bgName = s.bg;
+    if (s.look && s.look !== CL.state.preset) bgName = CL.hasBg(`${s.bg}_${CL.state.preset}`) ? `${s.bg}_${CL.state.preset}` : null;
+    const useBg = bgName && CL.hasBg(bgName) ? bgName : (s.bg ? (s.fallback ?? null) : null);
     const seq = ++shotSeq;
-    if (CL.ambience) CL.ambience(s.bg && (wrongLook || !CL.hasBg(s.bg)) ? (s.fallback ?? null) : s.bg);
-    await setBg(s.bg && (wrongLook || !CL.hasBg(s.bg)) ? (s.fallback ?? null) : s.bg);
+    if (CL.ambience) CL.ambience(useBg);
+    await setBg(useBg);
     if (walkTl) { walkTl.kill(); walkTl = null; }
     if (s.walk) // footsteps: a soft vertical bob riding under the camera move
       walkTl = gsap.to(cam, { y: `+=${s.walk}`, duration: .29, yoyo: true, repeat: -1, ease: "sine.inOut" });

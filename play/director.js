@@ -32,19 +32,23 @@
   // which way each painted rig faces; in a close-up the speaker should look toward the player
   const FACES_LEFT = new Set(["richard", "marcus_phone", "marcus_office"]);
 
-  function rigFor(who) {
+  // rooms lit by the SOC's teal monitors; everywhere else the player gets the warm-lit look
+  const TEAL_ROOMS = new Set(["soc_night", "war_room"]);
+  function rigFor(who, bg) {
     const want = RIGS[who] || who.toLowerCase();
     const have = CL.manifest.rigs || [];
     if (want === "PLAYER_desk") {
       // the player dresses up as they climb: executive look from Episode 3 on, when drawn
-      return (CL.state.episode || 1) >= 3 && have.includes(`${CL.state.preset}_exec`) ? "PLAYER_exec" : want;
+      if ((CL.state.episode || 1) >= 3 && have.includes(`${CL.state.preset}_exec`)) return "PLAYER_exec";
+      if (bg && !TEAL_ROOMS.has(bg) && have.includes(`${CL.state.preset}_warm`)) return "PLAYER_warm";
+      return want;
     }
     if (have.includes(want)) return want;
     if (who === "Marcus" && have.includes("marcus_phone")) return "marcus_phone";
     return null;  // no art yet: subtitle over the room
   }
   function closeUp(who, bg) {
-    const rig = rigFor(who);
+    const rig = rigFor(who, bg);
     const isP = who === "PLAYER";
     return { bg, focus: rig ? "near" : null, shake: .0012,
       actors: rig ? [{ rig, who, x: isP ? 4 : 44, y: 0, h: 90, z: 1.3, flip: !isP && !FACES_LEFT.has(rig) }] : [],
