@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CISO Ladder Feedback Studio</title>
+<meta name="description" content="Log bugs and ideas for The CISO Ladder. CIS 424, Purple Protocol, Sprint 2.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07080b;--panel:#0f1117;--field:#151821;--line:#2a2e38;--text:#f2f3f5;--muted:#b7bdc8;--gold:#e8b33a;--red:#e2554b;--teal:#7fd1c7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at top,rgba(232,179,58,.08),transparent 60%)}
+.wrap{position:relative;max-width:720px;margin:0 auto;padding:28px 16px 60px}
+h1{font-family:"Bebas Neue";font-size:clamp(44px,9vw,72px);letter-spacing:.04em;line-height:.95}
+h1 span{color:var(--gold)}
+.lead{color:var(--muted);font-size:16px;line-height:1.55;margin-top:12px}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.links a{color:var(--text);text-decoration:none;font-size:14px;font-weight:500;border:1px solid var(--line);background:var(--panel);padding:8px 12px;border-radius:6px}
+.links a:hover{border-color:var(--gold)}
+.links a b{color:var(--gold);font-weight:700;margin-right:6px}
+form{margin-top:26px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px}
+label.k{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+label.k:first-child{margin-top:0}
+.row label.k:first-child{margin-top:18px}
+input[type=text],select,textarea{width:100%;background:var(--field);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:11px 12px;font:inherit;font-size:16px}
+textarea{min-height:130px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{cursor:pointer;font-size:14px;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--field);color:var(--text)}
+.chips input:checked+label{background:var(--gold);color:#111;border-color:var(--gold);font-weight:700}
+.chips input:focus-visible+label{outline:2px solid var(--teal);outline-offset:2px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+.hint{font-size:13px;color:var(--muted);margin-top:6px}
+button{margin-top:22px;width:100%;font:inherit;font-weight:700;font-size:17px;letter-spacing:.04em;background:var(--gold);color:#111;border:0;border-radius:6px;padding:14px;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+#msg{margin-top:12px;font-size:15px;min-height:1.4em}
+#msg.ok{color:var(--teal)}#msg.err{color:#f0a59e}
+h2{font-family:"Bebas Neue";font-size:30px;letter-spacing:.05em;margin-top:34px}
+#mine{margin-top:10px;display:grid;gap:8px}
+.item{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.item .top{display:flex;justify-content:space-between;gap:8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.item .top b{color:var(--gold)}
+.item p{font-size:15px;line-height:1.45;margin-top:6px;white-space:pre-wrap;word-wrap:break-word}
+.item .st{color:var(--teal)}.item .st.q{color:#f0a59e}
+.empty{color:var(--muted);font-size:15px}
+footer{margin-top:40px;color:var(--muted);font-size:13px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The CISO Ladder <span>Feedback Studio</span></h1>
+  <p class="lead">Play the game, then drop anything you notice here: bugs, confusing moments, story ideas, facts that look off. One note per thing is easiest. Pat reviews every note and decides what goes into the game.</p>
+  <div class="links">
+    <a href="../play/" target="_blank" rel="noopener"><b>Play</b>Full game</a>
+    <a href="../play/?class=1" target="_blank" rel="noopener"><b>Class</b>QR version, sound off</a>
+    <a href="../present/" target="_blank" rel="noopener"><b>Map</b>Decision map</a>
+  </div>
+
+  <form id="f" autocomplete="off">
+    <label class="k" for="name">Your name</label>
+    <input type="text" id="name" maxlength="40" required placeholder="First name is fine">
+
+    <label class="k" id="tl">What kind of note</label>
+    <div class="chips" role="radiogroup" aria-labelledby="tl" id="types"></div>
+
+    <div class="row">
+      <div>
+        <label class="k" for="area">Where in the game</label>
+        <select id="area"></select>
+      </div>
+      <div id="sevbox">
+        <label class="k" for="sev">How bad</label>
+        <select id="sev">
+          <option value="minor">Minor, cosmetic</option>
+          <option value="annoying">Annoying but playable</option>
+          <option value="blocker">Stops the game</option>
+        </select>
+      </div>
+    </div>
+
+    <label class="k" for="txt">What happened, or what you would change</label>
+    <textarea id="txt" maxlength="2000" required placeholder="Be specific: the scene, the line, what you tapped, what you expected."></textarea>
+    <p class="hint">Phone or laptop is filled in for you.</p>
+
+    <button type="submit" id="go">Send note</button>
+    <div id="msg" role="status" aria-live="polite"></div>
+  </form>
+
+  <h2>Your notes</h2>
+  <div id="mine"></div>
+
+  <footer>Notes go to Pat's review queue for the project. Keep them about the game: no passwords or anything personal.</footer>
+</div>
+<script>
+// Notes go to the project's ntfy.sh feedback topic (a separate topic from the game's vote relay).
+// Pat's laptop pulls the topic into a local review queue (tools/feedback_pull.py) well inside ntfy's
+// 12 hour cache, then he approves or denies each note (tools/feedback_review.pyw).
+// ?test=1 uses a rehearsal topic so trial notes never reach the real queue.
+const RELAY = "https://ntfy.sh/ciso-ladder-fb-f2b2393365daec0d" + (/[?&]test=1/.test(location.search) ? "-test" : "");
+const TYPES = [["bug","Bug"],["idea","Idea"],["story","Story or writing"],["fact","Fact check"],["look","Look and sound"]];
+const AREAS = ["Whole game","Character creator","Episode 1","Episode 2","Episode 3","Episode 4","Episode 5","Ending and recap","Decision map","Voices and audio","Phone layout"];
+const $ = id => document.getElementById(id);
+const store = {
+  get(k, d){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch(e){ return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+};
+
+$("types").innerHTML = TYPES.map(([v,t],i) =>
+  `<input type="radio" name="type" id="t_${v}" value="${v}"${i?"":" checked"}><label for="t_${v}">${t}</label>`).join("");
+$("area").innerHTML = AREAS.map(a => `<option>${a}</option>`).join("");
+$("name").value = store.get("fb_name", "");
+const pre = new URLSearchParams(location.search).get("area");
+if (pre && AREAS.includes(pre)) $("area").value = pre;
+
+const typeNow = () => document.querySelector("input[name=type]:checked").value;
+const syncSev = () => { $("sevbox").style.visibility = typeNow() === "bug" ? "visible" : "hidden"; };
+$("types").addEventListener("change", syncSev); syncSev();
+
+const device = () => {
+  const ua = navigator.userAgent;
+  const kind = /iPhone|Android.+Mobile/.test(ua) ? "phone" : /iPad|Android/.test(ua) ? "tablet" : "laptop";
+  const os = /iPhone|iPad|Mac OS X/.test(ua) ? (/Mobile/.test(ua) ? "iOS" : "Mac") : /Android/.test(ua) ? "Android" : /Windows/.test(ua) ? "Windows" : "other";
+  const br = /Edg\//.test(ua) ? "Edge" : /CriOS|Chrome\//.test(ua) ? "Chrome" : /FxiOS|Firefox\//.test(ua) ? "Firefox" : /Safari\//.test(ua) ? "Safari" : "other";
+  return `${kind}, ${os}, ${br}, ${innerWidth}x${innerHeight}`;
+};
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function render(){
+  const mine = store.get("fb_mine", []);
+  $("mine").innerHTML = mine.length ? mine.slice().reverse().map(m => `<div class="item">
+    <div class="top"><span><b>${esc((TYPES.find(t=>t[0]===m.t)||[0,m.t])[1])}</b> &middot; ${esc(m.a)}</span>
+    <span class="st${m.sent?"":" q"}">${m.sent?"Sent":"Not sent yet"}</span></div>
+    <p>${esc(m.x)}</p></div>`).join("") : `<p class="empty">Nothing yet. Your notes show up here on this device.</p>`;
+}
+
+const send = note => fetch(RELAY, { method: "POST", body: JSON.stringify(note),
+  signal: AbortSignal.timeout ? AbortSignal.timeout(8000) : undefined })
+  .then(r => { if (!r.ok) throw new Error("status " + r.status); });
+
+// anything that failed earlier (bad WiFi, rate limit) goes out again when the page opens
+async function retry(){
+  const mine = store.get("fb_mine", []);
+  let changed = false;
+  for (const m of mine) if (!m.sent) { try { await send(m.note); m.sent = true; changed = true; } catch(e){ break; } }
+  if (changed) { store.set("fb_mine", mine); render(); }
+}
+
+$("f").addEventListener("submit", async e => {
+  e.preventDefault();
+  const name = $("name").value.trim(), x = $("txt").value.trim();
+  if (!name || !x) return;
+  store.set("fb_name", name);
+  const t = typeNow();
+  const note = { k: "fb", id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+    n: name, t, a: $("area").value, sev: t === "bug" ? $("sev").value : "", x, dev: device(), ts: new Date().toISOString() };
+  const entry = { t, a: note.a, x, sent: false, note };
+  const mine = store.get("fb_mine", []); mine.push(entry);
+  $("go").disabled = true; $("msg").className = ""; $("msg").textContent = "Sending...";
+  try {
+    await send(note); entry.sent = true;
+    $("msg").className = "ok"; $("msg").textContent = "Sent. Thanks, add another any time.";
+    $("txt").value = "";
+  } catch(err) {
+    $("msg").className = "err"; $("msg").textContent = "Could not send right now. It is saved and will retry next time you open this page.";
+  }
+  store.set("fb_mine", mine); render(); $("go").disabled = false;
+});
+
+render(); retry();
+</script>
+</body>
+</html>
