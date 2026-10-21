@@ -52,7 +52,7 @@ footer{margin-top:40px;color:var(--muted);font-size:13px;line-height:1.5}
 <body>
 <div class="wrap">
   <h1>The CISO Ladder <span>Feedback Studio</span></h1>
-  <p class="lead">Play the game, then drop anything you notice here: bugs, confusing moments, story ideas, facts that look off. One note per thing is easiest. Pat reviews every note and decides what goes into the game.</p>
+  <p class="lead">Play the game, then drop anything you notice here: bugs, confusing moments, story ideas, facts that look off. One note per thing is easiest. Open through October 30. Pat reviews every note and decides what goes into the game.</p>
   <div class="links">
     <a href="../play/" target="_blank" rel="noopener"><b>Play</b>Full game</a>
     <a href="../play/?class=1" target="_blank" rel="noopener"><b>Class</b>QR version, sound off</a>
@@ -169,7 +169,12 @@ $("f").addEventListener("submit", async e => {
   store.set("fb_mine", mine); render(); $("go").disabled = false;
 });
 
-render(); retry();
+// Feedback closes at the end of Thu Oct 30 (Eastern). The laptop's last pull runs early Oct 31.
+const CLOSES = new Date("2026-10-31T00:00:00-04:00");
+if (new Date() >= CLOSES) {
+  $("f").innerHTML = `<p class="lead" style="margin:0">Feedback closed on October 30. Thanks for every note.</p>`;
+  render();
+} else { render(); retry(); }
 </script>
 </body>
 </html>
