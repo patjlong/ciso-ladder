@@ -1,8 +1,8 @@
 {
  "5.9a": {
   "skill": "Career ended by concealment",
-  "real": "Hiding a breach breaks incident response, because the organization needs the truth in time to contain the harm and tell the people who must act. The path to CISO is that trust, and reporting bad news early is how you keep it.",
-  "path": "You hid the breach from the company."
+  "real": "Telling no customers or regulators about a breach is concealment, and it breaks incident response, because the people who must act never get the truth in time. The path to CISO runs on trust, and reporting bad news early is how you keep it.",
+  "path": "You told no customers or regulators about the breach."
  },
  "5.9b": {
   "skill": "Stepped away from burnout",
@@ -11,8 +11,8 @@
  },
  "5.9c": {
   "skill": "Fortune 500 CISO seat",
-  "real": "A larger CISO seat is still an executive communication job: you turn risk into decisions leaders can use, and you own how people were treated on the way up. Honest incident reports and plain briefings are how you carry trust into that role.",
-  "path": "You chose the outside CISO role, kept the breach visible, and held enough balance to take the seat."
+  "real": "A larger CISO seat is still an executive communication job: you turn risk into decisions leaders can use, and you own how people were treated on the way up. Recruiters check references, so the seat goes to leaders with real executive trust and no history of blaming staff.",
+  "path": "You chose the outside CISO role with strong executive trust, never blamed an employee, kept the breach visible, and held enough balance to take the seat."
  },
  "5.9d": {
   "skill": "Independent virtual CISO",
@@ -26,13 +26,13 @@
  },
  "5.9f": {
   "skill": "Won the internal chair",
-  "real": "The internal chair goes to the leader who can brief risk in business language or bring in law enforcement when a serious incident calls for it. Refusing to blame one employee also protects the next report, because people speak up when the focus stays on the process.",
-  "path": "You fought for the bank chair, gave a business briefing or called law enforcement, refused to blame an employee, kept the breach visible, and held your balance."
+  "real": "The internal chair goes to the leader the board trusts, who can brief risk in business language or bring in law enforcement when a serious incident calls for it. Refusing to blame one employee also protects the next report, because people speak up when the focus stays on the process.",
+  "path": "You fought for the bank chair with strong executive trust, gave a business briefing or called law enforcement, refused to blame an employee, kept the breach visible, and held your balance."
  },
  "5.9g": {
   "skill": "Passed over, role remains",
-  "real": "Staying silent, skipping both the business briefing and the law enforcement call, or blaming one employee leaves the chair with someone else. You still have a role because you can see where the risk hides, and plain executive communication plus fair incident handling keep another door open.",
-  "path": "You stayed silent, or you fought without a business briefing and without a law enforcement call, or you blamed an employee, while keeping the breach visible and holding your balance."
+  "real": "Staying silent, falling short on executive trust, skipping both the business briefing and the law enforcement call, or blaming one employee leaves the top seat with someone else. You still have a role because you can see where the risk hides, and plain executive communication plus fair incident handling keep another door open.",
+  "path": "You stayed silent, or went for a top seat without enough executive trust, a business case, or a clean record on blame, while keeping the breach visible and holding your balance."
  },
  "1.1#1": {
   "skill": "career motivation",
@@ -400,28 +400,6 @@
    }
   ]
  },
- "3.2#2": {
-  "skill": "sustainable pace",
-  "real": "Incident-heavy years can train you to treat exhaustion as loyalty. A future CISO still needs a clear head for the next decision, so a life outside the building is part of the work.",
-  "opts": [
-   {
-    "pro": "You protect sleep and judgment",
-    "con": "Some will read it as less driven"
-   },
-   {
-    "pro": "You stay on the hard problem",
-    "con": "Burnout makes later calls worse"
-   },
-   {
-    "pro": "You name the win out loud",
-    "con": "Skips the question about how you are"
-   },
-   {
-    "pro": "You skip a hard personal answer",
-    "con": "People who care get nothing back"
-   }
-  ]
- },
  "3.3#1": {
   "skill": "executive visibility",
   "real": "People on the path to CISO get judged on whether they can give a clear security view in the room. Bringing a sponsor, going alone, or handing her the lead changes who the business learns to trust.",
@@ -582,7 +560,7 @@
  },
  "4.3#1": {
   "skill": "external escalation judgment",
-  "real": "Once an incident may be a crime, counsel, outside forensics, and sometimes law enforcement each have a job. Making that choice promptly protects evidence and keeps legal duties from sitting idle.",
+  "real": "Counsel and security decide together whether to call law enforcement or outside forensics, and calling the FBI is usually voluntary. The duty you cannot skip is notice to affected customers and regulators, and no option here removes it. Investigating in house is allowed, but it gives up outside evidence skills.",
   "opts": [
    {
     "pro": "Puts the crime before investigators",
@@ -593,8 +571,8 @@
     "con": "Can slow the answer counsel wants"
    },
    {
-    "pro": "Limits who learns of the incident",
-    "con": "You may miss a legal duty"
+    "pro": "Keeps the investigation in house",
+    "con": "Weaker evidence, and a record that you went it alone"
    },
    {
     "pro": "Avoids an outside call you regret",
@@ -647,24 +625,24 @@
   ]
  },
  "4.6#1": {
-  "skill": "public disclosure judgment",
-  "real": "A public breach statement should offer verified facts and the steps customers should take. Full disclosure, limited facts, and deliberate silence are all choices you should be ready to explain.",
+  "skill": "breach disclosure",
+  "real": "Telling affected customers and regulators is a legal duty after most breaches, and the public statement is a separate choice about how much to say. A full account or verified limited facts can both be defended. Telling no one outside is concealment, and it ends careers.",
   "opts": [
    {
     "pro": "Gives customers the full account",
-    "con": "Early detail may be wrong or harmful"
+    "con": "Headlines quote every detail"
    },
    {
     "pro": "Shares verified facts customers can use",
     "con": "A short note can look evasive"
    },
    {
-    "pro": "Shields the live investigation",
-    "con": "Rumor fills the public silence"
+    "pro": "Nothing public to quote today",
+    "con": "Customers and regulators are owed notice"
    },
    {
-    "pro": "Holds the wording for a final look",
-    "con": "Customers get no guidance at all"
+    "pro": "Counsel's careful version still goes out",
+    "con": "Someone else made your call"
    }
   ]
  },
@@ -778,28 +756,6 @@
    }
   ]
  },
- "5.5#1": {
-  "skill": "upward team advocacy",
-  "real": "Questions about tools land on the people who run them. A CISO sets up that moment so staff can speak plainly and still feel backed.",
-  "opts": [
-   {
-    "pro": "You commit to plain answers",
-    "con": "Honesty can surface a gap"
-   },
-   {
-    "pro": "A peer can support the facts",
-    "con": "You may look unable to speak"
-   },
-   {
-    "pro": "You shield Priya from the room",
-    "con": "The room loses her knowledge"
-   },
-   {
-    "pro": "You avoid a rushed promise",
-    "con": "Priya enters without cover"
-   }
-  ]
- },
  "5.6#1": {
   "skill": "budget tradeoff judgment",
   "real": "A rollout signed quickly will draw questions about what it touches. Tools help only when trained people operate them, so a CISO defends people, process, and technology together.",
@@ -846,15 +802,15 @@
  },
  "5.8#1": {
   "skill": "career path judgment",
-  "real": "A larger chair rewards judgment more than comfort. An outside role, independent advisory work, or a hands-on technical path can each be a sound fit.",
+  "real": "A larger chair rewards judgment more than comfort. The outside seat and the internal chair go to leaders the executives trust and who did not pin the breach on staff, while independent advisory work or a hands-on technical path can each be a sound fit.",
   "opts": [
    {
     "pro": "You try the role elsewhere",
-    "con": "You leave this opening behind"
+    "con": "Needs executive trust and a clean record"
    },
    {
     "pro": "You contend for this chair",
-    "con": "A title will not steady you"
+    "con": "Needs trust and a plain business case"
    },
    {
     "pro": "You advise across organizations",
@@ -867,6 +823,1062 @@
    {
     "pro": "You avoid a panicked pick",
     "con": "Freezing lets the moment pass"
+   }
+  ]
+ },
+ "1.5g#1": {
+  "skill": "discretion about sensitive work",
+  "real": "Compliance work often touches information you cannot share at home. Knowing what stays confidential, and owning what you do not know yet, are early habits of a governance career.",
+  "opts": [
+   {
+    "pro": "Keeps confidential work details private",
+    "con": "Shuts out someone who supports you"
+   },
+   {
+    "pro": "Treats asking as part of learning",
+    "con": "Can feel like admitting weakness"
+   },
+   {
+    "pro": "Learns the actual policy, not rumors",
+    "con": "Reading everything can bury the key rules"
+   },
+   {
+    "pro": "Avoids oversharing about sensitive work",
+    "con": "Leaves the stress with nowhere to go"
+   }
+  ]
+ },
+ "1.5x#1": {
+  "skill": "vetting a job offer",
+  "real": "Before taking a security role, ask what is broken and who has authority over your calls. A title without clear reporting lines leaves you responsible without the power to fix anything.",
+  "opts": [
+   {
+    "pro": "Learns the real state before committing",
+    "con": "The answer may be vague or rosy"
+   },
+   {
+    "pro": "Clarifies authority and reporting lines",
+    "con": "Can sound wary to an eager founder"
+   },
+   {
+    "pro": "Shows energy and grabs the chance",
+    "con": "Accepts the role without knowing scope"
+   },
+   {
+    "pro": "Gives time to think it over",
+    "con": "Silence gets read as a yes"
+   }
+  ]
+ },
+ "2.1g#1": {
+  "skill": "third party risk acceptance",
+  "real": "A vendor with a known security gap has to be fixed first or formally accepted as a risk. Only an owner with authority can accept that risk, and the decision should be written down either way.",
+  "opts": [
+   {
+    "pro": "Keeps the deal moving with written commitment",
+    "con": "The access gap stays open until then"
+   },
+   {
+    "pro": "Closes the gap before any exposure",
+    "con": "Delays a purchase the business wants"
+   },
+   {
+    "pro": "Routes risk acceptance to its owner",
+    "con": "Can look like dodging a hard call"
+   },
+   {
+    "pro": "Avoids a fight with procurement",
+    "con": "Silence becomes an undocumented risk waiver"
+   }
+  ]
+ },
+ "2.1x#1": {
+  "skill": "prioritizing quick security wins",
+  "real": "At a small company the first job is closing the easiest doors, like shared passwords and missing second factors. The tension is fixing them now versus disrupting the work that pays the bills.",
+  "opts": [
+   {
+    "pro": "Closes the shared login risk immediately",
+    "con": "Adds friction right before a demo"
+   },
+   {
+    "pro": "Removes the worst exposure with little friction",
+    "con": "Accounts still lack a second factor"
+   },
+   {
+    "pro": "Keeps the demo smooth and calm",
+    "con": "Deferred fixes often never get done"
+   },
+   {
+    "pro": "Avoids pushing back on day one",
+    "con": "The shared password stays exposed"
+   }
+  ]
+ },
+ "2.1x#2": {
+  "skill": "least privilege access",
+  "real": "Giving someone more access than the task needs is how small mistakes become big incidents. A security lead meets the business need with the smallest access that still works.",
+  "opts": [
+   {
+    "pro": "Keeps real customer data out of demos",
+    "con": "Takes setup time you may lack"
+   },
+   {
+    "pro": "Named account with limited rights",
+    "con": "Still shows real customer data on screen"
+   },
+   {
+    "pro": "Fastest way to unblock sales",
+    "con": "Gives full control to a non expert"
+   },
+   {
+    "pro": "Avoids a fight with a colleague",
+    "con": "Shared access becomes the default"
+   }
+  ]
+ },
+ "2.2g#1": {
+  "skill": "challenging executive exceptions",
+  "real": "Senior leaders often get exceptions to controls because they are busy, yet their accounts are the ones attackers target most. Raising it takes nerve, and a negotiated deadline can win the fix without losing the relationship.",
+  "opts": [
+   {
+    "pro": "Records the risk where leaders must see it",
+    "con": "Strains a powerful working relationship"
+   },
+   {
+    "pro": "Keeps peace with a senior leader",
+    "con": "The most targeted accounts stay weakest"
+   },
+   {
+    "pro": "Gets a dated fix and keeps goodwill",
+    "con": "The risk stays open until the deadline"
+   },
+   {
+    "pro": "Avoids an awkward fight",
+    "con": "The exception continues with no record"
+   }
+  ]
+ },
+ "2.2x#1": {
+  "skill": "exposed secret response",
+  "real": "Once a secret key is exposed, the safe assumption is that someone already has it, so it must be rotated. The tradeoff is brief downtime now against a window where an attacker could use it.",
+  "opts": [
+   {
+    "pro": "Shuts the exposure window right away",
+    "con": "Causes a short outage for customers"
+   },
+   {
+    "pro": "Avoids downtime during active sales",
+    "con": "Copies of the key stay usable overnight"
+   },
+   {
+    "pro": "Puts the business tradeoff with its owner",
+    "con": "Delays action while the key is live"
+   },
+   {
+    "pro": "Avoids a rushed technical mistake",
+    "con": "The exposed key stays live"
+   }
+  ]
+ },
+ "2.2x#2": {
+  "skill": "blameless incident culture",
+  "real": "When someone makes an honest mistake, fixing the process usually prevents the next one better than punishment does. Punishing people teaches the team to hide errors, which leaves security blind.",
+  "opts": [
+   {
+    "pro": "Prevents the same mistake for everyone",
+    "con": "Some may see no accountability"
+   },
+   {
+    "pro": "Shows mistakes carry consequences",
+    "con": "Teaches people to hide future errors"
+   },
+   {
+    "pro": "Avoids a harsh call in the moment",
+    "con": "Neither the process nor culture improves"
+   }
+  ]
+ },
+ "2.3g#1": {
+  "skill": "answering an examiner",
+  "real": "Examiners want evidence that a control works, not a document saying it should. Giving exactly what was asked, with proof and known gaps, builds credibility and keeps the review focused.",
+  "opts": [
+   {
+    "pro": "Shows the plan was tested in practice",
+    "con": "Puts known gaps in the record"
+   },
+   {
+    "pro": "Shows thorough documentation exists",
+    "con": "Answers a question nobody asked"
+   },
+   {
+    "pro": "Looks open and cooperative",
+    "con": "Widens the review into untested areas"
+   },
+   {
+    "pro": "Avoids saying something wrong",
+    "con": "Missing evidence becomes a finding"
+   }
+  ]
+ },
+ "2.3g#2": {
+  "skill": "honesty under examination",
+  "real": "When an examiner finds a gap, an honest answer with an owner and a date is stronger than a claim you cannot back up. A false answer under review can turn a small gap into a trust problem.",
+  "opts": [
+   {
+    "pro": "Honest and shows the gap is managed",
+    "con": "Admits the plan is out of date"
+   },
+   {
+    "pro": "Sounds confident in the moment",
+    "con": "Requires proof you do not have"
+   },
+   {
+    "pro": "Lets counsel frame a sensitive answer",
+    "con": "Looks like you cannot answer yourself"
+   },
+   {
+    "pro": "Avoids a misstatement",
+    "con": "Silence is recorded as an answer"
+   }
+  ]
+ },
+ "2.3x#1": {
+  "skill": "honest security questionnaires",
+  "real": "Customers send security questionnaires before they buy, and the answers can become commitments. Answering truthfully with fix dates protects trust, while shading answers creates promises the company may break.",
+  "opts": [
+   {
+    "pro": "Builds trust with accurate answers",
+    "con": "Open gaps may cost the deal"
+   },
+   {
+    "pro": "Explains gaps with context and a plan",
+    "con": "Takes time a small team lacks"
+   },
+   {
+    "pro": "Keeps the sale on track",
+    "con": "False answers become broken commitments"
+   },
+   {
+    "pro": "Avoids arguing with the founder",
+    "con": "The founder submits false answers anyway"
+   }
+  ]
+ },
+ "2.4g#1": {
+  "skill": "tabletop exercise facilitation",
+  "real": "Tabletop exercises exist to find gaps before a real incident does. A good facilitator surfaces the gap, like nobody knowing who decides, instead of acting out authority they would not really have.",
+  "opts": [
+   {
+    "pro": "Uses the plan to find the decider",
+    "con": "Exposes that the role was never filled"
+   },
+   {
+    "pro": "Breaks the stall and shows initiative",
+    "con": "Claims authority you would not have"
+   },
+   {
+    "pro": "Names the real gap for the record",
+    "con": "Can embarrass leaders in the room"
+   },
+   {
+    "pro": "Lets the group work it out",
+    "con": "The exercise ends with no lesson"
+   }
+  ]
+ },
+ "2.4g#2": {
+  "skill": "after action reporting",
+  "real": "An after action report is only useful if it records the real gaps with owners to fix them. Sugarcoating hides the lessons, and naming individuals makes people stop speaking up next time.",
+  "opts": [
+   {
+    "pro": "Turns gaps into owned fixes",
+    "con": "Reads as bad news to leadership"
+   },
+   {
+    "pro": "Easy to share with leadership",
+    "con": "Hides the gaps that need fixing"
+   },
+   {
+    "pro": "Creates individual accountability",
+    "con": "People stop speaking up in exercises"
+   },
+   {
+    "pro": "Avoids writing an uncomfortable report",
+    "con": "Unwritten lessons are lost"
+   }
+  ]
+ },
+ "2.4x#1": {
+  "skill": "holding a release gate",
+  "real": "Storing payment card numbers unencrypted is a risk a security lead should refuse to ship. Limiting a release to internal users can be a middle path, but a promise to fix it later is easy to break.",
+  "opts": [
+   {
+    "pro": "Keeps card data protected from day one",
+    "con": "Delays a launch the founder wants"
+   },
+   {
+    "pro": "Ships without exposing customer card data",
+    "con": "Still stores some card data unprotected"
+   },
+   {
+    "pro": "Meets the launch date",
+    "con": "Exposes real card numbers to theft"
+   },
+   {
+    "pro": "Avoids a confrontation at the deadline",
+    "con": "The release ships unencrypted by default"
+   }
+  ]
+ },
+ "2.5g#1": {
+  "skill": "integrity of risk ratings",
+  "real": "Risk ratings only work if they reflect the real risk, not who asked nicely. Keeping the rating while noting progress is fair, and sending pressure to the right reviewers protects the process.",
+  "opts": [
+   {
+    "pro": "Keeps the rating accurate and credits progress",
+    "con": "Strains ties with a powerful ally"
+   },
+   {
+    "pro": "Earns goodwill with a senior leader",
+    "con": "Misleads everyone who relies on ratings"
+   },
+   {
+    "pro": "Moves the pressure to proper reviewers",
+    "con": "Can look like going over her head"
+   },
+   {
+    "pro": "Avoids a direct confrontation",
+    "con": "Silence gets read as agreement"
+   }
+  ]
+ },
+ "2.5x#1": {
+  "skill": "defending a security budget",
+  "real": "When money runs short, security leaders must decide what is essential and what can wait. Protecting core controls like logging and backups while giving up extras is usually a defensible line.",
+  "opts": [
+   {
+    "pro": "Protects colleagues and their jobs",
+    "con": "Leaves security running on thin tools"
+   },
+   {
+    "pro": "Saves money while keeping core controls",
+    "con": "Loses useful tools and coverage"
+   },
+   {
+    "pro": "Keeps full protection for a payments firm",
+    "con": "Costs colleagues their jobs"
+   },
+   {
+    "pro": "Avoids choosing who loses out",
+    "con": "Others decide without security input"
+   }
+  ]
+ },
+ "2.5x#2": {
+  "skill": "honesty about limits",
+  "real": "A one person security team cannot cover everything, and pretending otherwise hides real risk. Being honest about the gaps and your own limits is how the people around you can help.",
+  "opts": [
+   {
+    "pro": "Honest about the real gaps",
+    "con": "Can feel discouraging to hear"
+   },
+   {
+    "pro": "Keeps spirits up for tonight",
+    "con": "Hides risk and your own doubts"
+   },
+   {
+    "pro": "Names burnout before it causes mistakes",
+    "con": "Shows strain you may want hidden"
+   },
+   {
+    "pro": "Takes a quiet moment to rest",
+    "con": "Leaves the worries unspoken"
+   }
+  ]
+ },
+ "2.6g#1": {
+  "skill": "choosing an audit credential",
+  "real": "On a governance path, an audit credential shows you can test controls and judge evidence. The broad management cert takes years of paid work before you can hold it, so the order matters as much as the choice.",
+  "opts": [
+   {
+    "pro": "Fits the audit work you do now",
+    "con": "Narrower than a broad management cert"
+   },
+   {
+    "pro": "Builds the broad view leaders need",
+    "con": "Long study before you can hold it"
+   },
+   {
+    "pro": "Protects rest and avoids burnout",
+    "con": "Delays credentials some roles screen for"
+   },
+   {
+    "pro": "Avoids a rushed commitment",
+    "con": "No plan means no progress"
+   }
+  ]
+ },
+ "2.6x#1": {
+  "skill": "negotiating a return role",
+  "real": "When a company is acquired, its security work gets reviewed by the buyer. Coming back well means asking for a role that fits what you actually did and reporting concerns as facts.",
+  "opts": [
+   {
+    "pro": "Accepts quickly and brings hard lessons",
+    "con": "May accept a role below your experience"
+   },
+   {
+    "pro": "Matches the role to proven experience",
+    "con": "Could look demanding to a new employer"
+   },
+   {
+    "pro": "Puts known risks on the record",
+    "con": "Can sound like settling scores"
+   },
+   {
+    "pro": "Avoids overcommitting in a hard moment",
+    "con": "Leaves your role for others to define"
+   }
+  ]
+ },
+ "3.2e#1": {
+  "skill": "certs for an engineer",
+  "real": "Engineers choose between hands on offensive credentials and broad management ones based on where they want to go. Some build their reputation on shipped work instead, which only counts if others can see it.",
+  "opts": [
+   {
+    "pro": "Builds attacker skills that improve defenses",
+    "con": "Little help moving into management"
+   },
+   {
+    "pro": "Helps engineers speak the language of risk",
+    "con": "Less hands on depth for builders"
+   },
+   {
+    "pro": "Keeps time on real building work",
+    "con": "Some roles screen for credentials first"
+   },
+   {
+    "pro": "Avoids picking the wrong path quickly",
+    "con": "No plan stalls career growth"
+   }
+  ]
+ },
+ "3.2i#1": {
+  "skill": "certs for incident responders",
+  "real": "Incident responders choose between a broad credential that helps them talk to executives and a hands on one that teaches attacker thinking. Learning from live incidents builds skill too, but leaves no proof on paper.",
+  "opts": [
+   {
+    "pro": "Helps explain incidents to executives",
+    "con": "Less hands on attack practice"
+   },
+   {
+    "pro": "Teaches how attackers actually think",
+    "con": "Heavy lab time on top of on call"
+   },
+   {
+    "pro": "Builds skill from real incidents",
+    "con": "No credential for roles that require one"
+   },
+   {
+    "pro": "Avoids a hasty commitment",
+    "con": "Leaves the plan undecided for managers"
+   }
+  ]
+ },
+ "3.3e#1": {
+  "skill": "detection rule tuning",
+  "real": "Every detection rule trades missed attacks against false alarms. Rules that fire on everything get ignored, rules that are too tight miss real attacks, and testing a rule against a teammate playing attacker shows where it breaks.",
+  "opts": [
+   {
+    "pro": "Misses nothing at first",
+    "con": "Alert fatigue leads people to mute it"
+   },
+   {
+    "pro": "Quiet, high quality alerts",
+    "con": "Misses attacks that skip a condition"
+   },
+   {
+    "pro": "Tests the rule against a live attempt",
+    "con": "Takes more time before launch"
+   },
+   {
+    "pro": "Avoids choosing the wrong tradeoff",
+    "con": "Noisy default rules wear out the team"
+   }
+  ]
+ },
+ "3.3i#1": {
+  "skill": "stopping payment fraud",
+  "real": "Fraudulent payment requests often impersonate an executive and push a deadline. Verifying through a known channel or freezing the payment stops the loss, and someone has to own that call before the money moves.",
+  "opts": [
+   {
+    "pro": "Stops the money before it leaves",
+    "con": "May anger leaders if it was real"
+   },
+   {
+    "pro": "Verifies through a trusted known number",
+    "con": "Takes minutes you may not have"
+   },
+   {
+    "pro": "Respects finance ownership of payments",
+    "con": "A rushed clerk may approve it"
+   },
+   {
+    "pro": "Avoids overstepping into finance",
+    "con": "Someone else must catch it in time"
+   }
+  ]
+ },
+ "3.3i#2": {
+  "skill": "fixing fraud controls",
+  "real": "After a near miss, the strongest fix is a process control, like calling back on a known number before large payments. Training with the real example helps too, while punishing the employee makes the next one hide it.",
+  "opts": [
+   {
+    "pro": "Blocks the same scam even from executives",
+    "con": "Adds friction to every large payment"
+   },
+   {
+    "pro": "Real examples teach better than slides",
+    "con": "Training alone may not stop the next one"
+   },
+   {
+    "pro": "Signals the mistake was serious",
+    "con": "The next mistake gets hidden, not reported"
+   },
+   {
+    "pro": "Gives everyone time to cool off",
+    "con": "The process gap stays open"
+   }
+  ]
+ },
+ "3.4e#1": {
+  "skill": "fixing over privileged accounts",
+  "real": "Red team findings often reveal service accounts with too much access and no owner. Fixing them can break builds, so the choice is between disruption now and leaving a known door open.",
+  "opts": [
+   {
+    "pro": "Closes the door immediately",
+    "con": "Breaks builds that depend on it"
+   },
+   {
+    "pro": "Least access with clear ownership",
+    "con": "Takes more work than disabling it"
+   },
+   {
+    "pro": "Weighs how hard the attack really is",
+    "con": "Underrates doors attackers use once inside"
+   },
+   {
+    "pro": "Protects the release schedule",
+    "con": "Known weakness stays open during release"
+   },
+   {
+    "pro": "Avoids a fight over the release",
+    "con": "The open door has no fix planned"
+   }
+  ]
+ },
+ "3.4i#1": {
+  "skill": "ransom negotiation discipline",
+  "real": "Attackers push victims to respond fast and on their terms. Containing and scoping first, and involving counsel before any contact, keeps the organization in control of its own clock.",
+  "opts": [
+   {
+    "pro": "Contains damage before any contact",
+    "con": "Attackers may raise the pressure meanwhile"
+   },
+   {
+    "pro": "Tests whether their claim is real",
+    "con": "Talks to attackers before counsel agrees"
+   },
+   {
+    "pro": "Sets a firm line early",
+    "con": "Provokes them into leaking data"
+   },
+   {
+    "pro": "Gives the team room to contain",
+    "con": "Leaves the team without clear direction"
+   }
+  ]
+ },
+ "3.4i#2": {
+  "skill": "ransomware recovery decision",
+  "real": "Recovering from backups is slower but keeps control in the organization's hands. Paying gives no guarantee of a working key or deleted data, so counsel and outside experts often help guide the choice.",
+  "opts": [
+   {
+    "pro": "Recovers without paying criminals",
+    "con": "Slow recovery disrupts the business"
+   },
+   {
+    "pro": "Brings expertise and legal protection",
+    "con": "Adds cost and outside dependence"
+   },
+   {
+    "pro": "May reopen the branch faster",
+    "con": "No guarantee of a key or deletion"
+   },
+   {
+    "pro": "Avoids owning a painful call",
+    "con": "The leader gets no recommendation"
+   }
+  ]
+ },
+ "3.5e#1": {
+  "skill": "supply chain release decision",
+  "real": "When a library in the build may be compromised, shipping without knowing what is inside puts customers at risk. Rolling back to a known good version can protect both the schedule and the customers.",
+  "opts": [
+   {
+    "pro": "Nothing unknown reaches customers",
+    "con": "Slips a date leaders promised"
+   },
+   {
+    "pro": "Ships on time with known code",
+    "con": "Old version may lack recent fixes"
+   },
+   {
+    "pro": "Meets the release date",
+    "con": "Ships unreviewed code to customers"
+   },
+   {
+    "pro": "Avoids a direct clash with leadership",
+    "con": "The release ships with no decision"
+   }
+  ]
+ },
+ "3.5e#2": {
+  "skill": "software supply chain controls",
+  "real": "Teams cannot protect libraries they do not know they run, so an inventory comes first. Review gates help, but only if they are fast enough that developers do not route around them.",
+  "opts": [
+   {
+    "pro": "Stops unreviewed versions at the door",
+    "con": "Slow gates get bypassed"
+   },
+   {
+    "pro": "Builds the inventory every control needs",
+    "con": "Big effort before anything is blocked"
+   },
+   {
+    "pro": "Keeps development fast and simple",
+    "con": "One bad maintainer reaches production"
+   },
+   {
+    "pro": "Puts it on the agenda for later",
+    "con": "Nothing stops the next bad version"
+   }
+  ]
+ },
+ "3.5i#1": {
+  "skill": "sustainable on call staffing",
+  "real": "Incident response burns people out when a few carry the pager every night. A leader's job is to push for a real rotation rather than absorb the load or dump it on a tired teammate.",
+  "opts": [
+   {
+    "pro": "Fixes the staffing problem at its source",
+    "con": "Spends political capital with leadership"
+   },
+   {
+    "pro": "Gives Sam rest tonight",
+    "con": "Your own burnout keeps growing"
+   },
+   {
+    "pro": "Gets you one night of rest",
+    "con": "Shifts burnout to a tired teammate"
+   },
+   {
+    "pro": "Avoids a hard choice at night",
+    "con": "The page goes unanswered"
+   }
+  ]
+ },
+ "3.6e#1": {
+  "skill": "career direction reflection",
+  "real": "Senior engineers eventually choose between deepening technical work and leading the people who do it. Admitting burnout honestly is also a real answer, and it is how people stay in the field.",
+  "opts": [
+   {
+    "pro": "Commits to work you enjoy",
+    "con": "The move toward leadership may wait"
+   },
+   {
+    "pro": "Moves toward leadership roles",
+    "con": "Less time building things yourself"
+   },
+   {
+    "pro": "Names burnout so it can be addressed",
+    "con": "Can worry a mentor about commitment"
+   },
+   {
+    "pro": "Takes time to think it through",
+    "con": "Leaves the mentor without an answer"
+   }
+  ]
+ },
+ "3.6i#1": {
+  "skill": "choosing a leadership path",
+  "real": "Incident responders who want to rise must learn to run the whole program, not just fight fires. Taking a break before burnout sets in is also how people last in this work.",
+  "opts": [
+   {
+    "pro": "Stays in work with clear purpose",
+    "con": "Firefighting alone may cap growth"
+   },
+   {
+    "pro": "Moves toward program leadership",
+    "con": "Must hand fires to others"
+   },
+   {
+    "pro": "Prevents burnout before it hardens",
+    "con": "Steps back from momentum for a while"
+   },
+   {
+    "pro": "Avoids answering while exhausted",
+    "con": "Leaves the mentor without an answer"
+   }
+  ]
+ },
+ "4.1l#1": {
+  "skill": "leaking tool containment",
+  "real": "When an AI tool exposes data, the first move is stopping the exposure while keeping evidence. Cutting its data access can be narrower than shutting it off, and leaders should hear the news from security first.",
+  "opts": [
+   {
+    "pro": "Stops all exposure at once",
+    "con": "Disrupts every team that relies on it"
+   },
+   {
+    "pro": "Stops data access with less disruption",
+    "con": "Misses any path you did not cut"
+   },
+   {
+    "pro": "The CEO hears it from you first",
+    "con": "Exposure continues while you talk"
+   },
+   {
+    "pro": "Avoids a rushed decision",
+    "con": "Someone else makes the call for you"
+   }
+  ]
+ },
+ "4.1s#1": {
+  "skill": "first move containment",
+  "real": "In a third party breach, responders weigh cutting the connection now against watching to learn the attacker's scope. Leaders need a briefing, but they will ask what was already done to stop it.",
+  "opts": [
+   {
+    "pro": "Stops the attacker's known path now",
+    "con": "Breaks business systems and tips them off"
+   },
+   {
+    "pro": "Learns the full scope of access",
+    "con": "Attackers keep reading data meanwhile"
+   },
+   {
+    "pro": "The executive is informed before changes",
+    "con": "Delays containment for a phone call"
+   },
+   {
+    "pro": "Avoids a hasty wrong move",
+    "con": "Someone else acts without your judgment"
+   }
+  ]
+ },
+ "4.2l#1": {
+  "skill": "incident briefing discipline",
+  "real": "In an incident briefing, confirmed facts and evidence come first, including your own part in it. Trying to keep a breach quiet rarely holds and makes the eventual disclosure worse.",
+  "opts": [
+   {
+    "pro": "Grounds the briefing in evidence",
+    "con": "Delays owning your own role"
+   },
+   {
+    "pro": "Gets your role on record first",
+    "con": "Starts with blame instead of scope"
+   },
+   {
+    "pro": "Limits early reputational damage",
+    "con": "Hides the full scope from responders"
+   },
+   {
+    "pro": "Lets someone else brief clearly",
+    "con": "Loses trust and control of the briefing"
+   }
+  ]
+ },
+ "4.2l#2": {
+  "skill": "scoping containment",
+  "real": "Containment can be broad or narrow, and each trades business disruption against the chance of a missed path. Watching a live leak to learn more costs customers for as long as it runs.",
+  "opts": [
+   {
+    "pro": "Guarantees nothing more leaks",
+    "con": "Disrupts every team using the tool"
+   },
+   {
+    "pro": "Keeps the tool useful while cutting data",
+    "con": "A missed connector keeps leaking"
+   },
+   {
+    "pro": "Shows what the tool reaches for",
+    "con": "Customer data keeps leaking while you watch"
+   },
+   {
+    "pro": "Avoids owning a hard tradeoff",
+    "con": "Someone else chooses for the team"
+   }
+  ]
+ },
+ "4.2s#1": {
+  "skill": "incident briefing discipline",
+  "real": "Leaders can act on confirmed facts but not on hope. Separating what is known from what is still open builds credibility, while keeping a breach quiet buys little time and costs trust.",
+  "opts": [
+   {
+    "pro": "Separates known from unknown clearly",
+    "con": "Admits how much is still unknown"
+   },
+   {
+    "pro": "Projects confidence to leadership",
+    "con": "Claims control you cannot show"
+   },
+   {
+    "pro": "Avoids spreading unverified information",
+    "con": "Delayed disclosure damages trust later"
+   },
+   {
+    "pro": "Avoids saying something wrong",
+    "con": "Your name is on notes you skipped"
+   }
+  ]
+ },
+ "4.2s#2": {
+  "skill": "third party containment scope",
+  "real": "When one vendor connection is compromised, cutting every outside link is safest but shuts down business operations. Cutting only the known path keeps things running but risks a second door.",
+  "opts": [
+   {
+    "pro": "Closes any hidden second door",
+    "con": "Payroll and payments go dark"
+   },
+   {
+    "pro": "Keeps the business running",
+    "con": "A second door may stay open"
+   },
+   {
+    "pro": "Keeps visibility into the attacker",
+    "con": "The attacker keeps access while you watch"
+   },
+   {
+    "pro": "Avoids an all or nothing call",
+    "con": "The team acts without your direction"
+   }
+  ]
+ },
+ "4.3l#1": {
+  "skill": "involving law enforcement",
+  "real": "After a leak from your own tool, counsel and security decide together whether to bring in law enforcement and outside forensics. Notice to affected customers and regulators is owed either way, which is why counsel will not treat inside as the end of it.",
+  "opts": [
+   {
+    "pro": "Shares the threat and builds a record",
+    "con": "May be a thin case for police"
+   },
+   {
+    "pro": "Maps exposure before notifying anyone",
+    "con": "Takes time while pressure builds"
+   },
+   {
+    "pro": "Keeps the investigation in house",
+    "con": "Counsel still has to notify, and notes that you asked"
+   },
+   {
+    "pro": "Defers to counsel's expertise",
+    "con": "Counsel decides without security's view"
+   }
+  ]
+ },
+ "4.3s#1": {
+  "skill": "involving law enforcement",
+  "real": "Attackers who breach one company through a supplier may hit others the same way, so outside help can matter. Forensics under counsel gives facts first. Keeping the investigation inside is allowed, but customers and regulators still have to be told.",
+  "opts": [
+   {
+    "pro": "Helps others hit the same way",
+    "con": "Brings outside eyes in early"
+   },
+   {
+    "pro": "Evidence before decisions, under privilege",
+    "con": "Slower path to outside help"
+   },
+   {
+    "pro": "Keeps control of the investigation",
+    "con": "Skips outside evidence and help for others"
+   },
+   {
+    "pro": "Avoids an unprepared answer",
+    "con": "The decision goes up without you"
+   }
+  ]
+ },
+ "4.4l#1": {
+  "skill": "honest executive updates",
+  "real": "Executives want numbers fast, but a wrong number spreads further than a late one. A security leader gives the worst case, what has stopped, and what is still unknown, without inventing figures.",
+  "opts": [
+   {
+    "pro": "Plans for the worst case",
+    "con": "May alarm leaders more than needed"
+   },
+   {
+    "pro": "Reassures with a true fact",
+    "con": "Says nothing about past exposure"
+   },
+   {
+    "pro": "Refuses to invent a number",
+    "con": "Leaves the CEO without a plan yet"
+   },
+   {
+    "pro": "Avoids a wrong answer",
+    "con": "The CEO loses confidence in security"
+   }
+  ]
+ },
+ "4.4s#1": {
+  "skill": "framing customer impact",
+  "real": "A CEO cares first about what customers lost, not whose system failed. Naming the likely impact honestly lets the company tell customers early, while a guess on a call can spread fast.",
+  "opts": [
+   {
+    "pro": "Faces the real customer impact",
+    "con": "Assumes the worst before full facts"
+   },
+   {
+    "pro": "Confirms the path is closed",
+    "con": "Skips what customers already lost"
+   },
+   {
+    "pro": "Avoids a guess that spreads",
+    "con": "Gives the CEO little to act on"
+   },
+   {
+    "pro": "Avoids speaking before you are ready",
+    "con": "The CEO loses trust in you"
+   }
+  ]
+ },
+ "4.5l#1": {
+  "skill": "board level communication",
+  "real": "Boards want to know the business impact and whether it will happen again, not the technical path. Blaming another team in front of the board backfires when the approval trail points back at you.",
+  "opts": [
+   {
+    "pro": "Speaks the board's language",
+    "con": "Leaves out detail some members want"
+   },
+   {
+    "pro": "Shows deep command of the cause",
+    "con": "The board cannot judge the risk"
+   },
+   {
+    "pro": "Shifts focus off security",
+    "con": "Your own approval is in the record"
+   },
+   {
+    "pro": "Avoids a misstep before the board",
+    "con": "Silence goes into the minutes"
+   }
+  ]
+ },
+ "4.5s#1": {
+  "skill": "board level communication",
+  "real": "A board wants what happened and what it costs in plain words. Pointing at a vendor does not help, because choosing and overseeing vendors is the company's own responsibility.",
+  "opts": [
+   {
+    "pro": "Clear impact the board can act on",
+    "con": "Less detail on how it happened"
+   },
+   {
+    "pro": "Shows exactly how the breach worked",
+    "con": "Buries the risk in technical detail"
+   },
+   {
+    "pro": "Points to the actual failure point",
+    "con": "Ignores who chose and oversaw them"
+   },
+   {
+    "pro": "Avoids a misstep before the board",
+    "con": "Someone else briefs the board for you"
+   }
+  ]
+ },
+ "4.6l#1": {
+  "skill": "public breach disclosure",
+  "real": "Once a breach is public, the company chooses how much to say and how fast, but notice to affected customers and regulators is owed either way. A clear statement lets the company tell the story itself, while public silence lets others tell it.",
+  "opts": [
+   {
+    "pro": "Builds trust by owning the mistake",
+    "con": "Gives critics more to quote"
+   },
+   {
+    "pro": "States facts without overpromising",
+    "con": "Can seem guarded to customers"
+   },
+   {
+    "pro": "Customers still hear it directly",
+    "con": "Others frame the public story first"
+   },
+   {
+    "pro": "Avoids a rushed public call",
+    "con": "Others choose the message for you"
+   }
+  ]
+ },
+ "4.6s#1": {
+  "skill": "public breach disclosure",
+  "real": "When an outside party was involved, any public blame must be accurate or it backfires. Customer letters meet the duty to notify, and the public statement decides who tells the story.",
+  "opts": [
+   {
+    "pro": "Owns the trust decision openly",
+    "con": "Admits fault in public"
+   },
+   {
+    "pro": "Gives customers clear next steps",
+    "con": "Leaves out context some will want"
+   },
+   {
+    "pro": "Customers hear it directly, by letter",
+    "con": "Reporters fill the public silence first"
+   },
+   {
+    "pro": "Avoids a rushed public call",
+    "con": "The clock decides for you"
+   }
+  ]
+ },
+ "4.7l#1": {
+  "skill": "lessons learned leadership",
+  "real": "After an incident, good leaders turn their own mistake into a lasting control and teach others to use it. Blaming a deadline someone else set ignores the approval that was yours.",
+  "opts": [
+   {
+    "pro": "Spreads the review across every team",
+    "con": "Teaching takes time from other fixes"
+   },
+   {
+    "pro": "Owns the mistake and closes the gap",
+    "con": "The fix depends on you staying involved"
+   },
+   {
+    "pro": "Notes real deadline pressure",
+    "con": "Dodges your own signed approval"
+   },
+   {
+    "pro": "Takes time to reflect first",
+    "con": "No lesson gets carried forward"
+   }
+  ]
+ },
+ "4.7s#1": {
+  "skill": "third party risk management",
+  "real": "Supplier breaches happen when checking an outside piece feels too slow. A lasting fix gives every vendor an owner and a review date, and sharing your own miss teaches the habit to others.",
+  "opts": [
+   {
+    "pro": "Every vendor gets an owner and review",
+    "con": "Costly and slow to build"
+   },
+   {
+    "pro": "Turns your mistake into team habit",
+    "con": "Teaching alone does not add controls"
+   },
+   {
+    "pro": "Notes pressure from leadership",
+    "con": "Avoids owning your half of the call"
+   },
+   {
+    "pro": "Takes time to reflect first",
+    "con": "No lesson gets carried forward"
    }
   ]
  }

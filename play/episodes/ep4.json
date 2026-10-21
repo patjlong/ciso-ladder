@@ -144,7 +144,349 @@
     }
    ],
    "location": "Your kitchen, Saturday morning",
-   "shot_notes": "A phone buzzes by a cold mug. Sam appears on the screen in a dark SOC, energy drink in hand, while Marcus joins by speaker."
+   "shot_notes": "A phone buzzes by a cold mug. Sam appears on the screen in a dark SOC, energy drink in hand, while Marcus joins by speaker.",
+   "when0": null,
+   "when": "(!(rubber_stamp)) && (!((waived_vendor || cut_corners || skipped_review) && !rubber_stamp))"
+  },
+  {
+   "id": "4.1l",
+   "name": "The Screenshot",
+   "beats": [
+    {
+     "caption": "Year nine. Security Director. A Saturday with nothing on the calendar."
+    },
+    {
+     "say": [
+      "Sam",
+      "e4l_s1_sam_01",
+      "Boss, you up? Open the screenshot I just sent."
+     ]
+    },
+    {
+     "caption": "A customer's public post: a Harborline email with a stranger's balance and home address pasted in."
+    },
+    {
+     "say": [
+      "Sam",
+      "e4l_s1_sam_02",
+      "That's our assistant. Priya's assistant. It wrote that email."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e4l_s1_sam_03",
+      "A teller asked it to draft a reply. It pulled a different customer's account."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e4l_s1_sam_04",
+      "It can read customer records. It was never supposed to."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4l_s1_marcus_01",
+      "The post is spreading. Give Sam a first move, then we talk."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 8,
+      "options": [
+       {
+        "t": "Kill the assistant",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s1_player_01",
+           "Turn the assistant off. Every seat, every team."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4l_s1_sam_05",
+           "Off in five. The whole bank just lost its favorite toy."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1,
+         "burn": 1
+        },
+        "rem": "Priya will remember that."
+       },
+       {
+        "t": "Cut its data connections",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s1_player_02",
+           "Cut what it can read. Leave the chat box up."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4l_s1_sam_06",
+           "Pulling its access to the records. It's about to get a lot dumber."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "rep": 1,
+         "burn": 1
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "Call Elena first",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s1_player_03",
+           "Elena hears this from me before she sees that post."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e4l_s1_marcus_02",
+           "Fine. Bring her a plan along with the bad news."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": -1,
+         "burn": 1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Sam",
+           "e4l_s1_sam_07",
+           "Nobody's stopping me, so I'm pulling the plug."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1,
+         "trust": -1
+        },
+        "rem": "Sam will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Your apartment, Saturday morning",
+   "shot_notes": "A phone buzzes face down beside a cold mug. You flip it. Sam fills the screen from a dark SOC, energy drink in hand, and Marcus joins on speaker.",
+   "route": "leak",
+   "when": "rubber_stamp"
+  },
+  {
+   "id": "4.1s",
+   "name": "Saturday Morning",
+   "beats": [
+    {
+     "caption": "Year nine. Security Director. Saturday was supposed to stay quiet."
+    },
+    {
+     "say": [
+      "Sam",
+      "e4s_s1_sam_01",
+      "Boss. Somebody's inside, and they didn't pick a single lock."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e4s_s1_sam_02",
+      "They walked in through a door we trusted."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e4s_s1_sam_v1",
+      "The payroll vendor got breached. Their connection into us is carrying the attacker."
+     ],
+     "when": "waived_vendor"
+    },
+    {
+     "say": [
+      "Sam",
+      "e4s_s1_sam_v2",
+      "Same vendor with the open findings. The one we signed off."
+     ],
+     "when": "waived_vendor"
+    },
+    {
+     "say": [
+      "Sam",
+      "e4s_s1_sam_k1",
+      "It's the old Kestrel Pay platform. The piece we folded in and never rebuilt."
+     ],
+     "when": "cut_corners"
+    },
+    {
+     "say": [
+      "Sam",
+      "e4s_s1_sam_k2",
+      "The weak spot came over with the acquisition."
+     ],
+     "when": "cut_corners"
+    },
+    {
+     "say": [
+      "Sam",
+      "e4s_s1_sam_d1",
+      "A library inside our customer app was tampered with upstream."
+     ],
+     "when": "skipped_review"
+    },
+    {
+     "say": [
+      "Sam",
+      "e4s_s1_sam_d2",
+      "It shipped in a release months ago. It's been phoning out ever since."
+     ],
+     "when": "skipped_review"
+    },
+    {
+     "say": [
+      "Sam",
+      "e4s_s1_sam_03",
+      "They're pulling customer records. Slowly, so nobody notices."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4s_s1_marcus_01",
+      "I'm on the bridge. Pick the first move. We argue about the second one later."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 8,
+      "options": [
+       {
+        "t": "Cut the trusted connection",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s1_player_01",
+           "Cut it off. Whatever they came through, sever it now."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4s_s1_sam_04",
+           "Severing. Something downstream is going to break loudly."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": 1,
+         "burn": 1
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "Watch and scope first",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s1_player_02",
+           "Don't tip them off yet. Watch where they go first."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4s_s1_sam_05",
+           "Watching. Every minute we watch, they're still reading."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "rep": 1,
+         "burn": 1
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "Call the CEO first",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s1_player_03",
+           "Get Elena on the phone before anything changes."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e4s_s1_marcus_02",
+           "She'll ask what you did about it. Have something to say."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": -1,
+         "burn": 1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Sam",
+           "e4s_s1_sam_06",
+           "No answer, so I'm pulling the plug. Stop me if that's wrong."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1,
+         "trust": -1
+        },
+        "rem": "Sam will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Your apartment, Saturday morning",
+   "shot_notes": "A phone rattles beside a cold mug on the counter. Sam fills the screen from a dark war room, energy drink in hand, while Marcus joins by speaker.",
+   "route": "supply",
+   "when": "(waived_vendor || cut_corners || skipped_review) && !rubber_stamp"
   },
   {
    "id": "4.2",
@@ -393,7 +735,504 @@
     }
    ],
    "location": "Harborline SOC, Saturday noon",
-   "shot_notes": "Sam paces under a wall of session logs. Marcus sets down a coffee. You arrive in weekend clothes as Dana comes through the glass door."
+   "shot_notes": "Sam paces under a wall of session logs. Marcus sets down a coffee. You arrive in weekend clothes as Dana comes through the glass door.",
+   "when0": null,
+   "when": "(!(rubber_stamp)) && (!((waived_vendor || cut_corners || skipped_review) && !rubber_stamp))"
+  },
+  {
+   "id": "4.2l",
+   "name": "The War Room",
+   "beats": [
+    {
+     "say": [
+      "Sam",
+      "e4l_s2_sam_01",
+      "I ran the logs back. It's been answering with customer data for weeks."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e4l_s2_sam_02",
+      "Balances. Addresses. Account notes. Whatever a question brushed against."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4l_s2_marcus_01",
+      "Its connector reads the whole customer records share. Nobody scoped it."
+     ]
+    },
+    {
+     "say": [
+      "Priya",
+      "e4l_s2_priya_01",
+      "Security signed off on this. I have the email."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e4l_s2_dana_01",
+      "Talk. What leaked, to whom, and is it still leaking?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Lead with the logs",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s2_player_01",
+           "Logs first. What it read, who asked, where it went."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e4l_s2_dana_02",
+           "Good. Evidence first. Feelings can wait their turn."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "Own the sign-off",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s2_player_02",
+           "I signed off without a review. That's the first fact."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e4l_s2_dana_03",
+           "Hard to say out loud. Easier than having it found."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": -1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "Keep it quiet",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s2_player_03",
+           "One customer, one post. Let's keep this in the building."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e4l_s2_dana_04",
+           "One post is the part we can see. Try again."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "rep": -1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Dana",
+           "e4l_s2_dana_05",
+           "Then Sam briefs me, and you listen."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Dana will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Dana",
+      "e4l_s2_dana_06",
+      "Elena gets this before the board does."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e4l_s2_sam_03",
+      "Whatever we did this morning has to hold. What stays dark until Monday?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "The whole assistant",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s2_player_04",
+           "The whole assistant stays off until we know what it read."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "e4l_s2_priya_02",
+           "Every team I promised it to is about to call me."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": -1,
+         "burn": 1
+        },
+        "rem": "Priya will remember that."
+       },
+       {
+        "t": "Only its data connections",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s2_player_05",
+           "Keep the chat. Cut every connection to customer data."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4l_s2_sam_04",
+           "Narrow cut. If we missed a connector, we hear about it fast."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "Nothing yet",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s2_player_06",
+           "Leave it running. I want to see what it reaches for."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4l_s2_sam_05",
+           "Watching costs customers. I'll log every answer it gives."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": -1
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Sam",
+           "e4l_s2_sam_06",
+           "No call, so I'm cutting the connectors and writing that down."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Sam will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "The incident war room, Harborline Financial, Saturday noon",
+   "shot_notes": "Sam scrolls a wall of chat logs. Marcus sets down a coffee. Priya stands by the glass with her arms crossed as Dana walks in.",
+   "route": "leak",
+   "when": "rubber_stamp"
+  },
+  {
+   "id": "4.2s",
+   "name": "The War Room",
+   "beats": [
+    {
+     "say": [
+      "Sam",
+      "e4s_s2_sam_01",
+      "Here's the map. Every partner, every feed, every library we pull in."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4s_s2_marcus_01",
+      "Longer list than anyone in this building could recite."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e4s_s2_sam_02",
+      "We know one door. I can't promise it's the only one."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e4s_s2_dana_01",
+      "Talk. What did they get, and what's still open?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Lead with the facts",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s2_player_01",
+           "Facts first. What we've confirmed, then what we haven't."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e4s_s2_dana_02",
+           "Good. I can repeat confirmed. I can't repeat hopeful."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "Lead with the fix",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s2_player_02",
+           "We've got a handle on it. Let's focus on the response."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e4s_s2_dana_03",
+           "A handle is a feeling. Show me where it ends."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": 1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "Keep it quiet for now",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s2_player_03",
+           "Let's keep this in the room until we know more."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "e4s_s2_dana_04",
+           "Quiet buys you a day. Then it costs you the job."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "rep": -1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Dana",
+           "e4s_s2_dana_05",
+           "Fine. I'll brief Elena from Sam's notes. Your name goes on them anyway."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Dana will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Dana",
+      "e4s_s2_dana_06",
+      "Now the hard part. What do we cut off?"
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "e4s_s2_sam_03",
+      "Every outside link, just the bad one, or nothing until we're sure?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Cut every third-party link",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s2_player_04",
+           "Cut every outside link. We bring them back one at a time."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4s_s2_sam_04",
+           "Payroll, card feeds, all of it dark. Monday's going to scream."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": -1,
+         "burn": 1
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "Cut only the affected one",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s2_player_05",
+           "Cut only the one we know. Keep the business running."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4s_s2_sam_05",
+           "Surgical. If there's a second door, we find out the hard way."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "Nothing until we're sure",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s2_player_06",
+           "Leave it all up. Pull the plug now and we lose our view of them."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "e4s_s2_sam_06",
+           "Your call. I'll be staring at it all night."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": -1
+        },
+        "rem": "Sam will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Sam",
+           "e4s_s2_sam_07",
+           "No call. I'm cutting the one we know and logging that I chose."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Sam will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "The incident war room, Saturday noon",
+   "shot_notes": "Sam paces under a wall-sized map of outside connections. Marcus sets down two coffees. You arrive in weekend clothes as Dana comes through the glass door.",
+   "route": "supply",
+   "when": "(waived_vendor || cut_corners || skipped_review) && !rubber_stamp"
   },
   {
    "id": "4.3",
@@ -510,7 +1349,7 @@
          "trust": -2,
          "rep": -1
         },
-        "flag": "hid_breach",
+        "flag": "kept_inside",
         "rem": "Nadia will remember that."
        },
        {
@@ -535,7 +1374,314 @@
     }
    ],
    "location": "Harborline legal room, Saturday afternoon",
-   "shot_notes": "Nadia squares a legal pad on the table. Dana stands at the window. No laptops are open."
+   "shot_notes": "Nadia squares a legal pad on the table. Dana stands at the window. No laptops are open.",
+   "when0": null,
+   "when": "(!(rubber_stamp)) && (!((waived_vendor || cut_corners || skipped_review) && !rubber_stamp))"
+  },
+  {
+   "id": "4.3l",
+   "name": "Counsel",
+   "beats": [
+    {
+     "say": [
+      "Nadia",
+      "e4l_s3_nadia_01",
+      "No intruder. Our own tool handed out customer data."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4l_s3_nadia_02",
+      "That doesn't shrink our duties. Customers and regulators still have to hear it."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4l_s3_nadia_03",
+      "The contract may let the vendor keep prompts. I'm reading that clause tonight."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4l_s3_nadia_04",
+      "Three paths. Law enforcement, outside forensics, or we stay inside."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e4l_s3_dana_01",
+      "Law enforcement for our own software? If you pick it, say why."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Call the FBI",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s3_player_01",
+           "Call the FBI. We don't know who else was mining it."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "e4l_s3_nadia_05",
+           "Thin for a crime. The record will show we reached out anyway."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": 1,
+         "burn": 1
+        },
+        "flag": "called_fbi",
+        "rem": "Nadia will remember that."
+       },
+       {
+        "t": "Outside forensics first",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s3_player_02",
+           "Outside forensics first. Map the exposure, then we notify."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "e4l_s3_nadia_06",
+           "Good. I can't file a notice on a guess. I'll hire a firm."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": 1
+        },
+        "rem": "Nadia will remember that."
+       },
+       {
+        "t": "Keep it internal",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s3_player_03",
+           "Our tool, our data. We handle it inside."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "e4l_s3_nadia_07",
+           "Customers were exposed. Inside isn't a legal option. I'm noting that you asked."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "rep": -1
+        },
+        "flag": "kept_inside",
+        "rem": "Nadia will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Nadia",
+           "e4l_s3_nadia_08",
+           "No answer by dusk, and I make the calls myself."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Nadia will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "The legal room, Harborline Financial, Saturday afternoon",
+   "shot_notes": "Nadia squares a legal pad and a printed vendor contract. Dana leans on the window ledge. No laptops are open.",
+   "route": "leak",
+   "when": "rubber_stamp"
+  },
+  {
+   "id": "4.3s",
+   "name": "Counsel",
+   "beats": [
+    {
+     "say": [
+      "Nadia",
+      "e4s_s3_nadia_01",
+      "Someone else's weakness. Our customers' data. Our name on the letter."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4s_s3_nadia_02",
+      "The contract may say who pays. It won't say who customers blame."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4s_s3_nadia_v1",
+      "And I have a signed exception for that vendor sitting in my files."
+     ],
+     "when": "waived_vendor"
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4s_s3_nadia_k1",
+      "And Kestrel's old risk notes came over in the deal binder."
+     ],
+     "when": "cut_corners"
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4s_s3_nadia_d1",
+      "And the release record says that library was never reviewed."
+     ],
+     "when": "skipped_review"
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4s_s3_nadia_03",
+      "Three paths. Call the FBI, bring in outside forensics, or keep it inside."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "e4s_s3_dana_01",
+      "She needs an answer today. Not a committee."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Call the FBI",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s3_player_01",
+           "Call the FBI. Whoever did this probably hit others the same way."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "e4s_s3_nadia_04",
+           "I'll place the call with you in the room. No side channels."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": 1,
+         "burn": 1
+        },
+        "flag": "called_fbi",
+        "rem": "Nadia will remember that."
+       },
+       {
+        "t": "Outside forensics first",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s3_player_02",
+           "Outside forensics first. Then we decide who to call."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "e4s_s3_nadia_05",
+           "Evidence before opinions. I'll retain a firm under privilege tonight."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": 1
+        },
+        "rem": "Nadia will remember that."
+       },
+       {
+        "t": "Keep it internal",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s3_player_03",
+           "Keep it internal. We clean this up ourselves."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "e4s_s3_nadia_06",
+           "Then I'm writing down that we chose not to tell anyone."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "rep": -1
+        },
+        "flag": "kept_inside",
+        "rem": "Nadia will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Nadia",
+           "e4s_s3_nadia_07",
+           "Silence is an answer too. I take this to Elena at five."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Nadia will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "The legal room, Saturday afternoon",
+   "shot_notes": "Nadia squares a legal pad on the table. Dana stands at the window. No laptops are open.",
+   "route": "supply",
+   "when": "(waived_vendor || cut_corners || skipped_review) && !rubber_stamp"
   },
   {
    "id": "4.4",
@@ -653,7 +1799,256 @@
     }
    ],
    "location": "Elena's video call, Saturday evening",
-   "shot_notes": "Elena fills the laptop screen from a dim kitchen, coat off, voice level, eyes not leaving the camera."
+   "shot_notes": "Elena fills the laptop screen from a dim kitchen, coat off, voice level, eyes not leaving the camera.",
+   "when0": null,
+   "when": "(!(rubber_stamp)) && (!((waived_vendor || cut_corners || skipped_review) && !rubber_stamp))"
+  },
+  {
+   "id": "4.4l",
+   "name": "The CEO",
+   "beats": [
+    {
+     "say": [
+      "Elena",
+      "e4l_s4_elena_01",
+      "I've read the post. I've read Priya's note."
+     ]
+    },
+    {
+     "say": [
+      "Elena",
+      "e4l_s4_elena_02",
+      "How many customers, and did anyone lose money?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": 10,
+      "options": [
+       {
+        "t": "Assume it's wide",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s4_player_01",
+           "It could read the whole records share. Assume it's wide."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4l_s4_elena_03",
+           "Then we plan for wide and hope we're wrong."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "The leak has stopped",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s4_player_02",
+           "It can't reach the records now. The leak has stopped."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4l_s4_elena_04",
+           "Stopped tonight. I still need a count by Monday."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": 1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "We don't know yet",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s4_player_03",
+           "I don't have a count. I won't make one up."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4l_s4_elena_05",
+           "Good. A wrong number travels farther than a late one."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Elena",
+           "e4l_s4_elena_06",
+           "You run my security. I need words, not a face."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "burn": 1
+        },
+        "rem": "Elena will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Elena",
+      "e4l_s4_elena_07",
+      "Priya says security approved this tool. Monday, I want that story straight."
+     ]
+    }
+   ],
+   "location": "Elena's office, seen on a video call, Saturday evening",
+   "shot_notes": "Elena sits at her desk in a weekend sweater, the post open on a second monitor, eyes on the camera.",
+   "route": "leak",
+   "when": "rubber_stamp"
+  },
+  {
+   "id": "4.4s",
+   "name": "The CEO",
+   "beats": [
+    {
+     "say": [
+      "Elena",
+      "e4s_s4_elena_01",
+      "Dana says it came through someone we trusted."
+     ]
+    },
+    {
+     "say": [
+      "Elena",
+      "e4s_s4_elena_02",
+      "I don't care whose door it was yet. What did our customers lose?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": 10,
+      "options": [
+       {
+        "t": "Data, and likely trust",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s4_player_01",
+           "Customer records left the building. Assume trust went with them."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4s_s4_elena_03",
+           "Then we tell them early, in our own words."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "It's contained now",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s4_player_02",
+           "The path is closed. Nothing's leaving now."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4s_s4_elena_04",
+           "Closed tonight. I'll want proof it stays closed."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": 1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "We don't know yet",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s4_player_03",
+           "We don't know how much yet. I won't guess on a call."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4s_s4_elena_05",
+           "Good. A guess on a call becomes a headline by morning."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1
+        },
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Elena",
+           "e4s_s4_elena_06",
+           "I called my security director, not a screensaver. Talk to me."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "burn": 1
+        },
+        "rem": "Elena will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Your apartment, Saturday evening, Elena on a video call",
+   "shot_notes": "Elena fills the laptop screen from a dim kitchen, coat still on, eyes never leaving the camera.",
+   "route": "supply",
+   "when": "(waived_vendor || cut_corners || skipped_review) && !rubber_stamp"
   },
   {
    "id": "4.5",
@@ -781,7 +2176,285 @@
     }
    ],
    "location": "Harborline board room, Monday morning",
-   "shot_notes": "Richard sits at the head of the table, glasses low. Dana slides you a single sheet while the rest of the board waits."
+   "shot_notes": "Richard sits at the head of the table, glasses low. Dana slides you a single sheet while the rest of the board waits.",
+   "when0": null,
+   "when": "(!(rubber_stamp)) && (!((waived_vendor || cut_corners || skipped_review) && !rubber_stamp))"
+  },
+  {
+   "id": "4.5l",
+   "name": "The Board",
+   "beats": [
+    {
+     "say": [
+      "Richard",
+      "e4l_s5_richard_01",
+      "Director. Whose data got out, and why could a chatbot see it?"
+     ]
+    },
+    {
+     "say": [
+      "Richard",
+      "e4l_s5_richard_f1",
+      "I'm told the FBI got a call. About our own software?"
+     ],
+     "when": "called_fbi"
+    },
+    {
+     "say": [
+      "Richard",
+      "e4l_s5_richard_h1",
+      "Counsel says you wanted this kept inside. We'll come back to that."
+     ],
+     "when": "kept_inside"
+    },
+    {
+     "say": [
+      "Richard",
+      "e4l_s5_richard_02",
+      "Skip the architecture. Tell me if it happens again."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Speak in business terms",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s5_player_01",
+           "A tool read customer files it shouldn't. We cut it off and we're telling customers."
+          ]
+         },
+         {
+          "say": [
+           "Richard",
+           "e4l_s5_richard_03",
+           "Plain. Keep talking like that."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": 1
+        },
+        "flag": "business_brief",
+        "rem": "Richard will remember that."
+       },
+       {
+        "t": "Walk through the tech",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s5_player_02",
+           "Its connector inherited staff permissions to the customer records share."
+          ]
+         },
+         {
+          "say": [
+           "Richard",
+           "e4l_s5_richard_04",
+           "I heard plumbing. Tell me the exposure."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": -1
+        },
+        "rem": "Richard will remember that."
+       },
+       {
+        "t": "Blame Priya's team",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s5_player_03",
+           "IT rushed it out on a deadline. The vendor built it loose."
+          ]
+         },
+         {
+          "say": [
+           "Richard",
+           "e4l_s5_richard_05",
+           "And who signed the approval? It's in this packet."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -2,
+         "trust": -2
+        },
+        "flag": "blamed_employee",
+        "rem": "Priya will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Richard",
+           "e4l_s5_richard_06",
+           "Silence from security. I'll have that noted in the minutes."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "rep": -1
+        },
+        "rem": "Richard will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Dana",
+      "e4l_s5_dana_01",
+      "The minutes will keep that answer longer than any of us."
+     ]
+    }
+   ],
+   "location": "The boardroom, Harborline Financial, Monday morning",
+   "shot_notes": "Richard sits at the head of the table, glasses low, a printed screenshot under his hand. Priya sits two chairs down. Dana slides you a single sheet.",
+   "route": "leak",
+   "when": "rubber_stamp"
+  },
+  {
+   "id": "4.5s",
+   "name": "The Board",
+   "beats": [
+    {
+     "say": [
+      "Richard",
+      "e4s_s5_richard_01",
+      "Director. I'm told we got robbed through someone else's door."
+     ]
+    },
+    {
+     "say": [
+      "Richard",
+      "e4s_s5_richard_02",
+      "Short version. What happened, and what does it cost us?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Speak in business terms",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s5_player_01",
+           "We trusted an outside piece. It failed. We cut it off, and customers come first."
+          ]
+         },
+         {
+          "say": [
+           "Richard",
+           "e4s_s5_richard_03",
+           "Plain words. Keep using them."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": 1
+        },
+        "flag": "business_brief",
+        "rem": "Richard will remember that."
+       },
+       {
+        "t": "Walk through the attack",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s5_player_02",
+           "Let me walk the path, hop by hop, from their system to our data."
+          ]
+         },
+         {
+          "say": [
+           "Richard",
+           "e4s_s5_richard_04",
+           "I heard the route. I still don't know the risk."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": -1
+        },
+        "rem": "Richard will remember that."
+       },
+       {
+        "t": "Blame the outside party",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s5_player_03",
+           "This is on them. Their people failed, not ours."
+          ]
+         },
+         {
+          "say": [
+           "Richard",
+           "e4s_s5_richard_05",
+           "We chose them. A board can't outsource its own judgment."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -2,
+         "trust": -2
+        },
+        "flag": "blamed_employee",
+        "rem": "Richard will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Richard",
+           "e4s_s5_richard_06",
+           "If you won't brief this board, Dana will. Remember that."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -2,
+         "rep": -1
+        },
+        "rem": "Richard will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Dana",
+      "e4s_s5_dana_01",
+      "They'll quote whatever you said first. Every single time."
+     ]
+    }
+   ],
+   "location": "The boardroom, Monday morning",
+   "shot_notes": "Richard sits at the head of the table, glasses low. Dana slides you a single sheet while the rest of the board waits.",
+   "route": "supply",
+   "when": "(waived_vendor || cut_corners || skipped_review) && !rubber_stamp"
   },
   {
    "id": "4.6",
@@ -832,9 +2505,10 @@
         ],
         "fx": {
          "trust": 2,
-         "rep": 1
+         "rep": -1
         },
-        "rem": "Elena will remember that."
+        "rem": "Elena will remember that.",
+        "flag": "disclosed"
        },
        {
         "t": "Limited facts only",
@@ -858,10 +2532,11 @@
          "trust": 1,
          "rep": 1
         },
-        "rem": "Nadia will remember that."
+        "rem": "Nadia will remember that.",
+        "flag": "disclosed"
        },
        {
-        "t": "Say nothing public",
+        "t": "Tell no one outside",
         "then": [
          {
           "say": [
@@ -900,14 +2575,286 @@
         "fx": {
          "trust": -1
         },
-        "rem": "Nadia will remember that."
+        "rem": "Nadia will remember that.",
+        "flag": "disclosed"
        }
       ]
      }
     }
    ],
    "location": "Harborline comms room, Monday afternoon",
-   "shot_notes": "Elena stands with her coat still on. Nadia holds a printed statement flat in both hands. The screen behind them is blank."
+   "shot_notes": "Elena stands with her coat still on. Nadia holds a printed statement flat in both hands. The screen behind them is blank.",
+   "when0": null,
+   "when": "(!(rubber_stamp)) && (!((waived_vendor || cut_corners || skipped_review) && !rubber_stamp))"
+  },
+  {
+   "id": "4.6l",
+   "name": "The Statement",
+   "beats": [
+    {
+     "say": [
+      "Nadia",
+      "e4l_s6_nadia_01",
+      "That post has a lot of company now. We answer tonight."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4l_s6_nadia_02",
+      "Full account, limited facts, or no public word."
+     ]
+    },
+    {
+     "say": [
+      "Priya",
+      "e4l_s6_priya_01",
+      "Name the assistant and every bank in town reads it."
+     ]
+    },
+    {
+     "say": [
+      "Elena",
+      "e4l_s6_elena_01",
+      "Your call. Make it fast."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 12,
+      "options": [
+       {
+        "t": "Publish the full account",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s6_player_01",
+           "Full account. Our tool, our mistake, and what we're doing now."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4l_s6_elena_02",
+           "Send it. We tell this one in our own words."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": -1
+        },
+        "flag": "disclosed",
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "Limited facts only",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s6_player_02",
+           "What we know, who's affected, and what we shut off."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "e4l_s6_nadia_03",
+           "Clean. I'll strip anything that sounds like a promise."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": 1
+        },
+        "flag": "disclosed",
+        "rem": "Nadia will remember that."
+       },
+       {
+        "t": "Tell customers privately",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s6_player_03",
+           "No statement. We contact customers privately."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4l_s6_elena_03",
+           "The screenshot is already public. Silence answers it badly."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1,
+         "rep": -2
+        },
+        "flag": "disclosed",
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Nadia",
+           "e4l_s6_nadia_04",
+           "Clock's out. Limited facts go out, and I log who didn't choose."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "flag": "disclosed",
+        "rem": "Nadia will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "A glass conference room, Harborline Financial, Monday afternoon",
+   "shot_notes": "Nadia holds a printed draft flat in both hands. Elena stands with her coat on. Priya stares at the screenshot on the wall screen.",
+   "route": "leak",
+   "when": "rubber_stamp"
+  },
+  {
+   "id": "4.6s",
+   "name": "The Statement",
+   "beats": [
+    {
+     "say": [
+      "Nadia",
+      "e4s_s6_nadia_01",
+      "Customer letters go out tomorrow. The public statement goes tonight."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "e4s_s6_nadia_02",
+      "Full account, limited facts, or nothing public."
+     ]
+    },
+    {
+     "say": [
+      "Elena",
+      "e4s_s6_elena_01",
+      "And if we point at anyone else, we'd better be right."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 12,
+      "options": [
+       {
+        "t": "Publish the full account",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s6_player_01",
+           "Full account. Including the part where we trusted the wrong thing."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4s_s6_elena_02",
+           "Hard to read. Harder to attack. Send it."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": -1
+        },
+        "flag": "disclosed",
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "Limited facts only",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s6_player_02",
+           "What happened, what we did, what customers should do. Nothing else."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "e4s_s6_nadia_03",
+           "Clean. I'll strip the adjectives and keep the verbs."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": 1
+        },
+        "flag": "disclosed",
+        "rem": "Nadia will remember that."
+       },
+       {
+        "t": "Tell customers privately",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s6_player_03",
+           "No public statement. We handle it with customers directly."
+          ]
+         },
+         {
+          "say": [
+           "Elena",
+           "e4s_s6_elena_03",
+           "Then a reporter writes our first paragraph for us."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1,
+         "rep": -2
+        },
+        "flag": "disclosed",
+        "rem": "Elena will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Nadia",
+           "e4s_s6_nadia_04",
+           "The clock beat you. I'm sending limited facts and noting who froze."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "flag": "disclosed",
+        "rem": "Nadia will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "The executive hall, Monday afternoon",
+   "shot_notes": "Elena stands with her coat still on. Nadia holds a printed draft flat in both hands. A muted news channel glows on the wall behind them.",
+   "route": "supply",
+   "when": "(waived_vendor || cut_corners || skipped_review) && !rubber_stamp"
   },
   {
    "id": "4.7",
@@ -967,7 +2914,7 @@
          "rep": 1,
          "burn": 1
         },
-        "flag": "mentored",
+        "flag": "taught_team",
         "rem": "Marcus will remember that."
        },
        {
@@ -1039,10 +2986,18 @@
      }
     },
     {
+     "say": [
+      "Marcus",
+      "e3_s6_marcus_07",
+      "That's fatigue. I know the sound."
+     ],
+     "when": "burn >= 19"
+    },
+    {
      "caption": "The admin tool stays dark until it grows a second lock."
     },
     {
-     "caption": "Customers get a straight note, or a careful one."
+     "caption": "Customers get a straight note, a careful one, or nothing at all."
     },
     {
      "say": [
@@ -1053,9 +3008,390 @@
     }
    ],
    "location": "Harborline parking garage, Monday night",
-   "shot_notes": "Marcus leans on a pillar with two coffees. You take one. Your phone lights with Dana's name as the garage hums."
+   "shot_notes": "Marcus leans on a pillar with two coffees. You take one. Your phone lights with Dana's name as the garage hums.",
+   "when0": null,
+   "when": "(!(rubber_stamp)) && (!((waived_vendor || cut_corners || skipped_review) && !rubber_stamp))"
+  },
+  {
+   "id": "4.7l",
+   "name": "The Stairwell",
+   "beats": [
+    {
+     "say": [
+      "Marcus",
+      "e4l_s7_marcus_01",
+      "Long Monday. Long Saturday too."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4l_s7_marcus_02",
+      "Everybody's asking what broke. You already know."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4l_s7_marcus_03",
+      "Priya asked for a fast yes. Somebody gave her one."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4l_s7_marcus_04",
+      "The tool did exactly what it was allowed to do."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Teach every team the review",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s7_player_01",
+           "Every new AI tool gets a review. I'll teach the teams to run it."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e4l_s7_marcus_05",
+           "Teaching it is how the fix outlives you. Good."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "burn": 1
+        },
+        "flag": "taught_team",
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Own it and fix the gate",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s7_player_02",
+           "That yes was mine. Nothing touches customer data without a data map."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e4l_s7_marcus_06",
+           "Owning it and fixing it. That's a rare pair."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": 1
+        },
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Blame Priya's deadline",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4l_s7_player_03",
+           "Priya set the deadline. I just didn't fight it."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e4l_s7_marcus_07",
+           "The deadline was hers. The signature was yours."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1,
+         "trust": -1
+        },
+        "flag": "blamed_employee",
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e4l_s7_marcus_08",
+           "Drink the coffee. The answer won't change by morning."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Marcus will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Marcus",
+      "e3_s6_marcus_07",
+      "That's fatigue. I know the sound."
+     ],
+     "when": "burn >= 19"
+    },
+    {
+     "caption": "The assistant stays dark until someone maps every file it can read."
+    },
+    {
+     "caption": "Customers get a letter. Some of them keep it."
+    },
+    {
+     "say": [
+      "Dana",
+      "e4l_s7_dana_01",
+      "Priya asked who reviews the next tool. I gave her your name."
+     ]
+    }
+   ],
+   "location": "The parking garage stairwell, Harborline Financial, Monday night",
+   "shot_notes": "Marcus sits on the stairs with two coffees. You take one. The garage lights hum and your phone lights with Dana's name.",
+   "route": "leak",
+   "when": "rubber_stamp"
+  },
+  {
+   "id": "4.7s",
+   "name": "The Garage",
+   "beats": [
+    {
+     "say": [
+      "Marcus",
+      "e4s_s7_marcus_01",
+      "Nine years in, and Saturday still has your number."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4s_s7_marcus_02",
+      "So. Root cause. Not the attacker. The decision."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4s_s7_marcus_v1",
+      "That vendor had open findings when you signed them off."
+     ],
+     "when": "waived_vendor"
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4s_s7_marcus_v2",
+      "An exception with no end date isn't an exception. It's the policy."
+     ],
+     "when": "waived_vendor"
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4s_s7_marcus_k1",
+      "Kestrel had a known hole back then. Everyone said they'd fix it after launch."
+     ],
+     "when": "cut_corners"
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4s_s7_marcus_k2",
+      "Nobody owns a promise once the company gets sold."
+     ],
+     "when": "cut_corners"
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4s_s7_marcus_d1",
+      "That library looked wrong, and the release shipped before anyone checked."
+     ],
+     "when": "skipped_review"
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4s_s7_marcus_d2",
+      "Deadlines are real. So is the code we never read."
+     ],
+     "when": "skipped_review"
+    },
+    {
+     "say": [
+      "Marcus",
+      "e4s_s7_marcus_03",
+      "You trusted something because checking it was slow. Everybody does. So what now?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Build a third-party risk program",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s7_player_01",
+           "A real third-party program. Every outside piece gets an owner and a review date."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e4s_s7_marcus_04",
+           "Boring. Expensive. Exactly what would have caught this."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": 1
+        },
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Teach the team what you skipped",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s7_player_02",
+           "I teach the team what I skipped. Out loud, my own mistake first."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e4s_s7_marcus_05",
+           "That's how a scar turns into somebody else's habit."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "burn": 1
+        },
+        "flag": "taught_team",
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "Blame whoever was above you",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "e4s_s7_player_03",
+           "That call came from above me. Let them own it."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "e4s_s7_marcus_06",
+           "Your name's on it too, kid. Own your half."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1,
+         "trust": -1
+        },
+        "flag": "blamed_employee",
+        "rem": "Marcus will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "e4s_s7_marcus_07",
+           "Drink the coffee. You'll know the answer by morning. You already do."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Marcus will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Marcus",
+      "e3_s6_marcus_07",
+      "That's fatigue. I know the sound."
+     ],
+     "when": "burn >= 19"
+    },
+    {
+     "caption": "The door that let them in stays shut until someone can vouch for it."
+    },
+    {
+     "caption": "Customer letters go out Tuesday, plain or careful."
+    },
+    {
+     "say": [
+      "Dana",
+      "e4s_s7_dana_01",
+      "You'll be asked about this Saturday for years. Keep one honest sentence ready."
+     ]
+    }
+   ],
+   "location": "The parking garage stairwell, Monday night",
+   "shot_notes": "Marcus sits on the stairs with two coffees and hands one up. Your phone lights with Dana's name and keeps buzzing.",
+   "route": "supply",
+   "when": "(waived_vendor || cut_corners || skipped_review) && !rubber_stamp"
   }
  ],
  "end": "Saturday is contained. The sentence you chose stays on the record.",
- "unparsed": []
+ "unparsed": [],
+ "titles": [
+  {
+   "when": "rubber_stamp",
+   "title": "The Leak"
+  },
+  {
+   "when": "(waived_vendor || cut_corners || skipped_review) && !rubber_stamp",
+   "title": "The Supply Chain"
+  }
+ ],
+ "ends0": null,
+ "ends": [
+  {
+   "text": "The door you trusted is shut. The corner you cut is on the record.",
+   "when": "(waived_vendor || cut_corners || skipped_review) && !rubber_stamp"
+  },
+  {
+   "text": "The leak is closed. The yes that opened it is still yours.",
+   "when": "rubber_stamp"
+  },
+  {
+   "text": "Saturday is contained. The sentence you chose stays on the record."
+  }
+ ]
 }

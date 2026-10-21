@@ -10,8 +10,11 @@
 
   const CL = (window.CL = {
     state: { name: "Avery", preset: "p1", voice: "af_heart", pron: ["they", "them", "their"], flags: {}, log: [], stats: { skill: 30, rep: 30, trust: 30, burn: 10 } },
-    // sound starts on with the first tap (that tap is what unlocks audio on iPhones); ?mute=1 for silent test runs
-    sound: !/[?&]mute=1/.test(location.search),
+    // ?class=1 is the presentation QR code: twenty phones in one room, so voices start off (headphones turn
+    // them on) and the pacing is tighter. Elsewhere sound starts on with the first tap (that tap is what
+    // unlocks audio on iPhones); ?mute=1 for silent test runs.
+    classMode: /[?&]class=1/.test(location.search),
+    sound: !/[?&](mute|class)=1/.test(location.search),
     lipsync: {},
     rigs: {},
   });
@@ -24,8 +27,9 @@
   const cam = { x: 0, y: 0, zoom: 1, px: 0, py: 0, shake: 0.0012 };
   CL.cam = cam;
   const canvas = $("#bg");
-  // preserveDrawingBuffer lets a dissolve copy the last frame before the next shot draws
-  const gl = canvas.getContext("webgl", { premultipliedAlpha: false, antialias: false, preserveDrawingBuffer: true });
+  // dissolves copy the frame by drawing it synchronously in snapshot(), so the buffer need not be preserved
+  // (preserveDrawingBuffer costs a full-screen copy every frame on phones)
+  const gl = canvas.getContext("webgl", { premultipliedAlpha: false, antialias: false, preserveDrawingBuffer: false });
   const VS = "attribute vec2 p;varying vec2 v;void main(){v=vec2(p.x*.5+.5,.5-p.y*.5);gl_Position=vec4(p,0,1);}";
   const FS = `precision mediump float;varying vec2 v;uniform sampler2D img,dep;uniform vec2 off,ctr,scl;uniform float zm,dim;
   void main(){vec2 uv=(v-.5)*scl/zm+.5+ctr;vec2 o=uv;
@@ -40,28 +44,55 @@
   const U = n => gl.getUniformLocation(prog, n);
   const u = { img: U("img"), dep: U("dep"), off: U("off"), ctr: U("ctr"), scl: U("scl"), zm: U("zm"), dim: U("dim") };
   gl.uniform1i(u.img, 0); gl.uniform1i(u.dep, 1);
+  // Twenty phones share one classroom access point, so any single request can fail or stall.
+  // Images get a timeout and two retries; a failure is never cached, and nothing that fails
+  // may stop the story (a missing room keeps the last one, a missing actor plays as subtitles).
+  function loadImage(url, tries = 3) {
+    return new Promise((res, rej) => {
+      const im = new Image(); im.crossOrigin = "anonymous"; im.decoding = "async";
+      const t = setTimeout(() => { im.src = ""; fail(); }, 12000);
+      const fail = () => { clearTimeout(t); tries > 1 ? setTimeout(() => loadImage(url, tries - 1).then(res, rej), 800) : rej(new Error("image " + url)); };
+      im.onload = () => { clearTimeout(t); (im.decode ? im.decode().catch(() => {}) : Promise.resolve()).then(() => res(im)); };
+      im.onerror = fail; im.src = url;
+    });
+  }
   const texCache = {};
   function tex(url) {
     if (texCache[url]) return texCache[url];
-    return (texCache[url] = new Promise((res, rej) => {
-      const im = new Image(); im.crossOrigin = "anonymous";
-      im.onload = () => {
-        const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, im);
-        [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T].forEach(k => gl.texParameteri(gl.TEXTURE_2D, k, gl.CLAMP_TO_EDGE));
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-        res({ t, w: im.width, h: im.height });
-      };
-      im.onerror = rej; im.src = url;
+    const p = (texCache[url] = loadImage(url).then(im => {
+      const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, im);
+      [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T].forEach(k => gl.texParameteri(gl.TEXTURE_2D, k, gl.CLAMP_TO_EDGE));
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      return { t, w: im.width, h: im.height };
     }));
+    p.catch(() => { delete texCache[url]; });  // let a later shot try again
+    return p;
+  }
+  // a room costs ~11 MB of GPU memory (color + depth); keep the last few, free the rest
+  const roomsHeld = [];
+  function holdRoom(name) {
+    const i = roomsHeld.indexOf(name); if (i >= 0) roomsHeld.splice(i, 1);
+    roomsHeld.push(name);
+    while (roomsHeld.length > 5) {
+      const old = roomsHeld.shift();
+      for (const url of [`${A}bg/${old}.webp`, `${A}bg/${old}_depth.webp`]) {
+        const p = texCache[url]; delete texCache[url];
+        if (p) p.then(x => { if (!curBg || (curBg.img !== x && curBg.dep !== x)) gl.deleteTexture(x.t); }, () => {});
+      }
+    }
   }
   let curBg = null, dim = 1;
   CL.setDim = v => { dim = v; };
   async function setBg(name) {
     if (!name) { curBg = null; return; }
-    const [img, dep] = await Promise.all([tex(`${A}bg/${name}.webp`), tex(`${A}bg/${name}_depth.webp`)]);
-    curBg = { img, dep };
+    try {
+      const [img, dep] = await Promise.all([tex(`${A}bg/${name}.webp`), tex(`${A}bg/${name}_depth.webp`)]);
+      curBg = { img, dep }; holdRoom(name);
+    } catch (e) { console.warn("room kept, could not load", name); }
   }
+  // warm the cache for rooms a scene is about to need (the director calls this a scene ahead)
+  CL.prefetchRoom = name => { if (name && CL.hasBg(name)) { tex(`${A}bg/${name}.webp`).catch(() => {}); tex(`${A}bg/${name}_depth.webp`).catch(() => {}); } };
   function resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     canvas.width = Math.round(innerWidth * dpr); canvas.height = Math.round(innerHeight * dpr);
@@ -72,15 +103,30 @@
   // ---------- actors ----------
   const stageEl = $("#actors");
   let actors = [];
+  // JSON over a shared classroom connection: timeout, two retries, and a failure is not cached
+  CL.getJSON = function getJSON(url, tries = 3, opts = {}) {
+    const signal = AbortSignal.timeout ? AbortSignal.timeout(10000) : undefined;
+    return fetch(url, Object.assign({ signal }, opts)).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .catch(e => tries > 1 ? wait(800).then(() => getJSON(url, tries - 1, opts)) : Promise.reject(e));
+  };
   async function rig(name) {
-    if (!CL.rigs[name]) CL.rigs[name] = fetch(`${A}rigs/${name}.json`).then(r => r.json());
+    if (!CL.rigs[name]) {
+      CL.rigs[name] = CL.getJSON(`${A}rigs/${name}.json`);
+      CL.rigs[name].catch(() => { delete CL.rigs[name]; });
+    }
     return CL.rigs[name];
   }
+  // warm the cache for the people a scene is about to show (images too, so actors do not pop in)
+  CL.prefetchRig = name => {
+    if (!name) return; name = name.replace("PLAYER", CL.state.preset);
+    rig(name).then(meta => { new Image().src = `${A}rigs/${name}.webp`; Object.keys(meta.patches || {}).forEach(k => { new Image().src = `${A}rigs/${name}_${k}.webp`; }); }).catch(() => {});
+  };
   // A puppet actor: a cutout skeleton (puppet.js) drawn on its own canvas, playing a clip.
   // Its head drawings double as mouth shapes and blinks, so lip sync works the same way.
   const PW = 700, PH = 1100;  // puppet canvas, pelvis placed at (50%, 52%)
   async function addPuppet(spec, seq) {
-    const pup = await Puppet.load(`${A}puppets/${spec.puppet}`);
+    let pup;
+    try { pup = await Puppet.load(`${A}puppets/${spec.puppet}`); } catch (e) { return null; }
     if (seq != null && seq !== CL.shotSeq()) return null;
     const el = document.createElement("div"); el.className = "actor"; el.dataset.who = spec.who;
     const portrait = innerHeight > innerWidth;
@@ -104,7 +150,8 @@
   async function addActor(spec, seq) {
     if (spec.puppet) return addPuppet(spec, seq);
     const name = spec.rig.replace("PLAYER", CL.state.preset);
-    const meta = await rig(name);
+    let meta;
+    try { meta = await rig(name); } catch (e) { return null; }  // no art this time: the line plays as subtitles
     if (seq != null && seq !== CL.shotSeq()) return null;  // this shot was already cut away from
     const el = document.createElement("div");
     el.className = "actor";
@@ -117,6 +164,8 @@
       : { left: spec.x + "%", bottom: (spec.y || 0) + "%", height: spec.h + "%" });
     // mirror on the outer box: the inner layers carry GSAP's idle and speech tweens
     if (spec.flip) el.style.transform = (el.style.transform || "") + " scaleX(-1)";
+    // someone on a call is framed as a call window over the player's room
+    if (spec.remote) { el.classList.add("remote"); el.dataset.label = spec.remote === "video" ? "VIDEO CALL" : "ON THE PHONE"; }
     el.style.aspectRatio = `${meta.w}/${meta.h}`;
     // el (placement + parallax) > talk (speech nods) > inner (idle breathing), so tweens never fight
     const talkEl = document.createElement("div"); talkEl.className = "talk"; el.appendChild(talkEl);
@@ -176,7 +225,15 @@
     return [s * (Math.sin(t * .00071) + .6 * Math.sin(t * .00173 + 1.3) + .25 * Math.sin(t * .0049)),
             s * (Math.sin(t * .00063 + 2) + .5 * Math.sin(t * .00191) + .25 * Math.sin(t * .0057 + .7))];
   }
+  // full-screen overlays (cards, stats, finale) hide the scene: skip the GPU work behind them so a
+  // 20-minute session does not keep a phone's GPU at full load
+  const covers = ["#card", "#stats", "#finale"].map(s => $(s)).filter(Boolean);
+  const covered = () => covers.some(el => el.classList.contains("on"));
   function frame(t) {
+    if (!covered()) draw(t);
+    requestAnimationFrame(frame);
+  }
+  function draw(t) {
     const [hx, hy] = hand(t || 0);
     if (curBg) {
       const cw = canvas.width, ch = canvas.height, ca = cw / ch, ia = curBg.img.w / curBg.img.h;
@@ -193,7 +250,6 @@
       a.el.style.translate = `${-cam.px * a.z * W * .55}px ${-cam.py * a.z * innerHeight * .55}px`;
       if (a.puppet) { a.ctx.clearRect(0, 0, PW, PH); a.ctx.save(); a.ctx.translate(PW * .5, PH * .52); a.puppet.draw(a.ctx, 1); a.ctx.restore(); }
     });
-    requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
 
@@ -206,6 +262,7 @@
   function snapshot() { // freeze the current frame (background + actors) into an overlay
     const ov = document.createElement("div"); ov.className = "snap";
     const c2 = document.createElement("canvas"); c2.width = canvas.width; c2.height = canvas.height;
+    draw(performance.now());  // draw now, in this same task, so the copy works without preserveDrawingBuffer
     c2.getContext("2d").drawImage(canvas, 0, 0);
     ov.appendChild(c2);
     const ac = stageEl.cloneNode(true); ac.removeAttribute("id"); ac.className = "snap-actors"; ov.appendChild(ac);
@@ -265,9 +322,30 @@
   // element that has already played inside a user gesture, so we reuse it for every line.
   const vo = new Audio();
   vo.preload = "auto";
+  // voice lines are Ogg Opus; Safari before iOS 18.4 cannot play them, so those phones read subtitles
+  const canVoice = vo.canPlayType('audio/ogg; codecs="opus"') !== "";
+  CL.canVoice = canVoice;
+  // the typed name is projected on the class scoreboard: keep it to letters and spaces and off a short blocklist
+  const BLOCK = /(fuck|shit|bitch|cunt|dick|cock|puss|nigg|fag|slut|whore|rape|nazi|hitler|porn|sex|penis|vagin|boob|tits|anal|cum\b|dildo|retard)/i;
+  CL.cleanName = raw => {
+    const n = String(raw || "").replace(/[^\p{L}\p{N} .'-]/gu, "").replace(/\s+/g, " ").trim().slice(0, 16);
+    return !n || BLOCK.test(n.replace(/[^a-z]/gi, "")) ? "Avery" : n;
+  };
+  // a phone that locks between taps stops the story; ask the screen to stay on while playing
+  let wakeLock = null;
+  CL.keepAwake = async () => { try { if (navigator.wakeLock && !wakeLock) { wakeLock = await navigator.wakeLock.request("screen"); wakeLock.addEventListener("release", () => { wakeLock = null; }); } } catch (e) {} };
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && CL.playing) CL.keepAwake(); });
   CL.unlockAudio = () => {
     vo.src = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
     vo.play().catch(() => {});
+  };
+  // warm the HTTP cache for a scene's voice lines so each line starts without buffering dead air
+  CL.prefetchVoice = lines => {
+    if (!CL.sound || !canVoice) return;
+    for (const [who, id] of lines) {
+      const lid = who === "PLAYER" ? `${id}__${CL.state.voice}` : id;
+      if (CL.lipsync[lid]) fetch(`${A}vo/${lid}.ogg`, { priority: "low" }).catch(() => {});
+    }
   };
   CL.hasBg = name => (CL.manifest.bgs || []).includes(name);
   CL.manifest = {};
@@ -283,18 +361,31 @@
     const a = actors.find(x => x.who === who);
     sub.innerHTML = `<b style="color:${color || "#e8b33a"}">${label}</b><span>${CL.fmt(text)}</span>`;
     sub.classList.add("on");
-    let audio = null;
-    if (CL.sound && ls) { audio = vo; vo.src = `${A}vo/${lid}.ogg`; vo.play().catch(() => {}); }
-    const dur = ls ? ls.dur * 1000 : Math.max(1600, text.split(/\s+/).length * 330);
+    CL.lastLine = { label, text: CL.fmt(text), color: color || "#e8b33a" };  // pinned above the options if a choice follows
+    let audio = null, clock = false;  // clock: follow the wall clock instead of the audio
+    if (CL.sound && ls && canVoice) {
+      audio = vo; vo.src = `${A}vo/${lid}.ogg`;
+      vo.onerror = () => { clock = true; };
+      vo.play().catch(() => { clock = true; });
+    }
+    // with sound off the line runs at subtitle reading pace (300 ms a word, about 200 words a minute)
+    // instead of the voice's length; the mouth keeps time by playing its cues faster or slower
+    const words = text.split(/\s+/).length;
+    const dur = audio ? ls.dur * 1000 : Math.max(1400, words * 300);
+    const cueScale = ls && !audio ? ls.dur * 1000 / dur : 1;
     const t0 = performance.now();
     skip = false;
     speaking(a, true);
     await new Promise(res => {
       (function tick() {
-        const t = audio && !audio.paused ? audio.currentTime : (performance.now() - t0) / 1000;
+        const wall = (performance.now() - t0) / 1000;
+        // a voice file that stalls on a busy network must not freeze the line: after 1.2 s without
+        // progress, the mouth and the line follow the clock
+        if (audio && !clock && audio.currentTime === 0 && wall > 1.2) clock = true;
+        const t = audio && !clock && !audio.paused ? audio.currentTime : wall;
         if (a && ls) {
           let shape = "X";
-          for (const [ct, sh] of ls.cues) { if (ct <= t) shape = sh; else break; }
+          for (const [ct, sh] of ls.cues) { if (ct <= t * cueScale) shape = sh; else break; }
           setMouth(a, shape);
         }
         if (skip || t * 1000 >= dur) { if (audio) audio.pause(); if (a) setMouth(a, "X"); speaking(a, false); return res(); }
@@ -303,14 +394,23 @@
     });
     // a beat after the line so the reader can finish (but voiced lines barely need it)
     skip = false;
-    const hold = CL.sound ? 350 : Math.max(500, text.split(/\s+/).length * 120);
+    const hold = audio ? 350 : 300;  // the reading pace above already includes reading time
     for (let t = 0; t < hold && !skip; t += 50) await wait(50);
     sub.classList.remove("on");
     await wait(150);
   };
-  CL.caption = async function (text, ms = 2600) {
+  // a location slug ("Harborline SOC, late afternoon") rides over the establishing shot without holding the scene
+  CL.captionAside = function (text, ms = 2600) {
     const c = $("#caption"); c.textContent = CL.fmt(text); c.classList.add("on");
-    skip = false; for (let t = 0; t < ms && !skip; t += 50) await wait(50);
+    clearTimeout(CL.captionAside.t); CL.captionAside.t = setTimeout(() => c.classList.remove("on"), ms);
+  };
+  CL.caption = async function (text, ms) {
+    clearTimeout(CL.captionAside.t);
+    const c = $("#caption"); c.textContent = CL.fmt(text); c.classList.add("on");
+    // long enough to read (captions carry the course facts): 300 ms a word, at least 2.6 s;
+    // a tap can skip only after the first second, so a stray tap cannot swallow it
+    ms = ms || Math.max(2600, text.split(/\s+/).length * 300);
+    skip = false; for (let t = 0; t < ms && !(skip && t > 1000); t += 50) await wait(50);
     c.classList.remove("on"); await wait(300);
   };
 
@@ -328,19 +428,28 @@
       document.body.classList.add("deciding");
       const row = document.createElement("div"); row.className = "row";
       let done = false, tl = null;
+      // the question stays on screen above the options (with sound off it is the only way to know it)
+      const q = $("#question"), last = CL.lastLine;
+      if (q && last) { q.innerHTML = `<b style="color:${last.color}">${last.label}</b>${last.text}`; }
+      // a tap that was meant to skip the last line must not land on an option that just appeared
+      const openedAt = performance.now();
       let finish = (o, i) => {
         if (done) return; done = true; if (tl) tl.kill();
         document.removeEventListener("keydown", keys);
-        [...row.children].forEach((b, j) => b.classList.add(j === i ? "picked" : "gone"));
+        // on a timeout nothing was tapped: show which answer the silence became
+        const silentAt = i < 0 ? opts.findIndex(x => x.silent) : -1;
+        [...row.children].forEach((b, j) => b.classList.add(j === i ? "picked" : j === silentAt ? "timeout" : "gone"));
+        if (i < 0) gsap.fromTo("#timesup", { opacity: 0, scale: .8 }, { opacity: 1, scale: 1, duration: .25, yoyo: true, repeat: 1, repeatDelay: .7 });
+        if (q) q.classList.remove("on");
         document.body.classList.remove("deciding");
         gsap.to({ v: dim }, { v: 1, duration: .5, onUpdate() { dim = this.targets()[0].v; } });
         if (camTl) gsap.to(camTl, { timeScale: 1, duration: .5 });
-        setTimeout(() => { box.classList.remove("on"); resolve(o); }, 600);
+        setTimeout(() => { box.classList.remove("on"); resolve(o); }, i < 0 ? 1300 : 600);
       };
       opts.forEach((o, i) => {
         const b = document.createElement("button"); b.className = "opt";
         b.innerHTML = `<kbd>${i + 1}</kbd>${CL.fmt(o.t)}`;
-        b.onclick = e => { e.stopPropagation(); finish(o, i); };
+        b.onclick = e => { e.stopPropagation(); if (performance.now() - openedAt < 600) return; finish(o, i); };
         row.appendChild(b);
       });
       box.appendChild(row);
@@ -351,11 +460,13 @@
         const bar = document.createElement("div"); bar.className = "timer"; bar.innerHTML = "<i></i>";
         box.prepend(bar);
         tl = gsap.fromTo(bar.firstChild, { scaleX: 1 }, { scaleX: 0, duration: timed, ease: "none",
+          onUpdate() { bar.classList.toggle("low", this.progress() * timed > timed - 3); },  // red for the last 3 s
           onComplete: () => finish(opts.find(o => o.silent) || { silent: true }, -1) });
       }
       const keys = e => { const n = +e.key; if (n >= 1 && n <= opts.length) finish(opts[n - 1], n - 1); };
       document.addEventListener("keydown", keys);
       box.classList.add("on");
+      if (q && last) requestAnimationFrame(() => { q.style.bottom = `calc(${innerHeight - box.getBoundingClientRect().top}px + 12px)`; q.classList.add("on"); });
     });
   };
 
@@ -369,15 +480,50 @@
   };
 
   // ---------- scene runner ----------
-  // Live class results: each choice sends {c: choice id, o: option index, s: random session}
-  // to a public ntfy.sh topic the presentation site reads. No names, no device info.
-  // Test runs (?mute=1 or ?notally=1) never send.
+  // Live class results go to a public ntfy.sh topic the presentation site reads: a random session id,
+  // the name typed in the creator (for the class awards), and per choice its id, option and decision time.
+  // ntfy.sh limits each IP (a whole classroom on campus WiFi can share one) to a 60-request burst, then
+  // 1 per 5 s, and roughly 250 messages a day. So votes queue on the phone and go out as one message per
+  // episode ({s, n, v: [[cid, option, ms], ...]}), plus one "joined" ping, about 7 messages a player.
+  // A failed send keeps its votes and retries with backoff. Test runs (?mute=1 or ?notally=1) never send.
   CL.TALLY = "https://ntfy.sh/ciso-ladder-5b65593fe27f21f7";
   const session = Math.random().toString(36).slice(2, 10);
   const tallyOff = /[?&](mute|notally)=1/.test(location.search);
-  CL.tally = function (cid, idx) {
+  let queue = [], sending = null, retryIn = 15000, retryTimer = null;
+  const who = () => String(CL.state.name || "").slice(0, 16);
+  const post = body => fetch(CL.TALLY, { method: "POST", body: JSON.stringify(body),
+    signal: AbortSignal.timeout ? AbortSignal.timeout(6000) : undefined })
+    .then(r => { if (!r.ok) throw new Error("relay " + r.status); });
+  CL.tally = function (cid, idx, ms) {
     if (tallyOff || !cid) return;
-    fetch(CL.TALLY, { method: "POST", body: JSON.stringify({ c: cid, o: idx, s: session }) }).catch(() => {});
+    queue.push([cid, idx, Math.round(ms || 0)]);
+  };
+  CL.join = function () { if (!tallyOff) post({ s: session, n: who(), j: 1 }).catch(() => {}); };
+  CL.flushTally = function () {
+    if (tallyOff || !queue.length) return Promise.resolve();
+    if (sending) return sending;
+    const batch = queue.splice(0, 20);  // ~600 bytes, well under ntfy's 4 KB message size
+    sending = post({ s: session, n: who(), v: batch })
+      .then(() => { retryIn = 15000; })
+      .catch(() => {
+        queue = batch.concat(queue);  // keep the votes; try again later, slower each time
+        clearTimeout(retryTimer);
+        retryTimer = setTimeout(CL.flushTally, retryIn + Math.random() * 5000);
+        retryIn = Math.min(retryIn * 2, 180000);
+      })
+      .finally(() => { sending = null; if (queue.length && retryIn === 15000) CL.flushTally(); });
+    return sending;
+  };
+  // a phone that leaves mid-episode (locks, switches apps, closes the tab) hands its votes off on the way out
+  addEventListener("visibilitychange", () => {
+    if (document.visibilityState !== "hidden" || tallyOff || !queue.length || !navigator.sendBeacon) return;
+    if (navigator.sendBeacon(CL.TALLY, JSON.stringify({ s: session, n: who(), v: queue.slice(0, 20) }))) queue.splice(0, 20);
+  });
+  // one relay message can hold one vote (older builds) or a batch: expand to {s, n, c, o, ms}
+  CL.votesOf = function (m) {
+    if (!m || !m.s) return [];
+    if (Array.isArray(m.v)) return m.v.map(([c, o, ms]) => ({ s: m.s, n: m.n, c, o, ms }));
+    return m.c && typeof m.o === "number" ? [{ s: m.s, n: m.n, c: m.c, o: m.o, ms: m.ms }] : [];
   };
   // `when` rules from the scripts: flag names, the stats skill/rep/trust/burn, && || ! >= etc.
   // Expressions are authored by us in tools/*.py, never by players.
@@ -392,19 +538,23 @@
       if (b.if && !b.if(CL.state)) continue;
       if (b.when && !CL.when(b.when)) continue;
       if (b.card) await CL.card(...b.card);
-      if (b.shot) await CL.shot(b.shot);
-      if (b.caption) await CL.caption(b.caption);
+      // a shot that fails (art missing, network gone) keeps the last frame; the story goes on
+      if (b.shot) { try { await CL.shot(b.shot); } catch (e) { console.warn("shot failed", e); } }
+      if (b.caption) { if (b.aside) CL.captionAside(b.caption); else await CL.caption(b.caption); }
       if (b.wait && !CL.fast) await wait(b.wait);
       if (b.say) await CL.say(b.say[0], b.say[1], b.say[2], b.say[3]);
       if (b.choice) {
         CL.lastCid = b.cid;
+        const t0 = performance.now();
         const o = await CL.choose(b.choice, b.timed);
-        CL.tally(b.cid, b.choice.indexOf(o));
+        CL.tally(b.cid, b.choice.indexOf(o), performance.now() - t0);
         const st = CL.state.stats;
-        for (const k in o.fx || {}) st[k] = Math.max(0, Math.min(100, st[k] + o.fx[k]));
+        for (const k in o.fx || {}) st[k] = Math.max(0, Math.min(100, (st[k] || 0) + o.fx[k]));
         if (o.flag) CL.state.flags[o.flag] = true;
         CL.state.log.push({ cid: b.cid, t: o.log || o.t, silent: !!o.silent, o: b.choice.indexOf(o) });
-        if (o.rem) remember(o.rem);
+        // "X will remember that." on every option wore thin (194 of 344): show the specific ones, and the
+        // generic one only when the choice sets something the story reads later
+        if (o.rem && (o.flag || !/will remember that\.$/.test(o.rem))) remember(o.rem);
         if (o.then) await CL.run(o.then);
       }
       if (b.do) await b.do(CL);
@@ -412,14 +562,27 @@
   };
 
   CL.load = async function () {
+    // retried like every other fetch; if they still fail the story plays as text rather than not at all
     [CL.lipsync, CL.manifest] = await Promise.all([
-      fetch(`${A}vo/lipsync.json`).then(r => r.json()).catch(() => ({})),
-      fetch(`${A}manifest.json`).then(r => r.json()).catch(() => ({})),
+      CL.getJSON(`${A}vo/lipsync.json`, 3, { cache: "no-cache" }).catch(() => ({})),
+      CL.getJSON(`${A}manifest.json`, 3, { cache: "no-cache" }).catch(() => ({})),
     ]);
   };
 
-  $("#sound").textContent = CL.sound ? "Sound: on" : "Sound: off";
-  $("#sound").onclick = e => { e.stopPropagation(); CL.sound = !CL.sound; e.currentTarget.textContent = CL.sound ? "Sound: on" : "Sound: off"; if (!CL.sound && CL.ambienceOff) CL.ambienceOff(); };
+  // one big, honest toggle: in class it starts off and says why; on phones that cannot play the voices it says so
+  const soundBtn = $("#sound");
+  const soundLabel = () => {
+    soundBtn.classList.toggle("off", !CL.sound);
+    soundBtn.textContent = !canVoice ? (CL.sound ? "Sound on (subtitles only)" : "Sound off")
+      : CL.sound ? "Sound: on" : (CL.classMode ? "Headphones? Tap for voices" : "Sound: off");
+  };
+  soundLabel();
+  soundBtn.onclick = e => {
+    e.stopPropagation(); CL.sound = !CL.sound;
+    if (CL.sound) CL.unlockAudio();  // this tap is the gesture iPhones need before any line can play
+    else if (CL.ambienceOff) CL.ambienceOff();
+    soundLabel();
+  };
 
   // ---------- fast test mode (?fast=1): plays instantly, picks with CL.policy ----------
   // For automated flow tests: no waits, no transitions, every line and card recorded in CL.trace.
@@ -427,9 +590,10 @@
   if (/[?&]fast=1/.test(location.search)) {
     CL.fast = true;
     CL.policy = opts => opts[0];
-    CL.say = async (who, id) => { CL.trace.push(["say", who, id]); };
-    CL.caption = async () => {};
-    CL.card = async (k, title) => { CL.trace.push(["card", k, title]); };
+    CL.say = async (who, id, text) => { CL.trace.push(["say", who, id, text]); };
+    CL.caption = async text => { CL.trace.push(["cap", text]); };  // recorded so tests can check which captions play
+    CL.captionAside = text => { CL.trace.push(["slug", text]); };
+    CL.card = async (k, title, sub, hold) => { CL.trace.push(["card", k, title, hold]); };
     const realShot = CL.shot;
     CL.shot = async s => realShot(Object.assign({}, s, { cut: "hard" }));
     CL.choose = async opts => CL.policy(opts, CL.lastCid);

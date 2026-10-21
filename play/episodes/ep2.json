@@ -117,7 +117,423 @@
     }
    ],
    "location": "Harborline Financial SOC, late afternoon",
-   "shot_notes": "Alert banners stack on the player's screens while Marcus leans over the chair and taps one row."
+   "shot_notes": "Alert banners stack on the player's screens while Marcus leans over the chair and taps one row.",
+   "when0": null,
+   "when": "(!(r_grc)) && (!(r_up))"
+  },
+  {
+   "id": "2.1g",
+   "name": "Binders",
+   "beats": [
+    {
+     "say": [
+      "Dana",
+      "g2_s1_dana_01",
+      "Welcome to the quiet side. The fires here burn slower."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "g2_s1_nadia_01",
+      "Slower, and they come with signatures."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "g2_s1_dana_02",
+      "Brindlecove runs our payroll in their cloud."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "g2_s1_dana_03",
+      "Their security report came back with exceptions."
+     ]
+    },
+    {
+     "caption": "Exception: former staff kept system access for weeks after leaving."
+    },
+    {
+     "caption": "Exception: backup restores were never tested this year."
+    },
+    {
+     "say": [
+      "Nadia",
+      "g2_s1_nadia_02",
+      "Payroll runs Friday. Procurement wants a signature today."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "g2_s1_dana_04",
+      "Your desk now. Tell me how you'd play it."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Sign with a fix date",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s1_player_01",
+           "Sign it. They commit to a fix date, in writing."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "g2_s1_nadia_03",
+           "A date on paper. I'll file it where we can find it."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "g2_s1_dana_05",
+           "Dates slip. Somebody has to check."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": 1,
+         "skill": -1
+        },
+        "flag": "waived_vendor",
+        "rem": "Nadia will remember you signed it."
+       },
+       {
+        "t": "Fixes before signing",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s1_player_02",
+           "No signature until they close the access gap."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "g2_s1_nadia_04",
+           "Procurement will call that slow. I'll call it defensible."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": -1
+        },
+        "rem": "Dana will remember you held the line."
+       },
+       {
+        "t": "Escalate to Dana",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s1_player_03",
+           "This is above my desk. Accepting that risk is your call."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "g2_s1_dana_06",
+           "Fair. Risk gets accepted by an owner. Learn who owns what."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "rep": -1
+        },
+        "rem": "Dana will remember you passed it up."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Nadia",
+           "g2_s1_nadia_05",
+           "Procurement heard silence as a yes. It's signed."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "flag": "waived_vendor",
+        "rem": "Nadia will remember the empty signature line."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Dana",
+      "g2_s1_dana_07",
+      "Every signature in this room is a promise somebody made."
+     ]
+    }
+   ],
+   "location": "The risk and compliance office, morning, year two",
+   "shot_notes": "Dana drops a thick binder on an empty desk by the window. Nadia stands behind her with a coffee and a pen.",
+   "route": "grc",
+   "when": "r_grc"
+  },
+  {
+   "id": "2.1x",
+   "name": "Day One",
+   "beats": [
+    {
+     "say": [
+      "Jordan",
+      "x2_s1_jordan_01",
+      "Welcome to the loft. That's the admin console."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "x2_s1_jordan_02",
+      "And that sticky note is everyone's password."
+     ]
+    },
+    {
+     "caption": "ADMIN CONSOLE. One shared login. No second factor."
+    },
+    {
+     "say": [
+      "Theo",
+      "x2_s1_theo_01",
+      "Investor demo tomorrow. Please don't break anything."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "x2_s1_theo_02",
+      "Whatever you want to fix, put it on the list."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Turn on MFA today",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s1_player_01",
+           "Named accounts and a second factor. Today, before the demo."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s1_theo_03",
+           "So the demo login takes longer. Charming."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "rep": 1,
+         "burn": 1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Kill the sticky note first",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s1_player_02",
+           "New password, three people, no sticky notes. MFA next week."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s1_theo_04",
+           "A compromise. I'll pretend it was my idea."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Put it on the list",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s1_player_03",
+           "After the demo. Top of the list, I promise."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "x2_s1_jordan_03",
+           "The list is where tickets go to retire."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "skill": -1
+        },
+        "rem": "Jordan will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Theo",
+           "x2_s1_theo_05",
+           "Great. The list it is."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Theo will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Jordan",
+      "x2_s1_jordan_04",
+      "Also, sales needs admin for the demo. Sales is me."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Build a fake demo copy",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s1_player_04",
+           "I'll set up a demo copy with fake customers. No real data."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "x2_s1_jordan_05",
+           "Fake customers. Finally, ones who call back."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "burn": 1
+        },
+        "rem": "Jordan will remember that."
+       },
+       {
+        "t": "Give a read-only login",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s1_player_05",
+           "You get your own login. Read only. It still shows everything."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "x2_s1_jordan_06",
+           "Read only. Like a museum. Fine."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1
+        },
+        "rem": "Jordan will remember that."
+       },
+       {
+        "t": "Hand over admin",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s1_player_06",
+           "Fine. Admin. Don't click anything red."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "x2_s1_jordan_07",
+           "Everything in here is red. I'll be brave."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "skill": -1
+        },
+        "rem": "Jordan will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Jordan",
+           "x2_s1_jordan_08",
+           "I'll take that as the sticky note."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Jordan will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "caption": "The demo goes fine. Nobody asks about the login screen."
+    }
+   ],
+   "location": "Kestrel Pay loft, day",
+   "shot_notes": "Brick walls, folding tables, a beanbag nobody trusts. Jordan taps a sticky note stuck to a monitor. Theo talks while walking past.",
+   "route": "startup",
+   "when": "r_up"
   },
   {
    "id": "2.2",
@@ -168,7 +584,8 @@
         ],
         "fx": {
          "skill": 2,
-         "rep": 1
+         "rep": 1,
+         "burn": 1
         },
         "rem": "Marcus will remember that."
        },
@@ -244,7 +661,360 @@
     }
    ],
    "location": "Harborline Financial, a small conference room, the following week",
-   "shot_notes": "A vendor rep smiles and slides a glossy one-pager across the table. Marcus keeps his hands off it."
+   "shot_notes": "A vendor rep smiles and slides a glossy one-pager across the table. Marcus keeps his hands off it.",
+   "when0": null,
+   "when": "(!(r_grc)) && (!(r_up))"
+  },
+  {
+   "id": "2.2g",
+   "name": "The Exception",
+   "beats": [
+    {
+     "caption": "Access review: executives exempt from MFA. Approved by IT. No end date."
+    },
+    {
+     "say": [
+      "Priya",
+      "g2_s2_priya_01",
+      "The exception. I know. Everyone hates the exception."
+     ]
+    },
+    {
+     "say": [
+      "Priya",
+      "g2_s2_priya_02",
+      "My leaders were tapping phones in board meetings. It slowed them down."
+     ]
+    },
+    {
+     "say": [
+      "Priya",
+      "g2_s2_priya_03",
+      "They're the busiest people here. Pick a fight somewhere else."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Write it up as a finding",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s2_player_01",
+           "It's a finding. The most targeted logins have the least protection."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "g2_s2_priya_04",
+           "Bold, for the new desk. Spell my name right."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "rep": 1,
+         "trust": -2
+        },
+        "rem": "Priya will remember the finding."
+       },
+       {
+        "t": "Let it ride",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s2_player_02",
+           "Fine. It stays, for now."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "g2_s2_priya_05",
+           "See? You're easy to work with."
+          ]
+         },
+         {
+          "caption": "The exception stays in the register. No owner. No end date."
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "skill": -1
+        },
+        "rem": "Priya will remember you let it go."
+       },
+       {
+        "t": "Negotiate a deadline",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s2_player_03",
+           "Keep it till next quarter. Then faster MFA, or it's a finding."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "g2_s2_priya_06",
+           "A deadline and a better tool. Fine. I'll hold you to the tool."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1
+        },
+        "rem": "Priya will remember the deal."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Priya",
+           "g2_s2_priya_07",
+           "Great talk. Close the door on your way out."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1,
+         "rep": -1
+        },
+        "rem": "Priya will remember you folded."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Priya's office, afternoon, year two",
+   "shot_notes": "Priya types without looking up. You hold a one-page memo. Her screen shows a calendar packed edge to edge.",
+   "route": "grc",
+   "when": "r_grc"
+  },
+  {
+   "id": "2.2x",
+   "name": "One AM",
+   "beats": [
+    {
+     "caption": "ALERT: Cloud access key found in a public code repository."
+    },
+    {
+     "caption": "Pushed tonight. Commit message: \"quick fix, will clean up later.\""
+    },
+    {
+     "caption": "The key can read and write the payments storage."
+    },
+    {
+     "say": [
+      "Theo",
+      "x2_s2_theo_01",
+      "Mm. Is the site down? Don't take the site down."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "x2_s2_theo_02",
+      "Customers in other time zones are buying right now."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 10,
+      "options": [
+       {
+        "t": "Rotate it now",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s2_player_01",
+           "Killing the key now. The site blinks for a few minutes."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s2_theo_03",
+           "A few minutes. I'm timing you."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "trust": 1,
+         "rep": -1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Rotate in the morning",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s2_player_02",
+           "I'll make the repo private and rotate first thing tomorrow."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s2_theo_04",
+           "Smart. Nobody reads code at one in the morning."
+          ]
+         },
+         {
+          "caption": "Automated scanners do. They never sleep."
+         }
+        ],
+        "fx": {
+         "skill": -1,
+         "burn": -1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Make Theo decide",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s2_player_03",
+           "Your call. Downtime now, or a live key until morning."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s2_theo_05",
+           "You're the security person. That's why I hired you. Rotate it."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Theo",
+           "x2_s2_theo_06",
+           "You're staring at it. Is staring a fix?"
+          ]
+         }
+        ],
+        "fx": {
+         "skill": -1,
+         "rep": -1
+        },
+        "flag": "missed_alert",
+        "rem": "Theo will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "caption": "Morning. The engineer who pushed it writes: \"my fault, so sorry.\""
+    },
+    {
+     "say": [
+      "Theo",
+      "x2_s2_theo_07",
+      "Do we fire someone? Investors like a firm hand."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Fix the process",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s2_player_04",
+           "No. We scan for secrets before every push. Tired people make mistakes."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s2_theo_08",
+           "Robots babysitting engineers. Fine. Cheaper than hiring."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Write them up",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s2_player_05",
+           "Formal warning. People need to see a consequence."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "x2_s2_jordan_01",
+           "Great. Now nobody admits anything to you ever again."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": -1
+        },
+        "rem": "Jordan will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Theo",
+           "x2_s2_theo_09",
+           "No answer. I'll let it slide. Again."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Theo will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Kestrel Pay loft, night, 1 AM",
+   "shot_notes": "The loft is dark except your laptop. Your phone buzzes across the table. Theo is asleep in a desk chair under one lamp and jolts awake.",
+   "route": "startup",
+   "when": "r_up"
   },
   {
    "id": "2.3",
@@ -338,7 +1108,420 @@
     }
    ],
    "location": "Harborline Financial SOC, evening",
-   "shot_notes": "A new hire hovers at the player's shoulder, notepad clenched, while Marcus watches from the next desk."
+   "shot_notes": "A new hire hovers at the player's shoulder, notepad clenched, while Marcus watches from the next desk.",
+   "when0": null,
+   "when": "(!(r_grc)) && (!(r_up))"
+  },
+  {
+   "id": "2.3g",
+   "name": "The Examiner",
+   "beats": [
+    {
+     "say": [
+      "Examiner",
+      "g2_s3_examiner_01",
+      "Joan Mercer. I've read a lot of plans. Most are lovely."
+     ]
+    },
+    {
+     "say": [
+      "Examiner",
+      "g2_s3_examiner_02",
+      "Show me proof the bank tests its incident response plan."
+     ]
+    },
+    {
+     "say": [
+      "Nadia",
+      "g2_s3_nadia_01",
+      "Answer what she asked. Nothing more, nothing less."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 10,
+      "options": [
+       {
+        "t": "The exercise records",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s3_player_01",
+           "Our last exercise. Who attended, what we decided, the gaps we found."
+          ]
+         },
+         {
+          "say": [
+           "Examiner",
+           "g2_s3_examiner_03",
+           "Gaps, written down. That's rarer than you'd think."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1,
+         "rep": -1
+        },
+        "flag": "exam_records",
+        "rem": "Joan Mercer will remember the records."
+       },
+       {
+        "t": "The plan itself",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s3_player_02",
+           "Here's the full plan. It's very thorough."
+          ]
+         },
+         {
+          "say": [
+           "Examiner",
+           "g2_s3_examiner_04",
+           "I asked for a test. This is a document."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Joan Mercer will remember the binder."
+       },
+       {
+        "t": "Hand over everything",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s3_player_03",
+           "All of it. Plans, logs, emails. Take your pick."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "g2_s3_nadia_02",
+           "Now she reads everything. Including what we haven't."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1,
+         "burn": 1
+        },
+        "rem": "Nadia will remember the paper avalanche."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Examiner",
+           "g2_s3_examiner_05",
+           "I'll note the evidence was not readily available."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1,
+         "rep": -1
+        },
+        "rem": "Joan Mercer will remember the wait."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Examiner",
+      "g2_s3_examiner_06",
+      "When the plan failed in practice, who updated it?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Not yet, but tracked",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s3_player_04",
+           "Nobody, yet. It's open, with an owner and a date."
+          ]
+         },
+         {
+          "say": [
+           "Examiner",
+           "g2_s3_examiner_07",
+           "Honest and tracked. I can live with tracked."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "skill": 1
+        },
+        "flag": "exam_honest",
+        "rem": "Joan Mercer will remember the honest answer."
+       },
+       {
+        "t": "Say it's handled",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s3_player_05",
+           "It's handled. Fully updated."
+          ]
+         },
+         {
+          "say": [
+           "Examiner",
+           "g2_s3_examiner_08",
+           "Then send me the updated version by Friday."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "g2_s3_nadia_03",
+           "We don't have an updated version."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": -2
+        },
+        "rem": "Nadia will remember the overpromise."
+       },
+       {
+        "t": "Let Nadia answer",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s3_player_06",
+           "Counsel can speak to that."
+          ]
+         },
+         {
+          "say": [
+           "Nadia",
+           "g2_s3_nadia_04",
+           "The update is in progress. We'll share the tracking record."
+          ]
+         },
+         {
+          "say": [
+           "Examiner",
+           "g2_s3_examiner_09",
+           "Next time, the person who owns it answers."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Joan Mercer will remember who answered."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Examiner",
+           "g2_s3_examiner_10",
+           "Silence is an answer. I'll write it down as one."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "rem": "Joan Mercer will remember the silence."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Examiner",
+      "g2_s3_examiner_11",
+      "I'm not here to catch you. I'm here to see if you'd catch yourselves."
+     ]
+    }
+   ],
+   "location": "A glass conference room, morning, year three",
+   "shot_notes": "Joan Mercer sits alone at the long table with a legal pad. Nadia sits beside you. A stack of folders waits in front of you.",
+   "route": "grc",
+   "when": "r_grc"
+  },
+  {
+   "id": "2.3x",
+   "name": "The Questionnaire",
+   "beats": [
+    {
+     "caption": "From a big bank prospect: Security Questionnaire. Due Friday."
+    },
+    {
+     "say": [
+      "Jordan",
+      "x2_s3_jordan_01",
+      "Biggest deal we've ever chased. I can taste it."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "x2_s3_jordan_02",
+      "Also my commission. I can taste that too."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "x2_s3_theo_01",
+      "Every answer is yes. Yes reads like confidence."
+     ]
+    },
+    {
+     "caption": "Do you encrypt all customer data at rest?"
+    },
+    {
+     "caption": "Do you test backups and run a written incident plan?"
+    },
+    {
+     "say": [
+      "Theo",
+      "x2_s3_theo_02",
+      "We will. Eventually. Future tense is still yes."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Answer it straight",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s3_player_01",
+           "We answer what's true today. Every gap gets a fix date."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "x2_s3_jordan_03",
+           "Honest and broke. My parents will be so proud."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 2,
+         "rep": -1
+        },
+        "rem": "Jordan will remember that."
+       },
+       {
+        "t": "Call their security team",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s3_player_02",
+           "Let me call their security people. A gap sounds better with a plan."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s3_theo_03",
+           "Talking to customers. Bold. Fine, set it up."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": 1,
+         "burn": 1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Shade the answers",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s3_player_03",
+           "Yes to everything. I'll make it true before they check."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s3_theo_04",
+           "That's the spirit. That's the whole startup spirit."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": -2
+        },
+        "flag": "cut_corners",
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Theo",
+           "x2_s3_theo_05",
+           "Silence. I'll type the yeses myself."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1
+        },
+        "flag": "cut_corners",
+        "rem": "Jordan will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "caption": "The questionnaire goes out Friday afternoon."
+    },
+    {
+     "say": [
+      "Jordan",
+      "x2_s3_jordan_04",
+      "We'll probably win it. Why does it feel like lying in a nice font?"
+     ],
+     "when": "cut_corners"
+    }
+   ],
+   "location": "Kestrel Pay loft, day, months later",
+   "shot_notes": "A long spreadsheet fills the wall screen. Jordan bounces on the beanbag. Theo stands with arms crossed, smiling a little too much.",
+   "route": "startup",
+   "when": "r_up"
   },
   {
    "id": "2.4",
@@ -460,7 +1643,413 @@
     }
    ],
    "location": "The player's apartment, two in the morning",
-   "shot_notes": "Jordan squints from the couch. The player is still in yesterday's clothes as the phone buzzes and lights the room."
+   "shot_notes": "Jordan squints from the couch. The player is still in yesterday's clothes as the phone buzzes and lights the room.",
+   "when0": null,
+   "when": "(!(r_grc)) && (!(r_up))"
+  },
+  {
+   "id": "2.4g",
+   "name": "The Tabletop",
+   "beats": [
+    {
+     "caption": "Exercise scenario: file servers encrypted. A ransom note on every screen."
+    },
+    {
+     "say": [
+      "Sam",
+      "g2_s4_sam_01",
+      "Okay. Files are locked. We're, uh, isolating?"
+     ]
+    },
+    {
+     "say": [
+      "Priya",
+      "g2_s4_priya_01",
+      "Isolating what? Payments still have to run."
+     ]
+    },
+    {
+     "say": [
+      "Sam",
+      "g2_s4_sam_02",
+      "So who says pull the plug? Me? Priya?"
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "g2_s4_dana_01",
+      "Facilitator. The room is stuck. Move it."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 10,
+      "options": [
+       {
+        "t": "Point to the plan",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s4_player_01",
+           "The plan names who decides. Who is it?"
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "g2_s4_sam_03",
+           "It says incident commander. We never named one."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1
+        },
+        "rem": "Dana will remember you used the plan."
+       },
+       {
+        "t": "Make the call yourself",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s4_player_02",
+           "Isolate now. I'll take the heat."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "g2_s4_dana_02",
+           "In a real incident, you don't have that authority."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": -1
+        },
+        "rem": "Priya will remember you grabbed the wheel."
+       },
+       {
+        "t": "Stop the clock",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s4_player_03",
+           "Pause. Nobody here knows who decides. That's the finding."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "g2_s4_sam_04",
+           "Wow. Rude. Also correct."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1
+        },
+        "rem": "Sam will remember the pause."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Priya",
+           "g2_s4_priya_02",
+           "We just argued away the afternoon. Is that the exercise?"
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "g2_s4_dana_03",
+           "It is now."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": -1,
+         "rep": -1
+        },
+        "rem": "Dana will remember the stall."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Dana",
+      "g2_s4_dana_04",
+      "This is what exercises are for. Better here than on a Saturday."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "g2_s4_dana_05",
+      "Now. What goes in the after-action report?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Write down every gap",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s4_player_04",
+           "Every gap. No decider, no contact list, no backup check."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "g2_s4_dana_06",
+           "Good. Gaps with owners turn into fixes."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1,
+         "rep": -1
+        },
+        "rem": "Dana will remember the honest report."
+       },
+       {
+        "t": "Keep it upbeat",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s4_player_05",
+           "Lessons learned. Nothing that reads like failure."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "g2_s4_priya_03",
+           "Finally, a report I can forward."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "g2_s4_dana_07",
+           "And a report nobody can act on."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "skill": -1
+        },
+        "rem": "Priya will remember the friendly report."
+       },
+       {
+        "t": "Name who froze",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s4_player_06",
+           "We note who hesitated. People need to own it."
+          ]
+         },
+         {
+          "say": [
+           "Sam",
+           "g2_s4_sam_05",
+           "Cool. Next time I'll just stay quiet. Safer."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1,
+         "trust": -1
+        },
+        "rem": "Sam will remember being named."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Dana",
+           "g2_s4_dana_08",
+           "If it isn't written down, it didn't happen. Write it."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Dana will remember the blank page."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "The incident war room, afternoon, year three",
+   "shot_notes": "You stand at the whiteboard holding a marker. Sam, Priya and Dana sit around the table. A fake ransom note glows on the wall screen.",
+   "route": "grc",
+   "when": "r_grc"
+  },
+  {
+   "id": "2.4x",
+   "name": "Ship It",
+   "beats": [
+    {
+     "say": [
+      "Theo",
+      "x2_s4_theo_01",
+      "Saved cards ship tonight. One click checkout."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "x2_s4_theo_02",
+      "Encryption is next sprint. One sprint, tops."
+     ]
+    },
+    {
+     "caption": "Card numbers would sit in the database as plain text."
+    },
+    {
+     "say": [
+      "Theo",
+      "x2_s4_theo_03",
+      "Release goes in ten minutes. Yes or no?"
+     ]
+    },
+    {
+     "choice": {
+      "timed": 8,
+      "options": [
+       {
+        "t": "Hold the line",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s4_player_01",
+           "No. Plain text card numbers don't ship. Not even for one night."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s4_theo_04",
+           "You just cost me a launch post. Fine. Next sprint."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1,
+         "rep": -2,
+         "burn": 1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Ship to staff only",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s4_player_02",
+           "Ship it to staff accounts only. Real customers wait for encryption."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s4_theo_05",
+           "A soft launch. Investors love that phrase anyway."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "rep": 1,
+         "burn": 1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Ship it",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s4_player_03",
+           "Ship it. Encryption is the first ticket next sprint."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s4_theo_06",
+           "That's why you're here. To say yes faster."
+          ]
+         },
+         {
+          "caption": "The next sprint comes. So does the one after that."
+         }
+        ],
+        "fx": {
+         "rep": 2,
+         "trust": -1,
+         "skill": -1
+        },
+        "flag": "cut_corners",
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Theo",
+           "x2_s4_theo_07",
+           "Clock ran out. Shipping. Be mad tomorrow."
+          ]
+         },
+         {
+          "caption": "The next sprint comes. So does the one after that."
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "flag": "cut_corners",
+        "rem": "Theo will remember that."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Kestrel Pay loft, night",
+   "shot_notes": "Pizza crusts and a release countdown on the wall screen. Theo leans over your desk with a launch checklist. The encryption box is unchecked.",
+   "route": "startup",
+   "when": "r_up"
   },
   {
    "id": "2.5",
@@ -662,7 +2251,413 @@
     }
    ],
    "location": "Harborline Financial, conference room, afternoon",
-   "shot_notes": "Sam paces under a whiteboard of arrows, energy drink in hand. Dana waits at the head of the table. Marcus sits to the side, arms folded."
+   "shot_notes": "Sam paces under a whiteboard of arrows, energy drink in hand. Dana waits at the head of the table. Marcus sits to the side, arms folded.",
+   "when0": null,
+   "when": "(!(r_grc)) && (!(r_up))"
+  },
+  {
+   "id": "2.5g",
+   "name": "Soften It",
+   "beats": [
+    {
+     "caption": "Draft finding: backup restores untested. Recovery from ransomware is unproven. Rating: high."
+    },
+    {
+     "say": [
+      "Priya",
+      "g2_s5_priya_01",
+      "The audit committee meets tomorrow. That line ends careers."
+     ]
+    },
+    {
+     "say": [
+      "Priya",
+      "g2_s5_priya_02",
+      "Change high to moderate. Say testing is in progress."
+     ]
+    },
+    {
+     "say": [
+      "Priya",
+      "g2_s5_priya_03",
+      "It basically is. We bought the tool."
+     ]
+    },
+    {
+     "say": [
+      "Priya",
+      "g2_s5_priya_04",
+      "I remember who helps me. Decide."
+     ]
+    },
+    {
+     "choice": {
+      "timed": 8,
+      "options": [
+       {
+        "t": "Keep it as written",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s5_player_01",
+           "It stays high. I'll add that the tool is bought and a test is scheduled."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "g2_s5_priya_05",
+           "So I get credit and the bad grade. Fine."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "rep": 2,
+         "trust": -2
+        },
+        "rem": "Priya will remember you held the rating."
+       },
+       {
+        "t": "Soften it",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s5_player_02",
+           "Moderate. In progress. Just this once."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "g2_s5_priya_06",
+           "See? Grownups. Thank you."
+          ]
+         },
+         {
+          "caption": "The committee reads \"moderate.\" Nobody asks a follow-up question."
+         }
+        ],
+        "fx": {
+         "trust": 2,
+         "rep": -2
+        },
+        "rem": "Nadia will remember the edit."
+       },
+       {
+        "t": "Take it to Nadia",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s5_player_03",
+           "Ratings aren't mine to trade. Nadia and Dana can review it."
+          ]
+         },
+         {
+          "say": [
+           "Priya",
+           "g2_s5_priya_07",
+           "Straight to counsel. Noted."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "rep": 1,
+         "trust": -1
+        },
+        "rem": "Priya will remember you went to legal."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Priya",
+           "g2_s5_priya_08",
+           "I'll take that as a yes."
+          ]
+         },
+         {
+          "caption": "Priya edits the line herself. Your name stays on the report."
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": -2
+        },
+        "rem": "Priya will remember you let her type."
+       }
+      ]
+     }
+    }
+   ],
+   "location": "Priya's office, evening, year four",
+   "shot_notes": "Priya shuts the door behind you and turns her laptop around. A draft audit committee report is open, one sentence highlighted.",
+   "route": "grc",
+   "when": "r_grc"
+  },
+  {
+   "id": "2.5x",
+   "name": "Runway",
+   "beats": [
+    {
+     "say": [
+      "Theo",
+      "x2_s5_theo_01",
+      "Runway's short. The next round is late."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "x2_s5_theo_02",
+      "Your security budget, or two engineers. Pick one."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "x2_s5_theo_03",
+      "Their names are on the spreadsheet. Sorry."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Cut my budget",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s5_player_01",
+           "Keep the engineers. I'll run on free tools and raw logs."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s5_theo_04",
+           "Noble. Also cheaper. I love both."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": 1,
+         "skill": -1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Cut, but keep the basics",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s5_player_02",
+           "Cut the extras. Logging and backups stay. Those aren't up for debate."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s5_theo_05",
+           "Fine. You keep the smoke alarm. Sell the rest."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1,
+         "rep": -1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Keep the full budget",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s5_player_03",
+           "In a payments company, security is the wrong line to cut."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x2_s5_theo_06",
+           "Then you tell them. They sit by the window."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "rep": -2
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Theo",
+           "x2_s5_theo_07",
+           "Then I'll decide. You won't like it."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1,
+         "burn": 1
+        },
+        "rem": "Theo will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "caption": "Later. The loft is empty. Jordan finds you on the floor."
+    },
+    {
+     "say": [
+      "Jordan",
+      "x2_s5_jordan_01",
+      "You're doing the stare again. The night shift one."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "x2_s5_jordan_02",
+      "Real talk. Is this place going to make it?"
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "x2_s5_jordan_03",
+      "And did we leave holes in it on the way?"
+     ],
+     "when": "cut_corners"
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Tell the truth",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s5_player_04",
+           "Honestly? Maybe not. But the work still counts."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "x2_s5_jordan_04",
+           "Maybe not. Okay. Pass the cereal."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "burn": -1
+        },
+        "rem": "Jordan will remember that."
+       },
+       {
+        "t": "Keep it upbeat",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s5_player_05",
+           "We'll be fine. Theo always finds money."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "x2_s5_jordan_05",
+           "You blinked twice. That's your lying blink."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "burn": 1
+        },
+        "rem": "Jordan will remember that."
+       },
+       {
+        "t": "Admit I'm tired",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s5_player_06",
+           "I'm tired. I'm the whole team, and it shows."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "x2_s5_jordan_06",
+           "Then sleep. The holes will still be there tomorrow."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": -2,
+         "trust": 1
+        },
+        "rem": "Jordan will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Jordan",
+           "x2_s5_jordan_07",
+           "Okay. We just sit here, then. That's allowed."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Jordan will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Jordan",
+      "x2_s5_jordan_08",
+      "Whatever happens, this place was safer with you in it."
+     ]
+    }
+   ],
+   "location": "Kestrel Pay loft, night",
+   "shot_notes": "Half the desks are empty. Theo paces with a spreadsheet on a tablet. Later, Jordan sits on the floor beside you, eating cereal from the box.",
+   "route": "startup",
+   "when": "r_up"
   },
   {
    "id": "2.6",
@@ -780,9 +2775,365 @@
     }
    ],
    "location": "Harborline Financial, Marcus's office, months later",
-   "shot_notes": "Marcus sets two exam guides on the desk and waits. The coffee beside the guides has gone cold."
+   "shot_notes": "Marcus sets two exam guides on the desk and waits. The coffee beside the guides has gone cold.",
+   "when0": null,
+   "when": "(!(r_grc)) && (!(r_up))"
+  },
+  {
+   "id": "2.6g",
+   "name": "The Letters",
+   "beats": [
+    {
+     "say": [
+      "Marcus",
+      "g2_s6_marcus_01",
+      "Remember the SOC? Loud room, bad coffee. Still there."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "g2_s6_marcus_02",
+      "Heard you sat across from an examiner. Still breathing, I see."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "g2_s6_dana_01",
+      "Time for letters after your name. Two roads."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "g2_s6_dana_02",
+      "CISA is the auditor's cert. It fits the desk you're at."
+     ]
+    },
+    {
+     "say": [
+      "Marcus",
+      "g2_s6_marcus_03",
+      "CISSP needs five years paid. You can start the reading now."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "CISA now",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s6_player_01",
+           "CISA now. I want to audit like I mean it."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "g2_s6_dana_03",
+           "Good. Auditors who understand the tech are rare."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 2,
+         "rep": 1,
+         "burn": 1
+        },
+        "flag": "cisa",
+        "rem": "Dana will remember you chose CISA."
+       },
+       {
+        "t": "Start the CISSP track",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s6_player_02",
+           "CISSP track. Long reading, and the years keep counting."
+          ]
+         },
+         {
+          "say": [
+           "Marcus",
+           "g2_s6_marcus_04",
+           "Broad map. You'll need it for the top floor."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "rep": 1
+        },
+        "rem": "Marcus will remember you chose the long road."
+       },
+       {
+        "t": "Not this year",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g2_s6_player_03",
+           "Not this year. I need some evenings back."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "g2_s6_dana_04",
+           "Fair. Rested people write better findings."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": -2,
+         "skill": -1
+        },
+        "rem": "Dana will remember you needed a breather."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Marcus",
+           "g2_s6_marcus_05",
+           "Shrug noted. The guides make nice coasters."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Marcus will remember the shrug."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Marcus",
+      "g2_s6_marcus_06",
+      "Back to the noise for me. Visit sometime."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "g2_s6_dana_05",
+      "One more thing. Close the door."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "g2_s6_dana_06",
+      "A promotion conversation is coming. Be ready to want something."
+     ]
+    },
+    {
+     "caption": "Dana doesn't say which job. She says to think about it."
+    }
+   ],
+   "location": "Dana's office, late afternoon, year four",
+   "shot_notes": "Dana sits behind her desk. Marcus leans in the doorway in a SOC hoodie, two study guides tucked under his arm.",
+   "route": "grc",
+   "when": "r_grc"
+  },
+  {
+   "id": "2.6x",
+   "name": "The Buyer",
+   "beats": [
+    {
+     "caption": "Harborline Financial has acquired Kestrel Pay."
+    },
+    {
+     "say": [
+      "Dana",
+      "x2_s6_dana_01",
+      "Dana Whitfield, Harborline security. We just bought your startup."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "x2_s6_dana_02",
+      "Part of the deal is you. We want you back."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "x2_s6_dana_03",
+      "Marcus says you left owing him a coffee."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "x2_s6_dana_04",
+      "Theo Grant is joining our leadership. Better you hear it from me."
+     ]
+    },
+    {
+     "say": [
+      "Dana",
+      "x2_s6_dana_05",
+      "Our diligence team found some holes. We'll be talking about those."
+     ],
+     "when": "cut_corners"
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "I'm coming back",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s6_player_01",
+           "I'm in. I learned a lot building from nothing."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "x2_s6_dana_06",
+           "Good. Bring the scars. We'll put them to work."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": 1,
+         "burn": 1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "Ask for a real scope",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s6_player_02",
+           "I'll come back with a real scope, not my old seat."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "x2_s6_dana_07",
+           "Fair. You ran a whole program. Mostly alone."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "trust": -1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "Warn Dana about Theo",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x2_s6_player_03",
+           "Theo shipped things I told him not to ship. You should know."
+          ]
+         },
+         {
+          "say": [
+           "Dana",
+           "x2_s6_dana_08",
+           "Noted. Put it in writing. Facts, not feelings."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1,
+         "rep": -1
+        },
+        "rem": "Dana will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Dana",
+           "x2_s6_dana_09",
+           "Take the quiet. Just be in the lobby Monday."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": -1
+        },
+        "rem": "Dana will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Jordan",
+      "x2_s6_jordan_01",
+      "Theo got a title. We got a box. Classic."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "x2_s6_jordan_02",
+      "Go on. I'll be in sales, like always."
+     ]
+    },
+    {
+     "caption": "Monday. The badge reader blinks green. The lobby smells the same."
+    }
+   ],
+   "location": "The bank lobby, Harborline Financial, morning",
+   "shot_notes": "You stand outside the lobby's glass doors, phone to your ear. Jordan hugs a box of loft junk. Final beat: you push through the doors into the lobby.",
+   "route": "startup",
+   "when": "r_up"
   }
  ],
  "end": "The queue stayed loud. You started hearing what mattered.",
- "unparsed": []
+ "unparsed": [],
+ "titles": [
+  {
+   "when": "r_grc",
+   "title": "The Auditor"
+  },
+  {
+   "when": "r_up",
+   "title": "Move Fast"
+  }
+ ],
+ "ends0": null,
+ "ends": [
+  {
+   "text": "You built security from nothing. Now the bank owns what you built, holes and all.",
+   "when": "r_up"
+  },
+  {
+   "text": "Every signature is a promise. Some of yours will come due.",
+   "when": "r_grc"
+  },
+  {
+   "text": "The queue stayed loud. You started hearing what mattered."
+  }
+ ]
 }

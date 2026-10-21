@@ -6,30 +6,31 @@
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   const ofEp = n => CL.state.log.filter(l => l.cid && l.cid.split(".")[0] === String(n));
 
+  // one beat, not three: the run was running long (council review); the class build skips it
   CL.previously = async function (n, rooms) {
-    const prev = ofEp(n - 1).filter(l => !l.silent).slice(-3);
-    if (n < 2 || !prev.length) return;
-    await CL.card("The CISO Ladder", "Previously", "", 1600);
-    for (const [i, l] of prev.entries()) {
-      await CL.shot({ bg: rooms[i % rooms.length], cut: "dissolve", xdur: .7, shake: .0008,
-                      cam: { from: { zoom: 1.15 }, to: { zoom: 1.05 }, dur: 4 } });
-      await CL.caption(`You: "${l.t}"`, 2300);
-    }
+    const prev = ofEp(n - 1).filter(l => !l.silent).slice(-1);
+    if (n < 2 || !prev.length || CL.classMode) return;
+    await CL.shot({ bg: rooms[rooms.length - 1], cut: "dissolve", xdur: .7, shake: .0008,
+                    cam: { from: { zoom: 1.15 }, to: { zoom: 1.05 }, dur: 4 } });
+    await CL.caption(`Previously. You: "${prev[0].t}"`, 2600);
   };
 
   // tally[cid][option] = number of sessions that picked it
   async function fetchTally() {
     try {
-      const txt = await fetch(`${CL.TALLY}/json?poll=1&since=12h`, { cache: "no-store" }).then(r => r.text());
+      // a busy or rate-limited relay must never hold a player at the stats screen
+      const signal = AbortSignal.timeout ? AbortSignal.timeout(4000) : undefined;
+      const txt = await fetch(`${CL.TALLY}/json?poll=1&since=12h`, { cache: "no-store", signal }).then(r => r.text());
       const seen = new Set(), tally = {};
       for (const line of txt.split("\n")) {
         if (!line.trim()) continue;
         let m; try { m = JSON.parse(JSON.parse(line).message); } catch { continue; }
-        if (!m || !m.c || typeof m.o !== "number") continue;
-        const key = m.s + "|" + m.c;
-        if (seen.has(key)) continue;  // one vote per playthrough per choice
-        seen.add(key);
-        ((tally[m.c] ||= {})[m.o] = (tally[m.c][m.o] || 0) + 1);
+        for (const v of CL.votesOf(m)) {  // a message holds one vote or an episode's batch
+          const key = v.s + "|" + v.c;
+          if (seen.has(key)) continue;  // one vote per playthrough per choice
+          seen.add(key);
+          ((tally[v.c] ||= {})[v.o] = (tally[v.c][v.o] || 0) + 1);
+        }
       }
       return tally;
     } catch { return null; }

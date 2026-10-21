@@ -2,25 +2,33 @@
 // and the assignment's reflection questions. Shown after Episode 5.
 (function () {
   "use strict";
+  // One set of year bands (tools/tree.py uses the same). Typical, and they vary by person and employer.
   const LADDER = [
-    { lvl: "Entry", years: "New grad, years 0 to 3", roles: ["SOC Analyst (Tier 1 and 2)", "GRC Analyst", "IT with security duties", "Junior Penetration Tester"],
+    { lvl: "Entry", years: "typically years 0 to 4", roles: ["SOC Analyst (Tier 1 and 2)", "GRC Analyst", "IT with security duties", "Junior Penetration Tester"],
       certs: ["CompTIA Security+", "ISC2 Certified in Cybersecurity (CC)", "CompTIA CySA+"],
-      fact: "BLS median pay for information security analysts: $129,180 (May 2025). Projected growth: 21% from 2025 to 2035." },
-    { lvl: "Mid-career", years: "Years 4 to 10", roles: ["Security Engineer", "Incident Response Lead", "Security Architect", "Security Manager"],
+      fact: "BLS median pay for information security analysts: $129,180 (May 2025). That is the median across all experience levels, not starting pay. Projected growth: 21% from 2025 to 2035." },
+    { lvl: "Mid-career", years: "typically years 5 to 9", roles: ["Security Engineer", "Incident Response Lead", "Security Architect", "Security Manager", "Director of Security (the bridge rung to executive)"],
       certs: ["CISSP (requires 5 years of paid experience)", "OSCP", "CISA"],
       fact: "The jump from analyst to manager is where business communication starts to matter as much as technical skill." },
-    { lvl: "Executive", years: "Years 10 and up", roles: ["Director of Security", "VP of Information Security", "Chief Information Security Officer"],
+    { lvl: "Executive", years: "typically years 10 and up", roles: ["VP of Information Security", "Chief Information Security Officer"],
       certs: ["CISM", "CISSP", "Business or executive education (common, not required)"],
-      fact: "IANS / Artico 2025: median CISO total compensation of $532,000 at US enterprises with over $1B in revenue (406 respondents)." },
+      fact: "IANS / Artico 2025: median CISO total compensation of $532,000 at US enterprises with over $1B in revenue, the closest public benchmark for Fortune 500 CISO pay." },
   ];
-  const EP = { 1: "Night Shift", 2: "Tier Two", 3: "The Middle Rungs", 4: "The Breach", 5: "The Corner Office" };
+  const EP = { 1: "Night Shift", 2: "Tier Two", 3: "The Middle Rungs", 4: "The Help Desk", 5: "The Corner Office" };
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
   CL.finale = function () {
     const st = CL.state, el = document.getElementById("finale");
     const byEp = {};
     st.log.forEach(l => { const n = (l.cid || "0").split(".")[0]; (byEp[n] ||= []).push(l); });
-    const rung = { "Fortune 500": 2, "The Chair": 2, "Virtual CISO": 2, "Principal Engineer": 1, "Passed Over": 2, "Burned Out": 1, "Shown the Door": 1 }[st.ending] ?? 2;
+    // which of the 19 storylines this player lived (story/routes.md)
+    const F = st.flags, supply = (F.waived_vendor || F.cut_corners || F.skipped_review) && !F.rubber_stamp;
+    const title = { ...EP, 2: F.r_grc ? "The Auditor" : F.r_up ? "Move Fast" : EP[2],
+      3: F.eng_track ? "The Builder" : F.ir_track ? "On Call" : EP[3], 4: F.rubber_stamp ? "The Leak" : supply ? "The Supply Chain" : "The Help Desk" };
+    const story = [F.r_grc ? "Risk and compliance analyst" : F.r_up ? "Startup security hire" : "SOC analyst",
+      F.eng_track ? "Senior engineer" : F.ir_track ? "Incident response lead" : "Security manager", title[4]];
+    // Passed Over keeps the Director seat, the top of mid-career; Fortune 500, The Chair and Virtual CISO are executive seats
+    const rung = { "Fortune 500": 2, "The Chair": 2, "Virtual CISO": 2, "Principal Engineer": 1, "Passed Over": 1, "Burned Out": 1, "Shown the Door": 1 }[st.ending] ?? 2;
     el.innerHTML = `
       <div class="fin">
         <div class="k">Your ending</div>
@@ -33,7 +41,8 @@
           <div class="certs">${L.certs.map(esc).join(" &middot; ")}</div>
           <div class="fact">${esc(L.fact)}</div></div>`).reverse().join("")}</div>
         <h2>Your path</h2>
-        ${Object.keys(byEp).sort().map(n => `<div class="ep"><div class="lvl">Episode ${n}: ${EP[n] || ""}</div><ol>${byEp[n].map(l => `<li class="${l.silent ? "silent" : ""}">${esc(l.silent ? "You froze. The timer ran out." : l.t)}</li>`).join("")}</ol></div>`).join("")}
+        <p class="who">Your storyline: ${story.map(esc).join(" &rarr; ")}. One of 19 different storylines in this game.</p>
+        ${Object.keys(byEp).sort().map(n => `<div class="ep"><div class="lvl">Episode ${n}: ${title[n] || ""}</div><ol>${byEp[n].map(l => `<li class="${l.silent ? "silent" : ""}">${esc(l.silent ? "You froze. The timer ran out." : l.t)}</li>`).join("")}</ol></div>`).join("")}
         <h2>Think about it</h2>
         <ol class="q"><li>Is this path desirable to you? Why or why not?</li><li>Does it change your expectations as a future graduate?</li><li>Which choice changed your story the most?</li></ol>
         <h2>Sources</h2>

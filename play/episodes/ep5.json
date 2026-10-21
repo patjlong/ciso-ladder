@@ -23,7 +23,7 @@
     },
     {
      "choice": {
-      "timed": null,
+      "timed": 8,
       "options": [
        {
         "t": "Take the call",
@@ -137,14 +137,36 @@
       "Theo",
       "e5_s2_theo_01",
       "Theo Grant. The board asked me in to meet you."
-     ]
+     ],
+     "when0": null,
+     "when": "!r_up"
+    },
+    {
+     "say": [
+      "Theo",
+      "e5x_s2_theo_01",
+      "Look who climbed. My first security hire."
+     ],
+     "when": "r_up",
+     "cb": true
     },
     {
      "say": [
       "Dana",
       "e5_s2_dana_01",
       "Other candidate. Smile now. Decide later."
-     ]
+     ],
+     "when0": null,
+     "when": "!r_up"
+    },
+    {
+     "say": [
+      "Dana",
+      "e5x_s2_dana_01",
+      "Your old founder wants the chair. Smile now. Decide later."
+     ],
+     "when": "r_up",
+     "cb": true
     },
     {
      "choice": {
@@ -272,7 +294,7 @@
     },
     {
      "choice": {
-      "timed": null,
+      "timed": 9,
       "options": [
        {
         "t": "Keep the bank alive",
@@ -487,144 +509,13 @@
      "say": [
       "Elena",
       "e5_s4_elena_07",
-      "Do not put a clerk's name in front of this board."
+      "Do not put someone else's name in front of this board."
      ],
      "when": "blamed_employee"
     }
    ],
    "location": "Elena's office, a minute later",
    "shot_notes": "Elena stays seated. She taps Theo's resume once, then slides it aside."
-  },
-  {
-   "id": "5.5",
-   "name": "The Hall",
-   "beats": [
-    {
-     "say": [
-      "Marcus",
-      "e5_s5_marcus_01",
-      "You look like a person about to meet a chair."
-     ]
-    },
-    {
-     "say": [
-      "Sam",
-      "e5_s5_sam_01",
-      "Say the word. I'll flood them with timelines."
-     ]
-    },
-    {
-     "say": [
-      "Priya",
-      "e5_s5_priya_01",
-      "If they ask about tools, don't make me look slow."
-     ]
-    },
-    {
-     "choice": {
-      "timed": null,
-      "options": [
-       {
-        "t": "Promise straight talk",
-        "then": [
-         {
-          "say": [
-           "PLAYER",
-           "e5_s5_player_01",
-           "Straight answers. No theater."
-          ]
-         },
-         {
-          "say": [
-           "Marcus",
-           "e5_s5_marcus_02",
-           "That's my whole religion. Go use it."
-          ]
-         }
-        ],
-        "fx": {
-         "trust": 1
-        },
-        "rem": "Marcus will remember that."
-       },
-       {
-        "t": "Ask Sam for backup",
-        "then": [
-         {
-          "say": [
-           "PLAYER",
-           "e5_s5_player_02",
-           "Sam, if I get lost, pull me back."
-          ]
-         },
-         {
-          "say": [
-           "Sam",
-           "e5_s5_sam_02",
-           "I'll kick your chair. Gently. I'm a professional."
-          ]
-         }
-        ],
-        "fx": {
-         "rep": 1
-        },
-        "rem": "Sam will remember that."
-       },
-       {
-        "t": "Warn Priya off",
-        "then": [
-         {
-          "say": [
-           "PLAYER",
-           "e5_s5_player_03",
-           "Priya, no surprise demos in there."
-          ]
-         },
-         {
-          "say": [
-           "Priya",
-           "e5_s5_priya_02",
-           "Fine. I'll sit on my hands. They'll hate it."
-          ]
-         }
-        ],
-        "fx": {
-         "trust": 1,
-         "rep": -1
-        },
-        "rem": "Priya will remember that."
-       },
-       {
-        "t": "[Say nothing]",
-        "silent": true,
-        "then": [
-         {
-          "say": [
-           "Marcus",
-           "e5_s5_marcus_03",
-           "Nerves are allowed. Vanishing isn't. Breathe, kid."
-          ]
-         }
-        ],
-        "fx": {
-         "burn": 1
-        },
-        "rem": "Marcus will remember that."
-       }
-      ]
-     }
-    },
-    {
-     "say": [
-      "Marcus",
-      "e5_s5_marcus_04",
-      "You taught that new hire. It still counts."
-     ],
-     "when": "mentored"
-    }
-   ],
-   "location": "Hall outside the boardroom, noon",
-   "shot_notes": "Marcus offers a coffee, Sam bounces a knee with a can, and Priya checks the time."
   },
   {
    "id": "5.6",
@@ -636,6 +527,15 @@
       "e5_s6_elena_01",
       "Answer him plain. I'll handle the room."
      ]
+    },
+    {
+     "say": [
+      "Richard",
+      "e5g_s6_richard_01",
+      "The examiner's letter named you. Kindly. That almost never happens."
+     ],
+     "when": "exam_records && exam_honest",
+     "cb": true
     },
     {
      "say": [
@@ -677,7 +577,7 @@
     },
     {
      "choice": {
-      "timed": null,
+      "timed": 8,
       "options": [
        {
         "t": "Fund the people",
@@ -889,6 +789,14 @@
        }
       ]
      }
+    },
+    {
+     "say": [
+      "Marcus",
+      "e5_s5_marcus_04",
+      "You taught that new hire. It still counts."
+     ],
+     "when": "mentored"
     }
    ],
    "location": "Boardroom, still afternoon",
@@ -921,7 +829,7 @@
       "e5_s8_elena_01",
       "The board found the breach you hid. Come with me."
      ],
-     "when": "hid_breach"
+     "when": "hid_breach && !disclosed"
     },
     {
      "say": [
@@ -929,7 +837,7 @@
       "e5_s8_marcus_02",
       "Your hands are shaking, kid. A bigger chair won't stop that."
      ],
-     "when": "burn >= 25 && !hid_breach"
+     "when": "burn >= 22 && !(hid_breach && !disclosed)"
     },
     {
      "choice": {
@@ -1048,15 +956,14 @@
          }
         ],
         "fx": {
-         "rep": -1,
-         "burn": 1
+         "rep": -1
         },
         "rem": "Marcus will remember that.",
         "flag": "end_silent"
        }
       ]
      },
-     "when": "!hid_breach && !(burn >= 25)"
+     "when": "!(hid_breach && !disclosed) && !(burn >= 22)"
     }
    ],
    "location": "Your office, dusk",
@@ -1077,7 +984,7 @@
      "say": [
       "Nadia",
       "e5_s9a_nadia_01",
-      "I can't protect a secret you kept from the company."
+      "Customers and regulators were owed notice. I can't defend silence."
      ]
     },
     {
@@ -1107,7 +1014,7 @@
    ],
    "location": "Harborline lobby, minutes later",
    "shot_notes": "Elena stops by the glass. Nadia holds the folder shut. Your badge is already on the desk.",
-   "when": "hid_breach"
+   "when": "hid_breach && !disclosed"
   },
   {
    "id": "5.9",
@@ -1147,7 +1054,7 @@
    ],
    "location": "Office couch, night",
    "shot_notes": "The phone buzzes on the floor. Marcus kills the light. Jordan waits in the doorway with a coat.",
-   "when": "burn >= 25 && !hid_breach"
+   "when": "burn >= 22 && !(hid_breach && !disclosed)"
   },
   {
    "id": "5.9",
@@ -1168,16 +1075,7 @@
       "Elena",
       "e5_s9c_elena_01",
       "You gave me the job in one sentence. Don't outgrow it."
-     ],
-     "when": "!blamed_employee"
-    },
-    {
-     "say": [
-      "Elena",
-      "e5_s9c_elena_02",
-      "I praised your edge. I mentioned the clerk. Own it out there."
-     ],
-     "when": "blamed_employee"
+     ]
     },
     {
      "say": [
@@ -1196,7 +1094,7 @@
    ],
    "location": "Airport curb, morning",
    "shot_notes": "A car door stands open. Marcus raises a coffee. You turn the phone face down.",
-   "when": "end_outside && !hid_breach && !(burn >= 25)"
+   "when": "end_outside && trust >= 40 && !blamed_employee && !(hid_breach && !disclosed) && !(burn >= 22)"
   },
   {
    "id": "5.9",
@@ -1236,7 +1134,7 @@
    ],
    "location": "Kitchen table, morning",
    "shot_notes": "A laptop sits beside the cereal. Jordan slides a mug over. No badge on the table.",
-   "when": "end_indie && !hid_breach && !(burn >= 25)"
+   "when": "end_indie && !(hid_breach && !disclosed) && !(burn >= 22)"
   },
   {
    "id": "5.9",
@@ -1284,7 +1182,7 @@
    ],
    "location": "Engineering floor, night",
    "shot_notes": "Sam sets a can on the desk. The screens hum. The corner office stays dark down the hall.",
-   "when": "end_tools && !hid_breach && !(burn >= 25)"
+   "when": "end_tools && !(hid_breach && !disclosed) && !(burn >= 22)"
   },
   {
    "id": "5.9",
@@ -1321,12 +1219,16 @@
    ],
    "location": "Boardroom doorway, evening",
    "shot_notes": "Elena offers a nod, not a speech. Theo buttons his jacket and steps aside. Richard stays seated.",
-   "when": "end_fight && (business_brief || called_fbi) && !blamed_employee && !hid_breach && !(burn >= 25)"
+   "when": "end_fight && (business_brief || called_fbi) && !blamed_employee && trust >= 40 && !(hid_breach && !disclosed) && !(burn >= 22)"
   },
   {
    "id": "5.9",
    "name": "g Passed Over",
    "beats": [
+    {
+     "caption": "The recruiter calls back. They went another way.",
+     "when": "end_outside"
+    },
     {
      "caption": "Theo takes the chair. You stay. The climb is not over."
     },
@@ -1361,7 +1263,7 @@
    ],
    "location": "Hall outside the boardroom, evening",
    "shot_notes": "Theo shakes Richard's hand through the glass. Sam bumps your shoulder. Marcus does not move.",
-   "when": "(end_silent || (end_fight && !((business_brief || called_fbi) && !blamed_employee))) && !hid_breach && !(burn >= 25)"
+   "when": "(end_silent || (end_fight && !((business_brief || called_fbi) && !blamed_employee && trust >= 40)) || (end_outside && !(trust >= 40 && !blamed_employee))) && !(hid_breach && !disclosed) && !(burn >= 22)"
   },
   {
    "id": "5.10",
@@ -1371,13 +1273,49 @@
      "caption": "Night shift. A dark room, a loud screen, a choice."
     },
     {
-     "caption": "The long middle. Noise, a vendor's promise, a new hire watching."
+     "caption": "The long middle. Noise, a vendor's promise, a new hire watching.",
+     "when0": null,
+     "when": "!r_grc && !r_up"
     },
     {
-     "caption": "A fork in the title. A cert. A fight over a clever machine."
+     "caption": "The audit years. A vendor's report, an examiner, a finding someone wanted softer.",
+     "when": "r_grc",
+     "cb": true
     },
     {
-     "caption": "A Saturday breach. Help desk, a stolen login, the board's eyes."
+     "caption": "The startup years. A leaked key, a questionnaire, a sale back to the bank.",
+     "when": "r_up",
+     "cb": true
+    },
+    {
+     "caption": "A fork in the title. A cert. A fight over a clever machine.",
+     "when0": null,
+     "when": "!eng_track && !ir_track"
+    },
+    {
+     "caption": "A fork in the title. A cert. A poisoned library and a Friday deadline.",
+     "when": "eng_track",
+     "cb": true
+    },
+    {
+     "caption": "A fork in the title. A cert. A wire at 4:55 and a crew that wanted paying.",
+     "when": "ir_track",
+     "cb": true
+    },
+    {
+     "caption": "A Saturday breach. Help desk, a stolen login, the board's eyes.",
+     "when0": null,
+     "when": "!rubber_stamp && !((waived_vendor || cut_corners || skipped_review) && !rubber_stamp)"
+    },
+    {
+     "caption": "A Saturday breach. A helpful assistant, a screenshot, the board's eyes.",
+     "when": "rubber_stamp",
+     "cb": true
+    },
+    {
+     "caption": "A Saturday breach. A door we trusted, left open, the board's eyes.",
+     "when": "(waived_vendor || cut_corners || skipped_review) && !rubber_stamp",
+     "cb": true
     },
     {
      "caption": "Then the corner. And the question under every badge."
@@ -1395,7 +1333,7 @@
      "when": "end_e"
     },
     {
-     "caption": "This bank is yours to guard. The climb goes on.",
+     "caption": "The chair is yours. This bank is yours to guard.",
      "when": "end_f"
     },
     {
@@ -1430,7 +1368,7 @@
    "when": "end_e"
   },
   {
-   "text": "Still climbing. The bank is yours to guard.",
+   "text": "CISO, Harborline. The chair is yours.",
    "when": "end_f"
   },
   {

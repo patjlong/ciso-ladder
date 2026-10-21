@@ -12,7 +12,7 @@
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;overflow:hidden}
 body::after{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.75) 100%)}
 #viewport{position:fixed;inset:0;cursor:grab}#viewport.drag{cursor:grabbing}
-#world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+#world{position:absolute;left:0;top:0;transform-origin:0 0}
 svg#links{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
 .card{position:absolute;width:420px;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.6);transition:border-color .3s,box-shadow .3s}
 .card.focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(232,179,58,.35),0 30px 70px rgba(0,0,0,.7)}
@@ -33,13 +33,33 @@ svg#links{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
 .opt .flag.bad{background:var(--red)}
 .opt.hit{animation:hit 1.2s ease-out}
 @keyframes hit{0%{background:#5a4718;box-shadow:0 0 0 2px #e8b33a}100%{background:#151821;box-shadow:0 0 0 0 transparent}}
-.card.ping{animation:ping 1.1s ease-out}
-@keyframes ping{0%{box-shadow:0 0 0 3px #e8b33a,0 0 40px #e8b33a}100%{box-shadow:0 20px 50px rgba(0,0,0,.6)}}
 .opt .n{white-space:nowrap}
 .variant{position:absolute;width:380px;background:#14111f;border:1px solid #5b4b8f;border-radius:6px;padding:10px 12px;box-shadow:0 12px 30px rgba(0,0,0,.5)}
 .variant.cb{border-style:dashed}
 .variant .vk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#b39cff;margin-bottom:5px}
 .variant .vl{font-size:13px;line-height:1.4;color:#e6e2f3;margin-top:3px}.variant .vl b{color:#d9c8ff;font-weight:700;margin-right:4px}
+#sparkfx{position:fixed;inset:0;pointer-events:none;z-index:4}
+#awards{position:fixed;inset:0;z-index:8;display:none;align-items:center;justify-content:center;background:#07080b;overflow:hidden}
+#awards.on{display:flex}
+#awards::before{content:"";position:absolute;inset:-40px;background:var(--still) center/cover;filter:blur(14px) saturate(.7);opacity:.22}
+#awards .aw{position:relative;text-align:center;max-width:1100px;padding:0 24px}
+#awards .ak{font-size:15px;letter-spacing:.3em;text-transform:uppercase;color:#b7bdc8}
+#awards .at{font-family:"Bebas Neue";font-size:clamp(56px,9vw,128px);color:var(--gold);letter-spacing:.04em;line-height:1;margin-top:18px}
+#awards .aname{font-family:"Bebas Neue";font-size:clamp(64px,12vw,170px);color:#fff;line-height:1;margin-top:10px;text-shadow:0 0 40px rgba(232,179,58,.35)}
+#awards .av{font-size:24px;color:#7fd1c7;font-weight:700;margin-top:10px}
+#awards .as{font-size:22px;color:#d9dce2;margin-top:10px}
+#awards .ae{font-size:19px;color:#d9dce2;margin-top:26px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:6px;padding:12px 18px;display:inline-block}
+#awards .ae span{color:var(--gold);font-weight:700;letter-spacing:.15em;text-transform:uppercase;font-size:13px;margin-right:8px}#awards .ae i{color:#b7bdc8;margin-left:8px;font-size:15px}
+#awards .ar{font-size:17px;color:#b7bdc8;margin-top:22px}
+#awards .adots{margin-top:30px;display:flex;gap:8px;justify-content:center}#awards .adots i{width:8px;height:8px;border-radius:50%;background:#3a3f4a}#awards .adots i.on{background:var(--gold)}
+.lanehead{position:absolute;width:360px;background:#0c1716;border:1px solid #2f6f68;border-left:5px solid #7fd1c7;border-radius:6px;padding:14px 16px;box-shadow:0 14px 34px rgba(0,0,0,.5)}
+.lanehead.base{border-left-color:#8a909c;border-color:#3a3f4a;background:#111318}
+.lanehead .lk{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#7fd1c7}.lanehead.base .lk{color:#b7bdc8}
+.lanehead .lt{font-family:"Bebas Neue";font-size:40px;letter-spacing:.04em;margin:2px 0 6px;color:#fff}
+.lanehead .lg{font-size:15px;line-height:1.45;color:#d9dce2}
+.diamond{position:absolute;width:96px;height:96px;transform:rotate(45deg);border:2px solid #7fd1c7;background:#0c1716;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(127,209,199,.25)}
+.diamond span{transform:rotate(-45deg);font:700 13px Inter;letter-spacing:.18em;color:#7fd1c7}
+.card.route{border-color:#2f6f68}
 .ephead{position:absolute;font-family:"Bebas Neue";color:var(--gold);letter-spacing:.06em;white-space:nowrap}
 .ephead small{display:block;font-family:Inter;color:var(--muted);font-size:20px;letter-spacing:0}
 .ending{position:absolute;width:380px;background:#121008;border:1px solid #5a4a1c;border-radius:8px;overflow:hidden}
@@ -77,27 +97,29 @@ svg#links{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
   <div id="qrbox"><div id="qr"></div><div class="cap">SCAN TO PLAY</div><div class="url" id="url"></div></div>
 </div>
 <div id="panel" class="hide"></div>
+<div id="awards"></div>
 <div id="live"><i></i><span id="livetxt">connecting</span></div>
 <div id="miniqr"></div>
-<div id="hud">&larr; &rarr; to move &middot; drag and scroll to explore &middot; <span id="stopn"></span></div>
+<div id="hud">&larr; &rarr; to move &middot; drag and scroll to explore &middot; H hides names &middot; <span id="stopn"></span></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 // ===== Edit these for presentation day =====
 const SPEAKERS = ["Speaker 1", "Speaker 2", "Speaker 3", "Speaker 4"];  // put the four names here
-const GAME_URL = "https://patjlong.github.io/ciso-ladder/play/";
+const GAME_URL = "https://patjlong.github.io/ciso-ladder/play/?class=1";  // class build: voices off by default, tighter pacing
 const TALLY = "https://ntfy.sh/ciso-ladder-5b65593fe27f21f7";            // same relay the game posts to
 // ===========================================
 const esc = t => String(t ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const $ = s => document.querySelector(s);
-const FLAG_ENDING = { hid_breach: ["a", "bad"], blamed_employee: ["f", "bad"], business_brief: ["f", "good"], called_fbi: ["f", "good"],
+// which endings a flag pushes toward (a flag can bar more than one: blaming an employee costs both CISO seats)
+const FLAG_ENDING = { hid_breach: ["a", "bad"], blamed_employee: [["f", "bad"], ["c", "bad"]], business_brief: ["f", "good"], called_fbi: ["f", "good"],
                       end_outside: ["c", "good"], end_indie: ["d", "good"], end_tools: ["e", "good"], end_fight: ["f", "good"], end_silent: ["g", "bad"] };
 const BAD = new Set(["hid_breach", "blamed_employee", "missed_alert", "rubber_stamp", "vendor_bought", "end_silent"]);
 let TREE, LENS, cam = { x: 0, y: 0, s: 1 }, cards = {}, optEls = {}, endEls = {};
 
 (async () => {
-  [TREE, LENS] = await Promise.all([fetch("tree.json").then(r => r.json()), fetch("lens.json").then(r => r.json()).catch(() => ({}))]);
+  [TREE, LENS] = await Promise.all([fetch("tree.json", { cache: "no-cache" }).then(r => r.json()), fetch("lens.json", { cache: "no-cache" }).then(r => r.json()).catch(() => ({}))]);
   new QRCode($("#qr"), { text: GAME_URL, width: 300, height: 300, colorDark: "#07080b", colorLight: "#ffffff" });
   new QRCode($("#miniqr"), { text: GAME_URL, width: 110, height: 110 });
   $("#url").textContent = GAME_URL.replace(/^https:\/\//, "");
@@ -133,50 +155,101 @@ function variantChip(sp, label) {
   $("#world").appendChild(el); sp.el = el; return el;
 }
 
-// ---------- layout: one row per episode, snaking left-right then right-left; endings fan out last ----------
-const CW = 420, GAP = 260, SPLITW = 400, ROWH = 1750;
+// ---------- layout: one row per episode, snaking left-right then right-left; where the story splits into
+// whole routes the row grows parallel lanes, each opened by a gate card; endings fan out last ----------
+const CW = 420, GAP = 260, SPLITW = 400, LANEW = 360, DIAW = 140, LANEH = 1300, ROWMIN = 1750;
+let SEGS = [], NEXT = {};   // segments in play order; NEXT[cid] = the element a vote on cid travels to
+function laneHead(lane, ep) {
+  const el = document.createElement("div"); el.className = "lanehead" + (lane.id === "base" ? " base" : "");
+  el.innerHTML = `<div class="lk">${lane.id === "base" ? "Main road" : "Route"} &middot; Ep ${ep.n}</div><div class="lt">${esc(lane.title)}</div><div class="lg">${esc(lane.gate)}</div>`;
+  $("#world").appendChild(el); return el;
+}
 function layout() {
   const world = $("#world");
   const order = TREE.episodes.flatMap(ep => ep.scenes.flatMap(sc => sc.choices));
   planSplits(order);
   const splitBefore = cid => SPLITS.filter(sp => sp.adjacent && sp.firstCid === cid);
-  // row widths include the extra split columns
-  const rowWidth = ep => ep.scenes.flatMap(sc => sc.choices).reduce((w, c) => w + CW + GAP + (splitBefore(c.id).length ? SPLITW + GAP : 0), -GAP);
+  // segments: runs of shared scenes, and runs of lane scenes played side by side
+  TREE.episodes.forEach(ep => {
+    const segs = [];
+    for (const sc of ep.scenes) {
+      if (!sc.choices.length) continue;
+      const lane = sc.lane || null, last = segs[segs.length - 1];
+      let seg = last && (!!last.fork === !!lane) ? last : null;
+      if (!seg) { seg = { ep, fork: !!lane, lanes: {} }; segs.push(seg); }
+      (seg.lanes[lane || "_"] ||= []).push(...sc.choices.map(c => ({ c, sc })));
+    }
+    segs.forEach(s => { s.ids = s.fork ? ep.lanes.map(l => l.id).filter(id => s.lanes[id]) : ["_"]; });
+    ep.segs = segs; ep.nLanes = Math.max(...segs.map(s => s.ids.length));
+  });
+  // lanes that carry straight on from the previous episode's lanes (Episode 1 into 2) need no new split
+  TREE.episodes.flatMap(ep => ep.segs).forEach((s, i, all) => {
+    const prev = all[i - 1]; s.continues = !!(s.fork && prev && prev.fork && prev.ids.join() === s.ids.join());
+  });
+  // a segment's width: columns of cards (plus split columns), plus the gate column for a fork
+  const colsOf = s => Math.max(...s.ids.map(id => s.lanes[id].length));
+  const colHasSplit = (s, k) => s.ids.some(id => s.lanes[id][k] && splitBefore(s.lanes[id][k].c.id).length);
+  const segW = s => (s.fork ? (s.continues ? 0 : DIAW + GAP) + LANEW + GAP : 0) +
+    [...Array(colsOf(s)).keys()].reduce((w, k) => w + CW + GAP + (colHasSplit(s, k) ? SPLITW + GAP : 0), 0) - GAP;
+  const rowWidth = ep => ep.segs.reduce((w, s) => w + segW(s) + GAP, -GAP);
   const rowW = Math.max(...TREE.episodes.map(rowWidth));
   const epStarts = [];
+  let rowTop = 0;
   TREE.episodes.forEach((ep, r) => {
-    const y = r * ROWH, ltr = r % 2 === 0;
+    const ltr = r % 2 === 0, laneY = k => rowTop + k * LANEH, midY = laneY((ep.nLanes - 1) / 2);
     let cur = ltr ? 0 : rowW;  // ltr: next left edge; rtl: next right edge
     const place = w => { const x = ltr ? cur : cur - w; cur = ltr ? cur + w + GAP : cur - w - GAP; return x; };
-    for (const sc of ep.scenes) for (const c of sc.choices) {
-      const splits = splitBefore(c.id);
-      if (splits.length) {  // a column of variant cards: the story splits here, then rejoins
-        const x = place(SPLITW), H = 150, top = y + 330 - ((splits.length - 1) * H) / 2;
-        splits.forEach((sp, i) => {
-          const setter = cards[sp.setters[0].cid];
-          const label = "If you chose: " + sp.setters[0].opts.map(k => setter.c.options[k].t).join(" / ");
-          const el = variantChip(sp, label); el.style.left = (x + (SPLITW - 380) / 2) + "px"; el.style.top = (top + i * H) + "px";
+    for (const s of ep.segs) {
+      const ys = {}; s.ids.forEach((id, k) => ys[id] = s.fork ? laneY(k + (ep.nLanes - s.ids.length) / 2) : midY);
+      if (s.fork) {
+        // a SPLIT diamond only where the story splits; lanes that carry on from the last episode need none
+        if (!s.continues) {
+          const dx = place(DIAW), d = document.createElement("div"); d.className = "diamond"; d.innerHTML = "<span>SPLIT</span>";
+          d.style.left = (dx + (DIAW - 96) / 2) + "px"; d.style.top = (midY + 250) + "px"; world.appendChild(d); s.diamond = d;
+        }
+        const hx = place(LANEW); s.heads = {};
+        s.ids.forEach(id => { const el = laneHead(ep.lanes.find(l => l.id === id), ep); el.style.left = hx + "px"; el.style.top = (ys[id] + 180) + "px"; s.heads[id] = el; });
+      }
+      for (let k = 0; k < colsOf(s); k++) {
+        if (colHasSplit(s, k)) {  // a column of variant cards: the next scene changes with the last answer, then rejoins
+          const x = place(SPLITW);
+          s.ids.forEach(id => {
+            const it = s.lanes[id][k]; if (!it) return;
+            const splits = splitBefore(it.c.id), H = 150, top = ys[id] + 330 - ((splits.length - 1) * H) / 2;
+            splits.forEach((sp, i) => {
+              const setter = cards[sp.setters[0].cid];
+              const el = variantChip(sp, "If you chose: " + sp.setters[0].opts.map(j => setter.c.options[j].t).join(" / "));
+              el.style.left = (x + (SPLITW - 380) / 2) + "px"; el.style.top = (top + i * H) + "px";
+            });
+          });
+        }
+        const x = place(CW);
+        s.ids.forEach(id => {
+          const it = s.lanes[id][k]; if (!it) return;
+          const { c, sc } = it, y = ys[id], L = LENS[c.id] || {};
+          const el = document.createElement("div"); el.className = "card" + (sc.lane && sc.lane !== "base" ? " route" : ""); el.style.left = x + "px"; el.style.top = y + "px";
+          el.innerHTML = `<img src="stills/${c.id.replace("#", "_")}.webp" alt="" onerror="this.style.display='none'">
+            <div class="hd"><span class="sc">${esc(sc.name)}</span><span class="id">Ep ${ep.n} &middot; ${esc(c.id)}${c.timed ? `<span class="timed">${c.timed}s timer</span>` : ""}</span></div>
+            ${L.skill ? `<span class="skill">${esc(L.skill)}</span>` : ""}
+            ${L.real ? `<div class="real">${esc(L.real)}</div>` : ""}
+            <div class="opts">${c.options.map((o, i) => {
+              const pc = (L.opts || [])[i];
+              return `<div class="opt" data-c="${c.id}" data-o="${i}"><div class="t"><span>${esc(o.t)}${o.flag ? `<span class="flag ${BAD.has(o.flag) ? "bad" : ""}">${esc(o.flag.replace(/_/g, " "))}</span>` : ""}</span><span class="n" data-n></span></div>
+                ${pc ? `<div class="pc"><b>+ ${esc(pc.pro)}</b> &middot; <i>- ${esc(pc.con)}</i></div>` : ""}<div class="bar"><span></span></div></div>`;
+            }).join("")}</div>`;
+          world.appendChild(el); cards[c.id] = { el, x, y, c, ep, lane: sc.lane };
         });
       }
-      const x = place(CW);
-      const L = LENS[c.id] || {};
-      const el = document.createElement("div"); el.className = "card"; el.style.left = x + "px"; el.style.top = y + "px";
-      el.innerHTML = `<img src="stills/${c.id.replace("#", "_")}.webp" alt="">
-        <div class="hd"><span class="sc">${esc(sc.name)}</span><span class="id">Ep ${ep.n} &middot; ${esc(c.id)}${c.timed ? `<span class="timed">${c.timed}s timer</span>` : ""}</span></div>
-        ${L.skill ? `<span class="skill">${esc(L.skill)}</span>` : ""}
-        ${L.real ? `<div class="real">${esc(L.real)}</div>` : ""}
-        <div class="opts">${c.options.map((o, i) => {
-          const pc = (L.opts || [])[i];
-          return `<div class="opt" data-c="${c.id}" data-o="${i}"><div class="t"><span>${esc(o.t)}${o.flag ? `<span class="flag ${BAD.has(o.flag) ? "bad" : ""}">${esc(o.flag.replace(/_/g, " "))}</span>` : ""}</span><span class="n" data-n></span></div>
-            ${pc ? `<div class="pc"><b>+ ${esc(pc.pro)}</b> &middot; <i>- ${esc(pc.con)}</i></div>` : ""}<div class="bar"><span></span></div></div>`;
-        }).join("")}</div>`;
-      world.appendChild(el); cards[c.id] = { el, x, y, c, ep };
+      SEGS.push(s);
     }
-    const h = document.createElement("div"); h.className = "ephead"; h.style.left = (ltr ? 0 : rowW - 1400) + "px"; h.style.top = (y - 250) + "px"; h.style.fontSize = "92px";
+    const h = document.createElement("div"); h.className = "ephead"; h.style.left = (ltr ? 0 : rowW - 1400) + "px"; h.style.top = (rowTop - 250) + "px"; h.style.fontSize = "92px";
     if (!ltr) h.style.textAlign = "right", h.style.width = "1400px";
-    h.innerHTML = `Episode ${ep.n}: ${esc(ep.title)}<small>${esc(ep.rung)} &middot; ${esc(ep.role)} &middot; ${esc(ep.years)}</small>`;
+    const titles = ep.nLanes > 1 ? ep.lanes.map(l => l.title).join(" / ") : ep.title;
+    h.innerHTML = `Episode ${ep.n}: ${esc(ep.nLanes > 1 && ep.n !== 1 ? titles : ep.title)}<small>${esc(ep.rung)} &middot; ${esc(ep.role)} &middot; ${esc(ep.years)}</small>`;
     world.appendChild(h);
-    epStarts.push({ ep, y, x0: 0, x1: rowW });
+    const rowH = Math.max(ROWMIN, (ep.nLanes - 1) * LANEH + ROWMIN);
+    epStarts.push({ ep, y: rowTop, h: rowH - 600, x0: 0, x1: rowW });
+    rowTop += rowH;
   });
   // long-range callbacks hang under the decision card of the scene they play in
   const under = {};
@@ -192,7 +265,7 @@ function layout() {
     drawLinks();
   });
   // endings fan out to the right of the last row
-  const lastY = (TREE.episodes.length - 1) * ROWH, ex = rowW + 520, EH = 430, n = TREE.endings.length;
+  const last = epStarts[epStarts.length - 1], lastY = last.y, ex = rowW + 520, EH = 430, n = TREE.endings.length;
   TREE.endings.forEach((en, i) => {
     const key = en.id + en.name.split(" ")[0], L = LENS[key] || {}, k = en.name.split(" ")[0];
     const y = lastY + 300 - ((n - 1) * EH) / 2 + i * EH;
@@ -201,12 +274,12 @@ function layout() {
       <p>${esc(L.path || "")}</p><div class="n" data-end="${k}"></div>`;
     world.appendChild(el); endEls[k] = { el, x: ex, y };
   });
-  TREE.width = ex + 380; TREE.height = lastY + 300 + (n * EH) / 2 + 400; TREE.top = Math.min(-300, lastY + 300 - (n * EH) / 2);
+  TREE.width = ex + 380; TREE.height = lastY + 300 + (n * EH) / 2 + 400; TREE.top = -300;
   TREE.epStarts = epStarts;
 }
 
-// ---------- links: options fan to the next decision, split into story variants where the story changes,
-// reach back across episodes for callbacks, and arc to the endings they decide ----------
+// ---------- links: options fan to the next decision, split into lanes where the story splits, rejoin where
+// the routes meet again, reach back across episodes for callbacks, and arc to the endings they decide ----------
 function sideOf(el, toward) {  // the point on el's edge facing `toward`
   const r = { x: el.offsetLeft, y: el.offsetTop, w: el.offsetWidth, h: el.offsetHeight };
   if (Math.abs(toward.y - (r.y + r.h / 2)) > r.h) return { x: r.x + r.w / 2, y: toward.y > r.y ? r.y + r.h : r.y };
@@ -220,41 +293,63 @@ function optPos(cid, i, toward) {
 // every branch is addressable: branchId(cid, option) is the path a vote travels along
 const branchId = (cid, i) => `b-${cid.replace(/[#.]/g, "_")}-${i}`;
 function drawLinks() {
-  const svg = $("#links"), ids = Object.keys(cards); let d = "";
+  const svg = $("#links"); let d = "";
   svg.setAttribute("width", TREE.width); svg.setAttribute("height", TREE.height);
   const curve = (a, b, cls, w, id) => {
     const c = Math.abs(a.y - b.y) > Math.abs(a.x - b.x)
       ? `C${a.x},${(a.y + b.y) / 2} ${b.x},${(a.y + b.y) / 2} ${b.x},${b.y}` : `C${(a.x + b.x) / 2},${a.y} ${(a.x + b.x) / 2},${b.y} ${b.x},${b.y}`;
     return `<path ${id ? `id="${id}"` : ""} d="M${a.x},${a.y} ${c}" class="${cls}" stroke-width="${w}" vector-effect="non-scaling-stroke" fill="none"/>`;
   };
-  for (let k = 0; k < ids.length - 1; k++) {
-    const nx = cards[ids[k + 1]].el, cur = cards[ids[k]].el, cid = ids[k];
-    const target = sideOf(nx, { x: cur.offsetLeft + cur.offsetWidth / 2, y: cur.offsetTop + 200 });
+  const centerOf = el => ({ x: el.offsetLeft + el.offsetWidth / 2, y: el.offsetTop + Math.min(200, el.offsetHeight / 2) });
+  // a decision's options all run to `targetEl`; adjacent story variants take their own detour first
+  const fan = (cid, targetEl, cls) => {
+    const cur = cards[cid].el, target = sideOf(targetEl, centerOf(cur));
+    NEXT[cid] = targetEl;
     const splits = SPLITS.filter(sp => sp.adjacent && sp.setters[0].cid === cid);
     cards[cid].c.options.forEach((o, i) => {
       const sp = splits.find(s => s.setters[0].opts.includes(i));
-      if (sp) {  // the story splits: this option's branch runs to its own version of the next scene
+      if (sp) {
         const chipIn = sideOf(sp.el, { x: cur.offsetLeft + cur.offsetWidth / 2, y: sp.el.offsetTop + 40 });
         d += curve(optPos(cid, i, chipIn), chipIn, "l split", 2.5, branchId(cid, i));
-      } else d += curve(optPos(cid, i, target), target, "l", 2, branchId(cid, i));
+      } else d += curve(optPos(cid, i, target), target, cls, 2, branchId(cid, i));
     });
-    splits.forEach(sp => {  // and the versions rejoin at the next decision
-      const out = sideOf(sp.el, target); d += curve(out, target, "l rejoin", 2.5);
-    });
+    splits.forEach(sp => { d += curve(sideOf(sp.el, target), target, "l rejoin", 2.5); });
+  };
+  const lanesOf = s => s.ids.map(id => s.lanes[id].map(it => it.c.id));
+  for (let k = 0; k < SEGS.length; k++) {
+    const A = SEGS[k], B = SEGS[k + 1];
+    lanesOf(A).forEach(ids => ids.slice(0, -1).forEach((cid, i) => fan(cid, cards[ids[i + 1]].el, "l")));
+    if (!B) break;
+    const lastOf = id => { const l = A.lanes[id]; return l[l.length - 1].c.id; };
+    if (!B.fork) {  // the routes meet again at B's first decision
+      A.ids.forEach(id => fan(lastOf(id), cards[B.lanes._[0].c.id].el, A.fork ? "l rejoin" : "l"));
+    } else if (B.continues) {  // each route carries on into the next episode's version of itself
+      A.ids.forEach(id => fan(lastOf(id), B.heads[id], "l lane"));
+    } else {  // the story splits: every answer runs to the split, which opens the lanes
+      A.ids.forEach(id => fan(lastOf(id), B.diamond, A.fork ? "l rejoin" : "l"));
+    }
+    if (B.fork) {
+      if (!B.continues)
+        B.ids.forEach(id => { const h = B.heads[id]; d += curve(sideOf(B.diamond, centerOf(h)), sideOf(h, centerOf(B.diamond)), "l lane", 3); });
+      B.ids.forEach(id => { const h = B.heads[id], first = cards[B.lanes[id][0].c.id].el; d += curve(sideOf(h, centerOf(first)), sideOf(first, centerOf(h)), "l lane", 3); });
+    }
   }
   // callbacks: a choice made episodes ago changes a line here
   SPLITS.filter(sp => !sp.adjacent).forEach(sp => sp.setters.forEach(st => st.opts.forEach(i => {
     const tgt = { x: sp.el.offsetLeft, y: sp.el.offsetTop + 30 };
     d += curve(optPos(st.cid, i, tgt), tgt, "l cbk", 2);
   })));
-  const last = ids[ids.length - 1];
+  const ids = Object.keys(cards), last = ids.find(c => c === "5.8#1") || ids[ids.length - 1];
   for (const cid of ids) cards[cid].c.options.forEach((o, i) => {
     const f = FLAG_ENDING[o.flag]; if (!f) return;
-    const e = endEls[f[0]], tgt = { x: e.x, y: e.y + 110 };
-    d += curve(optPos(cid, i, tgt), tgt, cid === last ? "l end" : `l arc ${f[1]}`, cid === last ? 3 : 2.5, cid === last ? branchId(cid, i) : null);
+    (Array.isArray(f[0]) ? f : [f]).forEach(([k, tone], n) => {
+      const e = endEls[k], tgt = { x: e.x, y: e.y + 110 };
+      const end = cid === last && n === 0;  // the final choice's first arc is the branch a vote travels
+      d += curve(optPos(cid, i, tgt), tgt, end ? "l end" : `l arc ${tone}`, end ? 3 : 2.5, end ? branchId(cid, i) : null);
+    });
   });
   svg.innerHTML = `<style>.l{stroke:#565c6b;opacity:.85;transition:stroke-width .8s,opacity .8s}.l.hot{stroke:#e8b33a}.end{stroke:#e8b33a}
-    .split{stroke:#b39cff}.rejoin{stroke:#6d5f99;opacity:.7}.cbk{stroke:#b39cff;stroke-dasharray:4 9;opacity:.55}
+    .split{stroke:#b39cff}.rejoin{stroke:#6d5f99;opacity:.7}.cbk{stroke:#b39cff;stroke-dasharray:4 9;opacity:.55}.lane{stroke:#7fd1c7;opacity:.8}
     .arc{stroke-dasharray:14 10;opacity:.6}.arc.bad{stroke:#e2554b}.arc.good{stroke:#7fd1c7}</style>${d}<g id="sparks"></g>`;
   Object.keys(votes).forEach(paint);
 }
@@ -262,7 +357,23 @@ function drawLinks() {
 // ---------- camera ----------
 const world = $("#world");
 function apply() { world.style.transform = `translate(${-cam.x * cam.s + innerWidth / 2}px, ${-cam.y * cam.s + innerHeight / 2}px) scale(${cam.s})`; }
-function fly(x, y, s, dur = 1.6) { gsap.to(cam, { x, y, s, duration: dur, ease: "power3.inOut", onUpdate: apply }); }
+// The map is about 8k x 20k px. Flying holds the world as one GPU layer (will-change) for smooth motion; at rest the
+// hint comes off so the view re-rasters crisp at its own zoom. A big zoom-out would make that layer cover the whole
+// map at close-up resolution and overrun GPU memory (tiles go missing), so those cut through a quick dip instead.
+gsap.ticker.lagSmoothing(0);  // a slow frame must never stretch a flight; on stage, on time beats smooth
+function settle() { gsap.killTweensOf(cam); gsap.killTweensOf(world); world.style.opacity = 1; world.style.willChange = "auto"; }
+function fly(x, y, s, dur = 1.6) {
+  settle();
+  if (s < cam.s * .6) {
+    gsap.to(world, { opacity: 0, duration: .25, ease: "power1.in", onComplete: () => {
+      Object.assign(cam, { x, y, s }); apply();
+      gsap.to(world, { opacity: 1, duration: .5, delay: .05, ease: "power1.out" });
+    } });
+    return;
+  }
+  world.style.willChange = "transform";
+  gsap.to(cam, { x, y, s, duration: dur, ease: "power3.inOut", onUpdate: apply, onComplete: () => { world.style.willChange = "auto"; } });
+}
 function fitBox(x0, y0, x1, y1, pad = 1.15) {
   const s = Math.min(innerWidth / ((x1 - x0) * pad), innerHeight / ((y1 - y0) * pad));
   fly((x0 + x1) / 2, (y0 + y1) / 2, Math.min(s, 1.4));
@@ -276,21 +387,38 @@ function focusCard(cid) {
 }
 // free exploring: drag and wheel
 let drag = null;
-$("#viewport").addEventListener("pointerdown", e => { drag = { x: e.clientX, y: e.clientY, cx: cam.x, cy: cam.y }; $("#viewport").classList.add("drag"); gsap.killTweensOf(cam); });
+$("#viewport").addEventListener("pointerdown", e => { drag = { x: e.clientX, y: e.clientY, cx: cam.x, cy: cam.y }; $("#viewport").classList.add("drag"); settle(); });
 addEventListener("pointermove", e => { if (!drag) return; cam.x = drag.cx - (e.clientX - drag.x) / cam.s; cam.y = drag.cy - (e.clientY - drag.y) / cam.s; apply(); });
 addEventListener("pointerup", () => { drag = null; $("#viewport").classList.remove("drag"); });
-$("#viewport").addEventListener("wheel", e => { e.preventDefault(); gsap.killTweensOf(cam); cam.s = Math.max(.05, Math.min(2.5, cam.s * (e.deltaY < 0 ? 1.12 : 1 / 1.12))); apply(); }, { passive: false });
+$("#viewport").addEventListener("wheel", e => { e.preventDefault(); settle(); cam.s = Math.max(.05, Math.min(2.5, cam.s * (e.deltaY < 0 ? 1.12 : 1 / 1.12))); apply(); }, { passive: false });
 
 // ---------- live class results from the relay (12-hour window, one vote per playthrough per choice) ----------
+// Phones send one message per episode ({s, n, v: [[cid, option, ms], ...]}) plus a join ping ({s, n, j: 1});
+// older builds sent one vote per message. A wave of 20 players finishing an episode lands as ~200 votes in a
+// minute, so DOM updates happen once per touched card and sparks are paced through a queue.
 const votes = {}, seen = new Set(), sessions = new Set(), endings = {};
-function record(m, fly = true) {
-  if (!m || !m.c || typeof m.o !== "number" || !m.s || !cards[m.c]) return;  // only real game choices count
-  sessions.add(m.s);
-  const key = m.s + "|" + m.c; if (seen.has(key)) return; seen.add(key);
-  (votes[m.c] ||= {})[m.o] = (votes[m.c][m.o] || 0) + 1;
-  if (m.c === "5.8#1") { const f = ["c", "f", "d", "e", "g"][m.o]; if (f) endings[f] = (endings[f] || 0) + 1; }
-  render(m.c);
-  if (fly) spark(m.c, m.o);
+const votesOf = m => !m || !m.s ? [] : Array.isArray(m.v) ? m.v.map(([c, o, ms]) => ({ s: m.s, n: m.n, c, o, ms }))
+  : (m.c && typeof m.o === "number" ? [{ s: m.s, n: m.n, c: m.c, o: m.o, ms: m.ms }] : []);
+const dirty = new Set(); let flushT = null;
+function intake(m, fly) {
+  if (!m || !m.s) return;
+  if (m.n) (PLAYERS[m.s] ||= { name: "", picks: {} }).name = cleanName(m.n);
+  if (m.j) sessions.add(m.s);
+  const touched = new Set(), fresh = [];
+  for (const v of votesOf(m)) {
+    if (!cards[v.c] || typeof v.o !== "number") continue;  // only real game choices count
+    sessions.add(v.s);
+    const key = v.s + "|" + v.c; if (seen.has(key)) continue; seen.add(key);
+    notePlayer(v);
+    (votes[v.c] ||= {})[v.o] = (votes[v.c][v.o] || 0) + 1;
+    if (v.c === "5.8#1") { const f = ["c", "f", "d", "e", "g"][v.o]; if (f) endings[f] = (endings[f] || 0) + 1; }
+    touched.add(v.c); fresh.push(v);
+  }
+  // repaint touched cards at most four times a second: at the overview every card repaint redraws the map
+  touched.forEach(c => dirty.add(c));
+  if (!flushT) flushT = setTimeout(() => { flushT = null; dirty.forEach(render); dirty.clear(); }, 250);
+  $("#livetxt").textContent = `${sessions.size} playing`;
+  if (fly) fresh.forEach(v => queueSpark(v.c, v.o));
 }
 function render(cid) {
   const v = votes[cid] || {}, total = Object.values(v).reduce((a, b) => a + b, 0);
@@ -300,7 +428,6 @@ function render(cid) {
     el.querySelector("[data-n]").textContent = total ? `${n} · ${Math.round(100 * n / total)}%` : "";
   });
   for (const [k, n] of Object.entries(endings)) { const e = document.querySelector(`[data-end="${k}"]`); if (e) e.textContent = `${n} classmate${n === 1 ? "" : "s"} headed here`; }
-  $("#livetxt").textContent = `${sessions.size} playing`;
   paint(cid);
 }
 // branches thicken and turn gold with the share of the class that took them
@@ -314,45 +441,202 @@ function paint(cid) {
     p.style.opacity = share > 0 ? (.45 + .55 * share).toFixed(2) : ".5";
   });
 }
+// sparks: at most 18 in flight, one launched every 180 ms; a backlog beyond 150 drops its oldest (the
+// counts are already in, only the light show is trimmed). They are drawn on one screen-sized canvas over the
+// map, not inside the 8k x 20k link drawing: animating SVG in there repainted huge areas each frame (7 fps in
+// a 20-player test).
+const sparkQ = []; let inFlight = 0, pump = null;
+function queueSpark(cid, o) {
+  sparkQ.push([cid, o]); if (sparkQ.length > 150) sparkQ.splice(0, sparkQ.length - 150);
+  if (!pump) pump = setInterval(() => {
+    if (!sparkQ.length) { clearInterval(pump); pump = null; return; }
+    if (inFlight < 18) spark(...sparkQ.shift());
+  }, 180);
+}
+const routeCache = {};  // path id -> sampled points in map coordinates
+function samples(path) {
+  if (routeCache[path.id]) return routeCache[path.id];
+  const len = path.getTotalLength(), N = 64, pts = [];
+  for (let i = 0; i <= N; i++) { const p = path.getPointAtLength(len * i / N); pts.push([p.x, p.y]); }
+  return (routeCache[path.id] = pts);
+}
+const along = (pts, t) => { const f = Math.max(0, Math.min(1, t)) * (pts.length - 1), i = Math.floor(f), k = f - i, a = pts[i], b = pts[Math.min(i + 1, pts.length - 1)]; return [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k]; };
+const fx = document.createElement("canvas"); fx.id = "sparkfx"; document.body.appendChild(fx);
+const fxc = fx.getContext("2d"); let fxOn = false;
+const SPARKS = [], RINGS = [], lastHit = {};
+function sizeFx() { const d = devicePixelRatio || 1; fx.width = innerWidth * d; fx.height = innerHeight * d; fxc.setTransform(d, 0, 0, d, 0, 0); }
+sizeFx(); addEventListener("resize", sizeFx);
+const toScreen = (x, y) => [(x - cam.x) * cam.s + innerWidth / 2, (y - cam.y) * cam.s + innerHeight / 2];
+function drawFx(now) {
+  fxc.clearRect(0, 0, innerWidth, innerHeight);
+  for (let i = SPARKS.length - 1; i >= 0; i--) {
+    const sp = SPARKS[i], t = Math.min(1, (now - sp.t0) / sp.dur), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    const [hx, hy] = toScreen(...along(sp.pts, e));
+    fxc.globalAlpha = .3; fxc.fillStyle = "#e8b33a"; fxc.beginPath(); fxc.arc(hx, hy, 26, 0, 7); fxc.fill();
+    [1, .55, .32, .16].forEach((a, k) => {
+      const [x, y] = toScreen(...along(sp.pts, e - k * .035));
+      fxc.globalAlpha = a; fxc.fillStyle = k ? "#e8b33a" : "#fff3c4"; fxc.beginPath(); fxc.arc(x, y, 8 * (1 - k * .18), 0, 7); fxc.fill();
+    });
+    if (t >= 1) { SPARKS.splice(i, 1); inFlight--; if (sp.next) RINGS.push({ el: sp.next, t0: now }); }
+  }
+  for (let i = RINGS.length - 1; i >= 0; i--) {  // the next decision card pings with a gold ring
+    const r = RINGS[i], t = (now - r.t0) / 1100, el = r.el;
+    if (t >= 1) { RINGS.splice(i, 1); continue; }
+    const [x, y] = toScreen(el.offsetLeft, el.offsetTop), g = 3 + 18 * t;
+    fxc.globalAlpha = 1 - t; fxc.strokeStyle = "#e8b33a"; fxc.lineWidth = 3;
+    fxc.strokeRect(x - g, y - g, el.offsetWidth * cam.s + 2 * g, el.offsetHeight * cam.s + 2 * g);
+  }
+  fxc.globalAlpha = 1;
+  if (SPARKS.length || RINGS.length) requestAnimationFrame(drawFx); else { fxOn = false; fxc.clearRect(0, 0, innerWidth, innerHeight); }
+}
 // a glowing light runs the branch a classmate just took, then pings the next decision
 function spark(cid, o) {
-  const path = document.getElementById(branchId(cid, o)), g = document.getElementById("sparks");
-  const opt = document.querySelector(`.opt[data-c="${CSS.escape(cid)}"][data-o="${o}"]`);
-  if (opt) { opt.classList.remove("hit"); void opt.offsetWidth; opt.classList.add("hit"); }
-  if (!path || !g) return;
-  const NS = "http://www.w3.org/2000/svg", len = path.getTotalLength(), dots = [];
-  for (let k = 0; k < 4; k++) {  // a bright head and a fading tail
-    const c = document.createElementNS(NS, "circle");
-    c.setAttribute("fill", k === 0 ? "#fff3c4" : "#e8b33a"); c.style.opacity = [1, .55, .32, .16][k];
-    g.appendChild(c); dots.push(c);
+  const path = document.getElementById(branchId(cid, o));
+  const k = cid + "|" + o, now = performance.now();
+  if (cam.s > .3 && (!lastHit[k] || now - lastHit[k] > 600)) {  // the option row flashes only when it is big enough to see
+    lastHit[k] = now;
+    const opt = document.querySelector(`.opt[data-c="${CSS.escape(cid)}"][data-o="${o}"]`);
+    if (opt) { opt.classList.remove("hit"); void opt.offsetWidth; opt.classList.add("hit"); }
   }
-  const halo = document.createElementNS(NS, "circle"); halo.setAttribute("fill", "#e8b33a"); halo.style.opacity = .3; g.insertBefore(halo, dots[0]);
-  const dur = 1700 + Math.random() * 500, t0 = performance.now();
-  (function step(now) {
-    const t = Math.min(1, (now - t0) / dur), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2, r = 9 / cam.s;
-    dots.forEach((c, k) => {
-      const pt = path.getPointAtLength(Math.max(0, e - k * .035) * len);
-      c.setAttribute("cx", pt.x); c.setAttribute("cy", pt.y); c.setAttribute("r", r * (1 - k * .18));
-    });
-    const h = path.getPointAtLength(e * len); halo.setAttribute("cx", h.x); halo.setAttribute("cy", h.y); halo.setAttribute("r", r * 3.3);
-    if (t < 1) return requestAnimationFrame(step);
-    dots.concat(halo).forEach(c => c.remove());
-    const ids = Object.keys(cards), nx = cards[ids[ids.indexOf(cid) + 1]];
-    if (nx) { nx.el.classList.remove("ping"); void nx.el.offsetWidth; nx.el.classList.add("ping"); }
-  })(t0);
+  if (!path) return;
+  SPARKS.push({ pts: samples(path), t0: now, dur: 1700 + Math.random() * 500, next: NEXT[cid] });
+  inFlight++;
+  if (!fxOn) { fxOn = true; requestAnimationFrame(drawFx); }
 }
+let lastId = null;
+function poll(since, shower) {
+  return fetch(`${TALLY}/json?poll=1&since=${since}`, { cache: "no-store" }).then(r => r.text()).then(t => {
+    const past = [];
+    t.split("\n").forEach(l => { try { const e = JSON.parse(l); lastId = e.id || lastId; past.push(JSON.parse(e.message)); } catch {} });
+    past.forEach(m => intake(m, false));
+    if (shower) past.flatMap(votesOf).filter(v => cards[v.c]).slice(-120).forEach(v => queueSpark(v.c, v.o));
+  }).catch(() => {});
+}
+// ?from=2026-11-03T13:30 counts only votes after that time, so rehearsal runs earlier the same day stay out
+const FROM = (() => { const f = new URLSearchParams(location.search).get("from"), t = f && Date.parse(f); return t ? String(Math.floor(t / 1000)) : "12h"; })();
 function live() {
   // earlier votes replay as a shower of lights when the map opens, then live votes fly as they land
-  fetch(`${TALLY}/json?poll=1&since=12h`).then(r => r.text()).then(t => {
-    const past = [];
-    t.split("\n").forEach(l => { try { past.push(JSON.parse(JSON.parse(l).message)); } catch {} });
-    past.forEach(m => record(m, false));
-    past.filter(m => m && cards[m.c]).slice(-120).forEach((m, k) => setTimeout(() => spark(m.c, m.o), 400 + k * 140));
-  }).catch(() => {});
-  const es = new EventSource(`${TALLY}/sse`);
-  es.onopen = () => { $("#live").classList.add("on"); if (!sessions.size) $("#livetxt").textContent = "live, waiting for players"; };
-  es.onerror = () => $("#live").classList.remove("on");
-  es.onmessage = e => { try { record(JSON.parse(JSON.parse(e.data).message), true); } catch {} };
+  poll(FROM, true);
+  let es = null, wait = 5000, isLive = false;
+  const connect = () => {
+    es = new EventSource(`${TALLY}/sse${FROM === "12h" ? "" : "?since=" + (lastId || FROM)}`);
+    es.onopen = () => {
+      isLive = true; wait = 5000;
+      $("#live").classList.add("on"); if (!sessions.size) $("#livetxt").textContent = "live, waiting for players";
+      if (lastId) poll(lastId, false);  // pick up whatever landed while the feed was down
+    };
+    es.onmessage = e => { try { const d = JSON.parse(e.data); lastId = d.id || lastId; intake(JSON.parse(d.message), true); } catch {} };
+    es.onerror = () => {
+      isLive = false; $("#live").classList.remove("on");
+      // the browser retries some failures itself, but a 429 or 5xx closes the stream for good: reopen it
+      // ourselves, backing off, since the presenter laptop may share the classroom's rate-limited IP
+      if (es.readyState === EventSource.CLOSED) { setTimeout(connect, wait); wait = Math.min(wait * 2, 60000); }
+    };
+  };
+  connect();
+  setInterval(() => { if (!isLive && lastId) poll(lastId, false); }, 20000);  // while offline, catch up by polling
+}
+
+// ---------- class awards: the last stop rotates superlatives earned by what each player actually picked ----------
+// Built from the same relay votes: each vote carries the player's typed name (n) and decision time (ms).
+// traits.json tags every option (hothead, coaster, shady...); option fx in tree.json give the stat totals.
+const PLAYERS = {};   // session -> { name, picks: { cid: { o, ms } } }
+let TRAITS = {};
+fetch("traits.json", { cache: "no-cache" }).then(r => r.json()).then(t => { TRAITS = t; }).catch(() => {});
+// names are typed by players and projected: same filter as the game (older builds did not filter)
+const BLOCK = /(fuck|shit|bitch|cunt|dick|cock|puss|nigg|fag|slut|whore|rape|nazi|hitler|porn|sex|penis|vagin|boob|tits|anal|cum\b|dildo|retard)/i;
+const cleanName = raw => { const n = String(raw || "").replace(/[^\p{L}\p{N} .'-]/gu, "").replace(/\s+/g, " ").trim().slice(0, 16);
+  return !n || BLOCK.test(n.replace(/[^a-z]/gi, "")) ? "Player" : n; };
+let HIDE_NAMES = false;
+addEventListener("keydown", e => { if (e.key === "h" || e.key === "H") { HIDE_NAMES = !HIDE_NAMES; if ($("#awards").classList.contains("on")) drawAward(); } });
+function notePlayer(m) {
+  const p = PLAYERS[m.s] ||= { name: "", picks: {} };
+  if (m.n) p.name = cleanName(m.n);
+  p.picks[m.c] = { o: m.o, ms: typeof m.ms === "number" && m.ms > 0 ? m.ms : null };
+}
+const AWARDS = [
+  { k: "hothead", title: "The Hothead", sub: "Most likely to shut it all down and ask questions later", unit: "hothead moves" },
+  { k: "slow", title: "The Slowpoke", sub: "Took the longest to decide, every single time", unit: "s per decision", time: "slow" },
+  { k: "coaster", title: "The Coaster", sub: "Why do it today when someone else can do it tomorrow", unit: "hand-offs and shrugs" },
+  { k: "fast", title: "Fastest Trigger", sub: "Decided before the question finished loading", unit: "s per decision", time: "fast" },
+  { k: "ghost", title: "The Ghost", sub: "Said nothing. A lot. On purpose?", unit: "silences" },
+  { k: "shady", title: "Legal Would Like a Word", sub: "Cut the most corners (in the game, we hope)", unit: "corners cut" },
+  { k: "by_the_book", title: "By the Book", sub: "Has the policy memorized and the binder to prove it", unit: "by-the-book calls" },
+  { k: "straight_shooter", title: "Straight Shooter", sub: "Told the board the truth, even the bad parts", unit: "honest calls" },
+  { k: "people_first", title: "Team Captain", sub: "Took care of the people first", unit: "team-first calls" },
+  { k: "workaholic", title: "Sleep Is Optional", sub: "Took every page, every project, every weekend", unit: "extra shifts" },
+  { k: "cowboy", title: "The Cowboy", sub: "Ship it. Fix it in prod.", unit: "risky calls" },
+  { k: "climber", title: "Corner Office Bound", sub: "Was already measuring the drapes", unit: "power moves" },
+  { k: "burn", title: "Burnout Speedrun", sub: "The highest burnout in the class", unit: "burnout", stat: "burn" },
+  { k: "trust", title: "Board Favorite", sub: "Earned the most executive trust", unit: "exec trust", stat: "trust" },
+];
+function optionAt(cid, o) { const c = cards[cid]; return c ? c.c.options[o] : null; }
+function scoreAll() {
+  const names = {}, rows = [];
+  for (const [s, p] of Object.entries(PLAYERS)) {
+    const picks = Object.entries(p.picks); if (picks.length < 3) continue;   // too short to judge
+    const r = { s, base: p.name || "Player", n: picks.length, t: {}, ex: {}, stat: { skill: 0, rep: 0, trust: 0, burn: 0 }, ms: [] };
+    for (const [cid, { o, ms }] of picks) {
+      const opt = optionAt(cid, o); if (!opt) continue;
+      for (const tr of (TRAITS[cid] || [])[o] || []) { r.t[tr] = (r.t[tr] || 0) + 1; (r.ex[tr] ||= []).push(cid + "|" + o); }
+      for (const [k, v] of Object.entries(opt.fx || {})) if (k in r.stat) r.stat[k] += v;
+      if (ms) {
+        r.ms.push(ms); (r.picksMs ||= {})[cid] = ms;
+        if (!r.slowMs || ms > r.slowMs) { r.slowMs = ms; r.slowest = cid + "|" + o; }
+        if (!r.quickMs || ms < r.quickMs) { r.quickMs = ms; r.quickest = cid + "|" + o; }
+      }
+    }
+    r.ms.sort((a, b) => a - b); r.med = r.ms.length >= 3 ? r.ms[r.ms.length >> 1] / 1000 : null;
+    (names[r.base] ||= []).push(r); rows.push(r);
+  }
+  // two players named Avery get told apart by a short tag; H on the keyboard swaps every name for a number
+  for (const list of Object.values(names)) list.forEach(r => { r.name = list.length > 1 ? `${r.base} #${r.s.slice(-3)}` : r.base; });
+  if (HIDE_NAMES) rows.slice().sort((a, b) => a.s < b.s ? -1 : 1).forEach((r, i) => { r.name = `Player ${i + 1}`; });
+  return rows;
+}
+function winners(rows, a) {
+  const val = r => a.time ? r.med : a.stat ? r.stat[a.stat] : (r.t[a.k] || 0);
+  const ok = rows.filter(r => { const v = val(r); return v !== null && v !== undefined && (a.time || a.stat || v > 0); });
+  if (!ok.length) return null;
+  ok.sort((x, y) => a.time === "fast" ? val(x) - val(y) : val(y) - val(x));
+  const top = val(ok[0]), tied = ok.filter(r => val(r) === top).slice(0, 3);
+  return { top, tied, next: ok.filter(r => val(r) !== top).slice(0, 2).map(r => ({ name: r.name, v: val(r) })) };
+}
+let awardTimer = null, awardAt = 0;
+function showAwards(on) {
+  const box = $("#awards"); clearInterval(awardTimer);
+  box.classList.toggle("on", on); if (!on) return;
+  awardAt = 0; drawAward();
+  awardTimer = setInterval(() => { awardAt++; drawAward(); }, 6500);
+}
+function drawAward() {
+  const box = $("#awards"), rows = scoreAll();
+  const list = AWARDS.map(a => ({ a, w: winners(rows, a) })).filter(x => x.w);
+  if (!list.length) {
+    box.innerHTML = `<div class="aw"><div class="ak">Class awards</div><div class="at">Waiting for players</div><div class="as">Scan the code and play. Awards appear once someone has made a few decisions.</div></div>`;
+    return;
+  }
+  const { a, w } = list[awardAt % list.length];
+  const fmt = v => a.time ? v.toFixed(1) : Math.round(v);
+  // Exhibit A: one real pick behind the award (for the clock awards, their slowest or quickest call)
+  const lead = w.tied[0], exKey = a.time ? lead[a.time === "slow" ? "slowest" : "quickest"] : (lead.ex[a.k] || [])[0];
+  let ex = "";
+  if (exKey) {
+    const [cid, o] = exKey.split("|"), c = cards[cid], opt = optionAt(cid, +o);
+    const took = a.time ? ` in ${(lead.picksMs[cid] / 1000).toFixed(1)}s` : "";
+    if (c && opt) ex = `<div class="ae"><span>Exhibit A</span> "${esc(opt.t)}"${took} <i>Episode ${c.ep.n}, ${esc(c.c.id)}</i></div>`;
+    box.style.setProperty("--still", `url("stills/${cid.replace("#", "_")}.webp")`);
+  } else box.style.setProperty("--still", "none");
+  box.innerHTML = `<div class="aw" key="${awardAt}">
+    <div class="ak">Class awards &middot; ${list.length ? (awardAt % list.length) + 1 : 0} of ${list.length} &middot; ${rows.length} players</div>
+    <div class="at">${esc(a.title)}</div>
+    <div class="aname">${w.tied.map(r => esc(r.name)).join(" &amp; ")}</div>
+    <div class="av">${fmt(w.top)} ${esc(a.unit)}</div>
+    <div class="as">${esc(a.sub)}</div>${ex}
+    ${w.next.length ? `<div class="ar">Runners-up: ${w.next.map(r => `${esc(r.name)} (${fmt(r.v)})`).join(", ")}</div>` : ""}
+    <div class="adots">${list.map((_, i) => `<i class="${i === awardAt % list.length ? "on" : ""}"></i>`).join("")}</div></div>`;
+  gsap.fromTo("#awards .aw > *", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .6, stagger: .07, ease: "power3.out" });
+  gsap.fromTo("#awards .aname", { scale: .85 }, { scale: 1, duration: .9, ease: "back.out(2)" });
 }
 
 // ---------- the tour: arrow keys move through the presentation ----------
@@ -360,28 +644,30 @@ let STOPS = [], at = 0;
 function panel(html) { const p = $("#panel"); p.classList.add("hide"); setTimeout(() => { p.innerHTML = html; p.classList.toggle("hide", !html); }, html ? 350 : 0); }
 function buildTour() {
   const S = SPEAKERS, all = () => fitBox(-200, TREE.top - 200, TREE.width + 100, TREE.height);
-  const ep = n => { const r = TREE.epStarts[n - 1]; fitBox(r.x0 - 100, r.y - 300, r.x1 + 100, r.y + 1000); };
+  const ep = n => { const r = TREE.epStarts[n - 1]; fitBox(r.x0 - 100, r.y - 300, r.x1 + 100, r.y + r.h); };
   const key = (cid, k, title, body, sp) => ({ go: () => focusCard(cid), html: `<span class="speaker">${S[sp]}</span><div class="k">${k}</div><h2>${title}</h2>${body}` });
   STOPS = [
     { go: () => { $("#hero").classList.remove("hide"); $("#miniqr").classList.remove("on"); }, html: "" },
     { go: () => { $("#hero").classList.add("hide"); $("#miniqr").classList.add("on"); all(); },
       html: `<span class="speaker">${S[0]}</span><div class="k">Backlog item 13</div><h2>The CISO Career Ladder</h2>
       <p>The assignment asks what the path to Fortune 500 CISO looks like at the entry, mid-career and executive levels. We turned that ladder into a game you climb with your own decisions.</p>
-      <ul><li><b>Entry:</b> SOC and GRC analyst roles, Security+ and ISC2 CC. BLS median pay for information security analysts is $129,180 (May 2025), with 21% projected growth from 2025 to 2035.</li>
-      <li><b>Mid-career:</b> engineer, IR lead or manager, CISSP (5 years of paid experience required).</li>
-      <li><b>Executive:</b> director, VP, CISO. IANS / Artico 2025: median CISO total compensation of $532,000 at US enterprises over $1B in revenue.</li></ul>
+      <ul><li><b>Entry (typically years 0 to 4):</b> SOC and GRC analyst roles, Security+ and ISC2 CC. BLS median pay for information security analysts is $129,180 (May 2025), the median across all experience levels, not starting pay, with 21% projected growth from 2025 to 2035.</li>
+      <li><b>Mid-career (typically years 5 to 9):</b> engineer, IR lead or manager, then Director of Security as the bridge rung. CISSP (5 years of paid experience required).</li>
+      <li><b>Executive (typically years 10 and up):</b> VP, CISO. IANS / Artico 2025: median CISO total compensation of $532,000 at US enterprises over $1B in revenue, the closest public benchmark for a Fortune 500 seat.</li></ul>
       <div class="src">Sources: BLS Occupational Outlook Handbook; IANS Research and Artico Search 2025; ISC2.</div>` },
-    { go: all, html: `<span class="speaker">${S[1]}</span><div class="k">The map</div><h2>5 episodes, 38 decisions, 7 endings</h2>
-      <p>Every gold path is one decision. Each fans out into its options and comes back together, because most choices change your stats and relationships rather than the scene. Then, at the very end, the story splinters into seven endings.</p>
+    { go: all, html: `<span class="speaker">${S[1]}</span><div class="k">The map</div><h2>5 episodes, ${Object.keys(cards).length} decisions, 7 endings</h2>
+      <p>Every gold path is one decision. Each fans out into its options and comes back together, because many choices change your stats and relationships rather than the scene.</p>
+      <p><b style="color:#7fd1c7">Teal lanes</b> are whole different storylines. Three times the story splits on a set of earlier answers, so two people playing side by side can live completely different careers: 19 storylines before the 7 endings.</p>
       <p><b style="color:#b39cff">Violet splits</b> are where the story itself changes: after the 3 AM alert and after the AI rollout, each choice runs to its own version of the next scene before the paths rejoin. <b style="color:#b39cff">Dotted violet</b> callbacks reach across episodes, so a choice in year two changes what someone says to you in year ten.</p>
       <p>The dashed red and teal lines decide endings: hiding a breach, blaming an employee, briefing the board in business terms.</p>` },
     { go: () => ep(1), html: `<span class="speaker">${S[1]}</span><div class="k">Entry level &middot; Year 1</div><h2>Episode 1: Night Shift</h2><p>Career fair, the first certification, and a 3 AM alert on the night shift. The first lesson is that containment beats certainty.</p>` },
     key("1.3#1", "Decision 1.3", "The 3 AM alert", `<p>Ten seconds to decide. Isolate, investigate, escalate or freeze. Real SOC playbooks put containment first, but the game lets you feel the pull of each option.</p>`, 1),
-    { go: () => ep(2), html: `<span class="speaker">${S[1]}</span><div class="k">Entry level &middot; Years 2 to 4</div><h2>Episode 2: Tier Two</h2><p>Alert fatigue, a vendor promising magic, a nervous new hire and a 2 AM page. Burnout starts adding up here.</p>` },
-    { go: () => ep(3), html: `<span class="speaker">${S[2]}</span><div class="k">Mid-career &middot; Years 5 to 8</div><h2>Episode 3: The Middle Rungs</h2><p>The fork between engineer, manager and incident response, the big certification, and the CIO who wants AI everywhere by Friday.</p>` },
+    { go: () => ep(1), html: `<span class="speaker">${S[1]}</span><div class="k">Split 1 &middot; Your first job</div><h2>The story splits</h2><p>Nobody picks a route from a menu. Every Episode 1 answer quietly leans toward one of three first jobs: the career fair pitch, the cert you crammed, how you handled 3 AM, and what you told Marcus on Monday. The strongest lean wins.</p><ul><li><b>SOC</b> for the ones who wanted the night shift and acted fast.</li><li><b>GRC</b> for the ones who reached for process and asked for help.</li><li><b>Startup</b> for the ones eyeing the exit, or the paycheck.</li></ul>` },
+    { go: () => ep(2), html: `<span class="speaker">${S[1]}</span><div class="k">Entry level &middot; Years 2 to 4</div><h2>Episode 2: three different jobs</h2><p><b>Tier Two:</b> alert fatigue, a vendor promising magic, a nervous new hire, a 2 AM page. <b>The Auditor:</b> a vendor report with holes, an executive MFA exception, a federal examiner. <b>Move Fast:</b> a leaked cloud key at 1 AM, a security questionnaire, and a founder who wants to ship card data unencrypted.</p>` },
+    { go: () => ep(3), html: `<span class="speaker">${S[2]}</span><div class="k">Mid-career &middot; Years 5 to 8 &middot; Split 2</div><h2>Episode 3: pick a lane, live in it</h2><p>Everyone meets Dana for the promotion talk. Then the story splits on the answer. <b>Manager:</b> the CIO who wants AI everywhere by Friday. <b>Engineer:</b> a red team finding and a poisoned open-source library before a release. <b>Incident lead:</b> a fake CEO wire request at 4:55 PM and a ransomware crew's chat.</p>` },
     key("3.4#1", "Decision 3.4", "CIO vs CISO", `<p>The tension from our CrowdStrike and CIO vs CISO class discussion: the business has to function, but someone has to ask what data the AI touches. Watch the map split here: each answer leads to a different version of the next scene, and Priya brings it up again in the final interview.</p>`, 2),
-    { go: () => ep(4), html: `<span class="speaker">${S[2]}</span><div class="k">Director &middot; Year 9</div><h2>Episode 4: The Breach</h2><p>A help desk phone scam hands attackers an admin tool, modeled on the Twitter case we studied. Contain it, decide on law enforcement, and face the board.</p>` },
-    key("4.3#1", "Decision 4.3", "Call the FBI or keep it quiet?", `<p>The law enforcement question from the Twitter case. Keeping it internal feels safe in the moment, but hiding the breach (here or in the press statement) is what ends a career in this game.</p>`, 2),
+    { go: () => ep(4), html: `<span class="speaker">${S[2]}</span><div class="k">Mid-career, top rung &middot; Director &middot; Year 9</div><h2>Episode 4: the breach you earned</h2><p>Split 3. The breach depends on the corners you cut. Rubber-stamp the AI rollout and it leaks customer data. Waive the vendor, shade the questionnaire or ship the unreviewed library and attackers walk in through something you trusted. Otherwise it is the help desk phone scam from the Twitter case we studied. Every version ends at the same board table.</p>` },
+    key("4.3#1", "Decision 4.3", "Call the FBI or keep it quiet?", `<p>The law enforcement question from the Twitter case. Calling the FBI is a judgment call, not a legal duty; the duty is telling the customers and regulators who need to know. Keeping the investigation in-house is defensible. Telling nobody, in the press statement or anywhere else, is what ends a career in this game.</p>`, 2),
     { go: () => ep(5), html: `<span class="speaker">${S[3]}</span><div class="k">Executive &middot; Years 10 and up</div><h2>Episode 5: The Corner Office</h2><p>A recruiter, a polished rival and a one-sentence job interview with the CEO. Every earlier choice shows up here.</p>` },
     { go: () => { const es = Object.values(endEls); fitBox(es[0].x - 1500, es[0].y - 200, es[0].x + 480, es[es.length - 1].y + 450); },
       html: `<span class="speaker">${S[3]}</span><div class="k">Where you land</div><h2>Seven endings</h2>
@@ -393,14 +679,15 @@ function buildTour() {
       <li><b>Burnout is a career risk.</b> Taking every page and every project can knock you off the ladder.</li></ol>` },
     { go: () => {}, html: `<span class="speaker">${S[0]}</span><div class="k">Exam question</div><h2>Check your knowledge</h2>
       <p>Which certification requires five years of paid work experience before it is awarded?</p><ol type="A"><li>CompTIA Security+</li><li>CISSP</li><li>ISC2 Certified in Cybersecurity (CC)</li><li>CompTIA CySA+</li></ol>
-      <p style="margin-top:8px;color:#b7bdc8">Answer: B. CISSP (ISC2).</p>` },
+      <p style="margin-top:8px;color:#b7bdc8">Answer: B. CISSP (ISC2). Two details students ask about: ISC2 lets a four-year degree count for one of the five years, and you can pass the exam before you have the experience and hold the Associate of ISC2 title while you earn it.</p>` },
     { go: () => {}, html: `<span class="speaker">${S[0]}</span><div class="k">AI disclosure</div><h2>How we built it</h2>
-      <p>We used AI tools and say so plainly: the story was drafted with Grok, the art generated with OpenAI image generation through Codex, the voices made with Kokoro (open-source text to speech), and the code, animation and this map built with Claude. Every fact on screen was checked against BLS, IANS / Artico and ISC2. Our team chose the topic, directed and reviewed every part, and wrote our own conclusions.</p>` },
+      <p>We used AI tools and say so plainly. The five base episodes were drafted with Grok; the route storylines, the real-world notes on this map and the award tags were drafted with Claude. The art was generated with OpenAI image generation through Codex, the voices were made with Kokoro (open-source text to speech), and the code, animation and this map were built with Claude. [Teammate name] checked every number on screen against BLS, IANS / Artico and ISC2. Our team chose the topic, directed and reviewed every part, and wrote our own conclusions.</p>` },
+    { awards: true, go: () => {}, html: "" },
   ];
 }
 function go(i) {
   at = Math.max(0, Math.min(STOPS.length - 1, i));
-  STOPS[at].go(); panel(STOPS[at].html);
+  STOPS[at].go(); panel(STOPS[at].html); showAwards(!!STOPS[at].awards);
   $("#stopn").textContent = `${at + 1} / ${STOPS.length}`;
 }
 addEventListener("keydown", e => {

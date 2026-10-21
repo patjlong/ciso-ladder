@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The CISO Ladder</title>
+<link rel="icon" href="data:,">
 <meta name="description" content="A narrative adventure about climbing from new grad to Fortune 500 CISO. CIS 424, Purple Protocol.">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -15,11 +16,16 @@ html,body{height:100%;background:#000;color:var(--text);font-family:Inter,system
 .actor{position:absolute}
 .actor .talk,.actor .inner{position:relative;height:100%;width:100%;transform-origin:50% 100%}
 .actor img{position:absolute;display:block;pointer-events:none}
-.actor img.base{left:0;top:0;height:100%;width:100%;filter:drop-shadow(0 0 22px rgba(0,0,0,.55))}
+.actor img.base{left:0;top:0;height:100%;width:100%;filter:drop-shadow(0 12px 18px rgba(0,0,0,.42))}
+/* a caller: a rounded call window with a screen glow and faint scanlines over the player's room */
+.actor.remote{border-radius:18px;overflow:hidden;background:radial-gradient(120% 90% at 50% 20%,#33414f,#10151b 70%);box-shadow:0 0 0 3px #0b0d10,0 0 0 4px rgba(255,255,255,.22),0 24px 50px rgba(0,0,0,.65)}
+.actor.remote img.base{filter:saturate(.85) brightness(1.04)}
+.actor.remote::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 4px),linear-gradient(transparent 70%,rgba(0,0,0,.35))}
+.actor.remote::before{content:attr(data-label);position:absolute;top:10px;left:12px;z-index:2;font:700 10px Inter,sans-serif;letter-spacing:.18em;color:#7fd1c7;background:rgba(0,0,0,.55);padding:4px 8px;border-radius:10px}
 /* mouth shapes cross-fade, blinks close fast */
 .actor img.patch{opacity:0;height:auto;transition:opacity 65ms linear}
 .actor img.patch[src*="_blink"]{transition:opacity 45ms linear}
-.actor canvas.pcanvas{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 0 22px rgba(0,0,0,.55))}
+.actor canvas.pcanvas{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 12px 18px rgba(0,0,0,.42))}
 .snap{position:fixed;inset:0;z-index:2;pointer-events:none}
 .snap canvas{position:absolute;inset:0;width:100%;height:100%}
 .snap-actors{position:absolute;inset:0;transform-origin:50% 50%}
@@ -36,10 +42,10 @@ html,body{height:100%;background:#000;color:var(--text);font-family:Inter,system
 .bar{position:fixed;left:0;right:0;height:10vh;background:#000;transition:height .6s ease}
 .bar.t{top:0}.bar.b{bottom:0}
 body.deciding .bar{height:13vh}
-#sub{position:fixed;left:50%;bottom:12vh;transform:translateX(-50%);width:min(900px,92vw);text-align:center;font-size:clamp(17px,2.2vw,24px);line-height:1.4;text-shadow:0 2px 3px #000,0 0 16px #000;opacity:0;transition:opacity .2s}
+#sub{position:fixed;left:50%;bottom:12vh;transform:translateX(-50%);width:max-content;max-width:min(900px,92vw);text-align:center;font-size:clamp(17px,2.2vw,24px);line-height:1.4;text-shadow:0 1px 2px #000;background:rgba(0,0,0,.62);padding:8px 16px 10px;border-radius:8px;opacity:0;transition:opacity .2s}
 #sub.on{opacity:1}
 #sub b{display:block;font-family:"Bebas Neue";font-weight:400;letter-spacing:.12em;font-size:1.05em}
-#caption{position:fixed;top:14vh;left:4vw;font-family:"Bebas Neue";font-size:clamp(28px,4vw,46px);letter-spacing:.12em;opacity:0;transition:opacity .5s;text-shadow:0 2px 8px #000}
+#caption{position:fixed;top:14vh;left:4vw;max-width:min(720px,92vw);font:600 clamp(17px,2.2vw,24px)/1.4 Inter,sans-serif;letter-spacing:.01em;background:rgba(0,0,0,.62);border-left:3px solid var(--gold);padding:10px 16px;border-radius:0 8px 8px 0;opacity:0;transition:opacity .5s}
 #caption.on{opacity:1}
 #choices{position:fixed;left:0;right:0;bottom:2.5vh;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;transition:opacity .3s}
 #choices.on{opacity:1;pointer-events:auto}
@@ -49,8 +55,13 @@ body.deciding .bar{height:13vh}
 .opt kbd{display:inline-block;width:22px;height:22px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);text-align:center;font:700 12px/20px Inter;margin-right:10px}
 .opt.picked{border-color:var(--gold);background:var(--gold);color:#111}.opt.picked kbd{color:#111;border-color:#111}
 .opt.gone{opacity:0;transform:translateY(8px)}
-.timer{width:min(640px,80vw);height:4px;background:rgba(255,255,255,.12)}
-.timer i{display:block;height:100%;background:#fff;transform-origin:center}
+.timer{width:min(640px,80vw);height:8px;border-radius:4px;overflow:hidden;background:rgba(255,255,255,.14)}
+.timer i{display:block;height:100%;background:var(--gold);transform-origin:center;transition:background .3s}.timer.low i{background:#e2554b}
+.opt.timeout{border-color:#e2554b;background:rgba(60,14,12,.92);color:#fff}
+.opt.locked{pointer-events:none}
+#question{position:fixed;left:50%;transform:translateX(-50%);width:max-content;max-width:min(760px,92vw);text-align:center;font-size:clamp(15px,1.8vw,19px);line-height:1.4;background:rgba(0,0,0,.7);padding:8px 14px;border-radius:8px;opacity:0;transition:opacity .25s;z-index:8;pointer-events:none}
+#question.on{opacity:1}#question b{color:var(--gold);font-family:"Bebas Neue";font-weight:400;letter-spacing:.1em;margin-right:8px}
+#timesup{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);font-family:"Bebas Neue";font-size:clamp(40px,8vw,72px);letter-spacing:.1em;color:#e2554b;opacity:0;z-index:9;pointer-events:none;text-shadow:0 2px 12px #000}
 #remember{position:fixed;top:12vh;left:3vw;font-size:clamp(14px,1.5vw,17px);display:flex;align-items:center;gap:10px;opacity:0;transform:translateX(-12px);transition:all .4s;text-shadow:0 2px 4px #000}
 #remember.on{opacity:1;transform:none}
 #remember i{width:22px;height:22px;border-radius:50%;border:2px solid #fff;position:relative;animation:ring 1.2s ease-out}
@@ -61,7 +72,8 @@ body.deciding .bar{height:13vh}
 #card .k{color:var(--gold);letter-spacing:.4em;font-size:13px;text-transform:uppercase;margin-bottom:10px}
 #card h1{font-family:"Bebas Neue";font-weight:400;font-size:clamp(54px,10vw,120px);line-height:1}
 #card p{color:#c4c9d2;margin-top:12px;max-width:560px}
-#sound{position:fixed;top:2vh;right:2vw;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.3);color:#ddd;padding:6px 12px;font:500 12px Inter;border-radius:3px;cursor:pointer;z-index:20}
+#sound{position:fixed;top:2vh;right:2vw;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.35);color:#eee;padding:0 16px;min-height:44px;font:600 13px Inter;border-radius:22px;cursor:pointer;z-index:20}
+#sound.off{border-color:var(--gold);color:var(--gold)}
 /* title */
 #title{position:fixed;inset:0;z-index:30;background:#000 center/cover url(assets/keyart_ep1.webp);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:12vh;cursor:pointer}
 #title::before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.92))}
@@ -76,7 +88,7 @@ body.deciding .bar{height:13vh}
 #creator label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#c4c9d2}
 .presets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .preset{aspect-ratio:1;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.2);cursor:pointer;background:#111;padding:0}
-.preset img{width:100%;height:220%;object-fit:cover;object-position:50% 0}
+.preset img{width:100%;height:100%;object-fit:cover}
 .preset.on{border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,179,58,.3)}
 .preset.locked{opacity:.35;cursor:default}
 #creator input{background:#0d0f14;border:1px solid rgba(255,255,255,.2);color:#fff;padding:10px 12px;font:600 16px Inter;border-radius:3px;width:100%}
@@ -110,7 +122,6 @@ html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
 @media (orientation:portrait){
   .bar{height:7vh}body.deciding .bar{height:9vh}
   #sub{bottom:calc(9vh + env(safe-area-inset-bottom));font-size:18px}
-  body.deciding #sub{opacity:0}
   #choices{bottom:calc(2vh + env(safe-area-inset-bottom));padding:0 4vw}
   .row{flex-direction:column;width:100%;gap:8px}
   .opt{width:100%;min-width:0;padding:15px 16px;font-size:16px}
@@ -120,10 +131,10 @@ html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
   #sound{top:calc(1.2vh + env(safe-area-inset-top))}
   #creator{top:auto;bottom:calc(1.5vh + env(safe-area-inset-bottom));height:auto;max-height:60dvh;left:3vw;width:94vw;padding:12px 14px;gap:7px}
   #creator h2{font-size:24px}
-  #creator label{font-size:10px}
+  #creator label{font-size:11px}
   #creator input{padding:8px 10px;font-size:16px}
-  .seg button{padding:8px 4px;font-size:12px}
-  #begin{padding:12px;margin-top:4px}
+  .seg button{padding:8px 4px;font-size:13px;min-height:44px}
+  #begin{padding:14px;margin-top:4px;position:sticky;bottom:0;box-shadow:0 -10px 18px rgba(6,7,10,.9)}
   .presets{grid-template-columns:repeat(6,1fr)}
 }
 </style>
@@ -139,6 +150,8 @@ html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
 <div id="caption"></div>
 <div id="sub"></div>
 <div id="choices"></div>
+<div id="question"></div>
+<div id="timesup">TIME'S UP</div>
 <div id="remember"></div>
 <div id="card"></div>
 <button id="sound">Sound: off</button>
@@ -147,8 +160,8 @@ html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
   <h2>WHO ARE <span>YOU</span>?</h2>
   <label>Look</label>
   <div class="presets" id="presets"></div>
-  <label for="name">Name</label>
-  <input id="name" maxlength="16" value="Avery" autocomplete="off">
+  <label for="name">Name <span style="letter-spacing:.05em;text-transform:none;color:#8f96a3">(shows on the class scoreboard)</span></label>
+  <input id="name" maxlength="16" value="" placeholder="Avery" autocomplete="off">
   <label>Pronouns</label>
   <div class="seg" id="pron">
     <button data-p="she,her,her" class="on">she/her</button><button data-p="he,him,his">he/him</button>
@@ -166,14 +179,16 @@ html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
 <div id="title"><h1>THE <span>CISO</span> LADDER</h1><p>TAP TO BEGIN</p></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="puppet.js?v=10151955"></script>
-<script src="cl.js?v=10151955"></script>
-<script src="ambience.js?v=10151955"></script>
-<script src="ep1.js?v=10151955"></script>
-<script src="finale.js?v=10151955"></script>
-<script src="recap.js?v=10151955"></script>
-<script src="director.js?v=10151955"></script>
+<script src="puppet.js?v=10202118"></script>
+<script src="cl.js?v=10202118"></script>
+<script src="ambience.js?v=10202118"></script>
+<script src="ep1.js?v=10202118"></script>
+<script src="finale.js?v=10202118"></script>
+<script src="recap.js?v=10202118"></script>
+<script src="director.js?v=10202118"></script>
 <script>
+// while the title shows, fetch the default look so the creator never opens on an empty room
+new Image().src = "assets/rigs/p1_desk.webp";
 // six looks; each suggests pronouns and a voice, and the player can change both
 const PRESETS = [
   { id: "p1", pron: "she", voice: "af_heart" }, { id: "p2", pron: "she", voice: "af_heart" },
@@ -192,7 +207,7 @@ async function creator() {
   const box = document.getElementById("creator"), ps = document.getElementById("presets");
   const ready = id => (CL.manifest.rigs || []).includes(`${id}_desk`);
   CL.state.pron = PRON.she;
-  ps.innerHTML = PRESETS.map(p => `<button class="preset ${ready(p.id) ? "" : "locked"} ${p.id === CL.state.preset ? "on" : ""}" data-id="${p.id}" aria-label="Look ${p.id.slice(1)}">${ready(p.id) ? `<img src="assets/rigs/${p.id}_desk.webp" alt="">` : ""}</button>`).join("");
+  ps.innerHTML = PRESETS.map(p => `<button class="preset ${ready(p.id) ? "" : "locked"} ${p.id === CL.state.preset ? "on" : ""}" data-id="${p.id}" aria-label="Look ${p.id.slice(1)}">${ready(p.id) ? `<img src="assets/thumbs/${p.id}.webp" alt="">` : ""}</button>`).join("");
   ps.onclick = async e => {
     const b = e.target.closest(".preset"); if (!b || b.classList.contains("locked")) return;
     ps.querySelectorAll(".preset").forEach(x => x.classList.toggle("on", x === b));
@@ -209,24 +224,29 @@ async function creator() {
   await CL.shot(creatorShot());
   box.classList.add("on");
   await new Promise(r => document.getElementById("begin").onclick = r);
-  CL.state.name = (document.getElementById("name").value.trim() || "Avery").replace(/[<>&"]/g, "");
+  CL.state.name = CL.cleanName(document.getElementById("name").value);
   box.classList.remove("on");
 }
 
 document.getElementById("title").onclick = async function () {
-  if (CL.sound) CL.unlockAudio();
+  if (this.dataset.busy) return; this.dataset.busy = 1;
+  CL.unlockAudio();  // always: a player who turns sound on later still has an unlocked element
+  CL.playing = true; CL.keepAwake();
+  this.querySelector("p").textContent = "LOADING...";  // twenty phones on one access point: say we are working
+  await CL.load();
   this.style.transition = "opacity .8s"; this.style.opacity = 0;
   setTimeout(() => this.remove(), 800);
-  await CL.load();
   await creator();
+  CL.join();  // the presenter's map counts this player as soon as they start
   // the hand-built 3 AM alert is scene 1.3 of the writers' room script
   CL.directorOverrides = { "1.3": () => EP1.slice(1, -1) };
-  const EPISODES = [[1, "Night Shift"], [2, "Tier Two"], [3, "The Middle Rungs"], [4, "The Breach"], [5, "The Corner Office"]];
+  const EPISODES = [[1, "Night Shift"], [2, "Tier Two"], [3, "The Middle Rungs"], [4, "The Help Desk"], [5, "The Corner Office"]];
   const start = +(new URLSearchParams(location.search).get("ep") || 1);  // ?ep=3 jumps ahead for testing
   for (const [n, title] of EPISODES.filter(e => e[0] >= start)) {
-    const ep = await fetch(`episodes/ep${n}.json`).then(r => r.json());
+    const ep = await fetch(`episodes/ep${n}.json`, { cache: "no-cache" }).then(r => r.json());
     await CL.playEpisode(ep, n, title);
   }
+  CL.flushTally();
   CL.finale();
 };
 </script>

@@ -19,7 +19,7 @@
      ]
     },
     {
-     "caption": "A labor bureau card lists median pay of $129,180."
+     "caption": "A labor bureau card: median pay $129,180 (May 2025), across all experience levels, not starting pay."
     },
     {
      "caption": "It lists 21 percent growth, from 2025 to 2035."
@@ -33,7 +33,7 @@
     },
     {
      "choice": {
-      "timed": 8,
+      "timed": null,
       "options": [
        {
         "t": "I want to get good.",
@@ -100,7 +100,8 @@
          }
         ],
         "fx": {
-         "trust": 1
+         "trust": 1,
+         "pt_up": 1
         },
         "rem": "Marcus will remember you were honest about the money."
        },
@@ -162,7 +163,9 @@
         ],
         "fx": {
          "skill": 1,
-         "rep": 1
+         "rep": 1,
+         "burn": 1,
+         "pt_soc": 1.5
         },
         "rem": "Marcus will remember you asked for nights."
        },
@@ -185,7 +188,8 @@
          }
         ],
         "fx": {
-         "rep": 1
+         "rep": 1,
+         "pt_grc": 1.5
         },
         "rem": "Marcus will remember you asked for policy."
        },
@@ -207,11 +211,12 @@
           ]
          },
          {
-          "caption": "The startup pitch is noise. You walk back."
+          "caption": "You pocket the startup's card. Then you walk back."
          }
         ],
         "fx": {
-         "rep": -1
+         "rep": -1,
+         "pt_up": 1.5
         },
         "rem": "Jordan will remember you almost walked."
        },
@@ -305,7 +310,8 @@
         ],
         "fx": {
          "skill": 2,
-         "burn": 1
+         "burn": 1,
+         "pt_soc": 1
         },
         "flag": "secplus",
         "rem": "Jordan will remember you crammed Security+."
@@ -330,7 +336,8 @@
         ],
         "fx": {
          "skill": 1,
-         "burn": 1
+         "burn": 1,
+         "pt_grc": 1
         },
         "rem": "Jordan will remember you started with ISC2 CC."
        },
@@ -353,7 +360,8 @@
          }
         ],
         "fx": {
-         "burn": -1
+         "burn": -1,
+         "pt_up": 1
         },
         "rem": "Jordan will remember you closed the laptop."
        },
@@ -407,7 +415,8 @@
          }
         ],
         "fx": {
-         "skill": 1
+         "skill": 2,
+         "burn": 1
         },
         "rem": "Jordan will remember you said to cut it off."
        },
@@ -583,7 +592,8 @@
          }
         ],
         "fx": {
-         "rep": 1
+         "rep": 1,
+         "pt_soc": 1
         },
         "rem": "Marcus will remember you owned the call."
        },
@@ -606,7 +616,8 @@
          }
         ],
         "fx": {
-         "trust": 1
+         "trust": 1,
+         "pt_grc": 1
         },
         "rem": "Marcus will remember you asked to be corrected."
        },
@@ -630,7 +641,8 @@
         ],
         "fx": {
          "rep": -1,
-         "trust": -1
+         "trust": -1,
+         "pt_up": 1
         },
         "rem": "Marcus will remember you blamed the tools."
        },
@@ -678,6 +690,20 @@
    ],
    "location": "Harborline SOC, Monday morning",
    "shot_notes": "Marcus sets a paper cup down and stays standing. The night ticket glows on your monitor."
+  },
+  {
+   "id": "1.route",
+   "name": "First job",
+   "routes": [
+    {
+     "flag": "r_up",
+     "when": "pt_up > pt_soc && pt_up > pt_grc"
+    },
+    {
+     "flag": "r_grc",
+     "when": "pt_grc > pt_soc && pt_grc >= pt_up"
+    }
+   ]
   },
   {
    "id": "1.5",
@@ -809,9 +835,355 @@
     }
    ],
    "location": "Your apartment, Monday evening",
-   "shot_notes": "You drop the badge in a bowl by the door. Jordan looks up from the couch, already grinning."
+   "shot_notes": "You drop the badge in a bowl by the door. Jordan looks up from the couch, already grinning.",
+   "when0": null,
+   "when": "(!(r_grc)) && (!(r_up))"
+  },
+  {
+   "id": "1.5g",
+   "name": "On Loan",
+   "beats": [
+    {
+     "say": [
+      "Jordan",
+      "g1_s5_jordan_01",
+      "You survived Monday. Did Marcus yell?"
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "g1_s5_jordan_02",
+      "You've got ticket face. It's a whole look."
+     ]
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "It went fine",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g1_s5_player_01",
+           "It went fine. That's all I can say."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "g1_s5_jordan_03",
+           "Mysterious. Very bank of you."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1
+        },
+        "rem": "Jordan will remember you kept work at work."
+       },
+       {
+        "t": "I asked for help",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g1_s5_player_02",
+           "I didn't know the rule, so I asked."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "g1_s5_jordan_04",
+           "Asking is underrated. Says me, who never asks."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1
+        },
+        "rem": "Jordan will remember you admitted asking."
+       },
+       {
+        "t": "I need the rulebook",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "g1_s5_player_03",
+           "I want to read the actual policy. All of it."
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "g1_s5_jordan_05",
+           "On purpose? For fun? Okay, nerd."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "burn": 1
+        },
+        "rem": "Jordan will remember you wanted the policy."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Jordan",
+           "g1_s5_jordan_06",
+           "Cool. Talk to the bowl. It's a great listener."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Jordan will remember you stared at the bowl."
+       }
+      ]
+     }
+    },
+    {
+     "caption": "Your phone buzzes. A message from Dana Whitfield, Security Director."
+    },
+    {
+     "caption": "\"Marcus showed me your ticket. You wrote down why, not just what.\""
+    },
+    {
+     "caption": "\"That's judgment about process. Risk and compliance needs it. You're on loan to them next week.\""
+    },
+    {
+     "say": [
+      "Jordan",
+      "g1_s5_jordan_07",
+      "Loaned out? Like a library book?"
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "g1_s5_jordan_08",
+      "Day shift, though. I get my roommate back."
+     ]
+    },
+    {
+     "caption": "The badge stays by the door. Next week it opens a different room."
+    }
+   ],
+   "location": "Your apartment, Monday evening",
+   "shot_notes": "You drop the badge in the bowl by the door. Jordan looks up from the couch, fork stuck in a takeout box.",
+   "route": "grc",
+   "when": "r_grc"
+  },
+  {
+   "id": "1.5x",
+   "name": "Pizza Pitch",
+   "beats": [
+    {
+     "say": [
+      "Jordan",
+      "x1_s5_jordan_01",
+      "Don't be mad. I brought pizza and my boss."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "x1_s5_theo_01",
+      "Theo Grant. Kestrel Pay. I've heard a lot."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "x1_s5_theo_02",
+      "We do payments for the small shops big banks ignore."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "x1_s5_theo_03",
+      "We move real money. Right now nobody guards the door."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "x1_s5_jordan_02",
+      "That's where you come in. Act surprised."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "x1_s5_theo_04",
+      "First security hire. The whole program, built your way."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "x1_s5_theo_05",
+      "The bank has a ladder. I have an elevator."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "x1_s5_theo_06",
+      "Jordan says you're certified. Customers love a certificate."
+     ],
+     "when": "secplus"
+    },
+    {
+     "choice": {
+      "timed": null,
+      "options": [
+       {
+        "t": "Ask what's broken",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x1_s5_player_01",
+           "What's broken right now? Be honest."
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x1_s5_theo_07",
+           "Everything, a little. That's the fun part."
+          ]
+         }
+        ],
+        "fx": {
+         "skill": 1,
+         "trust": 1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Ask who can overrule me",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x1_s5_player_02",
+           "Who do I report to, and who can overrule me?"
+          ]
+         },
+         {
+          "say": [
+           "Theo",
+           "x1_s5_theo_08",
+           "Me. And nobody, mostly. We'll figure it out."
+          ]
+         }
+        ],
+        "fx": {
+         "trust": 1
+        },
+        "rem": "Theo will remember that."
+       },
+       {
+        "t": "Jump at it",
+        "then": [
+         {
+          "say": [
+           "PLAYER",
+           "x1_s5_player_03",
+           "An elevator sounds great. When do I start?"
+          ]
+         },
+         {
+          "say": [
+           "Jordan",
+           "x1_s5_jordan_03",
+           "Told you. Pizza closes deals."
+          ]
+         }
+        ],
+        "fx": {
+         "rep": 1,
+         "burn": 1
+        },
+        "rem": "Jordan will remember that."
+       },
+       {
+        "t": "[Say nothing]",
+        "silent": true,
+        "then": [
+         {
+          "say": [
+           "Theo",
+           "x1_s5_theo_09",
+           "The quiet ones always say yes. Take a slice."
+          ]
+         }
+        ],
+        "fx": {
+         "burn": 1
+        },
+        "rem": "Theo will remember that."
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "PLAYER",
+      "x1_s5_player_04",
+      "Okay. I'm in."
+     ]
+    },
+    {
+     "say": [
+      "Theo",
+      "x1_s5_theo_10",
+      "Monday. Bring a laptop. Ours are mostly stickers."
+     ]
+    },
+    {
+     "say": [
+      "Jordan",
+      "x1_s5_jordan_04",
+      "Roommates and coworkers. What could go wrong?"
+     ]
+    },
+    {
+     "caption": "Two weeks later, the bank badge goes back in an envelope."
+    }
+   ],
+   "location": "Your apartment, Monday evening",
+   "shot_notes": "Jordan shoulders the door open with two pizza boxes. Theo Grant follows in a sharp jacket, looking around like he might buy the place.",
+   "route": "startup",
+   "when": "r_up"
   }
  ],
  "end": "The first night is logged. The queue will still be there tomorrow.",
- "unparsed": []
+ "unparsed": [],
+ "ends0": null,
+ "ends": [
+  {
+   "text": "You traded a ladder for an elevator. Nobody mentioned who maintains it.",
+   "when": "r_up"
+  },
+  {
+   "text": "One night on the floor. Next stop, the room that writes the rules.",
+   "when": "r_grc"
+  },
+  {
+   "text": "The first night is logged. The queue will still be there tomorrow."
+  }
+ ]
 }
