@@ -93,21 +93,20 @@
     out.push({ shot: establish(bg), wait: CL.classMode ? 500 : 900 });
     if (scene.location) out.push({ caption: scene.location.replace(/^Harborline Financial,?\s*/i, "Harborline "), aside: true });
     let k = 0;  // choice ids "<scene>#<k>" match tools/tree.py and the presentation's tallies
+    // Every line gets a close-up of its speaker, marked unlessOn: the runner skips it when that person is
+    // already on screen. Deciding at play time keeps the right face up when a conditional line is skipped
+    // (Codex review: the old build-time "last speaker" could leave the wrong person talking).
     const walk = list => list.map(b => {
       if (b.say) {
         const [who, id, text] = b.say;
-        const r = [];
-        if (ctx.last !== who) { r.push({ shot: Object.assign(closeUp(who, bg, remote[who]), { cut: "hard" }), when: b.when }); if (!b.when) ctx.last = who; }
-        r.push({ say: [who, id, text, CL.speakerColor(who)], when: b.when });
-        return r;
+        return [{ shot: Object.assign(closeUp(who, bg, remote[who]), { cut: "hard", unlessOn: who }), when: b.when },
+                { say: [who, id, text, CL.speakerColor(who)], when: b.when }];
       }
       if (b.caption) return [{ caption: b.caption, when: b.when }];  // conditional captions (ending callbacks, montage) keep their rule
       if (b.choice) {
         // the choice plays on the player's face; each option's reply cuts as needed
-        const lead = ctx.last === "PLAYER" ? [] : [{ shot: Object.assign(closeUp("PLAYER", bg), { cut: "hard" }) }];
-        ctx.last = "PLAYER";
-        const opts = b.choice.options.map(o => { ctx.last = "PLAYER"; return Object.assign({}, o, { then: walk(o.then).flat() }); });
-        ctx.last = null;  // branches end on different speakers, so always cut after a choice
+        const lead = [{ shot: Object.assign(closeUp("PLAYER", bg), { cut: "hard", unlessOn: "PLAYER" }) }];
+        const opts = b.choice.options.map(o => Object.assign({}, o, { then: walk(o.then).flat() }));
         return lead.concat([{ timed: b.choice.timed, choice: opts, when: b.when, cid: `${scene.id}#${++k}` }]);
       }
       return [];
@@ -171,6 +170,7 @@
       if (sc.id === "5.9") {
         CL.state.ending = sc.name.replace(/^[a-g]\s+/, "");
         CL.state.flags["end_" + sc.name[0]] = true;  // the closing narration calls back to the ending
+        CL.reportEnding(CL.state.ending);  // rides with the Episode 5 batch instead of costing its own message
       }
       await CL.run(beatsFor(sc, { last: null }));
     }

@@ -1,0 +1,174 @@
+{
+ "_note": "Measured by audio-src/tools/build_sfx.py on 2026-11-01. Loops: play with AudioBufferSourceNode.loop=true, loopStart/loopEnd as given, start(0, loopStart). Levels are integrated LUFS of the loop region at gain 1.0; SFX levels are max momentary (400 ms) LUFS. All files: Ogg Opus, mono, 48 kHz.",
+ "files": {
+  "amb_rain_window.ogg": {
+   "kind": "loop",
+   "purpose": "night rain on a window (soc_night, marcus_bedroom, dana_office, kf_marcus_*)",
+   "license": [
+    "PD"
+   ],
+   "size_bytes": 278824,
+   "loop_start_s": 0.25,
+   "loop_end_s": 34.25,
+   "loop_duration_s": 34.0,
+   "file_duration_s": 34.5,
+   "integrated_lufs": -30.0,
+   "true_peak_dbtp": -6.0,
+   "suggested_rooms": [
+    "soc_night",
+    "marcus_bedroom",
+    "dana_office",
+    "kf_marcus_sleep",
+    "kf_marcus_sit",
+    "kf_marcus_window"
+   ]
+  },
+  "amb_room_hvac.ogg": {
+   "kind": "loop",
+   "purpose": "office / SOC / war room HVAC hum (replaces the 55/110/165 Hz oscillator hum)",
+   "license": [
+    "CC BY 4.0"
+   ],
+   "size_bytes": 163009,
+   "loop_start_s": 0.25,
+   "loop_end_s": 28.25,
+   "loop_duration_s": 28.0,
+   "file_duration_s": 28.5,
+   "integrated_lufs": -33.0,
+   "true_peak_dbtp": -16.8,
+   "suggested_rooms": [
+    "soc_night",
+    "soc_day",
+    "war_room",
+    "kf_player_walk",
+    "kf_player_sit",
+    "kf_player_laptop"
+   ]
+  },
+  "amb_crowd_murmur.ogg": {
+   "kind": "loop",
+   "purpose": "career fair / lobby / airport crowd murmur",
+   "license": [
+    "PD"
+   ],
+   "size_bytes": 216838,
+   "loop_start_s": 0.25,
+   "loop_end_s": 30.25,
+   "loop_duration_s": 30.0,
+   "file_duration_s": 30.5,
+   "integrated_lufs": -30.0,
+   "true_peak_dbtp": -10.0,
+   "suggested_rooms": [
+    "career_fair",
+    "lobby",
+    "airport_curb"
+   ]
+  },
+  "amb_city_night.ogg": {
+   "kind": "loop",
+   "purpose": "distant city through glass (airport_curb under the murmur, or night windows)",
+   "license": [
+    "CC0"
+   ],
+   "size_bytes": 208901,
+   "loop_start_s": 0.25,
+   "loop_end_s": 40.25,
+   "loop_duration_s": 40.0,
+   "file_duration_s": 40.5,
+   "integrated_lufs": -32.0,
+   "true_peak_dbtp": -15.1,
+   "suggested_rooms": [
+    "airport_curb"
+   ]
+  },
+  "amb_garage.ogg": {
+   "kind": "loop",
+   "purpose": "muffled parking garage / stairwell",
+   "license": [
+    "CC0"
+   ],
+   "size_bytes": 119337,
+   "loop_start_s": 0.25,
+   "loop_end_s": 22.23,
+   "loop_duration_s": 21.98,
+   "file_duration_s": 22.48,
+   "integrated_lufs": -32.0,
+   "true_peak_dbtp": -18.2,
+   "suggested_rooms": [
+    "garage"
+   ]
+  },
+  "amb_office_bustle.ogg": {
+   "kind": "loop",
+   "purpose": "optional daytime layer: keyboards and a quiet room (soc_day, war_room, hallway)",
+   "license": [
+    "PD"
+   ],
+   "size_bytes": 216850,
+   "loop_start_s": 0.25,
+   "loop_end_s": 30.25,
+   "loop_duration_s": 30.0,
+   "file_duration_s": 30.5,
+   "integrated_lufs": -31.0,
+   "true_peak_dbtp": -10.3,
+   "suggested_rooms": [
+    "soc_day (optional)"
+   ]
+  },
+  "sfx_choice_confirm.ogg": {
+   "kind": "sfx",
+   "purpose": "soft confirm when a choice is picked",
+   "license": [
+    "CC0"
+   ],
+   "size_bytes": 3874,
+   "duration_s": 0.161,
+   "momentary_max_lufs": -27.0,
+   "true_peak_dbtp": -6.8
+  },
+  "sfx_timer_tick.ogg": {
+   "kind": "sfx",
+   "purpose": "subtle tick while a timed choice drains (once per second)",
+   "license": [
+    "CC0"
+   ],
+   "size_bytes": 1891,
+   "duration_s": 0.035,
+   "momentary_max_lufs": -31.0,
+   "true_peak_dbtp": -6.1
+  },
+  "sfx_timeout_sting.ogg": {
+   "kind": "sfx",
+   "purpose": "sting when the timer runs out (silence chosen)",
+   "license": [
+    "CC0"
+   ],
+   "size_bytes": 22704,
+   "duration_s": 1.3,
+   "momentary_max_lufs": -22.0,
+   "true_peak_dbtp": -3.9
+  },
+  "sfx_card_transition.ogg": {
+   "kind": "sfx",
+   "purpose": "gentle card slide for episode / chapter card transitions",
+   "license": [
+    "CC0"
+   ],
+   "size_bytes": 11518,
+   "duration_s": 0.61,
+   "momentary_max_lufs": -27.0,
+   "true_peak_dbtp": -3.3
+  },
+  "sfx_phone_buzz.ogg": {
+   "kind": "sfx",
+   "purpose": "phone vibrating on a desk (texts / calls)",
+   "license": [
+    "original (made for this project)"
+   ],
+   "size_bytes": 20552,
+   "duration_s": 1.17,
+   "momentary_max_lufs": -24.0,
+   "true_peak_dbtp": -18.3
+  }
+ }
+}

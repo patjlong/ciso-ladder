@@ -47,7 +47,7 @@
       const pct = total ? Math.round(100 * same / total) : null;
       return `<div class="srow"><div class="stxt">${esc(l.silent ? "You froze." : l.t)}</div>
         <div class="sbar"><i style="width:${pct ?? 0}%"></i></div>
-        <div class="spct">${pct == null ? "first to play" : `${pct}% of your class`}</div></div>`;
+        <div class="spct">${!tally ? "class results unavailable" : pct == null ? "first to play" : `${pct}% of your class`}</div></div>`;
     }).join("");
     el.innerHTML = `<div class="sbox"><div class="k">End of Episode ${n}</div><h2>Your choices</h2>${rows}
       <button id="scont">CONTINUE</button></div>`;

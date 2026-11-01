@@ -179,13 +179,13 @@ html,body{height:100dvh;overscroll-behavior:none;touch-action:manipulation}
 <div id="title"><h1>THE <span>CISO</span> LADDER</h1><p>TAP TO BEGIN</p></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="puppet.js?v=10202118"></script>
-<script src="cl.js?v=10202118"></script>
-<script src="ambience.js?v=10202118"></script>
-<script src="ep1.js?v=10202118"></script>
-<script src="finale.js?v=10202118"></script>
-<script src="recap.js?v=10202118"></script>
-<script src="director.js?v=10202118"></script>
+<script src="puppet.js?v=11011702"></script>
+<script src="cl.js?v=11011702"></script>
+<script src="ambience.js?v=11011702"></script>
+<script src="ep1.js?v=11011702"></script>
+<script src="finale.js?v=11011702"></script>
+<script src="recap.js?v=11011702"></script>
+<script src="director.js?v=11011702"></script>
 <script>
 // while the title shows, fetch the default look so the creator never opens on an empty room
 new Image().src = "assets/rigs/p1_desk.webp";
@@ -218,12 +218,19 @@ async function creator() {
   };
   document.getElementById("pron").onclick = e => { const b = e.target.closest("button"); if (!b) return;
     [...e.currentTarget.children].forEach(x => x.classList.toggle("on", x === b)); CL.state.pron = b.dataset.p.split(","); };
+  // one preview at a time: a second tap cuts the first off instead of talking over it
+  let previewing = null;
+  const soundWas = CL.sound;
   document.getElementById("voice").onclick = async e => { const b = e.target.closest("button"); if (!b) return;
     [...e.currentTarget.children].forEach(x => x.classList.toggle("on", x === b)); CL.state.voice = b.dataset.v;
-    const was = CL.sound; CL.sound = true; await CL.say("PLAYER", "e1_p_who", "Okay. Okay. Who do you call at three in the morning?", "#7fd1c7"); CL.sound = was; };
+    if (previewing) { CL.skipLine(); await previewing; }
+    CL.sound = true;
+    previewing = CL.say("PLAYER", "e1_p_who", "Okay. Okay. Who do you call at three in the morning?", "#7fd1c7");
+    await previewing; previewing = null; CL.sound = soundWas; };
   await CL.shot(creatorShot());
   box.classList.add("on");
   await new Promise(r => document.getElementById("begin").onclick = r);
+  if (previewing) { CL.skipLine(); await previewing; CL.sound = soundWas; }  // Start ends any preview
   CL.state.name = CL.cleanName(document.getElementById("name").value);
   box.classList.remove("on");
 }
@@ -243,12 +250,26 @@ document.getElementById("title").onclick = async function () {
   const EPISODES = [[1, "Night Shift"], [2, "Tier Two"], [3, "The Middle Rungs"], [4, "The Help Desk"], [5, "The Corner Office"]];
   const start = +(new URLSearchParams(location.search).get("ep") || 1);  // ?ep=3 jumps ahead for testing
   for (const [n, title] of EPISODES.filter(e => e[0] >= start)) {
-    const ep = await fetch(`episodes/ep${n}.json`, { cache: "no-cache" }).then(r => r.json());
+    const ep = await loadEpisode(n);
     await CL.playEpisode(ep, n, title);
   }
+  CL.reportEnding(CL.state.ending);  // the map counts the ending this player actually reached
   CL.flushTally();
   CL.finale();
 };
+// an episode that will not download (a dropped connection on shared Wi-Fi) offers a retry, never a frozen screen
+async function loadEpisode(n) {
+  for (;;) {
+    try { return await CL.getJSON(`episodes/ep${n}.json`, 3, { cache: "no-cache" }); }
+    catch (e) {
+      const c = document.getElementById("card");
+      c.innerHTML = `<div class="k">Connection</div><h1>Can't load Episode ${n}</h1><p>Check the Wi-Fi, then tap to try again.</p>`;
+      c.classList.add("on");
+      await new Promise(r => c.addEventListener("click", r, { once: true }));
+      c.classList.remove("on");
+    }
+  }
+}
 </script>
 </body>
 </html>

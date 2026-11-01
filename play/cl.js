@@ -30,10 +30,13 @@
   // dissolves copy the frame by drawing it synchronously in snapshot(), so the buffer need not be preserved
   // (preserveDrawingBuffer costs a full-screen copy every frame on phones)
   const gl = canvas.getContext("webgl", { premultipliedAlpha: false, antialias: false, preserveDrawingBuffer: false });
+  // Phones pay for every pixel: they render at device pixel ratio 1 with 3 parallax steps (the camera
+  // moves slowly, so 3 steps converge visibly the same); laptops keep 1.5x and 5 steps (Codex perf review)
+  const PHONE = Math.min(screen.width, screen.height) < 600 || /Android|iPhone|iPad/i.test(navigator.userAgent);
   const VS = "attribute vec2 p;varying vec2 v;void main(){v=vec2(p.x*.5+.5,.5-p.y*.5);gl_Position=vec4(p,0,1);}";
   const FS = `precision mediump float;varying vec2 v;uniform sampler2D img,dep;uniform vec2 off,ctr,scl;uniform float zm,dim;
   void main(){vec2 uv=(v-.5)*scl/zm+.5+ctr;vec2 o=uv;
-  for(int i=0;i<5;i++){float d=texture2D(dep,o).r;o=uv-off*(d-.45);}
+  for(int i=0;i<${PHONE ? 3 : 5};i++){float d=texture2D(dep,o).r;o=uv-off*(d-.45);}
   vec3 c=texture2D(img,clamp(o,.001,.999)).rgb;gl_FragColor=vec4(c*dim,1.);}`;
   function sh(t, s) { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(o)); return o; }
   const prog = gl.createProgram();
@@ -84,17 +87,19 @@
   }
   let curBg = null, dim = 1;
   CL.setDim = v => { dim = v; };
-  async function setBg(name) {
-    if (!name) { curBg = null; return; }
+  // seq: the shot asking for this room; a slow load that finishes after a newer cut must not swap the room
+  async function setBg(name, seq) {
+    if (!name) { if (seq == null || seq === shotSeq) curBg = null; return; }
     try {
       const [img, dep] = await Promise.all([tex(`${A}bg/${name}.webp`), tex(`${A}bg/${name}_depth.webp`)]);
+      if (seq != null && seq !== shotSeq) return;
       curBg = { img, dep }; holdRoom(name);
     } catch (e) { console.warn("room kept, could not load", name); }
   }
   // warm the cache for rooms a scene is about to need (the director calls this a scene ahead)
   CL.prefetchRoom = name => { if (name && CL.hasBg(name)) { tex(`${A}bg/${name}.webp`).catch(() => {}); tex(`${A}bg/${name}_depth.webp`).catch(() => {}); } };
   function resize() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const dpr = PHONE ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
     canvas.width = Math.round(innerWidth * dpr); canvas.height = Math.round(innerHeight * dpr);
     gl.viewport(0, 0, canvas.width, canvas.height);
   }
@@ -266,6 +271,10 @@
     c2.getContext("2d").drawImage(canvas, 0, 0);
     ov.appendChild(c2);
     const ac = stageEl.cloneNode(true); ac.removeAttribute("id"); ac.className = "snap-actors"; ov.appendChild(ac);
+    // cloneNode copies a canvas element but not its pixels: copy each puppet's drawing, or puppets
+    // vanish for the length of the dissolve (Codex review)
+    const from = stageEl.querySelectorAll("canvas"), to = ac.querySelectorAll("canvas");
+    from.forEach((c, i) => { if (to[i]) to[i].getContext("2d").drawImage(c, 0, 0); });
     document.body.insertBefore(ov, $("#fx"));
     return ov;
   }
@@ -282,13 +291,15 @@
     const useBg = bgName && CL.hasBg(bgName) ? bgName : (s.bg ? (s.fallback ?? null) : null);
     const seq = ++shotSeq;
     if (CL.ambience) CL.ambience(useBg);
-    await setBg(useBg);
+    await setBg(useBg, seq);
     if (walkTl) { walkTl.kill(); walkTl = null; }
     if (s.walk) // footsteps: a soft vertical bob riding under the camera move
       walkTl = gsap.to(cam, { y: `+=${s.walk}`, duration: .29, yoyo: true, repeat: -1, ease: "sine.inOut" });
     clearActors();
     await Promise.all((s.actors || []).map(a => addActor(a, seq)));
     if (seq !== shotSeq) return;  // a newer cut already started
+    // who this shot is on (a single-person close-up), so the runner can skip a cut to someone already on screen
+    CL.onScreen = (s.actors || []).length === 1 ? s.actors[0].who : null;
     const c = s.cam || {};
     const from = Object.assign({ x: 0, y: 0, zoom: 1, px: 0, py: 0 }, c.from), to = Object.assign({}, c.to);
     // Phones see only a narrow slice of a wide painting. `subject` is where the person
@@ -306,7 +317,8 @@
     camTl = gsap.to(cam, Object.assign({ duration: c.dur || 10, ease: "sine.inOut" }, to));
     $("#fx").className = s.fx || "";
     // rack focus: background softens so the eye lands on the speaker
-    gsap.to(canvas, { filter: `blur(${s.focus === "near" ? 3 : 0}px)`, duration: 1.1, ease: "power2.inOut" });
+    // (phones skip it: a CSS blur on a full-screen WebGL canvas is recomputed every frame)
+    if (!PHONE) gsap.to(canvas, { filter: `blur(${s.focus === "near" ? 3 : 0}px)`, duration: 1.1, ease: "power2.inOut" });
     if (cut === "dissolve") gsap.to(ov, { opacity: 0, duration: s.xdur || 1.1, ease: "sine.inOut", onComplete: () => ov.remove() });
     if (cut === "whip") {
       const dir = s.dir || 1;
@@ -339,10 +351,12 @@
     vo.src = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
     vo.play().catch(() => {});
   };
+  // Sound off stops the line now (the line itself carries on as a subtitle) and every sound in ambience.js
+  CL.stopVoice = () => { try { vo.pause(); } catch (e) {} if (CL.duck) CL.duck(false); };
   // warm the HTTP cache for a scene's voice lines so each line starts without buffering dead air
   CL.prefetchVoice = lines => {
     if (!CL.sound || !canVoice) return;
-    for (const [who, id] of lines) {
+    for (const [who, id] of lines.slice(0, 12)) {  // a scene's opening lines; the rest load as they come
       const lid = who === "PLAYER" ? `${id}__${CL.state.voice}` : id;
       if (CL.lipsync[lid]) fetch(`${A}vo/${lid}.ogg`, { priority: "low" }).catch(() => {});
     }
@@ -350,6 +364,7 @@
   CL.hasBg = name => (CL.manifest.bgs || []).includes(name);
   CL.manifest = {};
   let skip = false;
+  CL.skipLine = () => { skip = true; };  // end the line now (used by the creator's voice previews)
   addEventListener("pointerdown", e => { if (!e.target.closest("button,input,select")) skip = true; });
   addEventListener("keydown", e => { if (e.key === " " || e.key === "Enter") skip = true; });
   CL.say = async function (who, id, text, color) {
@@ -376,13 +391,18 @@
     const t0 = performance.now();
     skip = false;
     speaking(a, true);
+    if (audio && CL.duck) CL.duck(true);
+    // A voice file can stall on a busy network, before it starts or halfway through. If the audio clock
+    // has not moved for 1.2 s, the line carries on by the wall clock from where the audio stopped.
+    let lastT = -1, movedAt = t0, base = 0, baseAt = t0;
     await new Promise(res => {
       (function tick() {
-        const wall = (performance.now() - t0) / 1000;
-        // a voice file that stalls on a busy network must not freeze the line: after 1.2 s without
-        // progress, the mouth and the line follow the clock
-        if (audio && !clock && audio.currentTime === 0 && wall > 1.2) clock = true;
-        const t = audio && !clock && !audio.paused ? audio.currentTime : wall;
+        const now = performance.now(), wall = (now - t0) / 1000;
+        if (audio && !clock) {
+          if (audio.currentTime !== lastT) { lastT = audio.currentTime; movedAt = now; }
+          else if (now - movedAt > 1200 || (audio.paused && !CL.sound)) { clock = true; base = audio.currentTime; baseAt = now; }
+        }
+        const t = audio && !clock ? audio.currentTime : (audio ? base + (now - baseAt) / 1000 : wall);
         if (a && ls) {
           let shape = "X";
           for (const [ct, sh] of ls.cues) { if (ct <= t * cueScale) shape = sh; else break; }
@@ -392,6 +412,7 @@
         requestAnimationFrame(tick);
       })();
     });
+    if (audio && CL.duck) CL.duck(false);
     // a beat after the line so the reader can finish (but voiced lines barely need it)
     skip = false;
     const hold = audio ? 350 : 300;  // the reading pace above already includes reading time
@@ -440,6 +461,7 @@
         const silentAt = i < 0 ? opts.findIndex(x => x.silent) : -1;
         [...row.children].forEach((b, j) => b.classList.add(j === i ? "picked" : j === silentAt ? "timeout" : "gone"));
         if (i < 0) gsap.fromTo("#timesup", { opacity: 0, scale: .8 }, { opacity: 1, scale: 1, duration: .25, yoyo: true, repeat: 1, repeatDelay: .7 });
+        if (CL.sfx) CL.sfx(i < 0 ? "timeout" : "confirm", i < 0 ? 0.7 : 1);
         if (q) q.classList.remove("on");
         document.body.classList.remove("deciding");
         gsap.to({ v: dim }, { v: 1, duration: .5, onUpdate() { dim = this.targets()[0].v; } });
@@ -474,6 +496,7 @@
     const c = $("#card");
     c.innerHTML = `<div class="k">${kicker}</div><h1>${title}</h1>${subtitle ? `<p>${CL.fmt(subtitle)}</p>` : ""}`;
     c.classList.add("on");
+    if (CL.sfx) CL.sfx("card", 0.8);
     gsap.fromTo(c.querySelector("h1"), { letterSpacing: "0.5em", opacity: 0 }, { letterSpacing: "0.06em", opacity: 1, duration: 1.6, ease: "power3.out" });
     skip = false; for (let t = 0; t < hold && !skip; t += 50) await wait(50);
     c.classList.remove("on"); await wait(700);
@@ -499,13 +522,21 @@
     queue.push([cid, idx, Math.round(ms || 0)]);
   };
   CL.join = function () { if (!tallyOff) post({ s: session, n: who(), j: 1 }).catch(() => {}); };
+  // the ending a player actually reached rides with the last batch ({..., e: "Fortune 500"}), so the map
+  // counts real endings; the last choice alone no longer decides one (trust and integrity gates)
+  let endingToSend = null, endingSent = null;
+  CL.reportEnding = name => { if (!tallyOff && name && name !== endingSent) endingToSend = name; };
   CL.flushTally = function () {
-    if (tallyOff || !queue.length) return Promise.resolve();
+    if (tallyOff || (!queue.length && !endingToSend)) return Promise.resolve();
     if (sending) return sending;
     const batch = queue.splice(0, 20);  // ~600 bytes, well under ntfy's 4 KB message size
-    sending = post({ s: session, n: who(), v: batch })
-      .then(() => { retryIn = 15000; })
+    const body = { s: session, n: who(), v: batch };
+    if (endingToSend) body.e = endingToSend;
+    const sentEnding = endingToSend; endingToSend = null;
+    sending = post(body)
+      .then(() => { retryIn = 15000; if (sentEnding) endingSent = sentEnding; })
       .catch(() => {
+        if (sentEnding) endingToSend = sentEnding;
         queue = batch.concat(queue);  // keep the votes; try again later, slower each time
         clearTimeout(retryTimer);
         retryTimer = setTimeout(CL.flushTally, retryIn + Math.random() * 5000);
@@ -539,7 +570,11 @@
       if (b.when && !CL.when(b.when)) continue;
       if (b.card) await CL.card(...b.card);
       // a shot that fails (art missing, network gone) keeps the last frame; the story goes on
-      if (b.shot) { try { await CL.shot(b.shot); } catch (e) { console.warn("shot failed", e); } }
+      // a close-up of someone already on screen is skipped: the director emits one before every line, and
+      // deciding here (not when the beats are built) stays right when a conditional line was skipped
+      if (b.shot && !(b.shot.unlessOn && CL.onScreen === b.shot.unlessOn)) {
+        try { await CL.shot(b.shot); } catch (e) { console.warn("shot failed", e); }
+      }
       if (b.caption) { if (b.aside) CL.captionAside(b.caption); else await CL.caption(b.caption); }
       if (b.wait && !CL.fast) await wait(b.wait);
       if (b.say) await CL.say(b.say[0], b.say[1], b.say[2], b.say[3]);
@@ -580,7 +615,7 @@
   soundBtn.onclick = e => {
     e.stopPropagation(); CL.sound = !CL.sound;
     if (CL.sound) CL.unlockAudio();  // this tap is the gesture iPhones need before any line can play
-    else if (CL.ambienceOff) CL.ambienceOff();
+    else { CL.stopVoice(); if (CL.ambienceOff) CL.ambienceOff(); }  // off means off: voice, drone and room tone
     soundLabel();
   };
 

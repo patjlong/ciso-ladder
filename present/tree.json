@@ -1068,7 +1068,7 @@
    ],
    "rung": "Entry",
    "role": "Tier 1 SOC Analyst",
-   "years": "Typically years 0 to 4"
+   "years": "Game timeline: year 1"
   },
   {
    "n": 2,
@@ -3268,7 +3268,7 @@
        "when": null,
        "prompt": [
         "Marcus",
-        "CISSP needs five years paid before you can hold it."
+        "CISSP needs five years of full-time work before you can hold it."
        ],
        "options": [
         {
@@ -3349,7 +3349,7 @@
       ],
       [
        "Marcus",
-       "CISSP needs five years paid before you can hold it."
+       "CISSP needs five years of full-time work before you can hold it."
       ]
      ],
      "variants": [],
@@ -3370,7 +3370,7 @@
        "when": null,
        "prompt": [
         "Marcus",
-        "CISSP needs five years paid. You can start the reading now."
+        "CISSP needs five years full-time. You can start the reading now."
        ],
        "options": [
         {
@@ -3464,7 +3464,7 @@
       ],
       [
        "Marcus",
-       "CISSP needs five years paid. You can start the reading now."
+       "CISSP needs five years full-time. You can start the reading now."
       ],
       [
        "Marcus",
@@ -3647,7 +3647,7 @@
    ],
    "rung": "Entry",
    "role": "Tier 2 Analyst / Junior Engineer",
-   "years": "Typically years 0 to 4"
+   "years": "Game timeline: years 2 to 4"
   },
   {
    "n": 3,
@@ -3970,7 +3970,7 @@
       ],
       [
        "Marcus",
-       "CISSP requires five years of paid work."
+       "CISSP requires five years of full-time work."
       ],
       [
        "Marcus",
@@ -4084,7 +4084,7 @@
       ],
       [
        "Marcus",
-       "CISSP says you know the whole map. It needs five years of paid work."
+       "CISSP says you know the whole map. It needs five years of full-time work."
       ],
       [
        "Marcus",
@@ -4195,7 +4195,7 @@
       ],
       [
        "Sam",
-       "CISSP needs five years of paid work. You've got them."
+       "CISSP needs five years of full-time work. You've got them."
       ],
       [
        "Sam",
@@ -6066,7 +6066,7 @@
    ],
    "rung": "Mid-career",
    "role": "Senior Engineer, Manager or IR Lead",
-   "years": "Typically years 5 to 9"
+   "years": "Game timeline: years 5 to 8"
   },
   {
    "n": 4,
@@ -7168,7 +7168,7 @@
          "silent": false,
          "reply": [
           "Nadia",
-          "Then the record shows we chose silence. I'll note it."
+          "Then the record shows we went it alone. Notice still goes out."
          ],
          "says": [
           "PLAYER",
@@ -7398,7 +7398,7 @@
          "silent": false,
          "reply": [
           "Nadia",
-          "Then I'm writing down that we chose not to tell anyone."
+          "Then I'm writing down that we chose to go it alone. Notice still goes out."
          ],
          "says": [
           "PLAYER",
@@ -8918,9 +8918,9 @@
      "gate": "Cut a corner: waived the vendor, shaded the questionnaire, or shipped the unreviewed release."
     }
    ],
-   "rung": "Mid-career, top rung",
-   "role": "Director of Security, the bridge to executive",
-   "years": "Typically years 5 to 9"
+   "rung": "Executive, first rung",
+   "role": "Director of Security",
+   "years": "Game timeline: year 9"
   },
   {
    "n": 5,
@@ -9905,7 +9905,7 @@
    "lanes": [],
    "rung": "Executive",
    "role": "CISO candidate",
-   "years": "Typically years 10 and up"
+   "years": "Game timeline: year 10 and up"
   }
  ],
  "endings": [

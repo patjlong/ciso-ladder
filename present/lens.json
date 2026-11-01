@@ -314,7 +314,7 @@
  },
  "2.6#1": {
   "skill": "certification timing",
-  "real": "Pick a credential that matches work you can already defend in an interview. An analyst cert fits this stage, and you can hold the broad management cert only after five years paid, so the order matters.",
+  "real": "Pick a credential that matches work you can already defend in an interview. An analyst cert fits this stage, and you can hold the CISSP only after five years of full-time work, so the order matters.",
   "opts": [
    {
     "pro": "Matches analyst work you can prove",
@@ -1198,7 +1198,7 @@
  },
  "2.6g#1": {
   "skill": "choosing an audit credential",
-  "real": "On a governance path, an audit credential shows you can test controls and judge evidence. The broad management cert takes years of paid work before you can hold it, so the order matters as much as the choice.",
+  "real": "On a governance path, an audit credential shows you can test controls and judge evidence. The CISSP takes five years of full-time work before you can hold it, so the order matters as much as the choice.",
   "opts": [
    {
     "pro": "Fits the audit work you do now",

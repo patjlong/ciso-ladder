@@ -26,7 +26,7 @@ svg#links{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
 .opts{padding:6px 10px 12px}
 .opt{padding:7px 8px;border-radius:4px;margin-top:5px;background:#151821;position:relative}
 .opt .t{font-weight:700;font-size:13.5px;display:flex;justify-content:space-between;gap:6px}
-.opt .pc{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.35}.opt .pc b{color:var(--teal);font-weight:500}.opt .pc i{color:#f0a59e;font-style:normal}
+.opt .pc{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.35}.opt .pc b{color:var(--teal);font-weight:500}.opt .pc i{color:#f0a59e;font-style:normal;margin-left:14px}
 .opt .bar{height:4px;background:#22252d;border-radius:2px;margin-top:5px;overflow:hidden}.opt .bar span{display:block;height:100%;width:0;background:var(--gold);transition:width .8s ease}
 .opt .n{color:var(--gold);font-size:12px;font-weight:700}
 .opt .flag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#111;background:var(--teal);padding:1px 5px;border-radius:2px;margin-left:4px}
@@ -68,7 +68,7 @@ svg#links{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
 .ending p{padding:4px 14px 12px;font-size:13px;color:#ddd;line-height:1.45}.ending .n{color:var(--gold);font-weight:700;font-size:13px;padding:0 14px 12px}
 /* fixed overlay panels for tour stops */
 #panel{position:fixed;left:3vw;bottom:5vh;width:min(560px,92vw);background:rgba(8,9,12,.9);border:1px solid var(--line);border-radius:8px;padding:20px 22px;backdrop-filter:blur(6px);transition:opacity .4s;z-index:5}
-#panel.hide{opacity:0;pointer-events:none}
+#panel.hide{opacity:0;pointer-events:none}#panel .ans{opacity:0;transition:opacity .4s}#panel .ans.on{opacity:1}
 #panel .k{color:var(--gold);letter-spacing:.35em;font-size:12px;text-transform:uppercase}
 #panel h2{font-family:"Bebas Neue";font-weight:400;font-size:44px;line-height:1;margin:6px 0 8px}
 #panel p,#panel li{color:#dfe2e8;line-height:1.5;font-size:15px}#panel ul,#panel ol{padding-left:20px}#panel li{margin-top:4px}
@@ -235,7 +235,7 @@ function layout() {
             <div class="opts">${c.options.map((o, i) => {
               const pc = (L.opts || [])[i];
               return `<div class="opt" data-c="${c.id}" data-o="${i}"><div class="t"><span>${esc(o.t)}${o.flag ? `<span class="flag ${BAD.has(o.flag) ? "bad" : ""}">${esc(o.flag.replace(/_/g, " "))}</span>` : ""}</span><span class="n" data-n></span></div>
-                ${pc ? `<div class="pc"><b>+ ${esc(pc.pro)}</b> &middot; <i>- ${esc(pc.con)}</i></div>` : ""}<div class="bar"><span></span></div></div>`;
+                ${pc ? `<div class="pc"><b>+ ${esc(pc.pro)}</b><i>- ${esc(pc.con)}</i></div>` : ""}<div class="bar"><span></span></div></div>`;
             }).join("")}</div>`;
           world.appendChild(el); cards[c.id] = { el, x, y, c, ep, lane: sc.lane };
         });
@@ -400,8 +400,19 @@ const votes = {}, seen = new Set(), sessions = new Set(), endings = {};
 const votesOf = m => !m || !m.s ? [] : Array.isArray(m.v) ? m.v.map(([c, o, ms]) => ({ s: m.s, n: m.n, c, o, ms }))
   : (m.c && typeof m.o === "number" ? [{ s: m.s, n: m.n, c: m.c, o: m.o, ms: m.ms }] : []);
 const dirty = new Set(); let flushT = null;
+// endings per player: the name the game reports (e) wins over a guess from the final choice (5.8#1)
+const ENDING_KEY = { "Shown the Door": "a", "Burned Out": "b", "Fortune 500": "c", "Virtual CISO": "d", "Principal Engineer": "e", "The Chair": "f", "Passed Over": "g" };
+const endingOf = {};
+function recountEndings() {
+  for (const k of Object.keys(endings)) delete endings[k];
+  for (const v of Object.values(endingOf)) endings[v.k] = (endings[v.k] || 0) + 1;
+  // repaint every card, zeros included, so a guess that turns into a different reported ending moves
+  document.querySelectorAll("[data-end]").forEach(e => { const n = endings[e.dataset.end] || 0;
+    e.textContent = n ? `${n} classmate${n === 1 ? "" : "s"} headed here` : ""; });
+}
 function intake(m, fly) {
   if (!m || !m.s) return;
+  if (m.e && ENDING_KEY[m.e]) { endingOf[m.s] = { k: ENDING_KEY[m.e], guess: false }; recountEndings(); }
   if (m.n) (PLAYERS[m.s] ||= { name: "", picks: {} }).name = cleanName(m.n);
   if (m.j) sessions.add(m.s);
   const touched = new Set(), fresh = [];
@@ -411,7 +422,7 @@ function intake(m, fly) {
     const key = v.s + "|" + v.c; if (seen.has(key)) continue; seen.add(key);
     notePlayer(v);
     (votes[v.c] ||= {})[v.o] = (votes[v.c][v.o] || 0) + 1;
-    if (v.c === "5.8#1") { const f = ["c", "f", "d", "e", "g"][v.o]; if (f) endings[f] = (endings[f] || 0) + 1; }
+    if (v.c === "5.8#1" && !endingOf[v.s]) { const f = ["c", "f", "d", "e", "g"][v.o]; if (f) { endingOf[v.s] = { k: f, guess: true }; recountEndings(); } }
     touched.add(v.c); fresh.push(v);
   }
   // repaint touched cards at most four times a second: at the overview every card repaint redraws the map
@@ -427,7 +438,6 @@ function render(cid) {
     el.querySelector(".bar span").style.width = total ? (100 * n / total) + "%" : "0";
     el.querySelector("[data-n]").textContent = total ? `${n} · ${Math.round(100 * n / total)}%` : "";
   });
-  for (const [k, n] of Object.entries(endings)) { const e = document.querySelector(`[data-end="${k}"]`); if (e) e.textContent = `${n} classmate${n === 1 ? "" : "s"} headed here`; }
   paint(cid);
 }
 // branches thicken and turn gold with the share of the class that took them
@@ -464,7 +474,7 @@ const along = (pts, t) => { const f = Math.max(0, Math.min(1, t)) * (pts.length 
 const fx = document.createElement("canvas"); fx.id = "sparkfx"; document.body.appendChild(fx);
 const fxc = fx.getContext("2d"); let fxOn = false;
 const SPARKS = [], RINGS = [], lastHit = {};
-function sizeFx() { const d = devicePixelRatio || 1; fx.width = innerWidth * d; fx.height = innerHeight * d; fxc.setTransform(d, 0, 0, d, 0, 0); }
+function sizeFx() { const d = Math.min(devicePixelRatio || 1, 1.5); fx.width = innerWidth * d; fx.height = innerHeight * d; fxc.setTransform(d, 0, 0, d, 0, 0); }
 sizeFx(); addEventListener("resize", sizeFx);
 const toScreen = (x, y) => [(x - cam.x) * cam.s + innerWidth / 2, (y - cam.y) * cam.s + innerHeight / 2];
 function drawFx(now) {
@@ -651,12 +661,12 @@ function buildTour() {
     { go: () => { $("#hero").classList.add("hide"); $("#miniqr").classList.add("on"); all(); },
       html: `<span class="speaker">${S[0]}</span><div class="k">Backlog item 13</div><h2>The CISO Career Ladder</h2>
       <p>The assignment asks what the path to Fortune 500 CISO looks like at the entry, mid-career and executive levels. We turned that ladder into a game you climb with your own decisions.</p>
-      <ul><li><b>Entry (typically years 0 to 4):</b> SOC and GRC analyst roles, Security+ and ISC2 CC. BLS median pay for information security analysts is $129,180 (May 2025), the median across all experience levels, not starting pay, with 21% projected growth from 2025 to 2035.</li>
-      <li><b>Mid-career (typically years 5 to 9):</b> engineer, IR lead or manager, then Director of Security as the bridge rung. CISSP (5 years of paid experience required).</li>
-      <li><b>Executive (typically years 10 and up):</b> VP, CISO. IANS / Artico 2025: median CISO total compensation of $532,000 at US enterprises over $1B in revenue, the closest public benchmark for a Fortune 500 seat.</li></ul>
-      <div class="src">Sources: BLS Occupational Outlook Handbook; IANS Research and Artico Search 2025; ISC2.</div>` },
+      <ul><li><b>Entry (years 0 to 4 in the game):</b> SOC and GRC analyst roles, Security+ and ISC2 CC. BLS median pay for information security analysts is $129,180 (May 2025), across all experience levels, so it is not starting pay; the lowest 10 percent earned under $75,090. BLS projects 21% growth from 2025 to 2035.</li>
+      <li><b>Mid-career (years 5 to 8 in the game):</b> engineer, IR lead or manager. CISSP needs 5 years of full-time security work in 2 of its 8 domains, and a related degree can count for 1.</li>
+      <li><b>Executive (year 9 and up in the game):</b> Director of Security, then CISO. IANS / Artico (May 2025 report, 2024 survey data): U.S. CISOs at companies over $1B in revenue averaged $700,000 in total compensation; the median was $532,000.</li></ul>
+      <div class="src">Sources: BLS Occupational Outlook Handbook; IANS Research and Artico Search, 2025 Compensation and Budget for CISOs in Large Enterprises; ISC2. Year bands are the game's pacing, not an industry rule.</div>` },
     { go: all, html: `<span class="speaker">${S[1]}</span><div class="k">The map</div><h2>5 episodes, ${Object.keys(cards).length} decisions, 7 endings</h2>
-      <p>Every gold path is one decision. Each fans out into its options and comes back together, because many choices change your stats and relationships rather than the scene.</p>
+      <p>Every card is one decision. Its answers fan out as gray lines that turn gold as votes arrive, then come back together, because many choices change your stats and relationships rather than the scene.</p>
       <p><b style="color:#7fd1c7">Teal lanes</b> are whole different storylines. Three times the story splits on a set of earlier answers, so two people playing side by side can live completely different careers: 19 storylines before the 7 endings.</p>
       <p><b style="color:#b39cff">Violet splits</b> are where the story itself changes: after the 3 AM alert and after the AI rollout, each choice runs to its own version of the next scene before the paths rejoin. <b style="color:#b39cff">Dotted violet</b> callbacks reach across episodes, so a choice in year two changes what someone says to you in year ten.</p>
       <p>The dashed red and teal lines decide endings: hiding a breach, blaming an employee, briefing the board in business terms.</p>` },
@@ -666,7 +676,7 @@ function buildTour() {
     { go: () => ep(2), html: `<span class="speaker">${S[1]}</span><div class="k">Entry level &middot; Years 2 to 4</div><h2>Episode 2: three different jobs</h2><p><b>Tier Two:</b> alert fatigue, a vendor promising magic, a nervous new hire, a 2 AM page. <b>The Auditor:</b> a vendor report with holes, an executive MFA exception, a federal examiner. <b>Move Fast:</b> a leaked cloud key at 1 AM, a security questionnaire, and a founder who wants to ship card data unencrypted.</p>` },
     { go: () => ep(3), html: `<span class="speaker">${S[2]}</span><div class="k">Mid-career &middot; Years 5 to 8 &middot; Split 2</div><h2>Episode 3: pick a lane, live in it</h2><p>Everyone meets Dana for the promotion talk. Then the story splits on the answer. <b>Manager:</b> the CIO who wants AI everywhere by Friday. <b>Engineer:</b> a red team finding and a poisoned open-source library before a release. <b>Incident lead:</b> a fake CEO wire request at 4:55 PM and a ransomware crew's chat.</p>` },
     key("3.4#1", "Decision 3.4", "CIO vs CISO", `<p>The tension from our CrowdStrike and CIO vs CISO class discussion: the business has to function, but someone has to ask what data the AI touches. Watch the map split here: each answer leads to a different version of the next scene, and Priya brings it up again in the final interview.</p>`, 2),
-    { go: () => ep(4), html: `<span class="speaker">${S[2]}</span><div class="k">Mid-career, top rung &middot; Director &middot; Year 9</div><h2>Episode 4: the breach you earned</h2><p>Split 3. The breach depends on the corners you cut. Rubber-stamp the AI rollout and it leaks customer data. Waive the vendor, shade the questionnaire or ship the unreviewed library and attackers walk in through something you trusted. Otherwise it is the help desk phone scam from the Twitter case we studied. Every version ends at the same board table.</p>` },
+    { go: () => ep(4), html: `<span class="speaker">${S[2]}</span><div class="k">Executive, first rung &middot; Director &middot; Year 9</div><h2>Episode 4: the breach you earned</h2><p>Split 3. The breach depends on the corners you cut. Rubber-stamp the AI rollout and it leaks customer data. Waive the vendor, shade the questionnaire or ship the unreviewed library and attackers walk in through something you trusted. Otherwise it is the help desk phone scam from the Twitter case we studied. Every version ends at the same board table.</p>` },
     key("4.3#1", "Decision 4.3", "Call the FBI or keep it quiet?", `<p>The law enforcement question from the Twitter case. Calling the FBI is a judgment call, not a legal duty; the duty is telling the customers and regulators who need to know. Keeping the investigation in-house is defensible. Telling nobody, in the press statement or anywhere else, is what ends a career in this game.</p>`, 2),
     { go: () => ep(5), html: `<span class="speaker">${S[3]}</span><div class="k">Executive &middot; Years 10 and up</div><h2>Episode 5: The Corner Office</h2><p>A recruiter, a polished rival and a one-sentence job interview with the CEO. Every earlier choice shows up here.</p>` },
     { go: () => { const es = Object.values(endEls); fitBox(es[0].x - 1500, es[0].y - 200, es[0].x + 480, es[es.length - 1].y + 450); },
@@ -678,10 +688,10 @@ function buildTour() {
       <li><b>Integrity compounds.</b> Hiding a breach or blaming an employee costs more later than it saves now.</li>
       <li><b>Burnout is a career risk.</b> Taking every page and every project can knock you off the ladder.</li></ol>` },
     { go: () => {}, html: `<span class="speaker">${S[0]}</span><div class="k">Exam question</div><h2>Check your knowledge</h2>
-      <p>Which certification requires five years of paid work experience before it is awarded?</p><ol type="A"><li>CompTIA Security+</li><li>CISSP</li><li>ISC2 Certified in Cybersecurity (CC)</li><li>CompTIA CySA+</li></ol>
-      <p style="margin-top:8px;color:#b7bdc8">Answer: B. CISSP (ISC2). Two details students ask about: ISC2 lets a four-year degree count for one of the five years, and you can pass the exam before you have the experience and hold the Associate of ISC2 title while you earn it.</p>` },
+      <p>Which certification requires five years of full-time work experience before it is awarded?</p><ol type="A"><li>CompTIA Security+</li><li>CISSP</li><li>ISC2 Certified in Cybersecurity (CC)</li><li>CompTIA CySA+</li></ol>
+      <p class="ans" style="margin-top:8px;color:#b7bdc8">Answer: B. CISSP (ISC2). Two details students ask about: a related bachelor's or master's degree can count for one of the five years, and you can pass the exam first and hold the Associate of ISC2 title for up to six years while you earn the experience. Part-time work and paid or unpaid internships count.</p>` },
     { go: () => {}, html: `<span class="speaker">${S[0]}</span><div class="k">AI disclosure</div><h2>How we built it</h2>
-      <p>We used AI tools and say so plainly. The five base episodes were drafted with Grok; the route storylines, the real-world notes on this map and the award tags were drafted with Claude. The art was generated with OpenAI image generation through Codex, the voices were made with Kokoro (open-source text to speech), and the code, animation and this map were built with Claude. [Teammate name] checked every number on screen against BLS, IANS / Artico and ISC2. Our team chose the topic, directed and reviewed every part, and wrote our own conclusions.</p>` },
+      <p>We used AI tools and say so plainly. The five base episodes were drafted with Grok; the route storylines, the real-world notes on this map and the award tags were drafted with Claude. The art was generated with OpenAI image generation through Codex, the voices were made with Kokoro (open-source text to speech), and the code, animation and this map were built with Claude, which also drafted our speaker notes. Every number on screen was checked against its source (BLS, IANS / Artico, ISC2) on November 1, 2026. Our team chose the topic and directed and reviewed every part.</p>` },
     { awards: true, go: () => {}, html: "" },
   ];
 }
@@ -691,7 +701,8 @@ function go(i) {
   $("#stopn").textContent = `${at + 1} / ${STOPS.length}`;
 }
 addEventListener("keydown", e => {
-  if (["ArrowRight", "PageDown", " "].includes(e.key)) { e.preventDefault(); go(at + 1); }
+  // the exam stop holds its answer back: the first press shows it, the next one moves on
+  if (["ArrowRight", "PageDown", " "].includes(e.key)) { e.preventDefault(); const a = $("#panel .ans:not(.on)"); if (a) a.classList.add("on"); else go(at + 1); }
   if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); go(at - 1); }
   if (e.key === "Home") go(0);
 });
